@@ -29,7 +29,7 @@ fetch("/usuarios/autenticar", {
                     sessionStorage.ID_USUARIO = json.id;
 
                     setTimeout(function () {
-                        // window.location = ".html";
+                        window.location = "home?.html";
                     }, 1000); // apenas para exibir o loading
 
                 });
@@ -40,7 +40,7 @@ fetch("/usuarios/autenticar", {
 
                 resposta.text().then(texto => {
                     console.error(texto);
-                    finalizarAguardar(texto);
+                    //finalizarAguardar(texto);
                 });
             }
 

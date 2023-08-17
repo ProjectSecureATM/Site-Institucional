@@ -20,7 +20,7 @@ function validarSessao() {
 function limparSessao() {
     aguardar();
     sessionStorage.clear();
-    finalizarAguardar();
+   // finalizarAguardar();
     window.location = "../login.html";
 }
 
@@ -30,16 +30,16 @@ function aguardar() {
     divAguardar.style.display = "flex";
 }
 
-function finalizarAguardar(texto) {
-    var divAguardar = document.getElementById("div_aguardar");
-    divAguardar.style.display = "none";
+// function finalizarAguardar(texto) {
+//     var divAguardar = document.getElementById("div_aguardar");
+//     divAguardar.style.display = "none";
 
-    var divErrosLogin = document.getElementById("div_erros_login");
-    if (texto) {
-        divErrosLogin.style.display = "flex";
-        divErrosLogin.innerHTML = texto;
-    }
-}
+//     var divErrosLogin = document.getElementById("div_erros_login");
+//     if (texto) {
+//         divErrosLogin.style.display = "flex";
+//         divErrosLogin.innerHTML = texto;
+//     }
+// }
 
 
 // modal

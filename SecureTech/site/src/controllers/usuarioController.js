@@ -1,5 +1,4 @@
 var usuarioModel = require("../models/usuarioModel");
-var secureModel = require("../models/secureModel");
 
 function autenticar(req, res) {
     var email = req.body.emailServer;
@@ -11,7 +10,7 @@ function autenticar(req, res) {
         res.status(400).send("Sua senha está indefinida!");
     } else {
 
-        usuarioModel.entrar(email, senha)
+        usuarioModel.autenticar(email, senha)
             .then(
                 function (resultado) {
                     console.log(`\nResultados encontrados: ${resultado.length}`);
