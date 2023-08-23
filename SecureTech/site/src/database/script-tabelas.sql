@@ -24,22 +24,30 @@ CREATE TABLE usuario (
 	fk_empresa INT,
 	FOREIGN KEY (fk_empresa) REFERENCES empresa(id)
 );
-
-CREATE TABLE aviso (
-	id INT PRIMARY KEY AUTO_INCREMENT,
-	titulo VARCHAR(100),
-	descricao VARCHAR(150),
-	fk_usuario INT,
-	FOREIGN KEY (fk_usuario) REFERENCES usuario(id)
-);
-
-create table secure (
-/* em nossa regra de negócio, um secure tem apenas um sensor */
-	id INT PRIMARY KEY AUTO_INCREMENT,
-	descricao VARCHAR(300),
-	fk_empresa INT,
-	FOREIGN KEY (fk_empresa) REFERENCES empresa(id)
-);
+	CREATE TABLE CPUS(
+	idCpu INT PRIMARY KEY AUTO_INCREMENT,
+	CPU1 VARCHAR(45),
+	CPU2 FLOAT,
+	CPU3 float
+	);
+    
+    CREATE TABLE MEMO(
+	idCpu INT PRIMARY KEY AUTO_INCREMENT,
+	MEMO1 FLOAT,
+	MEMO2 FLOAT,
+	MEMO3 float
+	);
+    
+    CREATE TABLE DISCO(
+    idDisco INT PRIMARY KEY AUTO_INCREMENT,
+    DISCO1 FLOAT,
+    DISCO2 FLOAT,
+    DISCO3 float
+    );
+    
+SELECT * FROM CPUS;
+SELECT * FROM MEMO;
+SELECT * FROM DISCO;
 
 /* esta tabela deve estar de acordo com o que está em INSERT de sua API do arduino - dat-acqu-ino */
 
