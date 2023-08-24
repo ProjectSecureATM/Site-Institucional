@@ -7,7 +7,7 @@
 .banner{
     display: flex;
     flex-direction: column;
-    width: 95rem;
+    width: 93.47rem;
     height: 43rem;
     background-image: url('../assets/sobre_nos_banner.jpeg');
 }
@@ -28,18 +28,17 @@
 
 .containerFrase {
     display: flex;
-    width: 95rem;
+    width: 93.47rem;
     height: 40rem;
     justify-content: center;
     align-items: center;
-    background-color: aqua;
 }
 
 .frase{
     display: flex;
-    font-size: 1.2rem;
-    justify-content: center;
-    color: rgba(255, 255, 255, 0.315);
+    font-size: 6rem;
+    font-weight: bold;
+    color: rgba(255, 255, 255, 0.547);
 }
 
 .logo img{
@@ -68,6 +67,88 @@
     border-bottom-left-radius: 0.25rem 0.25rem;
     border-bottom-right-radius: 0.25rem 0.25rem;
     border-color: #FFCB45;
-    ;
 }
 
+.social{
+    display: flex;
+    flex-direction: column;
+    width: 93.47rem;
+    height: 172rem;
+    background-color: white;
+}
+
+.containerSocial{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 70%;
+    margin: auto
+}
+
+.boxSocial{
+    display: flex;
+    width: 100%;
+    height: fit-content;
+    margin-top: 5%;
+    margin-bottom: 3%;
+}
+
+.textArea{
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    height: fit-content;
+}
+
+.heading{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 10%;
+}
+
+.heading h2{
+    font-size: 2.3rem;
+}
+
+.coloredSpan{
+    color:#295897;
+    width: 28vw;
+    font-size: 1.6rem;
+    margin-top: 3%;
+    margin-bottom: 3%;
+}
+
+.socialText{
+    display: flex;
+}
+
+.socialText span{
+    font-size: 1.5rem;
+    width: 32vw;
+}
+
+.imageArea{
+    display: flex;
+    width: 50%;
+    height: fit-content;
+    margin-top: 1%;
+}
+
+.imageArea img{
+    width: 30rem;
+    height: 20rem;
+}
+
+.fullTextArea{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+}
+
+.fullTextArea span{
+    font-size: 1.5rem;
+    width: 65vw;
+    margin-top: 2%;
+}
