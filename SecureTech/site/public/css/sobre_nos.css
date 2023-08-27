@@ -4,10 +4,14 @@
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
+i{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
 .banner{
     display: flex;
     flex-direction: column;
-    width: 93.47rem;
+    width: 93rem;
     height: 43rem;
     background-image: url('../assets/sobre_nos_banner.jpeg');
 }
@@ -28,7 +32,7 @@
 
 .containerFrase {
     display: flex;
-    width: 93.47rem;
+    width: 93rem;
     height: 40rem;
     justify-content: center;
     align-items: center;
@@ -69,11 +73,32 @@
     border-color: #FFCB45;
 }
 
+.buttonLogin{
+    display: flex;
+    width: 45%;
+    height: 100%;
+    justify-content: end;
+    align-items: center;
+}
+
+.buttonLogin button{
+    width: 7.625rem;
+    height: 2.5rem;
+    border-radius: 5rem;
+    border-style: none;
+    background-color: #FFCB45;
+    font-weight: bold;
+}
+
+.buttonLogin button i{
+    padding-right: 4%;
+}
+
 .social{
     display: flex;
     flex-direction: column;
-    width: 93.47rem;
-    height: 172rem;
+    width: 93rem;
+    height: 89rem;
     background-color: white;
 }
 
@@ -200,3 +225,74 @@
     height: 100%;
     color: black;
 }
+
+.footer{
+    display: flex;
+    width: 93rem;
+    height: 20rem;
+    background-color: #FFCB45;
+}
+
+.footerContainer{
+    display: flex;
+    width: 80%;
+    height: 85%;
+    margin: auto;
+    margin-bottom: 0;
+}
+
+.footerContent{
+    display: flex;
+    width: 100%;
+    height: 70%;
+}
+
+.footerMedia{
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+    height: 100%;
+}
+
+.footerLogo{
+    display: flex;
+    width: 100%;
+    height: 70%;
+}
+
+.footerLogo img{
+    width: 20vw;
+    height: 20vh;
+}
+
+.footerSocialMidia{
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: row;
+    width: 59%;
+    height: 30%;
+}
+
+.socialMedia{
+    width: 2.81rem;
+    height: 2.375rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 2rem;
+    box-shadow: 0 3px 8px #514f4f;
+}
+
+.socialMedia i{
+    font-size: x-large;
+}
+
+.bgYellow{
+    background-color:#FFCB45;
+}
+
+.bgWhite{
+    background-color: white;
+}
+
+
