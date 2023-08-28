@@ -235,6 +235,7 @@ i{
 
 .footerContainer{
     display: flex;
+    flex-direction: column;
     width: 80%;
     height: 85%;
     margin: auto;
@@ -295,4 +296,39 @@ i{
     background-color: white;
 }
 
+.footerText{
+    display: flex;
+    width: 60%;
+    height: 100%;
+}
+
+.footerInfo{
+    display: flex;
+    flex-direction: column;
+    width: 33.3%;
+    height: 53%;
+    justify-content: space-around;
+}
+
+.footerInfo span, .footerInfo a{
+    font-weight: lighter;
+    color: black;
+    text-decoration: none;
+}
+
+.footerInfo a:hover{
+    font-weight: bold;
+    color: #295897;
+}
+
+.footerRights{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: 25%;
+    border-top-width: 1px;
+    border-top-style: outset;
+    border-top-color: black;
+}
 
