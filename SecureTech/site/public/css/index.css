@@ -4,6 +4,10 @@
     font-family: 'Readex Pro', sans-serif;
 }
 
+body{
+    overflow-x: hidden;
+}
+
 .principal {
     height: fit-content;
     width: 100%;
@@ -250,7 +254,7 @@
 .about-us{
     width: 95%;
     height: 89vh;
-    margin-bottom: 5%;
+    margin-bottom: 3%;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -300,19 +304,239 @@
     align-items: center;
     justify-content: center;
     border-radius: 3vh;
-    font-weight: bold;
+    font-weight: normal;
     align-self: baseline;
+    font-family: Nunito, sans-serif;
+    font-size: 3vh;
     
+}
+
+.div-card-monit{
+    height: 93vh;
+    width: 110%;
+    background-color: #194075;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card-monit{
+    width: 85%;
+    height: 67%;
+    background-color: #295897;
+    display: flex;
+    flex-direction: row;
+}
+
+.foto-card-monit{
+    width: 53%;
+    height: 100%;
+    background-image: url('../assets/pexels-liliana-drew-8555256.jpg');
+    background-size: cover;
+    position: relative;
+}
+
+.text-card-monit{
+    height: 100%;
+    width: 80%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-around;
+    font-family: 'Abel', sans-serif;    
+}
+
+.content-text{
+    width: 86%;
+    color: white;
+    height: 70%;
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: column;
+}
+
+.content-text button{
+    width: 15vw;
+    height: 7vh;
+    border-style: none;
+    background-color: #FFCB45;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 3vh;
+    font-weight: normal;
+    align-self: baseline;
+    font-family: Nunito, sans-serif;
+    font-size: 3vh;
+}
+
+.content-text p{
+    font-family: 'Abel', sans-serif;
+    font-size: 4vh;
+}
+
+.bolinha{
+    position: absolute;
+    height: 15vh;
+    width: 7vw;
+    border-radius: 50%;
+    background-color: #FFCB45;
+    left: 55%;
+    z-index: 999;
+    top: 315%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.bolinha img{
+    width: auto;
+    height: 10vh;
+}
+
+.fale-conosco{
+    width: 110%;
+    height: 75vh;
+    /* filter: brightness(80%); */
+    background-image: url("../assets/Captura\ de\ tela\ 2023-08-18\ 110717.png");
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.card-fale-conosco{
+    position: absolute;
+    background-color: #ffffff;
+    height: 60vh;
+    width: 40vw;
+    right: 100px;
+    box-shadow: 2px 11px 31px 16px rgba(51, 51, 51, 0.181); 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.text-card-fc{
+    width: 80%;
+    font-size: 4vh;
+    height: 50vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    font-family: 'Nunito', sans-serif;
+    color: #4F4F4F;
+}
+
+.text-card-fc h1{
+    font-size: 5vh;
+    font-family: 'Nunito', sans-serif;
+}
+
+.text-card-fc p{
+    font-size: 3vh;
+    color: #295897;
+}
+
+.text-card-fc button{
+    width: 17vw;
+    height: 6vh;
+    border-style: none;
+    background-color: #295897;
+    display: flex;
+    color: white;
+    align-items: center;
+    justify-content: center;
+    border-radius: 3vh;
+    font-weight: normal;
+    align-self: center;
+    font-family: Nunito, sans-serif;
+    font-size: 3vh;
+    margin-top: 3%;
+}
+
+
+.icon-text img{
+    width: auto;
+    height:7.5vh;
+    margin-right: 5%;
+    align-self: baseline;
+}
+
+.icon-text{
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+    justify-content: baseline;
+}
+
+#aqui{
+    width: auto;
+    height: 5.5vh;
 }
 
 
 
+  .chatbot-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #295897;
+    border-radius: 10px;
+    padding: 10px;
+    color: white;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
 
+  #chatbot-icon {
+    width: 40px;
+    height: 40px;
+    background-color: #FFCB45;
+    color: #000000;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 40px;
+    cursor: pointer;
+  }
 
+  #chatbot-body {
+    display: none;
+    max-height: 300px;
+    overflow: auto;
+    padding: 10px;
+  }
 
+  .nossos-clientes{
+    width: 110%;
+    height: 25vh;
+    background-color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 
+  .clientes-grupo{
+    width: 80%;
+    height: 20vh;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    filter: opacity(40%);
+    /* filter: saturate(0%); */
 
+  }
 
+  .clientes-grupo img{
+    width: auto;
+    height: 7vh;
+  }
+
+  #aqui2{
+    width: auto;
+    height: 15vh;
+  }
 
 
 
@@ -410,6 +634,7 @@
     .img-about-us {
         width: 100%;
         height: 30vh;
+        align-self: center;
         background-size: cover;
         background-position: 40%;
     }
@@ -431,6 +656,66 @@
         width: 100%;
     }
 
+    .bolinha{
+        display: none;
+    }
+    
+    .about-us{
+        margin-bottom: -7vh;
+    }
 
+    .foto-card-monit{
+        display: none;
+    }
+
+    .text-card-monit{
+        text-align: center;
+        width: 100%;
+    }
+
+    .card-monit{
+        width: 100%;
+        background-color: #295897;
+        display: block;
+        flex-direction: column;
+    }
+
+    .div-card-monit{
+        background: linear-gradient(90.04deg, #294e9774 49.97%, #5886c163 95.59%), url('../assets/midia-banco24horas-farmacia-2.jpg');
+        background-size: cover;
+    }
+
+    .content-text p{
+        font-size: 3vh;
+    }
+
+    .content-text h1{
+        font-size: 4vh;
+    }
+
+    .content-text button{
+        width: 65%;
+        align-self: center;
+    }
+
+    .fale-conosco{
+        width: 100vw;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .card-fale-conosco{
+        width: 90vw;
+        align-self: center;
+    }
+
+    .chatbox-container{
+        display: none;
+    }
+
+    .clientes-grupo{
+        display: none;
+    }
     
 }
