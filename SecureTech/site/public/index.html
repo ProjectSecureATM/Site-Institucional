@@ -6,7 +6,9 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>SecureATM | Página Inicial</title>
+  <title>SecureATM | Home</title>
+
+  <link rel="shortcut icon" href="./assets/favicon.png" type="image/x-icon">
 
   <link rel="stylesheet" href="css/index.css">
   <script src="./js/sessao.js"></script>
@@ -35,7 +37,7 @@
             <li>Soluções</li>
           </ul>
         </div>
-        <div class="botao-login">
+        <div onclick="goToLogin()" class="botao-login">
           <button id="login-home"><img src="./assets/login-icon.png">Login</button>
         </div>
       </div>
@@ -44,7 +46,7 @@
           <div class="text-titulo">
             <h1>Monitore ATM's de forma <span>simplificada</span></h1>
             <p>Conheça a nossa solução de monitoramento de Hardware para caixas eletrônicos</p>
-            <button id="btn-saibamais">Saiba Mais</button>
+            <button onclick="goToSolucoes()" id="btn-saibamais">Saiba Mais</button>
           </div>
 
         </div>
@@ -99,7 +101,7 @@
             máquinas é vital para os negócios e a confiança dos usuários. Dessa forma, a SecureATM emprega um esforço
             contínuo para identificar potenciais problemas antes que afetem as operações, garantindo uma experiência
             tranquila para todos os envolvidos. Saiba mais clicando no botão abaixo!</p>
-          <button>Saiba Mais</button>
+          <button onclick="goToSobreNos">Saiba Mais</button>
         </div>
       </div>
       <div class="div-card-monit">
@@ -132,9 +134,9 @@
             </div>
             <div class="icon-text">
               <img id="aqui" src="./assets/icons8-enviar-96.png" alt="">
-              (11) secureATM@outlook.com
+              secureATM@outlook
             </div>
-            <button>Fale Conosco</button>
+            <button onclick="goToFaleConosco()">Fale Conosco</button>
           </div>
         </div>
       </div>
@@ -152,6 +154,44 @@
 
         </div>
       </div>
+
+      <div class="footer">
+        <div class="footerContainer">
+            <div class="footerContent">
+                <div class="footerMedia">
+                    <div class="footerLogo">
+                        <img src="./assets/WhatsApp_Image_2023-08-15_at_18.11.55-removebg-preview.png" width="auto" height="5vh" alt="">
+                    </div>
+                    <div class="footerSocialMidia">
+                        <div class="socialMedia bgWhite"><i class="fa-brands fa-instagram"></i></div>
+                        <div class="socialMedia bgYellow"><i class="fa-brands fa-facebook"></i></i></div>
+                        <div class="socialMedia bgWhite"><i class="fa-brands fa-twitter"></i></div>
+                    </div>
+                </div>
+                <div class="footerText">
+                    <div class="footerInfo" id="aqui3">
+                        <h3>Institucional</h3>
+                        <a href="sobre_nos.html">Sobre nós</a>
+                        <a href="solucoes.html">Soluções</a>
+                    </div>
+                    <div class="footerInfo">
+                        <h3>Suporte</h3>
+                        <a href="faleConosco.html">Fale conosco</a>
+                        <a href="faleConosco.html">Help Desk</a>
+                    </div>
+                    <div class="footerInfo">
+                        <h3>Contato</h3>
+                        <span>+55 (11) 0000-0000</span>
+                        <span>secure_atm@outlook</span>
+                    </div>
+                </div>
+            </div>
+             <div class="footerRights">
+                <span>© 2023 SecureATM. Todos os Diretos Reservados.</span>
+            </div>
+        </div>
+    </div>
+
 
       <div class="chatbot-container">
         <div id="chatbot-icon">Chat</div>
@@ -173,4 +213,40 @@
   chatbotIcon.addEventListener('click', () => {
     chatbotBody.style.display = chatbotBody.style.display === 'none' ? 'block' : 'none';
   });
+
+  function goToLogin(){
+    window.location = 'login.html'
+  }
+
+  function goToSolucoes(){
+    window.location = 'solucoes.html'
+  }
+
+  function goToSolucoes(){
+    window.location = 'sobre_nos.html'
+  }
+
+  function goToFaleConosco(){
+    window.location = 'faleConosco.html'
+  }
+
+  document.addEventListener("DOMContentLoaded", function () {
+  const carouselInner = document.querySelector(".nossos-clientes");
+  const images = carouselInner.querySelectorAll("img");
+  const imageWidth = images[0].clientWidth;
+  let currentIndex = 0;
+
+  function moveCarousel() {
+    currentIndex = (currentIndex + 1) % images.length;
+    const displacement = -currentIndex * imageWidth;
+    carouselInner.style.transform = `translateX(${displacement}px)`;
+  }
+
+  setInterval(moveCarousel, 1000); // Trocar de imagem a cada 3 segundos
+});
+
+ 
 </script>
+
+<script src="https://kit.fontawesome.com/4c5e041356.js" crossorigin="anonymous"></script>
+
