@@ -1,0 +1,298 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    margin: 0%;
+    overflow-x: hidden;
+    font-family: Nunito, sans-serif;
+    font-family: 'Abel', sans-serif;
+    font-family: 'Readex Pro', sans-serif;
+}
+
+.div_principal {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    background-color: rgb(255, 255, 255);
+
+}
+
+.div_header {
+    background-color: #295897;
+    width: 100%;
+    height: 50%;
+
+}
+
+#imagem {
+    width: 17vh;
+    height: 5vw;
+}
+
+
+.nav-bar {
+    display: flex;
+    height: 10vh;
+    width: 12vw;
+    margin-left: 10vh;
+}
+
+.container {
+    display: flex;
+    width: 100%;
+    margin-top: -90px;
+    margin-left: -100px;
+    
+}
+
+.menu {
+    width: 100%;
+    display: flex;
+    color: #ffffff;
+    list-style: none;
+    justify-content: space-evenly;
+    font-weight: bold;
+    margin-left: 30vh;
+    margin-top: 3vh;
+}
+
+.container:hover {
+    background-color: rgb(247, 255, 208);
+    color: black;
+}
+
+a {
+    text-decoration: none;
+    color: #ffffff;
+}
+
+.seila {
+    justify-content: center;
+}
+
+h3 {
+    display: flex;
+    color: #ffffff;
+}
+
+#faleconosco {
+    margin-left: 40vh;
+    font-size: xx-large;
+    
+}
+
+#duvidas {
+    font-size: x-large;
+    margin-left: 40vh;
+    color: #ffffff;
+}
+
+.info {
+    margin-left: 40vh;
+}
+
+span {
+    color: yellow;
+    margin-left: 1vh;
+    
+}
+
+.card {
+    background-color: rgb(251, 251, 251);
+    width: 600px;
+    height: auto;
+    margin-left: 35vh;
+    margin-top: 3vh;
+    text-align: start;
+    box-shadow: 0 16px 32px 0 rgba(0, 0, 0, 0.6);
+    padding-top: 10vh;
+    padding-bottom: 10vh;
+    padding-left: 15vh;
+    padding-right: 40vh;
+}
+
+
+#quadrado {
+    color: #295897;
+    font-size: larger;
+}
+
+.helpdesk {
+    margin-left: 100vh;
+    margin-top: -47vh;
+    
+}
+
+#imagem-banco {
+    width: 44vh;
+    height: 20vw;
+}
+
+.cliente {
+    margin-left: -9vh;
+    font-size: x-large;
+    margin-top: -50px;
+}
+
+#contato-help {
+    width: 45vh;
+
+}
+
+.text-field{
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: start;
+    margin: 10px 0px;
+    margin-left: -100px;
+}
+
+.text-field > input{
+    width: 70%;
+    border: none;
+    padding: 15px;
+    background: #F9F9F9;
+    color: black;
+    font-size: 12pt;
+    box-shadow: 0px 10px 40px #00000075;    
+    outline: none;
+}
+
+.text-field > label{
+    color: #000000;
+    margin-bottom: 10px;
+}
+
+.botao-enviar{
+    width: 75%;
+    padding: 16px 0px;
+    margin: 15px;
+    border: none;
+    outline: none;
+    font-weight: 700;
+    text-transform: uppercase;
+    background-color: #FFCB45;
+    color: #000000;
+    letter-spacing: 3px;
+    cursor: pointer;
+    box-shadow: 0px 10px 40px -12px #00000056;
+    margin-left: -100px;
+}
+
+.footer{
+    display: flex;
+    width: 100%;
+    height: 50vh;
+    background-color: #FFCB45;
+}
+
+.footerContainer{
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    height: 85%;
+    margin: auto;
+    margin-bottom: 0;
+}
+
+.footerContent{
+    display: flex;
+    width: 100%;
+    height: 70%;
+}
+
+.footerMedia{
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+    height: 100%;
+}
+
+.footerLogo{
+    display: flex;
+    width: 100%;
+    height: 70%;
+}
+
+.footerLogo img{
+    width: 20vw;
+    height: 20vh;
+}
+
+.footerSocialMidia{
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: row;
+    width: 59%;
+    height: 30%;
+}
+
+.socialMedia{
+    width: 2.81rem;
+    height: 2.375rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 2rem;
+    box-shadow: 0 3px 8px #514f4f;
+}
+
+.socialMedia i{
+    font-size: x-large;
+}
+
+.bgYellow{
+    background-color:#FFCB45;
+}
+
+.bgWhite{
+    background-color: white;
+}
+
+.footerText{
+    display: flex;
+    width: 60%;
+    height: 100%;
+}
+
+.footerInfo{
+    display: flex;
+    flex-direction: column;
+    width: 33.3%;
+    height: 53%;
+    justify-content: space-around;
+}
+
+.footerInfo span, .footerInfo a{
+    font-weight: lighter;
+    color: black;
+    text-decoration: none;
+}
+
+.footerInfo a:hover{
+    font-weight: bold;
+    color: #295897;
+}
+
+.footerRights{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: 25%;
+    border-top-width: 1px;
+    border-top-style: outset;
+    border-top-color: black;
+}
+
+.intitucional h3 {
+    color: #000000;
+}
+
+.direitos{
+    color: #000000;
+}
