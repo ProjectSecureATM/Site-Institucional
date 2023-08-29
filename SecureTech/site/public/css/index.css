@@ -66,7 +66,10 @@ body {
 
 #menu ul li {
     margin-bottom: 2%;
+    cursor: pointer;
 }
+
+
 
 
 .botao-login img {

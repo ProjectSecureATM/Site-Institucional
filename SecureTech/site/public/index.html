@@ -26,15 +26,15 @@
   <div class="principal">
     <div class="container">
       <div class="nav-bar">
-        <div class="logo">
+        <div onclick="goToHome()" class="logo">
           <img src="./assets/WhatsApp_Image_2023-08-15_at_18.11.55-removebg-preview.png" alt="">
         </div>
         <div class="menu">
           <ul id="menu">
-            <li id="margin"><span>Home</span></li>
-            <li>Fale Conosco</li>
-            <li>Sobre Nós</li>
-            <li>Soluções</li>
+            <li style="cursor: pointer;" onclick="goToHome()" id="margin"><span>Home</span></li>
+            <li style="cursor: pointer;" onclick="goToFaleConosco()">Fale Conosco</li>
+            <li style="cursor: pointer;" onclick="goToSobreNos()">Sobre Nós</li>
+            <li style="cursor: pointer;" onclick="goToSolucoes()">Soluções</li>
           </ul>
         </div>
         <div onclick="goToLogin()" class="botao-login">
@@ -228,6 +228,10 @@
 
   function goToFaleConosco(){
     window.location = 'faleConosco.html'
+  }
+
+  function goToFaleHome(){
+    window.location = 'index.html'
   }
 
   document.addEventListener("DOMContentLoaded", function () {
