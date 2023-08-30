@@ -5,35 +5,45 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fale Conosco</title>
-    <link rel="stylesheet" href="./css/faleConosco.css">
+    <link rel="stylesheet" href="../public/css/faleConosco.css">
     <script src="https://kit.fontawesome.com/4c5e041356.js" crossorigin="anonymous"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com%22%3E/
     <link rel=" preconnect" href="https://fonts.gstatic.com/" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Abel&family=Fira+Sans:wght@300&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Abel&family=Fira+Sans:wght@300&family=Readex+Pro&display=swap"rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Abel&family=Fira+Sans:wght@300&family=Readex+Pro&display=swap"
+        rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Nunito&display=swap" rel="stylesheet">
+    <link rel="icon" href="./assets/favicon.png">
 </head>
 
 <body>
     <div class="div_principal">
         <div class="div_header">
-            <div class="nav_bar">
-                <img id="imagem" src="./img/3.png" alt="">
-                <ul class="menu">
-                    <li class="container"><a href="">Home</a></li>
-                    <li class="container"><a href="">Fale Conosco</a></li>
-                    <li class="container"><a href="">Sobre nós</a></li>
-                    <li class="container"><a href="">Soluções</a></li>
-                    <li class="container"><a href="">Login</a></li>
-                </ul>
+            <div class="nav-bar">
+                <div onclick="goToHome()" class="logo">
+                    <img src="./assets/3.png" alt="">
+                </div>
+                <div class="menu">
+                    <ul id="menu">
+                        <li style="cursor: pointer;" onclick="goToHome()">Home</li>
+                        <li style="cursor: pointer;" onclick="goToFaleConosco()" id="margin"><span>Fale Conosco</span>
+                        </li>
+                        <li style="cursor: pointer;" onclick="goToSobreNos()">Sobre Nós</li>
+                        <li style="cursor: pointer;" onclick="goToSolucoes()">Soluções</li>
+                    </ul>
+                </div>
+                <div onclick="goToLogin()" class="botao-login">
+                    <button id="login-home"><img src="./assets/Login-removebg-preview.png">Login</button>
+                </div>
             </div>
-            <br><br><br>
+            
             <div class="texto">
                 <h3 id="faleconosco">
                     <b>Fale</b><span><b>Conosco</b></span>
                 </h3> <br><br>
                 <span id="duvidas"> <b>Para dúvidas, sugestões ou reclamações entre em contato conosco através das <br>
-                        <p class="info">informações abaixo!</p></b></span>
+                        <p class="info">informações abaixo!</p>
+                    </b></span>
             </div>
             <div class="card">
                 <div class="quadrado">
@@ -68,16 +78,18 @@
                 </div>
             </div>
             <div class="helpdesk">
-                <img id="imagem-banco" src="./img/thumbnail_depositphotos_137474258-stock-photo-close-up-of-hand-entering.jpg" alt="">
-                <h4 id="contato-help">Já é associado? Entre em contato com o nosso suporte através da plataforma de Help Desk</h4>
+                <img id="imagem-banco"
+                    src="./assets/thumbnail_depositphotos_137474258-stock-photo-close-up-of-hand-entering.jpg" alt="">
+                <h4 id="contato-help">Já é associado? Entre em contato com o nosso suporte através da plataforma de
+                    <span>Help Desk</span></h4>
             </div>
-            <br><br><br><br><br><br><br><br><br> 
+            <br><br><br><br><br><br><br><br><br>
             <div class="footer">
                 <div class="footerContainer">
                     <div class="footerContent">
                         <div class="footerMedia">
                             <div class="footerLogo">
-                                <img src="./img/secure-removebg-preview.png" alt="">
+                                <img src="./assets/secure-removebg-preview.png" alt="">
                             </div>
                             <div class="footerSocialMidia">
                                 <div class="socialMedia bgWhite"><i class="fa-brands fa-instagram"></i></div>
