@@ -8,6 +8,8 @@ i{
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
+
+
 .banner{
     display: flex;
     flex-direction: column;
@@ -318,6 +320,7 @@ i{
 
 .footerInfo a:hover{
     font-weight: bold;
+    transition: 0.2s;
     color: #295897;
 }
 
@@ -332,3 +335,165 @@ i{
     border-top-color: black;
 }
 
+@media screen and (max-width: 600px) {
+    body{
+        overflow-x: hidden;
+        
+    }
+    .banner{
+        height: 130vh;
+        
+    }
+
+    .navbar {
+        display: none;
+    }
+
+    .containerFrase{
+        width: 100vw;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .frase{
+        display: flex;
+        align-self: center;
+        font-size: 20vh;
+        margin-top: -12vh;
+        margin-right: -170vh;
+    }
+
+    .header img {
+        width: 60vh;
+        height: 60vw;
+        margin-left: -6vh;
+    }
+
+    .buttonLogin button{
+        width: 10rem;
+        height: 5rem;
+        font-size: x-large;
+    }
+
+    .boxSocial{
+        display: block;
+    }
+
+    .textArea{
+        width: 100%;
+    }
+
+    .imageArea {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        height: fit-content;
+        margin-top: 5%;
+        margin-bottom: 0%;
+    }
+
+    .imageArea img{
+        width: 50rem;
+        height: 30rem;
+    }
+
+    .heading{
+        display: inline-block;
+        width: 100%;
+    }
+
+    .coloredSpan{
+        width: 230vw;
+        font-size: 2.6rem;
+        margin-top: 3%;
+        margin-bottom: 3%;
+    }
+
+    .socialText span{
+        font-size: 2.8rem;
+        width: 261vw;
+    }
+
+    .fullTextArea span {
+        font-size: 2.8rem;
+        width: 201vw;
+        margin-top: 2%;
+    }
+
+    .profile{
+        width: 20rem;
+        height: 22rem;
+    }
+
+    .textProfile{
+        font-size: xx-large;
+        width: 159vh;
+        margin-left: 4%;
+    }
+
+    .linkProfile{
+        width: 30vh;
+        height: 12vh;
+    }
+
+    .linkProfile img{
+        width: 7vh;
+        height: 7vh;
+        margin-left: 5%;
+    }
+
+    .footer{
+        margin-top: 150vh;
+        height: 31rem;
+    }
+
+    .footer img{
+        width: 100vw;
+        height: 30vh;
+    }
+
+    .footerMedia{
+        margin-right: 3vh;
+    }
+
+    .footerSocialMidia{
+        display: flex;
+        justify-content: space-evenly;
+        flex-direction: row;
+        width: 88%;
+        height: 30%;
+        margin-bottom: 5vh;
+    }
+
+    .footerText{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 130vh;
+    }
+
+    .footerInfo{
+        font-size: 2.3rem;
+        width: 45vh;
+    }
+
+    .footerRights{
+        font-size: xx-large;
+    }
+
+    .socialMedia{
+        width: 5.81rem;
+        height: 5.375rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 2rem;
+        box-shadow: 0 3px 8px #514f4f;
+    }
+
+    .socialMedia i{
+        font-size: xxx-large;
+    }
+   
+}
