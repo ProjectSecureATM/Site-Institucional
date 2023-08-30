@@ -6,11 +6,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Cadastro</title>
+    <title>Cadastro Corporativo</title>
     <script src="./js/sessao.js"></script>
     <script src="./js/cadastro.js"></script>
     
-    <link rel="stylesheet" href="./css/cadastro.css">
+    <link rel="stylesheet" href="./css/cadastroCorporativo.css">
     <link rel="stylesheet" href="styles/cadastro.css">
 
 </head>
@@ -29,9 +29,14 @@
                     <p>Preencha os dados abaixo para criar sua conta</p>
                 </div>
                 <div class="text-field">
-                    <label for="nome">Nome</label>
+                    <label for="nome">Razão Social</label>
                     <input type="text" id="nome_input" placeholder="Nome">
                     <div id="erro_nome"></div>
+                </div>
+                <div class="text-field">
+                    <label for="email">CNPJ</label>
+                    <input type="text" id="email_input" placeholder="Email">
+                    <div id="erro_email"></div>
                 </div>
                 <div class="text-field">
                     <label for="email">Email</label>
@@ -48,14 +53,9 @@
                     <input type="password" id="confirmacao_senha_input" placeholder="********">
                     <div id="erro_confirmar_senha"></div>
 
-                    <select id="empresasSelect" name="empresa">
-                        <option>Selecione sua empresa</option>
-                        <option value=""></option>
-                    </select>
                 </div>
                 <button onclick="cadastrar()" class="botao-cadastro-user">Finalizar Cadastro</button><br>
-                <span href="">Ja tem uma conta? <a href="login.html"><b>LOGIN</b></a></span><br>
-                <span href="">Não está associado a uma conta corporativa? <a href="cadastroCorporativo.html"><b>CADASTRO</b></a></span>
+                <span href="">Ja tem uma conta? <a href="./login.html"><b>LOGIN</b></a></span><br>
             </div>
         </div>
 </body>

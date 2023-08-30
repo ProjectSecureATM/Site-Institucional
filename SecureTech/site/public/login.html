@@ -1,29 +1,47 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles/login.css">
-    <script src="./js/login.js"></script>
-    <title>LOGIN</title>
+
+    <title>Cadastro</title>
+    <script src="./js/sessao.js"></script>
+    <script src="./js/cadastro.js"></script>
+    
+    <link rel="stylesheet" href="./css/cadastro.css">
+    <link rel="stylesheet" href="styles/cadastro.css">
+    <link rel="stylesheet" href="./css/login.css">
 </head>
+
 <body>
-    <div class="main-login">
-        <div class="right-login">
-            <div class="card-login">
-                <h1>LOGIN</h1>
+    <div class="main">
+            <div class="card-cadastro-info">
+                <img class="imagem-logo" href="./imgs/logo.png"><br>
+                Monitoramento prático
+                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Alias sit reiciendis eius expedita officia non doloribus iusto, blanditiis vel dolorum, maiores explicabo, in excepturi laboriosam adipisci quidem quos harum voluptates.
+            </div>
+            <div class="card-cadastro-user">
+                <div>
+                    <h2>BEM VINDO DE VOLTA!</h2>
+                    <h1>Login de Usuário/Empresa</h1>
+                    <p>Preencha os dados abaixo para se logar</p>
+                </div>
                 <div class="text-field">
-                    <label for="email">Email</label>
-                    <input type="text" id="input_email" placeholder="Insira seu e-mail">
+                    <label for="nome">Nome</label>
+                    <input type="text" id="nome_input" placeholder="Nome">
+                    <div id="erro_nome"></div>
                 </div>
                 <div class="text-field">
                     <label for="senha">Senha</label>
-                    <input type="password" id="input_senha" placeholder="Insira sua senha">
+                    <input type="password" id="senha_input" placeholder="********">
+                    <div id="erro_senha"></div>
                 </div>
-                <button onclick = 'verificar()' class="botao-login">Login</button>
+                <button onclick="cadastrar()" class="botao-cadastro-user">Finalizar Cadastro</button><br>
+                <span>Ainda não tem uma conta? <a href="./cadastro.html"><b>CADASTRO</b></a></span><br>
             </div>
         </div>
-    </div>
 </body>
 </html>
+
