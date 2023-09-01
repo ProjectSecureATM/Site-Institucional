@@ -9,7 +9,8 @@ body {
 }
 
 header {
-    position: absolute;
+    /* position: absolute; */
+    z-index: 99;
     height: fit-content;
     width: 100%;
     background-color: transparent;
@@ -81,14 +82,36 @@ header {
     cursor: pointer;
 }
 
+/* BANNER BANNER BANNER BANNER BANNER */
 
 .banner {
+    width: 95%;
+    height: 89vh;
+    /* margin-bottom: 3%; */
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.container {
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1%;
+    flex-direction: column;
+}
+
+.bd-img-banner {
     z-index: -1;
     position: absolute;
     height: 90vh;
     width: 100%;
-    background-color: #ff000052;
+    background-color: #5b5b5b52;
 }
+
 
 .titulo {
     display: flex;
@@ -148,6 +171,58 @@ header {
     height: 3vh;
     width: 5vh
 }
+
+/* BANNER BANNER BANNER BANNER BANNER */
+
+.negocio {
+    /* position: ; */
+    width: 95%;
+    height: 89vh;
+    margin-bottom: 3%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.img-negocio {
+    height: 76vh;
+    width: 45%;
+    background-image: url('../assets/midia-banco24horas-farmacia-2.jpg');
+    background-size: cover;
+    border-radius: 2vh;
+}
+
+.text-negocio {
+    height: 69vh;
+    width: 52%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    font-family: 'Nunito', sans-serif;
+    color: #595959;
+    letter-spacing: 1px;
+    line-height: 1.7em;
+    font-size: 3vh;
+    font-style: normal;
+}
+
+.text-negocio h3 {
+    color: #295897;
+}
+
+/* PORQUE PORQUE PORQUE PORQUE PORQUE */
+
+.porque {
+    height: 80vh;
+    width: 110%;
+    background-color: #194075;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* ARQUITETURA ARQUITETURA ARQUITETURA ARQUITETURA */
 
 
 
