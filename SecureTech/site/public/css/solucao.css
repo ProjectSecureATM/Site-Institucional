@@ -1,7 +1,7 @@
 * {
     padding: 0;
     margin: 0;
-    font-family: 'Readex Pro', sans-serif
+    font-family: 'Readex Pro', sans-serif;
 }
 
 body {
@@ -31,8 +31,8 @@ header {
 }
 
 .navBar {
-    width: 100%;
-    height: 15vh;
+    width: 90%;
+    height: 16vh;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -43,7 +43,7 @@ header {
     display: flex;
     flex-direction: row;
     list-style: none;
-    width: 55%;
+    width: 53%;
     align-self: baseline;
     justify-content: space-evenly;
     font-size: 3.0vh;
@@ -66,12 +66,15 @@ header {
 }
 
 .navBar button {
-    width: 9vw;
+    width: 12vw;
     height: 6vh;
-    border: none;
-    border-radius: 3vh;
-    font-weight: bold;
+    border-style: none;
     background-color: #FFCB45;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 3vh;
+    font-weight: bolder;
     transition: 0.5s ease-in-out;
 }
 
@@ -80,6 +83,17 @@ header {
     background-color: #d2a83e;
     transform: scale(1.05);
     cursor: pointer;
+}
+
+.navBar img {
+    height: 15vh;
+    width: 13vw;
+}
+
+.login-button img {
+    height: 3vh;
+    width: 1.5vw;
+    margin-right: 12%;
 }
 
 /* BANNER BANNER BANNER BANNER BANNER */
@@ -109,7 +123,8 @@ header {
     position: absolute;
     height: 90vh;
     width: 100%;
-    background-color: #5b5b5b52;
+    background-image: url(../assets/background-banner.png);
+    /* backdrop-filter: blue(2px); */
 }
 
 
@@ -188,9 +203,13 @@ header {
 .img-negocio {
     height: 76vh;
     width: 45%;
-    background-image: url('../assets/midia-banco24horas-farmacia-2.jpg');
     background-size: cover;
     border-radius: 2vh;
+}
+
+.img-negocio img {
+    height: 90vh;
+    width: 50vw;
 }
 
 .text-negocio {
@@ -214,16 +233,165 @@ header {
 /* PORQUE PORQUE PORQUE PORQUE PORQUE */
 
 .porque {
-    height: 80vh;
-    width: 110%;
-    background-color: #194075;
+    height: 70vh;
+    width: 100%;
+    background-color: #295897;
     display: flex;
     justify-content: center;
     align-items: center;
+    /* flex-direction: column; */
+    
 }
 
+.porque .titulo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: white;
+    margin-top: 10vh;
+}
+
+.texto p {
+    display: flex;
+    align-self: center;
+    margin-top: 10vh;
+    color: #FFF;
+    /* font-family: Nunito; */
+    /* font-size: 1.5rem; */
+    font-style: normal;
+    font-weight: 400;
+    word-spacing: 0.3em;
+}
 /* ARQUITETURA ARQUITETURA ARQUITETURA ARQUITETURA */
 
+.arquitetura {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100vh;
+}
+
+.diagrama {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 90%;
+}
+
+.diagrama img {
+    width: 90vw;
+    margin-top: 5vh;
+}
 
 
+/* FOOTER FOOTER FOOTER FOOTER FOOTER */
+
+.footer {
+    display: flex;
+    width: 93rem;
+    height: 20rem;
+    background-color: #FFCB45;
+}
+
+.footerContainer {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    height: 85%;
+    margin: auto;
+    margin-bottom: 0;
+}
+
+.footerContent {
+    display: flex;
+    width: 100%;
+    height: 70%;
+}
+
+.footerMedia {
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+    height: 100%;
+}
+
+.footerLogo {
+    display: flex;
+    width: 100%;
+    height: 70%;
+}
+
+.footerLogo img {
+    width: 20vw;
+    height: 20vh;
+}
+
+.footerSocialMidia {
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: row;
+    width: 59%;
+    height: 30%;
+}
+
+.socialMedia {
+    width: 2.81rem;
+    height: 2.375rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 2rem;
+    box-shadow: 0 3px 8px #514f4f;
+}
+
+.socialMedia i {
+    font-size: x-large;
+}
+
+.bgYellow {
+    background-color: #FFCB45;
+}
+
+.bgWhite {
+    background-color: white;
+}
+
+.footerText {
+    display: flex;
+    width: 60%;
+    height: 100%;
+}
+
+.footerInfo {
+    display: flex;
+    flex-direction: column;
+    width: 33.3%;
+    height: 53%;
+    justify-content: space-around;
+}
+
+.footerInfo span,
+.footerInfo a {
+    font-weight: lighter;
+    color: black;
+    text-decoration: none;
+}
+
+.footerInfo a:hover {
+    font-weight: bold;
+    color: #295897;
+}
+
+.footerRights {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: 25%;
+    border-top-width: 1px;
+    border-top-style: outset;
+    border-top-color: black;
+}
 
