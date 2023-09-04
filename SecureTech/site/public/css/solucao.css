@@ -175,16 +175,23 @@ header {
     justify-content: center;
 }
 
+.titulo-orcamento {
+    width: 70%;
+}
+
 .orcamento input {
     border: none;
     border-bottom: solid 1px lightgrey;
+    width: 70%;
 }
 
 .orcamento button {
     border: none;
     background-color: #FFCB45;
-    height: 3vh;
-    width: 5vh
+    height: 7vh;
+    width: 20vw;
+    border-radius: 2vh;
+    font-weight: bold;
 }
 
 /* BANNER BANNER BANNER BANNER BANNER */
