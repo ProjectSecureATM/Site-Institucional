@@ -1,3 +1,9 @@
+* {
+    font-family: "Zen Kaku Gothic Antique";
+    font-size: 20px;
+    font-weight: 500;
+}
+
 body {
     background-image: url(../imgs/bg-overlay.png);
     background-size: cover;
@@ -9,6 +15,16 @@ body {
 .card-cadastro-info{
     width: 30%;
     height: 40vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.titulo-info{
+    color: white;
+}
+
+.texto-info{
+    color: white;
 }
 
 .card-cadastro-user{
@@ -30,4 +46,42 @@ body {
 .imagem-logo{
     width: 70%;
     height: 20vh;
+}
+
+.titulo-user{
+    margin-bottom: 25px;
+}
+
+.texto-user{
+    font-size: 16px;
+}
+
+.text-field{
+    margin-bottom: 15px;
+}
+
+.botao-amarelo {
+    background-color: #ffdb58; 
+    color: #ffffff; 
+    border: none; 
+    padding: 10px 20px; 
+    font-size: 16px; 
+    border-radius: 5px; 
+    cursor: pointer; 
+    color: black;
+}
+
+.label-user{
+    
+    /* input */
+
+position: absolute;
+left: 0%;
+right: 0%;
+top: 3.78%;
+bottom: 76.98%;
+
+border: 1px solid #BDBDBD;
+border-radius: 8px;
+
 }

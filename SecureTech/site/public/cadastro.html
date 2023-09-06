@@ -18,18 +18,18 @@
 <body>
     <div class="main">
             <div class="card-cadastro-info">
-                <img class="imagem-logo" href="./imgs/logo.png"><br>
-                Monitoramento prático
-                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Alias sit reiciendis eius expedita officia non doloribus iusto, blanditiis vel dolorum, maiores explicabo, in excepturi laboriosam adipisci quidem quos harum voluptates.
+                <img class="imagem-logo" src="./imgs/logo.png" alt="Logo">
+                <h1 class="titulo-info">Monitoramento prático</h1>
+                <p class="texto-info">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Alias sit reiciendis eius expedita officia non doloribus iusto, blanditiis vel dolorum, maiores explicabo, in excepturi laboriosam adipisci quidem quos harum voluptates.</p>
             </div>
             <div class="card-cadastro-user">
                 <div>
                     <h2>VAMOS COMEÇAR!</h2>
-                    <h1>Crie uma conta de usuário!</h1>
-                    <p>Preencha os dados abaixo para criar sua conta</p>
+                    <h1 class="titulo-user">Crie uma conta de usuário!</h1>
+                    <p class="texto-user">Preencha os dados abaixo para criar sua conta</p>
                 </div>
                 <div class="text-field">
-                    <label for="nome">Nome</label>
+                    <label class="label-user"  for="nome">Nome</label>
                     <input type="text" id="nome_input" placeholder="Nome">
                     <div id="erro_nome"></div>
                 </div>
@@ -47,15 +47,14 @@
                     <label for="confirmar-senha">Confirmar Senha</label>
                     <input type="password" id="confirmacao_senha_input" placeholder="********">
                     <div id="erro_confirmar_senha"></div>
-
-                    <select id="empresasSelect" name="empresa">
-                        <option>Selecione sua empresa</option>
-                        <option value=""></option>
-                    </select>
                 </div>
-                <button onclick="cadastrar()" class="botao-cadastro-user">Finalizar Cadastro</button><br>
-                <span href="">Ja tem uma conta? <a href="login.html"><b>LOGIN</b></a></span><br>
-                <span href="">Não está associado a uma conta corporativa? <a href="cadastroCorporativo.html"><b>CADASTRO</b></a></span>
+                <div class="text-field"><select id="empresasSelect" name="empresa">
+                    <option>Selecione sua empresa</option>
+                    <option value=""></option>
+                </select></div>
+                <button onclick="cadastrar()" class="botao-cadastro-user botao-amarelo">Cadastrar</button><br>
+                <span class="texto-user">Ja tem uma conta? <a href="login.html"><b>LOGIN</b></a></span><br>
+                <span class="texto-user">Não está associado a uma conta corporativa? <a href="cadastroCorporativo.html"><b>CADASTRO</b></a></span>
             </div>
         </div>
 </body>

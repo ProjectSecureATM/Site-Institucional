@@ -9,6 +9,12 @@ body {
 .card-cadastro-info{
     width: 30%;
     height: 40vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.titulo-info{
+    color: white;
 }
 
 .card-cadastro-user{
@@ -30,4 +36,5 @@ body {
 .imagem-logo{
     width: 70%;
     height: 20vh;
+    
 }
