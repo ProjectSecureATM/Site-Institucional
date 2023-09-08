@@ -1,13 +1,14 @@
 * {
     font-family: "Zen Kaku Gothic Antique";
-    font-size: 20px;
-    font-weight: 500;
+    font-size: 15px;
+    font-weight: 400;
 }
 
 body {
     background-image: url(../imgs/bg-overlay.png);
     background-size: cover;
     background-repeat: no-repeat; 
+    background-position: center;
     width: 100%; 
     height: 100vh
 }
@@ -19,8 +20,35 @@ body {
     flex-direction: column;
 }
 
-.titulo-info{
+.titulo-info {
     color: white;
+    font-weight: bold;
+    font-size: 2em; 
+}
+
+@media screen and (max-width: 768px) {
+
+    /* .titulo-info {
+        font-size: 1.5em; 
+    }
+
+    .titulo-user2 {
+        font-size: 1.2em; 
+    } */
+}
+
+@media screen and (max-width: 480px) {
+    *{
+        font-size: 0.9em;
+    }
+
+     .titulo-info {
+        font-size: 1.4em; /
+    }
+    
+    .titulo-user2 {
+        font-size: 0.9em; 
+    } 
 }
 
 .texto-info{
@@ -29,9 +57,9 @@ body {
 
 .card-cadastro-user{
     color: black;
-    width: 32%;
-    height: 68vh;
-    background-color: white;
+    width: 31vw;
+    height: fit-content;
+    background-color: #FAFAFA;
     text-align: center;
     border-radius: 6%;
 }
@@ -45,15 +73,21 @@ body {
 
 .imagem-logo{
     width: 70%;
-    height: 20vh;
 }
 
-.titulo-user{
+.titulo-user1{
+    margin-top: 25px;
+    font-weight: 400;
+}
+
+.titulo-user2{
     margin-bottom: 25px;
+    font-size: 1.6em;
+    font-weight: 500;
 }
 
 .texto-user{
-    font-size: 16px;
+    /* font-size: 16px; */
 }
 
 .text-field{
@@ -61,14 +95,17 @@ body {
 }
 
 .botao-amarelo {
-    background-color: #ffdb58; 
+    background-color: #FFCB45; 
     color: #ffffff; 
     border: none; 
-    padding: 10px 20px; 
-    font-size: 16px; 
-    border-radius: 5px; 
+
+    /* font-size: 16px;  */
+    border-radius: 8px;
+    height: 5vh; 
+    font-weight: bold;
     cursor: pointer; 
     color: black;
+    width: 44%;
 }
 
 .label-user{
@@ -85,3 +122,37 @@ border: 1px solid #BDBDBD;
 border-radius: 8px;
 
 }
+
+.texto-user{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    outline: none;
+    width: 40%;
+  }
+
+  select {
+    width: 44%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+    appearance: none; /* Remove a aparência padrão do elemento <select> */
+    cursor: pointer;
+  }
+
+  .card-redirecionador-user{
+    margin-top: 4vh;
+  }
+  .card2-redirecionador-user{
+    margin-top: 2vh;
+  }
+  .a-user{
+    font-weight: 700;
+    color: black;
+  }

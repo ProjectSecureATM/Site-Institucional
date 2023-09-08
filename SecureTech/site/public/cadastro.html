@@ -24,37 +24,43 @@
             </div>
             <div class="card-cadastro-user">
                 <div>
-                    <h2>VAMOS COMEÇAR!</h2>
-                    <h1 class="titulo-user">Crie uma conta de usuário!</h1>
+                    <h2 class="titulo-user1">VAMOS COMEÇAR!</h2>
+                    <h1 class="titulo-user2">Crie uma conta de usuário!</h1>
+                </div>
                     <p class="texto-user">Preencha os dados abaixo para criar sua conta</p>
+                    <div class="cadastro">
+                        <div class="text-field">
+                            <!-- <label for="nome">Nome</label> -->
+                            <input type="text" id="nome_input" placeholder="Nome">
+                            <div id="erro_nome"></div>
+                        </div>
+                        <div class="text-field">
+                            <!-- <label for="email">Email</label> -->
+                            <input type="text" id="email_input" placeholder="Email">
+                            <div id="erro_email"></div>
+                        </div>
+                        <div class="text-field">
+                            <!-- <label for="senha">Criar Senha</label> -->
+                            <input type="password" id="senha_input" placeholder="********">
+                            <div id="erro_senha"></div>
+                        </div>
+                        <div class="text-field">
+                            <!-- <label for="confirmar-senha">Confirmar Senha</label> -->
+                            <input type="password" id="confirmacao_senha_input" placeholder="********">
+                            <div id="erro_confirmar_senha"></div>
+                        </div>
+                        <div class="text-field"><select id="empresasSelect" name="empresa">
+                            <option>Selecione sua empresa</option>
+                            <option value=""></option>
+                        </select></div>
+                    </div>
+                <button onclick="cadastrar()" class="botao-cadastro-user botao-amarelo">Cadastrar</button>
+                <div class="card-redirecionador-user">
+                    <span class="texto-user">Ja tem uma conta? <a href="login.html" class="a-user">LOGIN</a></span>
                 </div>
-                <div class="text-field">
-                    <label class="label-user"  for="nome">Nome</label>
-                    <input type="text" id="nome_input" placeholder="Nome">
-                    <div id="erro_nome"></div>
+                <div class="card2-redirecionador-user">
+                    <span class="texto-user">Não está associado a uma conta corporativa? <a href="cadastroCorporativo.html" class="a-user">CADASTRO</a></span>
                 </div>
-                <div class="text-field">
-                    <label for="email">Email</label>
-                    <input type="text" id="email_input" placeholder="Email">
-                    <div id="erro_email"></div>
-                </div>
-                <div class="text-field">
-                    <label for="senha">Criar Senha</label>
-                    <input type="password" id="senha_input" placeholder="********">
-                    <div id="erro_senha"></div>
-                </div>
-                <div class="text-field">
-                    <label for="confirmar-senha">Confirmar Senha</label>
-                    <input type="password" id="confirmacao_senha_input" placeholder="********">
-                    <div id="erro_confirmar_senha"></div>
-                </div>
-                <div class="text-field"><select id="empresasSelect" name="empresa">
-                    <option>Selecione sua empresa</option>
-                    <option value=""></option>
-                </select></div>
-                <button onclick="cadastrar()" class="botao-cadastro-user botao-amarelo">Cadastrar</button><br>
-                <span class="texto-user">Ja tem uma conta? <a href="login.html"><b>LOGIN</b></a></span><br>
-                <span class="texto-user">Não está associado a uma conta corporativa? <a href="cadastroCorporativo.html"><b>CADASTRO</b></a></span>
             </div>
         </div>
 </body>
