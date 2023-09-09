@@ -1,14 +1,5 @@
--- Arquivo de apoio, caso você queira criar tabelas como as aqui criadas para a API funcionar.
--- Você precisa executar os comandos no banco de dados para criar as tabelas,
--- ter este arquivo aqui não significa que a tabela em seu BD estará como abaixo!
-
-/*
-comandos para mysql - banco local - ambiente de desenvolvimento
-*/
-
-CREATE DATABASE secureAtm;
-
-USE secureAtm;
+CREATE DATABASE secureATM;
+USE secureATM;
 
 CREATE TABLE empresa (
 	id INT PRIMARY KEY AUTO_INCREMENT,
@@ -24,45 +15,84 @@ CREATE TABLE usuario (
 	fk_empresa INT,
 	FOREIGN KEY (fk_empresa) REFERENCES empresa(id)
 );
-	CREATE TABLE CPUS(
-	idCpu INT PRIMARY KEY AUTO_INCREMENT,
-	CPU1 VARCHAR(45),
-	CPU2 FLOAT,
-	CPU3 float
+
+
+	CREATE TABLE CPU(
+	idCPU INT PRIMARY KEY AUTO_INCREMENT,
+	CPU1 double,
+	CPU2 double,
+	CPU3 double,
+	momento DATETIME
 	);
     
     CREATE TABLE MEMO(
-	idCpu INT PRIMARY KEY AUTO_INCREMENT,
-	MEMO1 FLOAT,
-	MEMO2 FLOAT,
-	MEMO3 float
+	idMEMO INT PRIMARY KEY AUTO_INCREMENT,
+	MEMO1 double,
+	MEMO2 double,
+	MEMO3 double,
+    momento DATETIME
 	);
     
     CREATE TABLE DISCO(
-    idDisco INT PRIMARY KEY AUTO_INCREMENT,
-    DISCO1 FLOAT,
-    DISCO2 FLOAT,
-    DISCO3 float
+    idDISCO INT PRIMARY KEY AUTO_INCREMENT,
+    DISCO1 double,
+    DISCO2 double,
+    DISCO3 double,
+	momento DATETIME
     );
+
+    CREATE TABLE Hardware(
+	idHardware INT PRIMARY KEY auto_increment,
+	fkCPU INT,
+	fkMEMO INT,
+	fkDISCO INT,
+    constraint frkCPU foreign key(fkCPU)
+    references CPU(idCPU),
+    constraint frkMEMO foreign key(fkMEMO)
+    references MEMO(idMEMO),
+    constraint frkDISCO foreign key(fkDISCO)
+    references DISCO(idDISCO)
+);
+
+
     
-SELECT * FROM CPUS;
-SELECT * FROM MEMO;
-SELECT * FROM DISCO;
+    INSERT INTO CPU VALUES
+    (null, 0.24, 0.25, 0.26, now());
+    
+    INSERT INTO DISCO VALUES
+    (null, 0.30, 0.30, 0.30, now());
+    
+    INSERT INTO MEMO VALUES
+    (null, 0.40, 0.50, 0.45, now());
+    
+    INSERT INTO Hardware VALUES
+    (null,1,1,1);
+    
+    DROP VIEW VW_dadosPython;
+    CREATE VIEW VW_dadosPython AS
+    SELECT 
+    idHardware,
+    CPU.CPU1,
+    CPU.CPU2,
+    CPU.CPU3,
+    CPU.momento as 'dtCPU',
+    MEMO.MEMO1,
+    MEMO.MEMO2,
+    MEMO.MEMO3,
+    MEMO.momento as'dtMemo',
+    DISCO.DISCO1,
+    DISCO.DISCO2,
+    DISCO.DISCO3,
+    DISCO.momento as 'dtDisco'
+    FROM Hardware
+    JOIN CPU 
+    ON fkCPU = idCPU
+    JOIN MEMO
+    ON fkMEMO = idMEMO
+    JOIN DISCO
+    ON fkDISCO = idDisco;
+    
+    SELECT * FROM VW_dadosPython;
+		    
 
-/* esta tabela deve estar de acordo com o que está em INSERT de sua API do arduino - dat-acqu-ino */
-
-
-/*
-comando para sql server - banco remoto - ambiente de produção
-*/
-
-
-CREATE USER [usuarioParaAPIWebDataViz_datawriter_datareader]
-WITH PASSWORD = '#Gf_senhaParaAPIWebDataViz',
-DEFAULT_SCHEMA = dbo;
-
-EXEC sys.sp_addrolemember @rolename = N'db_datawriter',
-@membername = N'usuarioParaAPIWebDataViz_datawriter_datareader';
-
-EXEC sys.sp_addrolemember @rolename = N'db_datareader',
-@membername = N'usuarioParaAPIWebDataViz_datawriter_datareader';
+    
