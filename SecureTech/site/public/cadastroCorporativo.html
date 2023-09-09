@@ -6,11 +6,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Login</title>
+    <title>Cadastro</title>
     <script src="./js/sessao.js"></script>
     <script src="./js/cadastro.js"></script>
     
-    <link rel="stylesheet" href="./css/login.css">
+    <link rel="stylesheet" href="./css/cadastro.css">
     <link rel="stylesheet" href="styles/cadastro.css">
 
 </head>
@@ -26,20 +26,30 @@
             <div class="card-cadastro-info">
                 <img class="imagem-logo" src="./imgs/logo.png" alt="Logo">
                 <h1 class="titulo-info">Monitoramento Prático</h1>
-                <p class="texto-info">Faça já o seu login para ter acesso ao monitoramento do caixa eletrônico de sua empresa, garantindo a segurança, manutenção, e otimização do sistema monitorado.</p>
+                <p class="texto-info">Faça já o seu cadastro como empresa para ter acesso ao monitoramento do caixa eletrônico de sua empresa, garantindo a segurança, manutenção, e otimização do sistema monitorado.</p>
             </div>
             <div class="card-cadastro-user">
                 <div class="info-user">
-                    <h2 class="titulo-user1">BEM VINDO DE VOLTA!</h2>
-                    <h1 class="titulo-user2">Login de Funcionario/Empresa</h1>
-                    <p class="texto-user">Preencha os dados abaixo para se logar</p>
+                    <h2 class="titulo-user1">VAMOS COMEÇAR!</h2>
+                    <h1 class="titulo-user2">Crie uma conta corporativa</h1>
+                    <p class="texto-user">Preencha os dados abaixo para criar sua conta</p>
                 </div>
                     
                     <div class="cadastro">
                         <div class="text-field">
+                            <!-- <label for="nome">Nome</label> -->
+                            <input type="text" id="nome_input" placeholder="Razão Social">
+                            <div id="erro_nome"></div>
+                        </div>
+                        <div class="text-field">
                             <!-- <label for="email">Email</label> -->
-                            <input type="text" id="email_input" placeholder="Email ou CNPJ">
+                            <input type="text" id="email_input" placeholder="Email">
                             <div id="erro_email"></div>
+                        </div>
+                        <div class="text-field">
+                            <!-- <label for="senha">Criar Senha</label> -->
+                            <input type="password" id="senha_input" placeholder="CNPJ">
+                            <div id="erro_senha"></div>
                         </div>
                         <div class="text-field">
                             <!-- <label for="confirmar-senha">Confirmar Senha</label> -->
@@ -49,7 +59,7 @@
                     </div>
                 <button onclick="cadastrar()" class="botao-cadastro-user botao-amarelo">Cadastrar</button>
                 <div class="card-redirecionador-user">
-                    <span class="texto-user2">Não tem uma conta? <a href="cadastro.html" class="a-user">CADASTRO</a></span>
+                    <span class="texto-user2">Ja tem uma conta? <a href="login.html" class="a-user">LOGIN</a></span>
                 </div>
                 
             </div>
@@ -61,5 +71,3 @@
         window.location = '/'
     }
 </script>
-
-
