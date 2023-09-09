@@ -19,6 +19,9 @@
     <div class="logo-celular">
         <img class="imagem-logo" src="./imgs/logo.png" alt="Logo">
     </div>
+    <div onclick="backToHome()" class="botao-login">
+        <button id="login-home"><img src="./imgs/back-icon.png">Voltar</button>
+      </div>
     <div class="main">
             <div class="card-cadastro-info">
                 <img class="imagem-logo" src="./imgs/logo.png" alt="Logo">
@@ -69,4 +72,8 @@
         </div>
 </body>
 </html>
-
+<script>
+    function backToHome(){
+        window.location = '/'
+    }
+</script>

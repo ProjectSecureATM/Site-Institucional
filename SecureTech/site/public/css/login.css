@@ -4,6 +4,29 @@
     font-weight: 400;
 }
 
+#login-home {
+    position: absolute;
+    top: 5vh; 
+    right: 5vh; 
+    cursor: pointer;
+    width: 9vw;
+    height: 6vh;
+    border-style: none;
+    background-color: #FFCB45;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 3vh;
+    font-weight: bold;
+    transition: 0.5s ease-in-out;
+}
+
+#login-home img{
+    height: 5vh;
+    width: 2vw;
+    margin-right: 1vh;
+}
+
 .logo-celular{
     display: none;
     width: 30vh;
@@ -150,6 +173,17 @@ input {
         font-size: 1em;
     }
     
+    #login-home {
+        width: 20vw;
+        height: 5vh;
+    }
+
+    #login-home img {
+        height: 3vh;
+        width: 4vw;
+        margin-right: 12%;
+    }
+
     .logo-celular{
         display: block;
     }
