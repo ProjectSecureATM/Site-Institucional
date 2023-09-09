@@ -6,56 +6,59 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Cadastro Corporativo</title>
+    <title>Cadastro</title>
     <script src="./js/sessao.js"></script>
     <script src="./js/cadastro.js"></script>
     
-    <link rel="stylesheet" href="./css/cadastroCorporativo.css">
+    <link rel="stylesheet" href="./css/cadastro.css">
     <link rel="stylesheet" href="styles/cadastro.css">
 
 </head>
 
 <body>
+    <div class="logo-celular">
+        <img class="imagem-logo" src="./imgs/logo.png" alt="Logo">
+    </div>
     <div class="main">
             <div class="card-cadastro-info">
-                <img class="imagem-logo" src="./imgs/logo.png" alt="logo"><br>
-                <h1 class="titulo-info">Monitoramento prático</h1>
-                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Alias sit reiciendis eius expedita officia non doloribus iusto, blanditiis vel dolorum, maiores explicabo, in excepturi laboriosam adipisci quidem quos harum voluptates.
+                <img class="imagem-logo" src="./imgs/logo.png" alt="Logo">
+                <h1 class="titulo-info">Monitoramento Prático</h1>
+                <p class="texto-info">Faça já o seu cadastro como empresa para ter acesso ao monitoramento do caixa eletrônico de sua empresa, garantindo a segurança, manutenção, e otimização do sistema monitorado.</p>
             </div>
             <div class="card-cadastro-user">
-                <div>
-                    <h2>VAMOS COMEÇAR!</h2>
-                    <h1>Crie uma conta de usuário!</h1>
-                    <p>Preencha os dados abaixo para criar sua conta</p>
+                <div class="info-user">
+                    <h2 class="titulo-user1">VAMOS COMEÇAR!</h2>
+                    <h1 class="titulo-user2">Crie uma conta corporativa</h1>
+                    <p class="texto-user">Preencha os dados abaixo para criar sua conta</p>
                 </div>
-                <div class="text-field">
-                    <label for="nome">Razão Social</label>
-                    <input type="text" id="nome_input" placeholder="Nome">
-                    <div id="erro_nome"></div>
+                    
+                    <div class="cadastro">
+                        <div class="text-field">
+                            <!-- <label for="nome">Nome</label> -->
+                            <input type="text" id="nome_input" placeholder="Razão Social">
+                            <div id="erro_nome"></div>
+                        </div>
+                        <div class="text-field">
+                            <!-- <label for="email">Email</label> -->
+                            <input type="text" id="email_input" placeholder="Email">
+                            <div id="erro_email"></div>
+                        </div>
+                        <div class="text-field">
+                            <!-- <label for="senha">Criar Senha</label> -->
+                            <input type="password" id="senha_input" placeholder="CNPJ">
+                            <div id="erro_senha"></div>
+                        </div>
+                        <div class="text-field">
+                            <!-- <label for="confirmar-senha">Confirmar Senha</label> -->
+                            <input type="password" id="confirmacao_senha_input" placeholder="********">
+                            <div id="erro_confirmar_senha"></div>
+                        </div>
+                    </div>
+                <button onclick="cadastrar()" class="botao-cadastro-user botao-amarelo">Cadastrar</button>
+                <div class="card-redirecionador-user">
+                    <span class="texto-user2">Ja tem uma conta? <a href="login.html" class="a-user">LOGIN</a></span>
                 </div>
-                <div class="text-field">
-                    <label for="email">CNPJ</label>
-                    <input type="text" id="email_input" placeholder="Email">
-                    <div id="erro_email"></div>
-                </div>
-                <div class="text-field">
-                    <label for="email">Email</label>
-                    <input type="text" id="email_input" placeholder="Email">
-                    <div id="erro_email"></div>
-                </div>
-                <div class="text-field">
-                    <label for="senha">Criar Senha</label>
-                    <input type="password" id="senha_input" placeholder="********">
-                    <div id="erro_senha"></div>
-                </div>
-                <div class="text-field">
-                    <label for="confirmar-senha">Confirmar Senha</label>
-                    <input type="password" id="confirmacao_senha_input" placeholder="********">
-                    <div id="erro_confirmar_senha"></div>
-
-                </div>
-                <button onclick="cadastrar()" class="botao-cadastro-user">Finalizar Cadastro</button><br>
-                <span href="">Ja tem uma conta? <a href="./login.html"><b>LOGIN</b></a></span><br>
+                
             </div>
         </div>
 </body>

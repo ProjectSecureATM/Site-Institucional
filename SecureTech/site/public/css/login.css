@@ -1,7 +1,19 @@
+* {
+    font-family: "Zen Kaku Gothic Antique";
+    font-size: 15px;
+    font-weight: 400;
+}
+
+.logo-celular{
+    display: none;
+    width: 30vh;
+}
+
 body {
     background-image: url(../imgs/bg-overlay.png);
     background-size: cover;
     background-repeat: no-repeat; 
+    background-position: center;
     width: 100%; 
     height: 100vh
 }
@@ -9,16 +21,29 @@ body {
 .card-cadastro-info{
     width: 30%;
     height: 40vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.titulo-info {
+    color: white;
+    font-weight: bold;
+    font-size: 2em; 
 }
 
 .card-cadastro-user{
     color: black;
-    width: 32%;
-    height: 68vh;
-    background-color: white;
+    width: 31vw;
+    height: 65vh;
+    background-color: #FAFAFA;
     text-align: center;
     border-radius: 6%;
 }
+
+.texto-info{
+    color: white;
+}
+
 
 .main {
     display: flex;
@@ -29,5 +54,127 @@ body {
 
 .imagem-logo{
     width: 70%;
-    height: 20vh;
+}
+
+.titulo-user1{
+    margin-top: 5vh;
+    text-align: left;
+}
+
+.titulo-user2{
+    font-size: 1.6em;
+    font-weight: 550;
+    text-align: left;
+}
+
+.texto-user{
+    text-align: left;
+}
+
+.info-user{
+    display: flex;
+    flex-direction: column;
+    padding-left: 3vw;
+}
+
+.text-field{
+    margin-bottom: 15px;
+}
+
+.botao-amarelo {
+    background-color: #FFCB45; 
+    color: #ffffff; 
+    border: none; 
+
+    /* font-size: 16px;  */
+    border-radius: 8px;
+    height: 8vh; 
+    font-weight: bold;
+    cursor: pointer; 
+    color: black;
+    width: 77%;
+}
+
+.label-user{
+    
+    /* input */
+
+position: absolute;
+left: 0%;
+right: 0%;
+top: 3.78%;
+bottom: 76.98%;
+
+border: 1px solid #BDBDBD;
+border-radius: 8px;
+
+}
+
+.texto-user{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    outline: none;
+    width: 70%;
+  }
+
+  select {
+    width: 77%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+    appearance: none; /* Remove a aparência padrão do elemento <select> */
+    cursor: pointer;
+  }
+
+  .card-redirecionador-user{
+    margin-top: 4vh;
+  }
+  .card2-redirecionador-user{
+    margin-top: 2vh;
+  }
+  .a-user{
+    font-weight: 700;
+    color: black;
+  }
+
+  @media screen and (max-width: 768px) {
+
+    *{
+        font-size: 1em;
+    }
+    
+    .logo-celular{
+        display: block;
+    }
+
+    body {
+        height: fit-content
+    }
+
+    .titulo-user2 {
+        font-size: 1.2em; 
+    } 
+    .card-cadastro-info{
+        display: none;
+    }
+
+    .card-cadastro-user{
+        width: 65vw;
+        height: 65vh;
+    }
+}
+
+@media screen and (max-width: 768px) {
+
+    .card-cadastro-user{
+        width: 65vw;
+        height: fit-content;
+    }
 }
