@@ -1,0 +1,499 @@
+*{
+    padding: 0;
+    margin: 0;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+i{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+
+
+.banner{
+    display: flex;
+    flex-direction: column;
+    width: 93rem;
+    height: 43rem;
+    background-image: url('../assets/sobre_nos_banner.jpeg');
+}
+
+.header{
+    display: flex;
+    width: 100%;
+    height: 8rem;
+}
+
+.containerHeader{
+    display: flex;
+    align-items: center;
+    width: 92%;
+    height: 98%;
+    margin: 2% 4% 0% 4%;
+}
+
+.containerFrase {
+    display: flex;
+    width: 93rem;
+    height: 40rem;
+    justify-content: center;
+    align-items: center;
+}
+
+.frase{
+    display: flex;
+    font-size: 6rem;
+    font-weight: bold;
+    color: rgba(255, 255, 255, 0.547);
+}
+
+.logo img{
+    width: 13vw;
+    height: 15vh;
+}
+
+.navbar{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 25rem;
+    height: 100%;
+    font-size: 1.3rem;
+    color: white;
+    margin-left: 2%;
+}
+
+.navbar li{
+    list-style: none;
+}
+
+.underlined{
+    border-style: outset;
+    border-width: 0rem 0rem 0.25rem 0rem;
+    border-bottom-left-radius: 0.25rem 0.25rem;
+    border-bottom-right-radius: 0.25rem 0.25rem;
+    border-color: #FFCB45;
+}
+
+.buttonLogin{
+    display: flex;
+    width: 45%;
+    height: 100%;
+    justify-content: end;
+    align-items: center;
+}
+
+.buttonLogin button{
+    width: 7.625rem;
+    height: 2.5rem;
+    border-radius: 5rem;
+    border-style: none;
+    background-color: #FFCB45;
+    font-weight: bold;
+}
+
+.buttonLogin button i{
+    padding-right: 4%;
+}
+
+.social{
+    display: flex;
+    flex-direction: column;
+    width: 93rem;
+    height: 89rem;
+    background-color: white;
+}
+
+.containerSocial{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 70%;
+    margin: auto
+}
+
+.boxSocial{
+    display: flex;
+    width: 100%;
+    height: fit-content;
+    margin-top: 5%;
+    margin-bottom: 3%;
+}
+
+.textArea{
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    height: fit-content;
+}
+
+.heading{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 10%;
+}
+
+.heading h2{
+    font-size: 2.3rem;
+}
+
+.coloredSpan{
+    color:#295897;
+    width: 28vw;
+    font-size: 1.6rem;
+    margin-top: 3%;
+    margin-bottom: 3%;
+}
+
+.socialText{
+    display: flex;
+}
+
+.socialText span{
+    font-size: 1.5rem;
+    width: 32vw;
+}
+
+.imageArea{
+    display: flex;
+    width: 50%;
+    height: fit-content;
+    margin-top: 1%;
+}
+
+.imageArea img{
+    width: 30rem;
+    height: 20rem;
+}
+
+.fullTextArea{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+}
+
+.fullTextArea span{
+    font-size: 1.5rem;
+    width: 65vw;
+    margin-top: 2%;
+}
+
+.boxProfile{
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    margin-bottom: 5%;
+}
+
+.profile{
+    display: flex;
+    width: 14rem;
+    height: 16rem;
+    border-radius: 2vh;
+    background-color: antiquewhite;
+    align-items: end;
+    justify-content: center;
+}
+
+.profile img{
+    width: 100%;
+    height: 100%;
+    border-radius: 2vh;
+}
+
+.linkProfile{
+    display: flex;
+    position: absolute;
+    width: 24vh;
+    height: 6vh;
+    background-color: white;
+    border-radius: 2vh;
+    margin-bottom: 2%;
+}
+
+.linkProfile img{
+    width: 4vh;
+    height: 4vh;
+    margin-left: 5%;
+}
+
+.textProfile{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    color: black;
+}
+
+.footer{
+    display: flex;
+    width: 93rem;
+    height: 20rem;
+    background-color: #FFCB45;
+}
+
+.footerContainer{
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    height: 85%;
+    margin: auto;
+    margin-bottom: 0;
+}
+
+.footerContent{
+    display: flex;
+    width: 100%;
+    height: 70%;
+}
+
+.footerMedia{
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+    height: 100%;
+}
+
+.footerLogo{
+    display: flex;
+    width: 100%;
+    height: 70%;
+}
+
+.footerLogo img{
+    width: 20vw;
+    height: 20vh;
+}
+
+.footerSocialMidia{
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: row;
+    width: 59%;
+    height: 30%;
+}
+
+.socialMedia{
+    width: 2.81rem;
+    height: 2.375rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 2rem;
+    box-shadow: 0 3px 8px #514f4f;
+}
+
+.socialMedia i{
+    font-size: x-large;
+}
+
+.bgYellow{
+    background-color:#FFCB45;
+}
+
+.bgWhite{
+    background-color: white;
+}
+
+.footerText{
+    display: flex;
+    width: 60%;
+    height: 100%;
+}
+
+.footerInfo{
+    display: flex;
+    flex-direction: column;
+    width: 33.3%;
+    height: 53%;
+    justify-content: space-around;
+}
+
+.footerInfo span, .footerInfo a{
+    font-weight: lighter;
+    color: black;
+    text-decoration: none;
+}
+
+.footerInfo a:hover{
+    font-weight: bold;
+    transition: 0.2s;
+    color: #295897;
+}
+
+.footerRights{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: 25%;
+    border-top-width: 1px;
+    border-top-style: outset;
+    border-top-color: black;
+}
+
+@media screen and (max-width: 600px) {
+    body{
+        overflow-x: hidden;
+        
+    }
+    .banner{
+        height: 130vh;
+        
+    }
+
+    .navbar {
+        display: none;
+    }
+
+    .containerFrase{
+        width: 100vw;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .frase{
+        display: flex;
+        align-self: center;
+        font-size: 20vh;
+        margin-top: -12vh;
+        margin-right: -170vh;
+    }
+
+    .header img {
+        width: 60vh;
+        height: 60vw;
+        margin-left: -6vh;
+    }
+
+    .buttonLogin button{
+        width: 10rem;
+        height: 5rem;
+        font-size: x-large;
+    }
+
+    .boxSocial{
+        display: block;
+    }
+
+    .textArea{
+        width: 100%;
+    }
+
+    .imageArea {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        height: fit-content;
+        margin-top: 5%;
+        margin-bottom: 0%;
+    }
+
+    .imageArea img{
+        width: 50rem;
+        height: 30rem;
+    }
+
+    .heading{
+        display: inline-block;
+        width: 100%;
+    }
+
+    .coloredSpan{
+        width: 230vw;
+        font-size: 2.6rem;
+        margin-top: 3%;
+        margin-bottom: 3%;
+    }
+
+    .socialText span{
+        font-size: 2.8rem;
+        width: 261vw;
+    }
+
+    .fullTextArea span {
+        font-size: 2.8rem;
+        width: 201vw;
+        margin-top: 2%;
+    }
+
+    .profile{
+        width: 20rem;
+        height: 22rem;
+    }
+
+    .textProfile{
+        font-size: xx-large;
+        width: 159vh;
+        margin-left: 4%;
+    }
+
+    .linkProfile{
+        width: 30vh;
+        height: 12vh;
+    }
+
+    .linkProfile img{
+        width: 7vh;
+        height: 7vh;
+        margin-left: 5%;
+    }
+
+    .footer{
+        margin-top: 150vh;
+        height: 31rem;
+    }
+
+    .footer img{
+        width: 100vw;
+        height: 30vh;
+    }
+
+    .footerMedia{
+        margin-right: 3vh;
+    }
+
+    .footerSocialMidia{
+        display: flex;
+        justify-content: space-evenly;
+        flex-direction: row;
+        width: 88%;
+        height: 30%;
+        margin-bottom: 5vh;
+    }
+
+    .footerText{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 130vh;
+    }
+
+    .footerInfo{
+        font-size: 2.3rem;
+        width: 45vh;
+    }
+
+    .footerRights{
+        font-size: xx-large;
+    }
+
+    .socialMedia{
+        width: 5.81rem;
+        height: 5.375rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 2rem;
+        box-shadow: 0 3px 8px #514f4f;
+    }
+
+    .socialMedia i{
+        font-size: xxx-large;
+    }
+   
+}

@@ -2,81 +2,255 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>SecureATM | Página Inicial</title>
+  <title>SecureATM | Home</title>
 
-    <script src="./js/sessao.js"></script>
+  <link rel="shortcut icon" href="./assets/favicon.png" type="image/x-icon">
 
-    <!-- <link
-        href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
-        rel="stylesheet"> -->
+  <link rel="stylesheet" href="css/index.css">
+  <script src="./js/sessao.js"></script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Abel&family=Fira+Sans:wght@300&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Abel&family=Fira+Sans:wght@300&family=Readex+Pro&display=swap"
+    rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Nunito&display=swap" rel="stylesheet">
+
 </head>
 
 <body>
-    <div class="header">
-      <div class="container">
-        <h1 class="titulo">SecureATM</h1>
-        <ul class="navbar">
-          <li class="agora">
-            <a href="#">Inicial</a>
-          </li>
-          <li>
-            <a href="simulador.html">Simulador</a>
-          </li>
-          <li>|</li>
-          <li>
-            <a href="login.html">Login</a>
-          </li>
-          <li>
-            <a href="cadastro.html">Cadastro</a>
-          </li>
-        </ul>
+  <div class="principal">
+    <div class="container">
+      <div class="nav-bar">
+        <div onclick="goToHome()" class="logo">
+          <img src="./assets/WhatsApp_Image_2023-08-15_at_18.11.55-removebg-preview.png" alt="">
+        </div>
+        <div class="menu">
+          <ul id="menu">
+            <li style="cursor: pointer;" onclick="goToHome()" id="margin"><span>Home</span></li>
+            <li style="cursor: pointer;" onclick="goToFaleConosco()">Fale Conosco</li>
+            <li style="cursor: pointer;" onclick="goToSobreNos()">Sobre Nós</li>
+            <li style="cursor: pointer;" onclick="goToSolucoes()">Soluções</li>
+          </ul>
+        </div>
+        <div onclick="goToLogin()" class="botao-login">
+          <button id="login-home"><img src="./assets/login-icon.png">Login</button>
+        </div>
       </div>
-    </div>
-  
-    <div class="banner">
-      <div class="container">
-        <p>Preservando <span>hoje</span> para existirem <span>amanhã</span>.</p>
+      <div class="banner-home">
+        <div class="div-titulo">
+          <div class="text-titulo">
+            <h1>Monitore ATM's de forma <span>simplificada</span></h1>
+            <p>Conheça a nossa solução de monitoramento de Hardware para caixas eletrônicos</p>
+            <button onclick="goToSolucoes()" id="btn-saibamais">Saiba Mais</button>
+          </div>
+
+        </div>
       </div>
-    </div>
-  
-    <div class="social">
-      <div class="container">
-        <div class="boxes">
-          <div class="box">
-            <img src="assets/imgs/planet-earth_color.png">
-            <h4>Missão</h4>
-            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Et, quas cupiditate asperiores provident magnam
-              vitae illum iusto fugiat atque deleniti nulla sed iure suscipit, laborum, aliquid accusantium cum dicta
-              minima.</p>
+      <div class="nossos-servicos">
+        <div class="title-nossos-servicos">
+          <p>NOSSOS SERVIÇOS</p>
+          <h1>POR QUE NOS ESCOLHER?</h1>
+        </div>
+        <div class="cards-home">
+          <div class="card-home">
+            <div class="conteudo-card">
+              <div class="container-card">
+                <img src="assets/icons8-sino-100.png" alt="">
+                <h2>Alertas em tempo real</h2>
+                <p>Mantenha-se no controle com nossos alertas em tempo real. Receba notificações instantâneas sobre
+                  qualquer evento crítico, permitindo ação imediata.</p>
+                <div class="barrinha"></div>
+              </div>
+            </div>
           </div>
-          <div class="box">
-            <img src="assets/imgs/lightbulb_color.png">
-            <h4>Visão</h4>
-            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Et, quas cupiditate asperiores provident magnam
-              vitae illum iusto fugiat atque deleniti nulla sed iure suscipit, laborum, aliquid accusantium cum dicta
-              minima.</p>
+          <div class="card-home">
+            <div class="conteudo-card">
+              <div class="container-card">
+                <img src="assets/icons8-nuvem-100.png" alt="">
+                <h2>Monitoramento on Cloud</h2>
+                <p>Acesso instantâneo a dados em tempo real, permitindo tomadas de decisões informadas e respostas
+                  ágeis. Seu monitoramento, sua maneira.</p>
+                <div class="barrinha"></div>
+              </div>
+            </div>
           </div>
-          <div class="box">
-            <img src="assets/imgs/growth_color.png">
-            <h4>Valores</h4>
-            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Et, quas cupiditate asperiores provident magnam
-              vitae illum iusto fugiat atque deleniti nulla sed iure suscipit, laborum, aliquid accusantium cum dicta
-              minima.</p>
+          <div class="card-home">
+            <div class="conteudo-card">
+              <div class="container-card">
+                <img src="assets/icons8-pc-100.png" alt="">
+                <h2>Suporte 24/7</h2>
+                <p> Conte com nosso suporte 24/7 para garantir que suas necessidades sejam atendidas, independentemente
+                  do momento. Sua tranquilidade é nossa missão.</p>
+                <div class="barrinha"></div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  
-    <div class="footer">
-      <div class="container">
-        <h4>Feito com amor por aluno &hearts; SPTech &copy; 2023</h4>
-        <span class="version">v1.0.0</span>
+      <div class="about-us">
+        <div class="img-about-us"></div>
+        <div class="text-about-us">
+          <p id="yellow">SOBRE</p>
+          <h2>Quem somos nós</h2>
+          <p>Nosso compromisso é mais do que palavras: é a base da nossa atuação. Entendemos que a estabilidade dessas
+            máquinas é vital para os negócios e a confiança dos usuários. Dessa forma, a SecureATM emprega um esforço
+            contínuo para identificar potenciais problemas antes que afetem as operações, garantindo uma experiência
+            tranquila para todos os envolvidos. Saiba mais clicando no botão abaixo!</p>
+          <button onclick="goToSobreNos">Saiba Mais</button>
+        </div>
       </div>
+      <div class="div-card-monit">
+        <div class="card-monit">
+          <div class="text-card-monit">
+            <div class="content-text">
+              <h1>Com nosso sistema, você está no controle</h1>
+              <p>Saiba como funciona nosso software, onde você tem autonomia total sobre os componentes que quer
+                monitorar.</p>
+              <button>Simular</button>
+            </div>
+
+          </div>
+          <div class="bolinha"><img src="./assets/icons8-gráfico-combinado-100.png" alt=""></div>
+          <div class="foto-card-monit"></div>
+        </div>
+      </div>
+      <div class="fale-conosco">
+        <div class="card-fale-conosco">
+          <div class="text-card-fc">
+            <p>CONTATO</p>
+            <h1>Fale Conosco</h1>
+            <div class="icon-text">
+              <img src="./assets/icons8-telefone-100.png" alt="">
+              (11) 9999-9999
+            </div>
+            <div class="icon-text">
+              <img src="./assets/icons8-pino-64.png" alt="">
+              R. Haddock Lobo, 595 - SP
+            </div>
+            <div class="icon-text">
+              <img id="aqui" src="./assets/icons8-enviar-96.png" alt="">
+              secureATM@outlook
+            </div>
+            <button onclick="goToFaleConosco()">Fale Conosco</button>
+          </div>
+        </div>
+      </div>
+      <div class="nossos-clientes">
+        <div class="clientes-grupo">
+          <img src="https://logodownload.org/wp-content/uploads/2018/09/bradesco-logo-novo-2018-1.png" alt="">
+          
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/Banco_do_Brasil_logo.svg/2560px-Banco_do_Brasil_logo.svg.png" alt="">
+
+          <img src="https://logodownload.org/wp-content/uploads/2019/12/itau-bba-logo.png" alt="">
+
+          <img id="aqui2" src="https://logosmarcas.net/wp-content/uploads/2020/11/Santander-Logo.png" alt="">
+
+          <img src="https://upload.wikimedia.org/wikipedia/pt/thumb/e/e3/Grupo_Safra_logo.svg/2560px-Grupo_Safra_logo.svg.png" alt="">
+
+        </div>
+      </div>
+
+      <div class="footer">
+        <div class="footerContainer">
+            <div class="footerContent">
+                <div class="footerMedia">
+                    <div class="footerLogo">
+                        <img src="./assets/WhatsApp_Image_2023-08-15_at_18.11.55-removebg-preview.png" width="auto" height="5vh" alt="">
+                    </div>
+                    <div class="footerSocialMidia">
+                        <div class="socialMedia bgWhite"><i class="fa-brands fa-instagram"></i></div>
+                        <div class="socialMedia bgYellow"><i class="fa-brands fa-facebook"></i></i></div>
+                        <div class="socialMedia bgWhite"><i class="fa-brands fa-twitter"></i></div>
+                    </div>
+                </div>
+                <div class="footerText">
+                    <div class="footerInfo" id="aqui3">
+                        <h3>Institucional</h3>
+                        <a href="sobre_nos.html">Sobre nós</a>
+                        <a href="solucoes.html">Soluções</a>
+                    </div>
+                    <div class="footerInfo">
+                        <h3>Suporte</h3>
+                        <a href="faleConosco.html">Fale conosco</a>
+                        <a href="faleConosco.html">Help Desk</a>
+                    </div>
+                    <div class="footerInfo">
+                        <h3>Contato</h3>
+                        <span>+55 (11) 0000-0000</span>
+                        <span>secure_atm@outlook</span>
+                    </div>
+                </div>
+            </div>
+             <div class="footerRights">
+                <span>© 2023 SecureATM. Todos os Diretos Reservados.</span>
+            </div>
+        </div>
     </div>
-  </body>
+
+
+      <div class="chatbot-container">
+        <div id="chatbot-icon">Chat</div>
+        <div id="chatbot-body">
+          <div>🤖 Bot: Olá! Como posso ajudar?</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</body>
 
 </html>
+
+<script>
+  const chatbotIcon = document.getElementById('chatbot-icon');
+  const chatbotBody = document.getElementById('chatbot-body');
+
+  chatbotIcon.addEventListener('click', () => {
+    chatbotBody.style.display = chatbotBody.style.display === 'none' ? 'block' : 'none';
+  });
+
+  function goToLogin(){
+    window.location = 'login.html'
+  }
+
+  function goToSolucoes(){
+    window.location = 'solucoes.html'
+  }
+
+  function goToSolucoes(){
+    window.location = 'sobre_nos.html'
+  }
+
+  function goToFaleConosco(){
+    window.location = 'faleConosco.html'
+  }
+
+  function goToFaleHome(){
+    window.location = 'index.html'
+  }
+
+  document.addEventListener("DOMContentLoaded", function () {
+  const carouselInner = document.querySelector(".nossos-clientes");
+  const images = carouselInner.querySelectorAll("img");
+  const imageWidth = images[0].clientWidth;
+  let currentIndex = 0;
+
+  function moveCarousel() {
+    currentIndex = (currentIndex + 1) % images.length;
+    const displacement = -currentIndex * imageWidth;
+    carouselInner.style.transform = `translateX(${displacement}px)`;
+  }
+
+  setInterval(moveCarousel, 1000); // Trocar de imagem a cada 3 segundos
+});
+
+ 
+</script>
+
+<script src="https://kit.fontawesome.com/4c5e041356.js" crossorigin="anonymous"></script>
+

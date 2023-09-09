@@ -5,34 +5,125 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fale Conosco</title>
-    <link rel="stylesheet" href="faleConosco.css">
+    <link rel="stylesheet" href="../public/css/faleConosco.css">
+    <script src="https://kit.fontawesome.com/4c5e041356.js" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com%22%3E/
+    <link rel=" preconnect" href="https://fonts.gstatic.com/" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Abel&family=Fira+Sans:wght@300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Abel&family=Fira+Sans:wght@300&family=Readex+Pro&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&display=swap" rel="stylesheet">
+    <link rel="icon" href="./assets/favicon.png">
 </head>
 
 <body>
     <div class="div_principal">
         <div class="div_header">
-            <div class="nav_bar">
-                <img class="nav-bar" src="./img/3.png" alt="">
-                <ul class="menu">
-                    <li class="container"><a href="">Home</a></li>
-                    <li class="container"><a href="">Fale Conosco</a></li>
-                    <li class="container"><a href="">Sobre nós</a></li>
-                    <li class="container"><a href="">Soluções</a></li>
-                    <li class="container"><a href="">Login</a></li>
-                </ul>
+            <div class="nav-bar">
+                <div onclick="goToHome()" class="logo">
+                    <img src="./assets/3.png" alt="">
+                </div>
+                <div class="menu">
+                    <ul id="menu">
+                        <li style="cursor: pointer;" onclick="goToHome()">Home</li>
+                        <li style="cursor: pointer;" onclick="goToFaleConosco()" id="margin"><span>Fale Conosco</span>
+                        </li>
+                        <li style="cursor: pointer;" onclick="goToSobreNos()">Sobre Nós</li>
+                        <li style="cursor: pointer;" onclick="goToSolucoes()">Soluções</li>
+                    </ul>
+                </div>
+                <div onclick="goToLogin()" class="botao-login">
+                    <button id="login-home"><img src="./assets/Login-removebg-preview.png">Login</button>
+                </div>
             </div>
-            <div class="seila">
-                <p>
+
+            <div class="texto">
+                <h3 id="faleconosco">
                     <b>Fale</b><span><b>Conosco</b></span>
-                </p>
+                </h3> <br><br>
+                <span id="duvidas"> <b>Para dúvidas, sugestões ou reclamações entre em contato conosco através das <br>
+                        <p class="info">informações abaixo!</p>
+                    </b></span>
             </div>
             <div class="card">
                 <div class="quadrado">
-                    <b>Ainda não é cliente? </b><span id="quadrado"><b>Entre em contato</b></span>
+                    <div class="cliente">
+                        <h4><b>Ainda não é cliente? </b><span id="quadrado"><b>Entre em contato</b></span></h4>
+                    </div>
+                    <br><br>
+
+                    <div class="right-cadastro-user">
+                        <div class="card-cadastro-user">
+                            <div class="text-field">
+                                <label for="nome"></label>
+                                <input type="text" id="input_nome" placeholder="Nome">
+                                <div id="erro_nome"></div>
+                            </div>
+
+                            <div class="text-field">
+                                <label for="email"></label>
+                                <input type="text" id="input_email" placeholder="Email">
+                                <div id="erro_email"></div>
+                            </div>
+                            <div class="text-field">
+                                <label for="Mensagem"></label>
+                                <input type="text" id="input_mensagem" placeholder="Mensagem">
+                                <div id="erro_senha"></div>
+                            </div>
+
+                            <button onclick="enviar()" class="botao-enviar">Enviar</button>
+                        </div>
+                    </div>
+
                 </div>
             </div>
-        </div>
-    </div>
+            <div class="helpdesk">
+                <div id="imagem-banco">
+
+                    <div class="div-text">
+                        <p>Já é associado? Entre em contato com o nosso suporte através da plataforma de <span>Help Desk</span></p>
+                        <button onclick="enviar()" class="botao-imagem">Acesse</button>
+                    </div>
+                </div>
+
+            </div>
+            <br><br><br><br><br><br><br><br><br>
+            <div class="footer">
+                <div class="footerContainer">
+                    <div class="footerContent">
+                        <div class="footerMedia">
+                            <div class="footerLogo">
+                                <img src="./assets/secure-removebg-preview.png" alt="">
+                            </div>
+                            <div class="footerSocialMidia">
+                                <div class="socialMedia bgWhite"><i class="fa-brands fa-instagram"></i></div>
+                                <div class="socialMedia bgYellow"><i class="fa-brands fa-facebook"></i></i></div>
+                                <div class="socialMedia bgWhite"><i class="fa-brands fa-twitter"></i></div>
+                            </div>
+                        </div>
+                        <div class="footerText">
+                            <div class="footerInfo">
+                                <h3><span class="institucional">Institucional</span></h3>
+                                <a href="">Sobre nós</a>
+                                <a href="">Soluções</a>
+                            </div>
+                            <div class="footerInfo">
+                                <h3><span class="institucional">Suporte</span></h3>
+                                <a href="">Fale conosco</a>
+                                <a href="">Help Desk</a>
+                            </div>
+                            <div class="footerInfo">
+                                <h3><span class="institucional">Contato</span></h3>
+                                <span>+55 (11) 0000-0000</span>
+                                <span>secure_atm@outlook</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="footerRights">
+                        <span class="direitos">© 2023 SecureATM. Todos os Diretos Reservados.</span>
+                    </div>
+                </div>
+            </div>
 
 </body>
 
