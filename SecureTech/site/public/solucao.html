@@ -17,25 +17,24 @@
 </head>
 
 <body>
-    <header>
+    <header> <!-- principal -->
         <div class="container">
-            <div class="navBar">
-                <img src="assets/logo.png" alt="Logo">
+            <div class="navBar"> <!-- nav-bar -->
+                <img src="assets/logo.png" alt="Logo" onclick="goToHome()">
                 <nav class="menu">
                     <ul id="menu">
-                        <li><a href="">Home</a></li>
-                        <li><a href="">Fale Conosco</a></li>
-                        <li><a href="">Sobre Nós</a></li>
-                        <li class="agora"><a href="">Soluções</a></li>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="faleConosco.html">Fale Conosco</a></li>
+                        <li><a href="sobre_nos.html">Sobre Nós</a></li>
+                        <li class="agora"><a href="solucao.html">Soluções</a></li>
                     </ul>
                 </nav>
                 <button class="login-button" onclick="goToLogin()"><img src="assets/clarity_sign-in-line.png"
-                        alt="img-Login">Login</button>
+                        alt="img-Login" class="logo">Login</button>
             </div>
-            <div class="banner">
+            <div class="banner"> <!-- Banner Home -->
                 <div class="container">
                     <div class="bd-img-banner">
-                        <img>
                     </div>
                     <div class="titulo">
                         <div class="text-titulo">
@@ -50,7 +49,7 @@
                             <input placeholder="Nome"> <br>
                             <input placeholder="Email"> <br>
                             <input placeholder="Telefone"> <br>
-                            <button onclick="goToOrcamento()">Enviar Contato</button>
+                            <button onclick="enviarOrcamento()">Enviar Contato</button>
                         </div>
                     </div>
                 </div>
@@ -67,10 +66,10 @@
             <h2>Monitoramento de ATM's</h2>
             <h3>Nosso foco é trazer a segurança de confiabilidade</h3>
             <p>Nosso compromisso é mais do que palavras: é a base da nossa atuação. Entendemos que a estabilidade dessas
-                máquinas é vital para os negócios e a confiança dos usuários. Dessa forma, a SecureATM emprega um
-                esforço
-                contínuo para identificar potenciais problemas antes que afetem as operações, garantindo uma experiência
-                tranquila para todos os envolvidos. Saiba mais clicando no botão abaixo!</p>
+            máquinas é vital para os negócios e a confiança dos usuários. Dessa forma, a SecureATM emprega um
+            esforço
+            contínuo para identificar potenciais problemas antes que afetem as operações, garantindo uma experiência
+            tranquila para todos os envolvidos.</p>
         </div>
     </div>
 
@@ -78,15 +77,7 @@
         <div class="titulo">
             <h2>Por que contratar?</h2>
             <div class="texto">
-                <p>No matter how well-informed and educated you think you are, the topics of blockchain and
-                    cryptocurrency are inexhaustible. You more than likely won’t start trading like a pro or go all the
-                    way to the deep depths of blockchain tech in a month, but if you’re focused and consistent enough in
-                    your self-educating process you are destined to succeed. No matter how well-informed and educated
-                    you think you are, the topics of blockchain and cryptocurrency are inexhaustible. You more than
-                    likely won’t start trading like a pro or go all the way to the deep depths of blockchain tech in a
-                    month, but if you’re focused and consistent enough in your self-educating process you are destined
-                    to succeed. <br>
-                    ! To precisando de ajuda aqui !
+                <p>Não importa o quão bem informado e educado você pense que é, os tópicos sobre blockchain e criptomoeda são inesgotáveis. É mais do que provável que você não comece a negociar como um profissional ou chegue às profundezas da tecnologia blockchain em um mês, mas se estiver focado e consistente o suficiente em seu processo de autoeducação, você está destinado ao sucesso. Não importa o quão bem informado e educado você pense que é, os tópicos sobre blockchain e criptomoeda são inesgotáveis. É mais do que provável que você não comece a negociar como um profissional ou chegue às profundezas da tecnologia blockchain em um mês, mas se estiver focado e consistente o suficiente em seu processo de autoeducação, você está destinado ao sucesso.
                 </p>
             </div>
         </div>
@@ -97,11 +88,11 @@
             <div class="plano-titulo">
                 <h1>Nossos Planos</h1>
             </div>
-            <div class="pricing">
-                <div class="card-pricing">
-                    <div class="container-card">
+            <div class="pricing ">
+                <div class="card-pricing bg-amarelo">
+                    <div class="container-card ">
                         <h3>Standard</h3>
-                        <p>Ideal para organização que precisam de acesso rápido a recursos básicos.</p><br>
+                        <p>Ideal para organização que precisam de acesso rápido a recursos básicos.</p>
                         <h1>$<span> / Mês</span></h1>
                         <button onclick="comecar()">Comece agora</button>
                         <div class="listando">
@@ -137,7 +128,7 @@
                     </div>
 
                     <!-- 3° Card 3° Card 3° Card 3° Card 3° Card-->
-                        <div class="card-pricing">
+                        <div class="card-pricing bg-amarelo">
                             <div class="container-card">
                                 <h3>Ultra</h3>
                                 <p>Ideal para empresas que necessitam de serviços personalizados e segurança para grandes equipes.</p>
@@ -206,3 +197,13 @@
 </body>
 
 </html>
+
+<script>
+    function goToLogin() {
+        window.location = 'login.html'
+    }
+
+    function enviarOrcamento() {
+
+    }
+</script>
