@@ -174,6 +174,7 @@ body{
 .boxProfile{
     display: flex;
     justify-content: space-around;
+    align-items: center;
     width: 100%;
     margin-bottom: 5%;
 }
@@ -369,14 +370,39 @@ body{
         overflow-x: hidden;
         
     }
+
+    .logo img{
+        width: 39vw !important;
+    }
+
+
+    #login-home {
+        width: 23vw !important;
+        height: 6vh !important;
+    }
+
+    .botao-login img {
+        height: 3vh !important;
+        width: 5.5vw !important;
+        margin-right: 12% !important;
+    }
+
     .banner{
         height: 50vh;
         width: 100vw;
         
     }
 
+    .menu{
+        display: none !important;
+    }
+
     .nav-bar{
         display: none;
+    }
+
+    .nav-bar li{
+        font-size: 20px;
     }
 
     .containerFrase{
@@ -401,8 +427,8 @@ body{
     }
 
     .buttonLogin button{
-        width: 10rem;
-        height: 5rem;
+        width: 21.3vw;
+        height: 8.8vh;
         font-size: x-large;
     }
 
@@ -414,6 +440,17 @@ body{
         width: 100%;
     }
 
+    .boxProfile{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        margin-bottom: 5%;
+    }
+
+    
+
     .imageArea {
         display: flex;
         justify-content: center;
@@ -424,8 +461,8 @@ body{
     }
 
     .imageArea img{
-        width: 50rem;
-        height: 30rem;
+        width: 81vw;
+        height: 35.3vh;
     }
 
     .heading{
@@ -433,54 +470,68 @@ body{
         width: 100%;
     }
 
+    .heading h2{
+        font-size: 4vh;
+    }
+
     .coloredSpan{
-        width: 230vw;
-        font-size: 2.6rem;
+        width: 95vw;
+        font-size: 2.5vh;
         margin-top: 3%;
         margin-bottom: 3%;
     }
 
     .socialText span{
-        font-size: 2.8rem;
+        font-size: 2vh;
         width: 261vw;
     }
 
     .fullTextArea span {
-        font-size: 2.8rem;
+        font-size: 2vh;
         width: 201vw;
         margin-top: 2%;
     }
 
     .profile{
-        width: 20rem;
-        height: 22rem;
+        width: 60.7vw;
+        height: 39.1vh;
     }
 
     .textProfile{
-        font-size: xx-large;
         width: 159vh;
         margin-left: 4%;
     }
 
-    .linkProfile{
-        width: 30vh;
-        height: 12vh;
+    .linkProfile {
+        width: 22vh;
+        height: 7vh;
     }
 
-    .linkProfile img{
-        width: 7vh;
-        height: 7vh;
+    .linkProfile img {
+        width: 5vh;
+        height: 5vh;
         margin-left: 5%;
     }
 
+    #kayky, #bianca, #boos, #danilo{
+        margin-bottom: 5%;
+    }
+
     .footer{
-        margin-top: 150vh;
-        height: 31rem;
+        height: 145.1vh;
+    }
+
+    .footerContainer{
+        height: 100%;
     }
 
     .footer img{
-        width: 100vw;
+        width: 91vw;
         height: 30vh;
+    }
+
+    .footerContent{
+        flex-direction: column;
     }
 
     .footerMedia{
@@ -491,34 +542,36 @@ body{
         display: flex;
         justify-content: space-evenly;
         flex-direction: row;
-        width: 88%;
+        width: 254%;
         height: 30%;
         margin-bottom: 5vh;
     }
 
     .footerText{
         display: flex;
+        flex-direction: column;
         justify-content: center;
         align-items: center;
-        width: 130vh;
+        width: 50vh;
     }
 
     .footerInfo{
-        font-size: 2.3rem;
+        font-size: 3.2vh;
         width: 45vh;
     }
 
     .footerRights{
         font-size: xx-large;
+        margin-top: 19%;
     }
 
     .socialMedia{
-        width: 5.81rem;
-        height: 5.375rem;
+        width: 15.3vw;
+        height: 9.5vh;
         display: flex;
         align-items: center;
         justify-content: center;
-        border-radius: 2rem;
+        border-radius: 32px;
         box-shadow: 0 3px 8px #514f4f;
     }
 
@@ -569,8 +622,6 @@ body{
     margin-bottom: 2%;
     cursor: pointer;
 }
-
-
 
 
 .botao-login img {
