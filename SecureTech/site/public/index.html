@@ -234,20 +234,7 @@
     window.location = 'index.html'
   }
 
-  document.addEventListener("DOMContentLoaded", function () {
-  const carouselInner = document.querySelector(".nossos-clientes");
-  const images = carouselInner.querySelectorAll("img");
-  const imageWidth = images[0].clientWidth;
-  let currentIndex = 0;
-
-  function moveCarousel() {
-    currentIndex = (currentIndex + 1) % images.length;
-    const displacement = -currentIndex * imageWidth;
-    carouselInner.style.transform = `translateX(${displacement}px)`;
-  }
-
-  setInterval(moveCarousel, 1000); // Trocar de imagem a cada 3 segundos
-});
+  
 
  
 </script>

@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fale Conosco</title>
+    <title>SecureATM | Fale Conosco</title>
     <link rel="stylesheet" href="../public/css/faleConosco.css">
     <script src="https://kit.fontawesome.com/4c5e041356.js" crossorigin="anonymous"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com%22%3E/>
@@ -17,114 +17,149 @@
 </head>
 
 <body>
-    <div class="div_principal">
-        <div class="div_header">
+    <div class="principal">
+        <div class="container">
             <div class="nav-bar">
                 <div onclick="goToHome()" class="logo">
-                    <img src="./assets/3.png" alt="">
+                    <img src="./assets/secure_atm_logo.png" alt="">
                 </div>
                 <div class="menu">
                     <ul id="menu">
-                        <li style="cursor: pointer;" onclick="goToHome()">Home</li>
-                        <li style="cursor: pointer;" onclick="goToFaleConosco()" id="margin"><span>Fale Conosco</span>
-                        </li>
+                        <li style="cursor: pointer;" onclick="goToHome()" id="margin">Home</li>
+                        <li style="cursor: pointer;" onclick="goToFaleConosco()"><span>Fale Conosco</span></li>
                         <li style="cursor: pointer;" onclick="goToSobreNos()">Sobre Nós</li>
                         <li style="cursor: pointer;" onclick="goToSolucoes()">Soluções</li>
                     </ul>
                 </div>
                 <div onclick="goToLogin()" class="botao-login">
-                    <button id="login-home"><img src="./assets/Login-removebg-preview.png">Login</button>
+                    <button id="login-home"><img src="./assets/login-icon.png">Login</button>
                 </div>
             </div>
 
-            <div class="texto">
-                <h3 id="faleconosco">
-                    <b>Fale</b><span><b>Conosco</b></span>
-                </h3> <br><br>
-                <span id="duvidas"> <b>Para dúvidas, sugestões ou reclamações entre em contato conosco através das <br>
-                        <p class="info">informações abaixo!</p>
-                    </b></span>
+            <div class="blue"></div>
+        </div>
+
+        <div class="container-quad">
+
+            <div class="text">
+                <h1>Fale <span>Conosco</span></h1>
+                <p>Para dúvidas, sugestões ou reclamações entre em contato conosco através das informações abaixo!</p>
             </div>
-            <div class="card">
-                <div class="quadrado">
-                    <div class="cliente">
-                        <h4><b>Ainda não é cliente? </b><span id="quadrado"><b>Entre em contato</b></span></h4>
+            <div class="quadrado">
+                <div class="left">
+                    <div class="content-left">
+                        <p>Ainda não é cliente? <span>Entre em contato</span></p>
+                        <form id="form" action="">
+                            <input id="ipt_nome" type="text" placeholder="Nome">
+
+                            <input id="ipt_email" type="email" placeholder="E-mail">
+
+                            <input id="ipt_mensagem" type="text" placeholder="Mensagem">
+
+                            <button onclick="enviar()" class="enviar">Enviar</button>
+                        </form>
                     </div>
-                    <br><br>
+                </div>
 
-                    <div class="right-cadastro-user">
-                        <div class="card-cadastro-user">
-                            <div class="text-field">
-                                <label for="nome"></label>
-                                <input type="text" id="input_nome" placeholder="Nome">
-                                <div id="erro_nome"></div>
-                            </div>
+                <div class="right">
 
-                            <div class="text-field">
-                                <label for="email"></label>
-                                <input type="text" id="input_email" placeholder="Email">
-                                <div id="erro_email"></div>
-                            </div>
-                            <div class="text-field">
-                                <label for="Mensagem"></label>
-                                <input type="text" id="input_mensagem" placeholder="Mensagem">
-                                <div id="erro_senha"></div>
-                            </div>
+                    <div class="text-right">
+                        <p>
+                            Já é associado? Entre em contato com o nosso suporte através da plataforma de
+                            <span>HelpDesk</span>
+                        </p>
+                        <button onclick="suporte()">Acesse</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="chatbot-container">
+            <div id="chatbot-icon">Chat</div>
+            <div id="chatbot-body">
+                <div>🤖 Bot: Olá! Como posso ajudar?</div>
+            </div>
+        </div>
 
-                            <button onclick="enviar()" class="botao-enviar">Enviar</button>
+        <div class="footer">
+            <div class="footerContainer">
+                <div class="footerContent">
+                    <div class="footerMedia">
+                        <div class="footerLogo">
+                            <img src="./assets/WhatsApp_Image_2023-08-15_at_18.11.55-removebg-preview.png" width="auto" height="5vh" alt="">
+                        </div>
+                        <div class="footerSocialMidia">
+                            <div class="socialMedia bgWhite"><i class="fa-brands fa-instagram"></i></div>
+                            <div class="socialMedia bgYellow"><i class="fa-brands fa-facebook"></i></i></div>
+                            <div class="socialMedia bgWhite"><i class="fa-brands fa-twitter"></i></div>
                         </div>
                     </div>
-
-                </div>
-            </div>
-            <div class="helpdesk">
-                <div id="imagem-banco">
-
-                    <div class="div-text">
-                        <p>Já é associado? Entre em contato com o nosso suporte através da plataforma de <span>Help Desk</span></p>
-                        <button onclick="enviar()" class="botao-imagem">Acesse</button>
-                    </div>
-                </div>
-
-            </div>
-            <br><br><br><br><br><br><br><br><br>
-            <div class="footer">
-                <div class="footerContainer">
-                    <div class="footerContent">
-                        <div class="footerMedia">
-                            <div class="footerLogo">
-                                <img src="./assets/secure-removebg-preview.png" alt="">
-                            </div>
-                            <div class="footerSocialMidia">
-                                <div class="socialMedia bgWhite"><i class="fa-brands fa-instagram"></i></div>
-                                <div class="socialMedia bgYellow"><i class="fa-brands fa-facebook"></i></i></div>
-                                <div class="socialMedia bgWhite"><i class="fa-brands fa-twitter"></i></div>
-                            </div>
+                    <div class="footerText">
+                        <div class="footerInfo" id="aqui3">
+                            <h3>Institucional</h3>
+                            <a href="sobre_nos.html">Sobre nós</a>
+                            <a href="solucoes.html">Soluções</a>
                         </div>
-                        <div class="footerText">
-                            <div class="footerInfo">
-                                <h3><span class="institucional">Institucional</span></h3>
-                                <a href="">Sobre nós</a>
-                                <a href="">Soluções</a>
-                            </div>
-                            <div class="footerInfo">
-                                <h3><span class="institucional">Suporte</span></h3>
-                                <a href="">Fale conosco</a>
-                                <a href="">Help Desk</a>
-                            </div>
-                            <div class="footerInfo">
-                                <h3><span class="institucional">Contato</span></h3>
-                                <span>+55 (11) 0000-0000</span>
-                                <span>secure_atm@outlook</span>
-                            </div>
+                        <div class="footerInfo">
+                            <h3>Suporte</h3>
+                            <a href="faleConosco.html">Fale conosco</a>
+                            <a href="faleConosco.html">Help Desk</a>
+                        </div>
+                        <div class="footerInfo">
+                            <h3>Contato</h3>
+                            <span>+55 (11) 0000-0000</span>
+                            <span>secure_atm@outlook</span>
                         </div>
                     </div>
-                    <div class="footerRights">
-                        <span class="direitos">© 2023 SecureATM. Todos os Diretos Reservados.</span>
-                    </div>
+                </div>
+                 <div class="footerRights">
+                    <span>© 2023 SecureATM. Todos os Diretos Reservados.</span>
                 </div>
             </div>
-
+        </div>
+    </div>
 </body>
 
 </html>
+
+<script>
+
+  const chatbotIcon = document.getElementById('chatbot-icon');
+  const chatbotBody = document.getElementById('chatbot-body');
+
+  chatbotIcon.addEventListener('click', () => {
+    chatbotBody.style.display = chatbotBody.style.display === 'none' ? 'block' : 'none';
+  });
+
+
+    function goToLogin() {
+        window.location = 'login.html'
+    }
+
+    function goToSolucoes() {
+        window.location = 'solucao.html'
+    }
+
+    function goToSobreNos() {
+        window.location = 'sobre_nos.html'
+    }
+
+    function goToFaleConosco() {
+        window.location = 'faleConosco.html'
+    }
+
+    function goToHome() {
+        window.location = 'index.html'
+    }
+
+    function enviar() {
+        var email = "secure_ship@hotmail.com";
+        var assunto = `Olá, meu nome é ` + ipt_nome.value;
+        var corpo = ipt_mensagem.value;
+        window.open("mailto:" + email + "?subject=" + assunto + "&body=" + corpo);
+    }
+
+    function suporte(){
+        window.location = 'https://app.pipefy.com/public/form/KT7FTtAm'
+    }
+
+</script>

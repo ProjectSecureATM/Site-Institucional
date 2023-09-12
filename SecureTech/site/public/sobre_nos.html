@@ -4,28 +4,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>SecureATM | Sobre Nós</title>
     <link rel="stylesheet" href="./css/sobre_nos.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Abel&family=Fira+Sans:wght@300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Abel&family=Fira+Sans:wght@300&family=Readex+Pro&display=swap"
+      rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&display=swap" rel="stylesheet">
 </head>
 
 <body>
     <div class="banner">
-        <div class="header">
-            <div class="containerHeader">
-                <div class="logo">
-                    <img src="./assets/secure_atm_logo.png" alt="logo da empresa Secure ATM">
-                </div>
-                <ul class="navbar">
-                    <li>Home</li>
-                    <li>Fale Conosco</li>
-                    <li class="underlined">Sobre nós</li>
-                    <li>Soluções</li>
-                </ul>
-                <div class="buttonLogin">
-                        <button><i class="fa-solid fa-right-to-bracket"></i>Login</button></i>
-                </div>
+        <div class="nav-bar">
+            <div onclick="goToHome()" class="logo">
+              <img src="./assets/secure_atm_logo.png" alt="">
             </div>
-        </div>
+            <div class="menu">
+              <ul id="menu">
+                <li style="cursor: pointer;" onclick="goToHome()" id="margin">Home</li>
+                <li style="cursor: pointer;" onclick="goToFaleConosco()">Fale Conosco</li>
+                <li style="cursor: pointer;" onclick="goToSobreNos()"><span>Sobre Nós</span></li>
+                <li style="cursor: pointer;" onclick="goToSolucoes()">Soluções</li>
+              </ul>
+            </div>
+            <div onclick="goToLogin()" class="botao-login">
+              <button id="login-home"><img src="./assets/login-icon.png">Login</button>
+            </div>
+          </div>
         <div class="containerFrase">
             <span class="frase">Sobre nós</span>
         </div>
@@ -139,3 +146,36 @@
 </body>
 </html>
 <script src="https://kit.fontawesome.com/4c5e041356.js" crossorigin="anonymous"></script>
+
+<script>
+     const chatbotIcon = document.getElementById('chatbot-icon');
+  const chatbotBody = document.getElementById('chatbot-body');
+
+  chatbotIcon.addEventListener('click', () => {
+    chatbotBody.style.display = chatbotBody.style.display === 'none' ? 'block' : 'none';
+  });
+
+  function goToLogin(){
+    window.location = 'login.html'
+  }
+
+  function goToSolucoes(){
+    window.location = 'solucao.html'
+  }
+
+  function goToSobreNos(){
+    window.location = 'sobre_nos.html'
+  }
+
+  function goToFaleConosco(){
+    window.location = 'faleConosco.html'
+  }
+
+  function goToHome(){
+    window.location = 'index.html'
+  }
+
+  
+
+ 
+</script>
