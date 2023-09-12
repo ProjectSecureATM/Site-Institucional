@@ -84,7 +84,6 @@ body{
     display: flex;
     flex-direction: column;
     width: 100vw;
-    height: 89rem;
     background-color: white;
 }
 
@@ -139,6 +138,8 @@ body{
 .socialText span{
     font-size: 3.5vh;
     width: 100%;
+    color: #595959;
+    font-weight: 100;
 }
 
 .imageArea{
@@ -151,6 +152,8 @@ body{
 .imageArea img{
     width: auto;
     height: 50vh;
+    box-shadow: 0px 4px 52px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 1vh;
 }
 
 .fullTextArea{
@@ -161,9 +164,11 @@ body{
 }
 
 .fullTextArea span{
-    font-size: 1.5rem;
-    width: 65vw;
+    font-size: 3.5vh;
+    width: 100%;
     margin-top: 2%;
+    color: #595959;
+    font-weight: 100;
 }
 
 .boxProfile{
@@ -179,24 +184,37 @@ body{
     height: 16rem;
     border-radius: 2vh;
     background-color: antiquewhite;
-    align-items: end;
+    
     justify-content: center;
+    background-size: cover; 
+    box-shadow: 0 10px 19px #514f4f57;
+    background-position: 100%;
+    transition: 0.3s ease-in-out;
+    position: relative;
+}
+
+.profile:hover{
+    transform: scale(1.05);
+    box-shadow: 0 20px 29px #514f4f9e;
 }
 
 .profile img{
     width: 100%;
     height: 100%;
     border-radius: 2vh;
+    
 }
 
 .linkProfile{
     display: flex;
     position: absolute;
-    width: 24vh;
+    width: 15vw;
     height: 6vh;
     background-color: white;
     border-radius: 2vh;
     margin-bottom: 2%;
+    top: 80%;
+    z-index: 9999;
 }
 
 .linkProfile img{
@@ -212,6 +230,30 @@ body{
     width: 100%;
     height: 100%;
     color: black;
+}
+
+#bianca{
+    background-image: url('../assets/profile_bianca.jpeg');
+}
+
+#kayky{
+    background-image: url('../assets/profile_kayky.jpeg');
+}
+
+#erick{
+    background-image: url('../assets/erick.jpeg');
+}
+
+#enzo{
+    background-image: url('../assets/enzo.png');
+}
+
+#boos{
+    background-image: url('../assets/boos.jfif');
+}
+
+#danilo{
+    background-image: url("../assets/profile_danilo.jpeg");
 }
 
 .footer{
@@ -322,16 +364,18 @@ body{
 }
 
 @media screen and (max-width: 600px) {
-    body{
+   
+    body, html{
         overflow-x: hidden;
         
     }
     .banner{
-        height: 130vh;
+        height: 50vh;
+        width: 100vw;
         
     }
 
-    .navbar {
+    .nav-bar{
         display: none;
     }
 

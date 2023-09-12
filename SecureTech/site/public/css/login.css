@@ -4,6 +4,10 @@
     font-weight: 400;
 }
 
+html, body{
+    overflow: hidden;
+}
+
 #login-home {
     position: absolute;
     top: 5vh; 
@@ -38,33 +42,45 @@ body {
     background-repeat: no-repeat; 
     background-position: center;
     width: 100%; 
-    height: 100vh
+    height: 100vh;
+    display:flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .card-cadastro-info{
-    width: 30%;
+    width: 50%;
     height: 40vh;
     display: flex;
     flex-direction: column;
+    margin-right: 5%;
 }
 
 .titulo-info {
     color: white;
     font-weight: bold;
-    font-size: 2em; 
+    font-size: 4vh; 
+    width: 100%;
 }
 
 .card-cadastro-user{
+    position: relative;
+    /* top: 15%; */
     color: black;
     width: 31vw;
-    height: 65vh;
+    height: 90vh;
     background-color: #FAFAFA;
     text-align: center;
-    border-radius: 6%;
+    border-radius: 2.3vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-self: flex-end;
 }
 
 .texto-info{
-    color: white;
+    color: rgba(255, 255, 255, 0.667);
+    font-weight: 100;
 }
 
 
@@ -73,25 +89,33 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
+    width: 64%;
+    justify-content: space-between;
 }
 
 .imagem-logo{
-    width: 70%;
+    width: 17vw;
+    height: 20vh;
 }
 
 .titulo-user1{
     margin-top: 5vh;
     text-align: left;
+    font-size: 2vh;
 }
 
 .titulo-user2{
-    font-size: 1.6em;
-    font-weight: 550;
+    font-size: 3vh;
+    font-weight: 600;
     text-align: left;
 }
 
 .texto-user{
     text-align: left;
+}
+
+.texto-user2{
+    margin-bottom: 10%;
 }
 
 .info-user{
@@ -108,11 +132,10 @@ body {
     background-color: #FFCB45; 
     color: #ffffff; 
     border: none; 
-
-    /* font-size: 16px;  */
+    align-self: center;
+    font-size: 2vh; 
     border-radius: 8px;
     height: 8vh; 
-    font-weight: bold;
     cursor: pointer; 
     color: black;
     width: 77%;
@@ -156,9 +179,7 @@ input {
     cursor: pointer;
   }
 
-  .card-redirecionador-user{
-    margin-top: 4vh;
-  }
+ 
   .card2-redirecionador-user{
     margin-top: 2vh;
   }
