@@ -48,6 +48,67 @@ body {
     justify-content: center;
 }
 
+.chatbot-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #295897;
+    border-radius: 10px;
+    padding: 10px;
+    color: white;
+    box-shadow: 12px 10px 15px rgba(0, 0, 0, 0.402);
+}
+
+#chatbot-icon {
+    width: 40px;
+    height: 40px;
+    background-color: #FFCB45;
+    color: #000000;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 40px;
+    cursor: pointer;
+}
+
+#chatbot-body {
+    display: none;
+    max-height: 300px;
+    overflow: auto;
+    padding: 10px;
+}
+
+#chatbot-body .opcoes{
+    /* height: 10vh; */
+    width: 20vw;
+    display: flex;
+    flex-direction: column;
+}
+
+.opt{
+    width: 100%;
+    /* background-color: #FFCB45; */
+    border: 1.5px solid #FFCB45;
+    height: 7vh;
+    margin-bottom: 3%;
+    border-radius: 2vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.4s ease-in-out;
+    cursor: pointer;
+}
+
+.opt:hover{
+    background-color: #FFCB45;
+    color: black;
+    transform: scale(1.03);
+}
+
+#margin{
+    margin-top: 5%;
+}
+
+
 .card-cadastro-info{
     width: 50%;
     height: 40vh;
@@ -63,9 +124,17 @@ body {
     width: 100%;
 }
 
+input:focus{
+    border: 1px solid black;
+}
+
+input{
+    transition: 0.3s ease-in-out;
+}   
+
 .card-cadastro-user{
     position: relative;
-    /* top: 15%; */
+   top: 2%;
     color: black;
     width: 31vw;
     height: 90vh;
@@ -74,7 +143,7 @@ body {
     border-radius: 2.3vh;
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: space-evenly;
     align-self: flex-end;
 }
 
@@ -124,9 +193,28 @@ body {
     padding-left: 3vw;
 }
 
+.cadastro{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
 .text-field{
     margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    align-self: center;
+    width: 80%;
 }
+
+.text-field input{
+    width: 100%;
+    height: 5vh;
+}
+
 
 .botao-amarelo {
     background-color: #FFCB45; 
@@ -180,24 +268,29 @@ input {
   }
 
  
-  .card2-redirecionador-user{
-    margin-top: 2vh;
+  .card-redirecionador-user{
+    margin-bottom: 5%;
   }
   .a-user{
     font-weight: 700;
     color: black;
   }
 
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 600px) {
 
     *{
-        font-size: 1em;
+        margin: 0;
     }
-    
-    #login-home {
-        width: 20vw;
-        height: 5vh;
-    }
+
+   html{
+    overflow-x: hidden;
+   } 
+
+   body{
+    flex-direction: column;
+    overflow-x: hidden;
+    height: fit-content;
+   }
 
     #login-home img {
         height: 3vh;
@@ -205,31 +298,51 @@ input {
         margin-right: 12%;
     }
 
-    .logo-celular{
-        display: block;
+    #login-home{
+        width: 25vw;
     }
 
-    body {
-        height: fit-content
+    .opt{
+        width: 60vw;
+    }
+
+    .main{
+        flex-direction: column;
+        height: fit-content;
+        width: 90%;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .imagem-logo{
+        display: block;
+        width: auto;
+        height: 15vh;
+    }
+
+    .main{
+        height: 100vh;
     }
 
     .titulo-user2 {
         font-size: 1.2em; 
     } 
+   
+    .card-cadastro-user{
+        width: 90vw;
+        height: 65vh;
+    }
+
     .card-cadastro-info{
+        margin-top: 20vh;
+        margin-bottom: 50vh;
         display: none;
     }
 
-    .card-cadastro-user{
-        width: 65vw;
-        height: 65vh;
+    #sla{
+        display: block;
     }
+
+    
 }
 
-@media screen and (max-width: 768px) {
-
-    .card-cadastro-user{
-        width: 65vw;
-        height: fit-content;
-    }
-}

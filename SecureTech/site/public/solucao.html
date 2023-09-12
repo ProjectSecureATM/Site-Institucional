@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>SecureATM | Soluções </title>
 
     <link rel="stylesheet" href="css/solucao.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -13,6 +13,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Abel&family=Fira+Sans:wght@300&family=Readex+Pro&display=swap"
         rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Nunito&display=swap" rel="stylesheet">
+
+    <link rel="shortcut icon" href="./assets/fiveicon.png" type="image/x-icon">
 
 </head>
 
@@ -109,7 +111,7 @@
                 </div>
                 <!-- 2° Card 2° Card  2° Card  2° Card  2° Card -->
                     <div class="card-pricing bg-azul">
-                        <div class="container-card">
+                        <div class="container-card" id="white">
                             <h3>Advanced</h3>
                             <p>Ideal para empresas que precisam de recursos e ferramentas avançadas para o trabalho do cliente.</p>
                             <h1>$$<span> / Mês</span></h1>
@@ -152,6 +154,18 @@
         </div>
     </div>
 
+    
+    <div class="chatbot-container">
+        <div id="chatbot-icon">Chat</div>
+        <div id="chatbot-body">
+          <div>🤖 Bot: Olá! Como posso ajudar?</div>
+          <div class="opcoes">
+            <div id="margin" class="opt">Dúvidas Frequentes</div>
+            <div class="opt">Relatar problema no site</div>
+            <div class="opt">Mudança de plano</div>
+          </div>
+        </div>
+      </div>
 
     <footer>
         <div class="footer">
@@ -206,4 +220,11 @@
     function enviarOrcamento() {
 
     }
+
+    const chatbotIcon = document.getElementById('chatbot-icon');
+  const chatbotBody = document.getElementById('chatbot-body');
+
+  chatbotIcon.addEventListener('click', () => {
+    chatbotBody.style.display = chatbotBody.style.display === 'none' ? 'block' : 'none';
+  });
 </script>

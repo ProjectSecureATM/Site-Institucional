@@ -16,6 +16,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Abel&family=Fira+Sans:wght@300&family=Readex+Pro&display=swap"
       rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Nunito&display=swap" rel="stylesheet">
+
+    <link rel="shortcut icon" href="./assets/fiveicon.png" type="image/x-icon">
 </head>
 
 <body>
@@ -32,6 +34,7 @@
                 <p class="texto-info">Faça já o seu login para ter acesso ao monitoramento do caixa eletrônico de sua empresa, garantindo a segurança, manutenção, e otimização do sistema monitorado.</p>
             </div>
             <div class="card-cadastro-user">
+                <img id="sla" style="display: none; width: 10px; height: 10px;" src="./assets/secure_atm_logo_azul.png" alt="">
                 <div class="info-user">
                     <h2 class="titulo-user1">BEM VINDO DE VOLTA!</h2>
                     <h1 class="titulo-user2">Login de Funcionario/Empresa</h1>
@@ -40,12 +43,10 @@
                     
                     <div class="cadastro">
                         <div class="text-field">
-                            <!-- <label for="email">Email</label> -->
                             <input type="text" id="email_input" placeholder="Email ou CNPJ">
                             <div id="erro_email"></div>
                         </div>
                         <div class="text-field">
-                            <!-- <label for="confirmar-senha">Confirmar Senha</label> -->
                             <input type="password" id="confirmacao_senha_input" placeholder="********">
                             <div id="erro_confirmar_senha"></div>
                         </div>
@@ -56,6 +57,19 @@
                 </div>
                 
             </div>
+
+            
+      <div class="chatbot-container">
+        <div id="chatbot-icon">Chat</div>
+        <div id="chatbot-body">
+          <div>🤖 Bot: Olá! Como posso ajudar?</div>
+          <div class="opcoes">
+            <div id="margin" class="opt">Dúvidas Frequentes</div>
+            <div class="opt">Relatar problema no site</div>
+            <div class="opt">Mudança de plano</div>
+          </div>
+        </div>
+      </div>
         </div>
 </body>
 </html>
@@ -63,6 +77,13 @@
     function backToHome(){
         window.location = 'index.html'
     }
+
+    const chatbotIcon = document.getElementById('chatbot-icon');
+  const chatbotBody = document.getElementById('chatbot-body');
+
+  chatbotIcon.addEventListener('click', () => {
+    chatbotBody.style.display = chatbotBody.style.display === 'none' ? 'block' : 'none';
+  });
 </script>
 
 

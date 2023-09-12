@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Cadastro</title>
+    <title>SecureATM | Cadastro</title>
     <script src="./js/sessao.js"></script>
     <script src="./js/cadastro.js"></script>
 
@@ -17,6 +17,7 @@
         rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Nunito&display=swap" rel="stylesheet">
 
+    <link rel="shortcut icon" href="./assets/fiveicon.png" type="image/x-icon">
 </head>
 
 <body>
@@ -28,7 +29,7 @@
     </div>
     <div class="main">
         <div class="card-cadastro-info">
-            <img class="imagem-logo" src="./imgs/logo.png" alt="Logo">
+            <img class="imagem-logo" src="./assets/secure_atm_logo.png" alt="Logo">
             <h1 class="titulo-info">Monitoramento Prático</h1>
             <p class="texto-info">Faça já o seu cadastro como funcionario para ter acesso ao monitoramento do caixa
                 eletrônico de sua empresa, garantindo a segurança, manutenção, e otimização do sistema monitorado.</p>
@@ -53,12 +54,12 @@
                 </div>
                 <div class="text-field">
                     <!-- <label for="senha">Criar Senha</label> -->
-                    <input type="password" id="senha_input" placeholder="********">
+                    <input type="password" id="senha_input" placeholder="Senha">
                     <div id="erro_senha"></div>
                 </div>
                 <div class="text-field">
                     <!-- <label for="confirmar-senha">Confirmar Senha</label> -->
-                    <input type="password" id="confirmacao_senha_input" placeholder="********">
+                    <input type="password" id="confirmacao_senha_input" placeholder="Confirmação de senha">
                     <div id="erro_confirmar_senha"></div>
                 </div>
                 <div class="text-field"><select id="empresasSelect" name="empresa">
@@ -75,6 +76,19 @@
                         class="a-user">CADASTRO</a></span>
             </div> -->
         </div>
+
+        
+      <div class="chatbot-container">
+        <div id="chatbot-icon">Chat</div>
+        <div id="chatbot-body">
+          <div>🤖 Bot: Olá! Como posso ajudar?</div>
+          <div class="opcoes">
+            <div id="margin" class="opt">Dúvidas Frequentes</div>
+            <div class="opt">Relatar problema no site</div>
+            <div class="opt">Mudança de plano</div>
+          </div>
+        </div>
+      </div>
     </div>
 </body>
 
@@ -83,4 +97,11 @@
     function backToHome() {
         window.location = 'index.html'
     }
+
+    const chatbotIcon = document.getElementById('chatbot-icon');
+  const chatbotBody = document.getElementById('chatbot-body');
+
+  chatbotIcon.addEventListener('click', () => {
+    chatbotBody.style.display = chatbotBody.style.display === 'none' ? 'block' : 'none';
+  });
 </script>

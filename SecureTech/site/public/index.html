@@ -20,6 +20,8 @@
     rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Nunito&display=swap" rel="stylesheet">
 
+  <link rel="shortcut icon" href="./assets/fiveicon.png" type="image/x-icon">
+
 </head>
 
 <body>
@@ -31,7 +33,7 @@
         </div>
         <div class="menu">
           <ul id="menu">
-            <li style="cursor: pointer;" onclick="goToHome()" id="margin"><span>Home</span></li>
+            <li style="cursor: pointer; margin-top: 0;" onclick="goToHome()" id="margin"><span>Home</span></li>
             <li style="cursor: pointer;" onclick="goToFaleConosco()">Fale Conosco</li>
             <li style="cursor: pointer;" onclick="goToSobreNos()">Sobre Nós</li>
             <li style="cursor: pointer;" onclick="goToSolucoes()">Soluções</li>
@@ -101,7 +103,7 @@
             máquinas é vital para os negócios e a confiança dos usuários. Dessa forma, a SecureATM emprega um esforço
             contínuo para identificar potenciais problemas antes que afetem as operações, garantindo uma experiência
             tranquila para todos os envolvidos. Saiba mais clicando no botão abaixo!</p>
-          <button onclick="goToSobreNos">Saiba Mais</button>
+          <button onclick="goToSobreNos()">Saiba Mais</button>
         </div>
       </div>
       <div class="div-card-monit">
@@ -197,6 +199,11 @@
         <div id="chatbot-icon">Chat</div>
         <div id="chatbot-body">
           <div>🤖 Bot: Olá! Como posso ajudar?</div>
+          <div class="opcoes">
+            <div id="margin" class="opt">Dúvidas Frequentes</div>
+            <div class="opt">Relatar problema no site</div>
+            <div class="opt">Mudança de plano</div>
+          </div>
         </div>
       </div>
 

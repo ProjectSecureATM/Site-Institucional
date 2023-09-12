@@ -262,12 +262,12 @@ body {
     position: fixed;
     bottom: 20px;
     right: 20px;
-    z-index: 9999;
     background-color: #295897;
     border-radius: 10px;
     padding: 10px;
     color: white;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    z-index: 9999;
+    box-shadow: 12px 10px 15px rgba(0, 0, 0, 0.402);
 }
 
 #chatbot-icon {
@@ -286,6 +286,37 @@ body {
     max-height: 300px;
     overflow: auto;
     padding: 10px;
+}
+
+#chatbot-body .opcoes{
+    /* height: 10vh; */
+    width: 20vw;
+    display: flex;
+    flex-direction: column;
+}
+
+.opt{
+    width: 100%;
+    /* background-color: #FFCB45; */
+    border: 1.5px solid #FFCB45;
+    height: 7vh;
+    margin-bottom: 3%;
+    border-radius: 2vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.4s ease-in-out;
+    cursor: pointer;
+}
+
+.opt:hover{
+    background-color: #FFCB45;
+    color: black;
+    transform: scale(1.03);
+}
+
+#margin{
+    margin-top: 5%;
 }
 
 .footer {
@@ -401,6 +432,9 @@ body {
         display: none;
     }
 
+    .opt{
+        width: 60vw;
+    }
     .nav-bar{
         width: 100vw;
     }
