@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SecureATM | Home do Usuário </title>
+
+    <link rel="stylesheet" href="css/homeCadastrado.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Abel&family=Fira+Sans:wght@300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Abel&family=Fira+Sans:wght@300&family=Readex+Pro&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&display=swap" rel="stylesheet">
+
+    <link rel="shortcut icon" href="./assets/fiveicon.png" type="image/x-icon">
+
+</head>
+
+<body>
+    <header> <!-- principal -->
+        <div class="container">
+            <div class="navBar"> <!-- nav-bar -->
+                <img src="assets/secure_atm_logo.png" alt="Logo" onclick="goToHome()">
+                <nav class="menu">
+                    <ul id="menu">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="faleConosco.html">Fale Conosco</a></li>
+                        <li><a href="sobre_nos.html">Sobre Nós</a></li>
+                        <li><a href="solucao.html">Soluções</a></li>
+                        <li class="agora"><a href="homeCadastrado.html">Meus Dados</a></li>
+                    </ul>
+                </nav>
+                <button class="login-button" onclick="goToHome()"><img src="assets/img-logout.png"
+                        alt="img-Logout" class="logo">Logout</button>
+            </div>
+
+            <div class="banner"> <!-- Banner Home -->
+                <div class="container">
+                    <div class="bd-img-banner">
+                    </div>
+                    <div class="titulo">
+                        <div class="text-titulo">
+                            <h1>Bem-Vindo</h1>
+                            <h1><span>Novamente!</span></h1>
+                            <p>Essa tela é destinada a você, <span>${NomeUsuario}</span></p>
+                        </div>
+                      </div>
+                </div>
+              </div>
+        </div>
+      </header>
+
+<!-- Inicio Agências -->
+
+<div class="divBoxAgencia">
+  <div class="divAgencia">
+    <div class="divTituloAgencia">
+      <a>São Paulo - SP</a>
+    </div>
+    <div class="divLinhaCard">
+      <div class="divBoxCard">
+        <button class="buttonCard" onclick="">
+            <div class="divNome">
+              <span>Agência</span>
+            </div>
+            <div class="divNumero"><span>123-4</span></div>
+        </button>
+      </div>
+      <div class="divBoxCard">
+          <button class="buttonCard" onclick="">
+            <div class="divNome">
+              <span>Agência</span>
+            </div>
+            <div class="divNumero"><span>123-4</span></div>
+        </button>
+      </div>
+    </div>
+    <div class="divTituloAgencia">
+      <a>São Paulo - SP</a>
+    </div>
+    <div class="divLinhaCard">
+      <div class="divBoxCard">
+        <button class="buttonCard" onclick="">
+            <div class="divNome">
+              <span>Agência</span>
+            </div>
+            <div class="divNumero"><span>123-4</span></div>
+        </button>
+      </div>
+      <div class="divBoxCard">
+          <button class="buttonCard" onclick="">
+            <div class="divNome">
+              <span>Agência</span>
+            </div>
+            <div class="divNumero"><span>123-4</span></div>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Fim Agências -->
+
+<!-- Inicio Rodapé -->
+<!-- Fim Rodapé -->
