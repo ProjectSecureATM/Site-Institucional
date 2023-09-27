@@ -46,40 +46,51 @@ body {
     display: flex;
     flex-direction: row;
     list-style: none;
+    width: 55%;
     width: 80%;
     height: 100%;
     align-self: baseline;
+    justify-content: space-evenly;
     align-items: center;
     font-size: 3.0vh;
     font-weight: 700;
     color: rgb(42, 42, 42);
-    
+
 }
 
 ul {
     list-style: none;
   }
-  
+
   a {
     color: inherit;
     text-decoration: none;
   }
 
 .menu {
+    width: 100%;
     display: flex;
-    justify-content: center;
-  }
-  
+    align-items: center;
+}
+
+#menu span {
+    border-bottom: solid 0.6vh #FFCB45;
+}
+
+#menu ul li {
+    margin-bottom: 2%;
+    cursor: pointer;
+}
   .menu li {
     margin-right: 30px;
   }
-  
+
   .menu a {
     position: relative;
     display: block;
     padding: 5px;
   }
-  
+
   .menu a::before {
     content: '';
     position: absolute;
@@ -93,7 +104,7 @@ ul {
     transform-origin: left;
     transition: transform 0.5s ease-in-out;
   }
-  
+
   .menu a:hover::before {
     transform: scaleX(1);
   }
@@ -101,12 +112,41 @@ ul {
 .menu[data-animation="bonus"] a::before {
     transform-origin: right;
   }
-  
+
   .menu[data-animation="bonus"] a:hover::before {
     transform-origin: left;
     transform: scaleX(1);
     transition-timing-function: cubic-bezier(0.2, 1, 0.82, 0.94);
   }
+
+/* #menu {
+    display: flex;
+    flex-direction: row;
+    list-style: none;
+    width: 55%;
+    align-self: baseline;
+    justify-content: space-evenly;
+    font-size: 3.0vh;
+    font-weight: 700;
+    color: rgb(42, 42, 42);
+}
+
+.menu {
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+#menu span {
+    border-bottom: solid 0.6vh #FFCB45;
+}
+
+#menu ul li {
+    margin-bottom: 2%;
+    cursor: pointer;
+}
+ */
+
 
 
 .botao-login img {
@@ -310,13 +350,14 @@ ul {
 }
 
 .about-us {
-    width: 95%;
-    height: 89vh;
+    width: 100%;
+    height: 80vh;
     margin-bottom: 3%;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
+
 }
 
 .img-about-us {
@@ -329,7 +370,7 @@ ul {
 
 .text-about-us {
     height: 69vh;
-    width: 52%;
+    width: 53%;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
@@ -339,10 +380,14 @@ ul {
     line-height: 1.7em;
     font-size: 3vh;
     font-style: normal;
+
 }
 
 .text-about-us p {
     font-family: 'Nunito', sans-serif;
+    text-align: justify;
+
+    /* padding: 3vh; */
 }
 
 .text-about-us h2 {
@@ -374,6 +419,96 @@ ul {
     background-color: #d2a83e;
     transform: scale(1.05);
     cursor: pointer;
+}
+
+.divBoxSobreNos{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 90vh;
+    width: 100%;
+
+    /* background-color: red; */
+}
+
+.divSobreNos{
+    display: flex;
+    flex-direction: row;
+    height: 90%;
+    width: 100%;
+
+    /* background-color: blue; */
+}
+
+.divConteudoSobreNos{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 90%;
+    
+    justify-content: center;
+
+    /* background-color: rgb(0, 0, 0); */
+}
+
+
+.divConteudoTextoSobreNos{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    height: 60vh;
+    width: 95%;
+ 
+    /* background-color: green; */
+}
+
+/* .textoSobreNos{
+    width: 90%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+} */
+
+.divConteudoTextoSobreNos #subTitulo {
+    font-size: 24px;
+    color:#194075;
+    font-weight: bold;
+}
+
+.divConteudoTextoSobreNos p {
+    font-size: 24px;
+    color: #000000;
+    font-weight: bold;
+    text-align: justify;
+
+    /* padding: 3vh; */
+}
+
+.divConteudoImagemSobreNos{
+    display: flex;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+
+    /* background-color: azure; */
+}
+
+
+.divImagemSobreNos{
+    width: auto;
+    height: auto;
+
+}
+
+
+.divImagemSobreNos img{
+    width: 100%;
+    height: 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    border-radius: 2vh;
 }
 
 .div-card-monit {
@@ -456,7 +591,7 @@ ul {
     background-color: #FFCB45;
     left: 55%;
     z-index: 999;
-    top: 315%;
+    top: 400%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -654,7 +789,10 @@ ul {
     display: flex;
     width: 93rem;
     height: 20rem;
-    background-color: #FFCB45;
+
+    border-top-left-radius: 30vh;
+    border-bottom-right-radius: 30vh;
+    background-color: #295897;
 }
 
 .footerContainer {
@@ -737,13 +875,17 @@ ul {
 .footerInfo span,
 .footerInfo a {
     font-weight: lighter;
-    color: black;
+    color: white;
     text-decoration: none;
+}
+
+.footerInfo h3{
+
 }
 
 .footerInfo a:hover {
     font-weight: bold;
-    color: #295897;
+    color: #FFCB45;
 }
 
 .footerRights {
@@ -751,12 +893,13 @@ ul {
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    height: 25%;
-    border-top-width: 1px;
-    border-top-style: outset;
-    border-top-color: black;
+    
+    margin-top: 1%;
 }
 
+.footerRights span{
+
+}
 
 
 /* RESPONSIVIDADE */
