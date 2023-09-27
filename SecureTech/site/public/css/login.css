@@ -109,7 +109,7 @@ body {
 }
 
 
-.card-cadastro-info{
+.card-login-info{
     width: 50%;
     height: 40vh;
     display: flex;
@@ -132,7 +132,7 @@ input{
     transition: 0.3s ease-in-out;
 }   
 
-.card-cadastro-user{
+.card-login-user{
     position: relative;
    top: 2%;
     color: black;
@@ -144,7 +144,6 @@ input{
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
-    align-self: flex-end;
 }
 
 .texto-info{
@@ -193,7 +192,7 @@ input{
     padding-left: 3vw;
 }
 
-.cadastro{
+.login{
     display: flex;
     align-items: center;
     justify-content: center;
@@ -328,18 +327,18 @@ input {
         font-size: 1.2em; 
     } 
    
-    .card-cadastro-user{
+    .card-login-user{
         width: 90vw;
         height: 65vh;
     }
 
-    .card-cadastro-info{
+    .card-login-info{
         margin-top: 20vh;
         margin-bottom: 50vh;
         display: none;
     }
 
-    #sla{
+    #imgCard{
         display: block;
     }
 

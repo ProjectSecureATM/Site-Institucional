@@ -8,7 +8,7 @@
 
     <title>Login</title>
     <script src="./js/sessao.js"></script>
-    <script src="./js/cadastro.js"></script>
+    <script src="./js/login.js"></script>
     
     <link rel="stylesheet" href="./css/login.css">
     <link rel="stylesheet" href="styles/cadastro.css">
@@ -28,20 +28,20 @@
         <button id="login-home"><img src="./imgs/back-icon.png">Voltar</button>
       </div>
     <div class="main">
-            <div class="card-cadastro-info">
+            <div class="card-login-info">
                 <img class="imagem-logo" src="./assets/secure_atm_logo.png" alt="Logo">
                 <h1 class="titulo-info">Monitoramento Prático</h1>
                 <p class="texto-info">Faça já o seu login para ter acesso ao monitoramento do caixa eletrônico de sua empresa, garantindo a segurança, manutenção, e otimização do sistema monitorado.</p>
             </div>
-            <div class="card-cadastro-user">
-                <img id="sla" style="display: none; width: 10px; height: 10px;" src="./assets/secure_atm_logo_azul.png" alt="">
+            <div class="card-login-user">
+                <img id="imgCard" style="display: none; width: 10px; height: 10px;" src="./assets/secure_atm_logo_azul.png" alt="">
                 <div class="info-user">
                     <h2 class="titulo-user1">BEM VINDO DE VOLTA!</h2>
                     <h1 class="titulo-user2">Login de Funcionario/Empresa</h1>
                     <p class="texto-user">Preencha os dados abaixo para se logar</p>
                 </div>
                     
-                    <div class="cadastro">
+                    <div class="login">
                         <div class="text-field">
                             <input type="text" id="email_input" placeholder="Email ou CNPJ">
                             <div id="erro_email"></div>
@@ -51,7 +51,7 @@
                             <div id="erro_confirmar_senha"></div>
                         </div>
                     </div>
-                <button onclick="cadastrar()" class="botao-cadastro-user botao-amarelo">CADASTRO</button>
+                <button onclick="verificar()" class="botao-login-user botao-amarelo">Login</button>
                 <div class="card-redirecionador-user">
                     <span class="texto-user2">Não tem uma conta? <a href="cadastro.html" class="a-user">CADASTRO</a></span>
                 </div>

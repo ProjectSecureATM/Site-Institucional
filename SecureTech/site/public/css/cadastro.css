@@ -145,7 +145,6 @@ html, body{
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    align-self: flex-end;
 }
 
 .texto-info{
@@ -317,7 +316,7 @@ input {
         display: none;
     }
 
-    #sla{
+    #imgCard{
         display: block;
     }
 
