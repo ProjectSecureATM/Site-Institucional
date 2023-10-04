@@ -46,8 +46,7 @@ body {
     display: flex;
     flex-direction: row;
     list-style: none;
-    width: 55%;
-    width: 80%;
+    width: 70%;
     height: 100%;
     align-self: baseline;
     justify-content: space-evenly;
@@ -98,7 +97,7 @@ ul {
     left: 0;
     width: 100%;
     height: 2px;
-    background: linear-gradient(to right, #000000, #194075);
+    background: linear-gradient(to right, #194075, #f7b102);
     z-index: 1;
     transform: scaleX(0);
     transform-origin: left;
@@ -182,7 +181,7 @@ ul {
     background-color: #FFCB45;
     border-radius: 3vh;
     border-bottom-right-radius: 40vh;
-    background: linear-gradient(90.04deg, #294e97a2 49.97%, #5886c182 95.59%), url('../assets/img-home.jpeg');
+    background: url('../assets/img-home.jpeg');
     background-position: center;
     background-size: cover;
     display: flex;
@@ -215,6 +214,7 @@ ul {
 
 .text-titulo h1 {
     margin-bottom: -3vh;
+    font-size: 56px;
 }
 
 .text-titulo span {
@@ -241,7 +241,7 @@ ul {
 
 #btn-saibamais:hover {
     color: white;
-    background-color: #d2a83e;
+    background-color: #021e46;
     transform: scale(1.05);
     cursor: pointer;
 }
@@ -274,7 +274,7 @@ ul {
 }
 
 .title-nossos-servicos p {
-    color: #295897
+    color: #021e46
 }
 
 .cards-home {
@@ -291,7 +291,7 @@ ul {
     flex-direction: column;
     height: 53vh;
     width: calc(31.00%);
-    background-color: #295897;
+    background-color: #021e46;
     box-shadow: 2px 11px 31px 16px rgba(51, 51, 51, 0.267);
     border-radius: 3vh;
     align-items: center;
@@ -512,20 +512,22 @@ ul {
 }
 
 .div-card-monit {
-    height: 93vh;
-    width: 110%;
-    background-color: #194075;
+    height: 90vh;
+    width: 100%;
+
     display: flex;
     justify-content: center;
     align-items: center;
+
 }
 
 .card-monit {
     width: 85%;
     height: 67%;
-    background-color: #295897;
+    background-color: #021e46;
     display: flex;
     flex-direction: row;
+    border-radius: 5% 5% 5% 5%;
 }
 
 .foto-card-monit {
@@ -534,6 +536,7 @@ ul {
     background-image: url('../assets/pexels-liliana-drew-8555256.jpg');
     background-size: cover;
     position: relative;
+    border-radius: 0% 5% 5% 0%;
 }
 
 .text-card-monit {
@@ -547,7 +550,7 @@ ul {
 }
 
 .content-text {
-    width: 86%;
+    width: 70%;
     color: white;
     height: 70%;
     display: flex;
@@ -765,14 +768,17 @@ ul {
 }
 
 .clientes-grupo {
-    width: 80%;
+    width: 90%;
     height: 20vh;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    filter: opacity(40%);
     transition: transform 1s ease;
+}
+
+.clientes-grupo:hover{
+    transform: scale(1.03);
 }
 
 .clientes-grupo img {
@@ -787,12 +793,11 @@ ul {
 
 .footer {
     display: flex;
-    width: 93rem;
+    width: 100%;
     height: 20rem;
-
     border-top-left-radius: 30vh;
     border-bottom-right-radius: 30vh;
-    background-color: #295897;
+    background-color: #021e46;
 }
 
 .footerContainer {
@@ -879,9 +884,7 @@ ul {
     text-decoration: none;
 }
 
-.footerInfo h3{
 
-}
 
 .footerInfo a:hover {
     font-weight: bold;
@@ -897,9 +900,7 @@ ul {
     margin-top: 1%;
 }
 
-.footerRights span{
 
-}
 
 
 /* RESPONSIVIDADE */
