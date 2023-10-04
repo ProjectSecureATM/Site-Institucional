@@ -5,16 +5,18 @@ function cadastrar() {
     var emailVar = email_input.value;
     var senhaVar = senha_input.value;
     var confirmacaoSenhaVar = confirmacao_senha_input.value;
+    var codigoVar = codigo_input.value;
 
     erro_email.innerHTML = "";
     erro_senha.innerHTML = "";
     erro_confirmar_senha.innerHTML = "";
+    erro_codigo.innerHTML = "";
 
-    if (nomeVar == "" || emailVar == "" || senhaVar == "" || confirmacaoSenhaVar == "") {
+    if (nomeVar == "" || emailVar == "" || senhaVar == "" || confirmacaoSenhaVar == "" || codigoVar == "") {
         alert("Preencha os campos vazios")
 
     } else {
-if (emailVar.indexOf("@") == -1 || emailVar.endsWith(".com") == false) {
+        if (emailVar.indexOf("@") == -1 || emailVar.endsWith(".com") == false) {
 
             erro_email.innerHTML = "email inválido"
             input_email.className = "invalido"
@@ -53,9 +55,15 @@ if (emailVar.indexOf("@") == -1 || emailVar.endsWith(".com") == false) {
             erro_confirmar_senha.innerHTML = `A senha de confirmação não corresponde à senha inserida. Por favor, tente novamente`
             input_confirmar_senha.className = "invalido"
 
+        } else if (codigoVar == '0121') {
+            codigoVar = 1
+            
+        } else if (codigoVar == '0242') {
+            codigoVar = 2
         }
         window.location = 'index.html'
     }
+
 
     fetch("/usuarios/cadastrar", {
         method: "POST",
@@ -66,6 +74,7 @@ if (emailVar.indexOf("@") == -1 || emailVar.endsWith(".com") == false) {
             nomeServer: nomeVar,
             emailServer: emailVar,
             senhaServer: senhaVar,
+            codigoServer: codigoVar,
         })
     })
 
