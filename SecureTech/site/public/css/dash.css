@@ -93,7 +93,7 @@
 }
 .div_cpu{
     width: 20%; 
-    height: 25vh; 
+    height: 20vh; 
     background: #194075; 
     border-radius: 7px; 
     border-left: 3px rgba(0, 0, 0, 0.30) solid; 
@@ -105,7 +105,7 @@
 }
 .texto_cpu{
     font-weight: bolder;
-    font-size: 400%;
+    font-size: 350%;
     color: aliceblue;
     margin-bottom: 10%;
     margin-top: -1%;
@@ -121,7 +121,7 @@
 }
 .div_ram{
     width: 20%; 
-    height: 25vh; 
+    height: 20vh; 
     background: #ffffff; 
     border-radius: 7px; 
     border-left: 3px rgba(0, 0, 0, 0.30) solid; 
@@ -133,7 +133,7 @@
 }
 .texto_ram{
     font-weight: bolder;
-    font-size: 400%;
+    font-size: 350%;
     color: rgb(0, 0, 0);
     margin-bottom: 10%;
     margin-top: -1%;
@@ -143,15 +143,53 @@
     font-size: 90%;
     color: rgb(0, 0, 0);
 }
-/* .container_dash{
+.container_dash{
     display: flex;
-    width: 100%;
-    height: 700%;
-    background-color: #FFCB45;
+    width: 45%;
+    height: 80vh;
+    /* background-color: #FFCB45; */
+    margin-top: 11%;
+    margin-left: -22%;
+    margin-right: 5%;
+    flex-direction: column ;
+    justify-content: space-evenly;
 }
 .dash1{
-    height: 100%;
+    height: 30vh;
     width: 100%;
     background-color: #FFCB45;
-} */
+}
+.dash2{
+    height: 30vh;
+    width: 100%;
+    background-color: #827960;
+}
+.container_dash_lateral{
+    height: 90vh;
+    width: 25%;
+    background: white; 
+    border-radius: 17px;
+    margin-top: 4%;
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: column;
+}
+.dash_disco1{
+height: 30%;
+width: 80%;
+background-color: #6c7bf2;
+margin-left: 10%;
+}
+.dash_disco2{
+    height: 30%;
+    width: 80%;
+    background-color:  rgb(170, 44, 221);
+    margin-left: 10%;
+}
+.dash_disco3{
+    height: 30%;
+    width: 80%;
+    background-color:rgb(249, 100, 249);
+    margin-left: 10%;
+}
     /* background-color: #FFCB45; */
