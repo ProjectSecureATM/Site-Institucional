@@ -157,12 +157,12 @@
 .dash1{
     height: 30vh;
     width: 100%;
-    background-color: #FFCB45;
+    background-color: #d9d9d9;
 }
 .dash2{
     height: 30vh;
     width: 100%;
-    background-color: #827960;
+    background-color: #d9d9d9;
 }
 .container_dash_lateral{
     height: 90vh;
@@ -177,19 +177,36 @@
 .dash_disco1{
 height: 30%;
 width: 80%;
-background-color: #6c7bf2;
+/* background-color: #6c7bf2; */
 margin-left: 10%;
+display: flex;
+justify-content: center;
+align-items: center;
 }
 .dash_disco2{
     height: 30%;
     width: 80%;
-    background-color:  rgb(170, 44, 221);
+    /* background-color:  rgb(170, 44, 221); */
     margin-left: 10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .dash_disco3{
     height: 30%;
     width: 80%;
-    background-color:rgb(249, 100, 249);
+    /* background-color:rgb(249, 100, 249); */
     margin-left: 10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.chart-canvas{
+    height: 100%;
+    width: 100%; 
+    display: block; 
+    box-sizing: border-box; 
+    height: 100%; 
+    width: 100%;
 }
     /* background-color: #FFCB45; */
