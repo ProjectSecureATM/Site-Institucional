@@ -11,7 +11,7 @@ body {
 .principal {
     height: fit-content;
     width: 100%;
-    background-color: #ffff;
+    /* background-color: #021e46; */
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -26,6 +26,7 @@ body {
     justify-content: center;
     margin-top: 1%;
     flex-direction: column;
+
 }
 
 .nav-bar {
@@ -35,6 +36,8 @@ body {
     align-items: center;
     justify-content: space-between;
     flex-direction: row;
+
+    /* background-color: #ffffff; */
 }
 
 .logo img {
@@ -54,6 +57,8 @@ body {
     font-size: 3.0vh;
     font-weight: 700;
     color: rgb(42, 42, 42);
+
+   
 
 }
 
@@ -117,36 +122,6 @@ ul {
     transform: scaleX(1);
     transition-timing-function: cubic-bezier(0.2, 1, 0.82, 0.94);
   }
-
-/* #menu {
-    display: flex;
-    flex-direction: row;
-    list-style: none;
-    width: 55%;
-    align-self: baseline;
-    justify-content: space-evenly;
-    font-size: 3.0vh;
-    font-weight: 700;
-    color: rgb(42, 42, 42);
-}
-
-.menu {
-    width: 100%;
-    display: flex;
-    align-items: center;
-}
-
-#menu span {
-    border-bottom: solid 0.6vh #FFCB45;
-}
-
-#menu ul li {
-    margin-bottom: 2%;
-    cursor: pointer;
-}
- */
-
-
 
 .botao-login img {
     height: 3vh;
@@ -423,21 +398,68 @@ ul {
 
 .divBoxSobreNos{
     display: flex;
+    flex-direction: column;
     justify-content: center;
+    justify-content: space-evenly;
     align-items: center;
-    height: 90vh;
+    height: 140vh;
     width: 100%;
 
     /* background-color: red; */
 }
 
+.divTituloSobreNos{
+    display: flex;
+    align-items: end;
+    justify-content: center;
+    width: 100%;
+    height: 10vh;
+
+    /* background-color: green; */
+}
+
+.divTituloSobreNos span{
+    font-size: 42px;
+    font-weight: bold;
+    color: #4A4A4A;
+}
+
+.divSubTituloSobreNos{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 10vh;
+}
+
+.divSubTituloSobreNos span{
+    font-size: 28px;
+    font-weight: bold;
+    color: #4A4A4A; 
+}
+
 .divSobreNos{
     display: flex;
     flex-direction: row;
-    height: 90%;
+    height: 50vh;
     width: 100%;
+    border-top-left-radius: 32px;
+    border-bottom-left-radius: 32px;
 
-    /* background-color: blue; */
+
+    background-color: #021e46;
+}
+
+.divSobreNosEsquerdo{
+    display: flex;
+    flex-direction: row;
+    height: 50vh;
+    width: 100%;
+    border-top-right-radius: 32px;
+    border-bottom-right-radius: 32px;
+
+
+    background-color: #021e46;
 }
 
 .divConteudoSobreNos{
@@ -454,35 +476,35 @@ ul {
 
 .divConteudoTextoSobreNos{
     display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
+    justify-content: center;
+    align-items: center;
     height: 60vh;
-    width: 95%;
+    width: 100%;
  
     /* background-color: green; */
 }
 
-/* .textoSobreNos{
-    width: 90%;
-    height: auto;
+.textoSobreNos{
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
-} */
+    height: 70%;
+    width: 90%;
+}
 
 .divConteudoTextoSobreNos #subTitulo {
-    font-size: 24px;
-    color:#194075;
+    font-size: 26px;
+    color:#FFCB45;
     font-weight: bold;
 }
 
 .divConteudoTextoSobreNos p {
-    font-size: 24px;
-    color: #000000;
-    font-weight: bold;
+    font-size: 20px;
+    color: #ffffff;
+   
     text-align: justify;
 
-    /* padding: 3vh; */
+    
 }
 
 .divConteudoImagemSobreNos{
@@ -496,7 +518,7 @@ ul {
 
 
 .divImagemSobreNos{
-    width: auto;
+    width: 50%;
     height: auto;
 
 }
@@ -507,9 +529,10 @@ ul {
     height: 100%;
     background-repeat: no-repeat;
     background-size: cover;
-
-    border-radius: 2vh;
 }
+
+
+
 
 .div-card-monit {
     height: 90vh;
@@ -527,7 +550,7 @@ ul {
     background-color: #021e46;
     display: flex;
     flex-direction: row;
-    border-radius: 5% 5% 5% 5%;
+    border-radius: 32px;
 }
 
 .foto-card-monit {
@@ -536,7 +559,9 @@ ul {
     background-image: url('../assets/pexels-liliana-drew-8555256.jpg');
     background-size: cover;
     position: relative;
-    border-radius: 0% 5% 5% 0%;
+    border-bottom-right-radius: 32px;
+    border-top-right-radius: 32px;
+    
 }
 
 .text-card-monit {
@@ -586,29 +611,9 @@ ul {
     font-size: 4vh;
 }
 
-.bolinha {
-    position: absolute;
-    height: 15vh;
-    width: 7vw;
-    border-radius: 50%;
-    background-color: #FFCB45;
-    left: 55%;
-    z-index: 999;
-    top: 400%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.bolinha img {
-    width: auto;
-    height: 10vh;
-}
-
 .fale-conosco {
     width: 110%;
     height: 75vh;
-    /* filter: brightness(80%); */
     background-image: url("../assets/Captura\ de\ tela\ 2023-08-18\ 110717.png");
     background-size: cover;
     display: flex;
@@ -777,8 +782,9 @@ ul {
     transition: transform 1s ease;
 }
 
-.clientes-grupo:hover{
-    transform: scale(1.03);
+.clientesImg:hover{
+    transform: scale(1.1);
+    transition: 1s;
 }
 
 .clientes-grupo img {
@@ -875,6 +881,10 @@ ul {
     width: 33.3%;
     height: 53%;
     justify-content: space-around;
+}
+
+.footerInfo h3{
+    color: #FFCB45;
 }
 
 .footerInfo span,
