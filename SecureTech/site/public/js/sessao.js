@@ -2,12 +2,14 @@
 function validarSessao() {
     // aguardar();
 
-    var email = sessionStorage.EMAIL_USUARIO;
-    var nome = sessionStorage.NOME_USUARIO;
+    var email = sessionStorage.email_Funcionario;
+    var nome = sessionStorage.nome_Funcionario;
+    var id = sessionStorage.id_funcionario_Funcionario;
+    var idAgencia = sessionStorage.fkAgencia_Funcionario;
 
     var b_usuario = document.getElementById("b_usuario");
 
-    if (email != null && nome != null) {
+    if (email != null && nome != null && id != null && idAgencia != null) {
          window.alert(`Seja bem-vindo, ${nome}!`);
         b_usuario.innerHTML = nome;
 

@@ -24,9 +24,10 @@ fetch("/usuarios/autenticar", {
                     console.log(json);
                     console.log(JSON.stringify(json));
 
-                    sessionStorage.EMAIL_USUARIO = json.email;
-                    sessionStorage.NOME_USUARIO = json.nome;
-                    sessionStorage.ID_USUARIO = json.id;
+                    sessionStorage.email_Funcionario = json.email;
+                    sessionStorage.nome_Funcionario = json.nome;
+                    sessionStorage.id_Funcionario = json.id;
+                    sessionStorage.idAgencia_Funcionario = json.idAgencia;
 
                     setTimeout(function () {
                         window.location = "homeCadastrado.html";
