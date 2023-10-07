@@ -72,7 +72,86 @@ function cadastrar(req, res) {
     }
 }
 
+function cadastrarATM(req, res) {
+    // Crie uma variável que vá recuperar os valores do arquivo cadastro.html
+    var modelo = req.body.modeloServer;
+    var so = req.body.soServer;
+    var processador = req.body.processadorServer;
+    var ram = req.body.ramServer;
+    var qtdDiscos = req.body.qtdDiscosServer;
+    var fabricante = req.body.fabricanteServer;
+    var codigoAgencia = req.body.codigoAgenciaServer
+    // Faça as validações dos valores
+    if (modelo == undefined) {
+        res.status(400).send("Seu nome está undefined!");
+    } else if (so == undefined) {
+        res.status(400).send("Seu email está undefined!");
+    } else if (processador == undefined) {
+        res.status(400).send("Sua senha está undefined!");
+    }else if (ram == undefined) {
+        res.status(400).send("Seu código está undefined!");
+    }else if (qtdDiscos == undefined) {
+        res.status(400).send("Seu código está undefined!");
+    }else if (fabricante == undefined) {
+        res.status(400).send("Seu código está undefined!");
+    }else if (codigoAgencia == undefined) {
+        res.status(400).send("Seu código está undefined!");
+    }else  {
+
+        // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
+        usuarioModel.cadastrarATM(modelo, so, processador, ram, qtdDiscos, fabricante, codigoAgencia)
+            .then(
+                function (resultado) {
+                    res.json(resultado);
+                }
+            ).catch(
+                function (erro) {
+                    console.log(erro);
+                    console.log(
+                        "\nHouve um erro ao realizar o cadastro do ATM! Erro: ",
+                        erro.sqlMessage
+                    );
+                    res.status(500).json(erro.sqlMessage);
+                }
+            );
+    }
+}
+
+function cadastrarAgencia(req, res) {
+    // Crie uma variável que vá recuperar os valores do arquivo cadastro.html
+    var NAgencia = req.body.NAgenciaServer;
+    var qtdATM = req.body.qtdATMServer;
+    var codigoEmp = req.body.codigEmpServer;
+    // Faça as validações dos valores
+    if (NAgencia == undefined) {
+        res.status(400).send("Seu nome está undefined!");
+    } else if (qtdATM == undefined) {
+        res.status(400).send("Seu email está undefined!");
+    } else if (codigEmp == undefined) {
+        res.status(400).send("Sua senha está undefined!");
+    }else  {
+
+        // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
+        usuarioModel.cadastrarAgencia(NAgencia, qtdATM, codigoEmp)
+            .then(
+                function (resultado) {
+                    res.json(resultado);
+                }
+            ).catch(
+                function (erro) {
+                    console.log(erro);
+                    console.log(
+                        "\nHouve um erro ao realizar o cadastro da Agência! Erro: ",
+                        erro.sqlMessage
+                    );
+                    res.status(500).json(erro.sqlMessage);
+                }
+            );
+    }
+}
 module.exports = {
     autenticar,
-    cadastrar
+    cadastrar,
+    cadastrarATM,
+    cadastrarAgencia
 }

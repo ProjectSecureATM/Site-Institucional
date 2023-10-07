@@ -8,6 +8,14 @@ router.post("/cadastrar", function (req, res) {
     usuarioController.cadastrar(req, res);
 })
 
+router.post("/cadastrarATM", function (req, res) {
+    usuarioController.cadastrar(req, res);
+})
+
+router.post("/cadastrarAgencia", function (req, res) {
+    usuarioController.cadastrar(req, res);
+})
+
 router.post("/autenticar", function (req, res) {
     usuarioController.autenticar(req, res);
 });

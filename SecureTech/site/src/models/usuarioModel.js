@@ -22,7 +22,33 @@ function cadastrar(nome, email, senha, codigo) {
     return database.executar(instrucao);
 }
 
+function cadastrarATM(modelo, so, processador, ram, qtdDiscos, fabricante, codigoAgencia) {
+    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrar():", modelo, so, processador, ram, qtdDiscos, fabricante, codigoAgencia);
+    
+    // Insira exatamente a query do banco aqui, lembrando da nomenclatura exata nos valores
+    //  e na ordem de inserção dos dados.
+    var instrucao = `
+        INSERT INTO atm (modelo, so, processador, ram, qtdDiscos, fabricante, fkAgencia) VALUES ('${modelo}', '${so}', '${processador}', '${ram}', '${qtdDiscos}', '${fabricante}', '${codigoAgencia}');
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
+function cadastrarAgencia(NAgencia, qtdATM, codigoEmp) {
+    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrar():", NAgencia, qtdATM, codigoEmp);
+    
+    // Insira exatamente a query do banco aqui, lembrando da nomenclatura exata nos valores
+    //  e na ordem de inserção dos dados.
+    var instrucao = `
+        INSERT INTO agencia (nAgencia, QtdATM, fkEmpresa) VALUES ('${NAgencia}', '${qtdATM}', '${codigoEmp}');
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
 module.exports = {
     autenticar,
-    cadastrar
+    cadastrar,
+    cadastrarATM,
+    cadastrarAgencia
 };
