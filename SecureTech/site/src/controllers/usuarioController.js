@@ -121,13 +121,13 @@ function cadastrarAgencia(req, res) {
     // Crie uma variável que vá recuperar os valores do arquivo cadastro.html
     var NAgencia = req.body.NAgenciaServer;
     var qtdATM = req.body.qtdATMServer;
-    var codigoEmp = req.body.codigEmpServer;
+    var codigoEmp = req.body.codigoEmpServer;
     // Faça as validações dos valores
     if (NAgencia == undefined) {
         res.status(400).send("Seu nome está undefined!");
     } else if (qtdATM == undefined) {
         res.status(400).send("Seu email está undefined!");
-    } else if (codigEmp == undefined) {
+    } else if (codigoEmp == undefined) {
         res.status(400).send("Sua senha está undefined!");
     }else  {
 

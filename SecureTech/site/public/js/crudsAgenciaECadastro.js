@@ -69,13 +69,13 @@ function cadastrarATM() {
 function cadastrarAgencia(){
     var NAgenciaVar = NAgencia.value;
     var qtdATMVar = QtdATM.value;
-    var codigEmpVar = Empresa.value;
+    var codigoEmpVar = Empresa.value;
 
     // erro_NAgencia.innerHTML = "";
     // erro_qtdATM.innerHTML = "";
     // erro_Empresa.innerHTML = "";
 
-    if ( NAgenciaVar == "" || qtdATMVar == "" ||  codigEmpVar == "") {
+    if ( NAgenciaVar == "" || qtdATMVar == "" ||  codigoEmpVar == "") {
         alert("Preencha os campos vazios")
 
     } else {
@@ -94,7 +94,7 @@ function cadastrarAgencia(){
         body: JSON.stringify({
             NAgenciaServer: NAgenciaVar,
             qtdATMServer: qtdATMVar,
-            codigEmpServer: codigEmpVar
+            codigoEmpServer: codigoEmpVar
         })
     })
 
