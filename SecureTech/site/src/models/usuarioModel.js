@@ -28,7 +28,7 @@ function cadastrarATM(modelo, so, processador, ram, qtdDiscos, fabricante, codig
     // Insira exatamente a query do banco aqui, lembrando da nomenclatura exata nos valores
     //  e na ordem de inserção dos dados.
     var instrucao = `
-        INSERT INTO atm (modelo, so, processador, ram, qtdDiscos, fabricante, fkAgencia) VALUES ('${modelo}', '${so}', '${processador}', '${ram}', '${qtdDiscos}', '${fabricante}', '${codigoAgencia}');
+        INSERT INTO atm (modelo, so, processador, ram, qtd_discos, fabricante, fkAgenciaATM) VALUES ('${modelo}', '${so}', '${processador}', '${ram}', '${qtdDiscos}', '${fabricante}', '${codigoAgencia}');
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);

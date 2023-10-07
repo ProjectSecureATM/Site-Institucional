@@ -24,27 +24,27 @@ function cadastrarATM() {
     var soVar = so.value;
     var processadorVar = processador.value;
     var ramVar = ram.value;
-    var qtdDiscosVar = qtdDiscos.value;
+    var qtdDiscosVar = qtd_discos.value;
     var fabricanteVar = ram.value;
     var codigoAgenciaVar = Agencia.value;
 
-    erro_modelo.innerHTML = "";
-    erro_so.innerHTML = "";
-    erro_processador.innerHTML = "";
-    erro_ram.innerHTML = "";
-    erro_qtdDiscos.innerHTML = "";
-    erro_fabricante.innerHTML = "";
-    erro_Agencia.innerHTML = "";
+    // erro_modelo.innerHTML = "";
+    // erro_so.innerHTML = "";
+    // erro_processador.innerHTML = "";
+    // erro_ram.innerHTML = "";
+    // erro_qtdDiscos.innerHTML = "";
+    // erro_fabricante.innerHTML = "";
+    // erro_Agencia.innerHTML = "";
 
-    if (modeloVar == "" || soVar == "" || processadorVar == "" || ramVar == "" || qtdDiscosVar == "" || fabricanteVar == "" || codigoAgencuaVar == "") {
+    if (modeloVar == "" || soVar == "" || processadorVar == "" || ramVar == "" || qtdDiscosVar == "" || fabricanteVar == "" || codigoAgenciaVar == "") {
         alert("Preencha os campos vazios")
 
     } else {
           if (codigoAgenciaVar == '0121') {
-            codigoVar = 1
+            codigoAgenciaVar = 1
             
         } else if (codigoAgenciaVar == '0242') {
-            codigoVar = 2
+            codigoAgenciaVar = 2
         }
     }
     fetch("/usuarios/cadastrarATM", {
@@ -57,7 +57,7 @@ function cadastrarATM() {
             soServer: soVar,
             processadorServer: processadorVar,
             ramServer: ramVar,
-            qtdDiscosaServer: qtdDiscosVar,
+            qtdDiscosServer: qtdDiscosVar,
             fabricanteServer: fabricanteVar,
             codigoAgenciaServer: codigoAgenciaVar
         })
@@ -71,19 +71,19 @@ function cadastrarAgencia(){
     var qtdATMVar = QtdATM.value;
     var codigEmpVar = Empresa.value;
 
-    erro_NAgencia.innerHTML = "";
-    erro_qtdATM.innerHTML = "";
-    erro_Empresa.innerHTML = "";
+    // erro_NAgencia.innerHTML = "";
+    // erro_qtdATM.innerHTML = "";
+    // erro_Empresa.innerHTML = "";
 
     if ( NAgenciaVar == "" || qtdATMVar == "" ||  codigEmpVar == "") {
         alert("Preencha os campos vazios")
 
     } else {
           if (codigoEmpVar == '0101') {
-            codigoVar = 1
+            codigoEmpVar = 1
             
         } else if (codigoEmpVar == '0202') {
-            codigoVar = 2
+            codigoEmpVar = 2
         }
     }
     fetch("/usuarios/cadastrarAgencia", {
