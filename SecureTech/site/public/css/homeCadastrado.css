@@ -238,6 +238,7 @@ header {
     align-items: center;
     width: 100%;
     height: auto;
+    flex-direction: column;
 
     /* background-color: pink; */
 }

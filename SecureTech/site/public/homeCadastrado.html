@@ -2,22 +2,22 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SecureATM | Home do Usuário </title>
-    <script src="./js/sessao.js"></script>
-    <script src="./js/crudsAgenciaECadastro.js"></script>
-    
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SecureATM | Home do Usuário </title>
+  <script src="./js/sessao.js"></script>
+  <script src="./js/crudsAgenciaECadastro.js"></script>
 
-    <link rel="stylesheet" href="css/homeCadastrado.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Abel&family=Fira+Sans:wght@300&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Abel&family=Fira+Sans:wght@300&family=Readex+Pro&display=swap"
-        rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Nunito&display=swap" rel="stylesheet">
 
-    <link rel="shortcut icon" href="./assets/fiveicon.png" type="image/x-icon">
+  <link rel="stylesheet" href="css/homeCadastrado.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Abel&family=Fira+Sans:wght@300&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Abel&family=Fira+Sans:wght@300&family=Readex+Pro&display=swap"
+    rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Nunito&display=swap" rel="stylesheet">
+
+  <link rel="shortcut icon" href="./assets/fiveicon.png" type="image/x-icon">
 
 </head>
 
@@ -50,7 +50,8 @@
 
         <div class="containerButoesFormularios">
           <button id="mostrarFormularioATM"> Cadastrar novo ATM</button>
-          <div id="cadastroDivATM" style="display: none; background-color: #09346b94; padding: 5%; border-radius: 10px;">
+          <div id="cadastroDivATM"
+            style="display: none; background-color: #09346b94; padding: 5%; border-radius: 10px;">
             <h2 style="color: aliceblue;">Cadastro de ATM</h2>
             <form id="cadastroForm">
               <label for="modelo" style="color: aliceblue;">Modelo:</label>
@@ -78,7 +79,7 @@
             <button onclick="cadastrarATM()">Cadastrar ATM</button>
           </div>
 
-          <button id="mostrarFormularioAgencia">Cadastrar nova Agência</button>
+          <!-- <button id="mostrarFormularioAgencia">Cadastrar nova Agência</button>
           <div id="cadastroDivAgencia" style="display: none; background-color: #09346b94; padding: 5%; border-radius: 10px;">
             <h2 style="color: aliceblue;">Cadastro de Agência</h2>
             <form id="cadastroForm">
@@ -94,16 +95,15 @@
             </form>
             <button onclick="cadastrarAgencia()">Cadastrar Agência</button>
           </div>
-        </div>
+        </div> -->
 
+        </div>
       </div>
-    </div>
 
   </header>
 
-<!-- Inicio Agências -->
+  <!-- Inicio Agências -->
 
-<div class="divBoxAgencia">
   <div class="divAgencia">
     <div class="divTituloAgencia">
       <a>São Paulo - SP</a>
@@ -111,44 +111,40 @@
     <div class="divLinhaCard">
       <div class="divBoxCard">
         <button class="buttonCard" onclick="">
-            <div class="divNome">
-              <span>Agência</span>
-            </div>
-            <div class="divNumero">
-              <span>123-4</span>
-            </div>
+          <div class="divNome">
+            <span>Agência</span>
+          </div>
+          <div class="divNumero">
+            <span>123-4</span>
+          </div>
         </button>
       </div>
 
       <div class="divBoxCard">
-        <button class="buttonCard" onclick="adicionar()">
+        <button id="mostrarFormularioAgencia" class="buttonCard" onclick="addAgen()">
           <img src="assets/add.png" alt="" id="AddAgencia">
-        </button>
-      </div>
-    </div>
-    <div class="divTituloAgencia">
-      <a>São Paulo - SP</a>
-    </div>
-    <div class="divLinhaCard">
-      <div class="divBoxCard">
-        <button class="buttonCard" onclick="">
-            <div class="divNome">
-              <span>Agência</span>
-            </div>
-            <div class="divNumero"><span>123-4</span></div>
-        </button>
-      </div>
-      <div class="divBoxCard">
-          <button class="buttonCard" onclick="">
-            <div class="divNome">
-              <span>Agência</span>
-            </div>
-            <div class="divNumero"><span>123-4</span></div>
+          <div id="cadastroDivAgencia"
+            style="display: none; background-color: #09346b94; padding: 5%; border-radius: 10px;">
+            <h2 style="color: aliceblue;">Cadastro de Agência</h2>
+            <form id="cadastroForm">
+              <label for="NAgencia" style="color: aliceblue;">N° Agência:</label>
+              <input type="text" id="NAgencia" name="NAgencia" style="border-radius: 5px;"><br><br>
+
+              <label for="QtdATM" style="color: aliceblue;">Qtd ATM:</label>
+              <input type="number" id="QtdATM" name="QtdATM" style="border-radius: 5px;"><br><br>
+
+              <label for="Empresa" style="color: aliceblue;">Código da Empresa:</label>
+              <input type="number" id="Empresa" name="Empresa" style="border-radius: 5px;"><br><br>
+
+            </form>
+            <button onclick="cadastrarAgencia()">Cadastrar Agência</button>
+          </div>
         </button>
       </div>
     </div>
   </div>
 </div>
+
 </body>
 <!-- Fim Agências -->
 
@@ -156,15 +152,19 @@
 <!-- Fim Rodapé -->
 <script>
   if (sessionStorage.fkAgencia_Funcionario != null) {
-    document.getElementById("mostrarFormularioATM").style.display = "block";
-    document.getElementById("mostrarFormularioAgencia").style.display = "block";
+    document.getElementById("mostrarFormularioATM").style.display = "none";
+    document.getElementById("mostrarFormularioAgencia").style.display = "none";
   }
-  else{
-  document.getElementById("mostrarFormularioATM").addEventListener("click", function() {
-    document.getElementById("cadastroDivATM").style.display = "block";
-});
-document.getElementById("mostrarFormularioAgencia").addEventListener("click", function() {
-    document.getElementById("cadastroDivAgencia").style.display = "block";
-});
+  else {
+    document.getElementById("mostrarFormularioATM").addEventListener("click", function () {
+      document.getElementById("cadastroDivATM").style.display = "block";
+    });
+    document.getElementById("mostrarFormularioAgencia").addEventListener("click", function () {
+      document.getElementById("cadastroDivAgencia").style.display = "block";
+    });
+  }
+
+  function addAgen() {
+    document.getElementById("AddAgencia").style.display = "none";
   }
 </script>
