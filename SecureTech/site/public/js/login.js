@@ -27,7 +27,7 @@ fetch("/usuarios/autenticar", {
                     sessionStorage.email_Funcionario = json.email;
                     sessionStorage.nome_Funcionario = json.nome;
                     sessionStorage.id_Funcionario = json.id;
-                    sessionStorage.idAgencia_Funcionario = json.idAgencia;
+                    sessionStorage.fkAgencia_Funcionario = json.fkAgencia;
 
                     setTimeout(function () {
                         window.location = "homeCadastrado.html";

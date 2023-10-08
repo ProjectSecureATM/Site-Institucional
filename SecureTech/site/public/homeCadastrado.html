@@ -155,10 +155,16 @@
 <!-- Inicio Rodapé -->
 <!-- Fim Rodapé -->
 <script>
+  if (sessionStorage.fkAgencia_Funcionario != null) {
+    document.getElementById("mostrarFormularioATM").style.display = "block";
+    document.getElementById("mostrarFormularioAgencia").style.display = "block";
+  }
+  else{
   document.getElementById("mostrarFormularioATM").addEventListener("click", function() {
     document.getElementById("cadastroDivATM").style.display = "block";
 });
 document.getElementById("mostrarFormularioAgencia").addEventListener("click", function() {
     document.getElementById("cadastroDivAgencia").style.display = "block";
 });
+  }
 </script>
