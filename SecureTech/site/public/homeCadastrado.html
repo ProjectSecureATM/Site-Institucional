@@ -43,7 +43,8 @@
             <div class="text-titulo">
               <h1>Bem-Vindo</h1>
               <h1><span>Novamente!</span></h1>
-              <p>Essa tela é destinada a você, <span>${NomeUsuario}</span></p>
+              <p>Essa tela é destinada a você, 
+                <span id="id_nome_usuario"></span></p>
             </div>
           </div>
         </div>
@@ -151,6 +152,11 @@
 <!-- Inicio Rodapé -->
 <!-- Fim Rodapé -->
 <script>
+
+var usuario = document.querySelector("#id_nome_usuario")
+var nomeUsuario = sessionStorage.getItem("nome_Funcionario")
+usuario.innerHTML = nomeUsuario
+
   if (sessionStorage.fkAgencia_Funcionario != null) {
     document.getElementById("mostrarFormularioATM").style.display = "none";
     document.getElementById("mostrarFormularioAgencia").style.display = "none";
