@@ -37,14 +37,14 @@ body {
     padding: 10px;
 }
 
-#chatbot-body .opcoes{
+#chatbot-body .opcoes {
     /* height: 10vh; */
     width: 20vw;
     display: flex;
     flex-direction: column;
 }
 
-.opt{
+.opt {
     width: 100%;
     /* background-color: #FFCB45; */
     border: 1.5px solid #FFCB45;
@@ -58,13 +58,13 @@ body {
     cursor: pointer;
 }
 
-.opt:hover{
+.opt:hover {
     background-color: #FFCB45;
     color: black;
     transform: scale(1.03);
 }
 
-#margin{
+#margin {
     margin-top: 5%;
 }
 
@@ -102,6 +102,38 @@ header {
     flex-direction: row;
 }
 
+.div_menu {
+    display: flex;
+    flex-direction: row;
+    list-style: none;
+    width: 70%;
+    height: 100%;
+    align-self: baseline;
+    justify-content: space-evenly;
+    align-items: center;
+    font-size: 3.0vh;
+    font-weight: 700;
+    color: white;
+}
+
+ul {
+    list-style: none;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+#menu span {
+    border-bottom: solid 0.6vh #FFCB45;
+}
+
+#menu ul li {
+    margin-bottom: 2%;
+    cursor: pointer;
+}
+
 #menu {
     display: flex;
     flex-direction: row;
@@ -114,7 +146,7 @@ header {
 }
 
 .menu {
-    width: 100%;
+    width: 95%;
     display: flex;
     align-items: center;
 }
@@ -126,6 +158,70 @@ header {
 #menu a {
     color: white;
     text-decoration: none;
+}
+
+.menu li {
+    margin-right: 30px;
+}
+
+.menu a {
+    position: relative;
+    display: block;
+    padding: 5px;
+}
+
+.menu a::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(to right, #194075, #f7b102);
+    z-index: 1;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.5s ease-in-out;
+}
+
+.menu a:hover::before {
+    transform: scaleX(1);
+}
+
+.menu[data-animation="bonus"] a::before {
+    transform-origin: right;
+}
+
+.menu[data-animation="bonus"] a:hover::before {
+    transform-origin: left;
+    transform: scaleX(1);
+    transition-timing-function: cubic-bezier(0.2, 1, 0.82, 0.94);
+}
+
+.botao-login img {
+    height: 3vh;
+    width: 1.5vw;
+    margin-right: 12%;
+}
+
+#login-home {
+    width: 9vw;
+    height: 6vh;
+    border-style: none;
+    background-color: #FFCB45;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 3vh;
+    font-weight: bold;
+    transition: 0.5s ease-in-out;
+}
+
+#login-home:hover {
+    font-weight: bold;
+    background-color: white;
+    transform: scale(1.05);
+    cursor: pointer;
 }
 
 .navBar button {
@@ -143,7 +239,7 @@ header {
 
 .navBar button:hover {
     font-weight: bold;
-    background-color: #d2a83e;
+    background-color: white;
     transform: scale(1.05);
     cursor: pointer;
 }
@@ -186,7 +282,7 @@ header {
     position: absolute;
     height: 90vh;
     width: 100%;
-    
+
     /* backdrop-filter: blue(2px); */
 }
 
@@ -209,13 +305,13 @@ header {
     margin-bottom: 30vh;
 }
 
-.text-titulo h1{
+.text-titulo h1 {
     width: 100%;
     font-size: 6.5vh;
     color: white;
 }
 
-.text-titulo h1 b{
+.text-titulo h1 b {
     color: #FFCB45;
 }
 
@@ -242,6 +338,7 @@ header {
 
 .titulo-orcamento {
     width: 70%;
+    text-align: center;
     /* margin-bottom: 7vh; */
 }
 
@@ -258,6 +355,15 @@ header {
     width: 20vw;
     border-radius: 2vh;
     font-weight: bold;
+}
+
+.orcamento button:hover {
+    font-weight: bold;
+    background-color: #194075;
+    transform: scale(1.05);
+    transition: 2s;
+    color: white;
+    cursor: pointer;
 }
 
 /* BANNER BANNER BANNER BANNER BANNER */
@@ -279,9 +385,10 @@ header {
     background-size: cover;
     border-radius: 2vh;
 }
+
 .img-negocio img {
-    height: 90vh;
-    width: 50vw;
+    height: 75vh;
+    width: 45vw;
 }
 
 .text-negocio {
@@ -299,7 +406,7 @@ header {
 }
 
 .text-negocio h3 {
-    color: #295897;
+    color:#194075;
 }
 
 /* PORQUE PORQUE PORQUE PORQUE PORQUE */
@@ -307,12 +414,12 @@ header {
 .porque {
     height: 70vh;
     width: 100%;
-    background-color: #295897;
+    background-color: #194075;
     display: flex;
     justify-content: center;
     align-items: center;
     /* flex-direction: column; */
-    
+
 }
 
 .porque .titulo {
@@ -334,6 +441,7 @@ header {
     font-weight: 400;
     word-spacing: 0.3em;
 }
+
 /* ARQUITETURA ARQUITETURA ARQUITETURA ARQUITETURA */
 
 .planos {
@@ -349,6 +457,7 @@ header {
     display: flex;
     align-items: center;
     justify-content: center;
+    text-align: center;
 }
 
 .pricing {
@@ -358,12 +467,12 @@ header {
     align-items: center;
     justify-content: center;
     height: fit-content;
-    width: 90%;
+    width: 60%;
     /* background-color: purple; */
 }
 
 .card-pricing {
-    height:fit-content;
+    height: fit-content;
     width: 100%;
     margin: 0 1vw;
     display: flex;
@@ -377,12 +486,12 @@ header {
     color: #000000;
 }
 
-#white{
+#white {
     color: white;
 }
 
 .bg-azul {
-    background-color: #295897;
+    background-color: #194075;
     padding: 4vh 2vw;
     color: white;
     border-radius: 1em;
@@ -418,7 +527,7 @@ header {
 .container-card button {
     z-index: 10;
     background-color: white;
-    border:#295897 solid 2px;
+    border: #194075 solid 2px;
     height: 6vh;
     width: 20vw;
     padding: 0.375rem 0.75rem;
@@ -429,7 +538,13 @@ header {
     margin-left: 1vw;
     border-radius: 1vh;
     cursor: pointer;
-    color: #295897;
+    color: #194075;
+    text-align: center;
+}
+
+.container-card button:hover{
+    transform: scale(1.05);
+    transition: 2s;
 }
 
 .listando {
@@ -570,7 +685,7 @@ header {
 
 @media screen and (max-width: 600px) {
     .menu {
-        display: none; 
+        display: none;
     }
 
     header {
@@ -600,7 +715,7 @@ header {
         height: 70vh;
     }
 
-    .text-titulo h1{
+    .text-titulo h1 {
         width: fit-content;
         height: 90vh;
         font-size: 2em;
@@ -631,7 +746,7 @@ header {
         display: none;
     }
 
-    opt{
+    opt {
         width: 60vw;
     }
 
@@ -668,7 +783,7 @@ header {
     }
 
     .titulo .texto {
-        width:  80%;
+        width: 80%;
         height: 95%;
         align-items: start;
         margin-top: -10vh;
@@ -699,9 +814,7 @@ header {
         display: none;
     }
 
-    .bg-amarelo {
-        background-color: #FFCB45;
-    }
+  
 
     .footer {
         height: 35vh;
