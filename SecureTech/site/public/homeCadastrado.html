@@ -43,8 +43,9 @@
             <div class="text-titulo">
               <h1>Bem-Vindo</h1>
               <h1><span>Novamente!</span></h1>
-              <p>Essa tela é destinada a você, 
-                <span id="id_nome_usuario"></span></p>
+              <p>Essa tela é destinada a você,
+                <span id="id_nome_usuario"></span>
+              </p>
             </div>
           </div>
         </div>
@@ -120,31 +121,63 @@
           </div>
         </button>
       </div>
+      <!-- <img src="assets/add.png" alt="" id="AddAgencia"> -->
 
-      <div class="divBoxCard">
-        <button id="mostrarFormularioAgencia" class="buttonCard" onclick="addAgen()">
-          <img src="assets/add.png" alt="" id="AddAgencia">
+      <!-- <div class="divBoxCard" id="cardAdd">
+        <button id="mostrarFormularioAgencia" class="buttonCard" onclick="addAgen()"></button>
           <div id="cadastroDivAgencia"
             style="display: none; background-color: #09346b94; padding: 5%; border-radius: 10px;">
             <h2 style="color: aliceblue;">Cadastro de Agência</h2>
             <form id="cadastroForm">
               <label for="NAgencia" style="color: aliceblue;">N° Agência:</label>
-              <input type="text" id="NAgencia" name="NAgencia" style="border-radius: 5px;"><br><br>
-
+              <input type="text" id="NAgencia" name="NAgencia" style="border-radius: 5px;">
               <label for="QtdATM" style="color: aliceblue;">Qtd ATM:</label>
-              <input type="number" id="QtdATM" name="QtdATM" style="border-radius: 5px;"><br><br>
-
+              <input type="number" id="QtdATM" name="QtdATM" style="border-radius: 5px;">
               <label for="Empresa" style="color: aliceblue;">Código da Empresa:</label>
-              <input type="number" id="Empresa" name="Empresa" style="border-radius: 5px;"><br><br>
-
+              <input type="number" id="Empresa" name="Empresa" style="border-radius: 5px;">
+              <button onclick="cadastrarAgencia()">Cadastrar Agência</button>
             </form>
-            <button onclick="cadastrarAgencia()">Cadastrar Agência</button>
           </div>
-        </button>
+      </div> -->
+
+      <div class="divBoxCard">
+        <!-- <img src="assets/add.png" alt=""> -->
+        <div class="buttonCard">
+          <div style="display: none;" id="" class="divCobertura" onclick="AddAgen()">
+
+
+            <form id="cadastroForm" class="cadastroForm">
+              <div class="divForm">
+                <div class="divConteudoForm">
+                  <label for="NAgencia">N° Agência:</label>
+                  <div class="divInputFrom">
+                    <input type="text" id="NAgencia" name="NAgencia">
+                  </div>
+                </div>
+                <div class="divConteudoForm">
+                  <label for="QtdATM">Qtd ATM:</label>
+                  <div class="divInputFrom">
+                    <input type="number" id="QtdATM" name="QtdATM">
+                  </div>
+                </div>
+                <div class="divConteudoForm">
+                  <label for="Empresa">Código da Empresa:</label>
+                  <div class="divInputFrom">
+                    <input type="number" id="Empresa" name="Empresa">
+                  </div>
+                </div>
+                <div class="divConteudoForm">
+                  <button onclick="cadastrarAgencia()">Cadastrar Agência</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+
+
       </div>
     </div>
   </div>
-</div>
 
 </body>
 <!-- Fim Agências -->
@@ -153,9 +186,9 @@
 <!-- Fim Rodapé -->
 <script>
 
-var usuario = document.querySelector("#id_nome_usuario")
-var nomeUsuario = sessionStorage.getItem("nome_Funcionario")
-usuario.innerHTML = nomeUsuario
+  var usuario = document.querySelector("#id_nome_usuario")
+  var nomeUsuario = sessionStorage.getItem("nome_Funcionario")
+  usuario.innerHTML = nomeUsuario
 
   if (sessionStorage.fkAgencia_Funcionario != null) {
     document.getElementById("mostrarFormularioATM").style.display = "none";
@@ -171,6 +204,8 @@ usuario.innerHTML = nomeUsuario
   }
 
   function addAgen() {
-    document.getElementById("AddAgencia").style.display = "none";
+
+
+    document.getElementById("AddAgencia").style.display = "nosne";
   }
 </script>
