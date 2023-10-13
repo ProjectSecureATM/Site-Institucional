@@ -243,13 +243,19 @@
     <div class="chatbot-container">
       <div id="chatbot-icon">Chat</div>
       <div id="chatbot-body">
-        <div>🤖 Bot: Olá! Como posso ajudar?</div>
+        <div id="divOpcoes">
+        <div id="perguntaBot">🤖 Bot: Olá! Como posso ajudar?</div>
         <div class="opcoes">
-          <div id="margin" class="opt">Dúvidas Frequentes</div>
-          <div class="opt">Relatar problema no site</div>
-          <div class="opt">Mudança de plano</div>
+          <button onclick="opcao1()" id="margin" class="opt">1- Dúvidas frequentes</button>
+          <button onclick="opcao2()" class="opt">2- Relatar problema</button>
+          <button onclick="opcao3()" class="opt">3- Mudança de plano</button>
+        </div>
         </div>
       </div>
+        
+     
+
+
     </div>
   </div>
 </body>
@@ -281,6 +287,146 @@
   function goToFaleHome() {
     window.location = 'index.html'
   }
+
+  var estadoAtual = 'inicio';
+
+function opcao1(){
+  divOpcoes.innerHTML = `
+        <div id="perguntaBot">🤖 Bot: Qual sua dúvida?</div>
+        <div class="opcoes">
+          <button onclick="opcao1_1()" id="margin" class="opt">1- a</button>
+          <button onclick="opcao2_1()" class="opt">2- b</button>
+          <button onclick="opcao3_1()" class="opt">3- c</button>
+        </div>
+        </div>
+        <button onclick="voltarBot()">Voltar</button>
+          `
+}
+  function opcao1_1(){
+              divOpcoes.innerHTML = `
+              <div id="perguntaBot">🤖 Bot: Aqui esta a resposta para sua dúvida?</div>
+              <div id="RespostaFinalBot"> RESPOSTA 1 </div>
+              <div id="naoRespondida">se sua dúvida nao foi respondida entre em contato conosco
+                <button onclick="TireDuvida()">não foi respondida</button>
+                </div>
+                <button onclick="voltarBot()">Voltar</button>
+            `
+            }
+  function opcao2_1(){
+            divOpcoes.innerHTML = `
+            <div id="perguntaBot">🤖 Bot: Aqui esta a resposta para sua dúvida?</div>
+            <div id="RespostaFinalBot"> RESPOSTA 2 </div>
+            <div id="naoRespondida">se sua dúvida nao foi respondida entre em contato conosco
+              <button onclick="TireDuvida()">não foi respondida</button>
+              </div>
+              <button onclick="voltarBot()">Voltar</button>
+              `
+          }   
+  function opcao3_1(){
+            divOpcoes.innerHTML = `
+            <div id="perguntaBot">🤖 Bot: Aqui esta a resposta para sua dúvida?</div>
+            <div id="RespostaFinalBot"> RESPOSTA 3 </div>
+            <div id="naoRespondida">se sua dúvida nao foi respondida entre em contato conosco
+              <button onclick="TireDuvida()">não foi respondida</button>
+              </div>
+              <button onclick="voltarBot()">Voltar</button>
+          `
+          }                        
+          
+
+
+function opcao2(){
+  divOpcoes.innerHTML = `
+        <div id="perguntaBot">🤖 Bot: Qual o problema?</div>
+        <div class="opcoes">
+          <button onclick="opcao1_2()" id="margin" class="opt">1- d</button>
+          <button onclick="opcao2_2()" class="opt">2- f</button>
+          <button onclick="opcao3_2()" class="opt">3- g</button>
+        </div>
+        </div>
+        <button onclick="voltarBot()">Voltar</button>
+          `
+
+          
+}
+   
+function opcao3(){
+  divOpcoes.innerHTML = `
+        <div id="perguntaBot">🤖 Bot: Para qual plano deseja mudar?</div>
+        <div class="opcoes">
+          <button onclick="opcao1-3()" id="margin" class="opt">1- h</button>
+          <button onclick="opcao2-3()" class="opt">2- i</button>
+          <button onclick="opcao3-3()" class="opt">3- j</button>
+        </div>
+        </div>
+        <button onclick="voltarBot()">Voltar</button>
+          `
+}
+
+function voltarBot() {
+  divOpcoes.innerHTML = `
+    <div id="perguntaBot">🤖 Bot: Olá! Como posso ajudar?</div>
+    <div class="opcoes">
+      <button onclick="opcao1()" id="margin" class="opt">1- Dúvidas frequentes</button>
+      <button onclick="opcao2()" class="opt">2- Relatar problema</button>
+      <button onclick="opcao3()" class="opt">3- Mudança de plano</button>
+    </div>
+  `;
+}
+
+function TireDuvida(){
+  window.location.href = 'faleConosco.html';
+}
+
+
+
+
+
+
+
+
+
+
+
 </script>
 
 <script src="https://kit.fontawesome.com/4c5e041356.js" crossorigin="anonymous"></script>
+<script>
+// Variável para controlar o estado do chatbot
+let chatbotAberto = false;
+
+// Função para abrir o chatbot
+function abrirChatbot() {
+  chatbotBody.style.display = 'block';
+  chatbotAberto = true;
+}
+
+// Função para fechar o chatbot
+function fecharChatbot() {
+  chatbotBody.style.display = 'none';
+  chatbotAberto = false;
+}
+
+// Adicione um evento para abrir/fechar o chatbot ao clicar no ícone do chat
+chatbotIcon.addEventListener('click', function () {
+  if (chatbotAberto) {
+    fecharChatbot(); // Fecha o chatbot se estiver aberto
+  } else {
+    abrirChatbot(); // Abre o chatbot se estiver fechado
+  }
+});
+
+// Adicione um evento para fechar o chatbot ao clicar fora dele
+document.addEventListener('click', function (event) {
+  if (chatbotAberto && event.target !== chatbotIcon && event.target !== chatbotBody && !chatbotBody.contains(event.target)) {
+    fecharChatbot(); // Fecha o chatbot se o clique for fora dele
+  }
+});
+
+// Eventos para impedir o fechamento do chatbot quando botões internos são clicados
+chatbotBody.addEventListener('click', function (event) {
+  event.stopPropagation(); // Impede que o evento seja propagado para fora do chatbot
+});
+
+// Restante do seu código JavaScript existente
+</script>
