@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SecureATM | Soluções </title>
 
-    
+    <link rel="stylesheet" href="css/chatBot.css">
     <link rel="stylesheet" href="css/solucao.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -26,17 +26,17 @@
                 <img src="assets/secure_atm_logo.png" alt="Logo" onclick="goToHome()">
                 <div class="div_menu">
                     <ul class="menu" data-animation="bonus">
-                      <li>
-                        <a href="index.html">Home</a>
-                      </li>
-                      <li>
-                        <a href="faleConosco.html">Fale Conosco</a>
-                      </li>
-                      <li>
-                        <a href="solucao.html">Soluções</a>
-                      </li>
+                        <li>
+                            <a href="index.html">Home</a>
+                        </li>
+                        <li>
+                            <a href="faleConosco.html">Fale Conosco</a>
+                        </li>
+                        <li>
+                            <a href="solucao.html">Soluções</a>
+                        </li>
                     </ul>
-                  </div>
+                </div>
                 <button class="login-button" onclick="goToLogin()"><img src="assets/clarity_sign-in-line.png"
                         alt="img-Login" class="logo">Login</button>
             </div>
@@ -74,75 +74,191 @@
             <h2>Monitoramento de ATM's</h2>
             <h3>Nosso foco é trazer a segurança de confiabilidade</h3>
             <p>Nosso compromisso é mais do que palavras: é a base da nossa atuação. Entendemos que a estabilidade dessas
-            máquinas é vital para os negócios e a confiança dos usuários. Dessa forma, a SecureATM emprega um
-            esforço
-            contínuo para identificar potenciais problemas antes que afetem as operações, garantindo uma experiência
-            tranquila para todos os envolvidos.</p>
+                máquinas é vital para os negócios e a confiança dos usuários. Dessa forma, a SecureATM emprega um
+                esforço
+                contínuo para identificar potenciais problemas antes que afetem as operações, garantindo uma experiência
+                tranquila para todos os envolvidos.</p>
         </div>
     </div>
 
-    <div class="planos">
-        <div class="container">
-            <div class="plano-titulo">
-                <h1>Nossos Planos</h1>
-            </div>
-            <div class="pricing ">
-                <div class="card-pricing bg-amarelo">
-                    <div class="container-card ">
-                        <h3>Standard</h3>
-                        <p>Ideal para organização que precisam de acesso rápido a recursos básicos.</p>
-                        <h1>$<span> / Mês</span></h1>
-                        <button onclick="comecar()">Comece agora</button>
-                        <div class="listando">
-                            <ul>
-                                <li><img src="assets/Certinho.png" alt=" ">Monitoramento de CPU</li>
-                                <li><img src="assets/Certinho.png" alt=" ">Monitoramento de Disco</li>
-                                <li><img src="assets/Certinho.png" alt=" ">Monitoramento de RAM</li>
-                                <li class="errado"><img src="assets/Errado.png" alt=" ">Monitoramento de Rede</li>
-                                <li class="errado"><img src="assets/Errado.png" alt=" ">Monitoramento de GPU</li>
-                            </ul>
+    <div class="divBoxPlanos">
+        <div class="divTituloPlanos">
+            <span>
+                Nossos Planos
+            </span>
+        </div>
+        <div class="boxPlanos">
+            <div class="planos">
+                <div class="format-planos">
+                    <div class="divPlanoTitulo">
+                        <span>
+                            Standard
+                        </span>
+                    </div>
+                    <div class="divConteudoPlanos">
+                        <p>
+                            Ideal para organização que precisam de acesso rápido a recursos básicos.
+                        </p>
+                    </div>
+                    <div class="divPreco">
+                        <p>
+                            $$<span>/ Mês</span>
+                        </p>
+                        <div class="butonPreco">
+                            <button onclick="comecar()">
+                            Comece Agora
+                            </button>
                         </div>
                     </div>
-                </div>
-                <!-- 2° Card 2° Card  2° Card  2° Card  2° Card -->
-                    <div class="card-pricing bg-azul">
-                        <div class="container-card" id="white">
-                            <h3>Advanced</h3>
-                            <p>Ideal para empresas que precisam de recursos e ferramentas avançadas para o trabalho do cliente.</p>
-                            <h1>$$<span> / Mês</span></h1>
-                            <button onclick="comecar()">Comece agora</button>
-                            <div class="listando">
-                                <ul>
-                                    <li><img src="assets/Certinho.png" alt=" ">Monitoramento de CPU</li>
-                                    <li><img src="assets/Certinho.png" alt=" ">Monitoramento de Disco</li>
-                                    <li><img src="assets/Certinho.png" alt=" ">Monitoramento de RAM</li>
-                                    <li><img src="assets/Certinho.png" alt=" ">Monitoramento de Rede</li>
-                                    <li><img src="assets/Certinho.png" alt=" ">Monitoramento de GPU</li>
-                                </ul>
+                    <div class="divBoxCheck">
+                        <div class="check">
+                            <div class="divImgCheck">
+                                <img src="assets/Certinho.png" alt="">
+                            </div>
+                            <div class="ConteudoCheck">
+                                <p>
+                                    Monitoramento de CPU
+                                </p>
                             </div>
                         </div>
-                    </div>
+                        <div class="check">
+                            <div class="divImgCheck">
+                                <img src="assets/Certinho.png" alt="">
+                            </div>
+                            <div class="ConteudoCheck">
+                                <p>
+                                    Monitoramento de Disco
+                                </p>
+                            </div>
+                        </div>
+                        <div class="check">
+                            <div class="divImgCheck">
+                                <img src="assets/Certinho.png" alt="">
+                            </div>
+                            <div class="ConteudoCheck">
+                                <p>
+                                    Monitoramento de RAM
+                                </p>
+                            </div>
+                        </div>
+                        <div class="check">
+                            <div class="divImgCheck">
+                                <img src="assets/Errado.png" alt="">
+                            </div>
+                            <div class="ConteudoCheck">
+                                <p>
+                                    Monitoramento de Rede
+                                </p>
+                            </div>
+                        </div>
+                        <div class="check">
+                            <div class="divImgCheck">
+                                <img src="assets/Errado.png" alt="">
+                            </div>
+                            <div class="ConteudoCheck">
+                                <p>
+                                    Monitoramento de GPU
+                                </p>
+                            </div>
+                        </div>
 
-                    <!-- 3° Card 3° Card 3° Card 3° Card 3° Card-->
-                     
+                    </div>
+                </div>
+            </div>
+            <div class="planos plano2">
+                <div class="format-planos">
+                    <div class="divPlanoTitulo">
+                        <span>
+                            Advanced
+                        </span>
+                    </div>
+                    <div class="divConteudoPlanos">
+                        <p>
+                            Ideal para empresas que precisam de recursos e ferramentas avançadas para o trabalho do
+                            cliente
+                        </p>
+                    </div>
+                    <div class="divPreco">
+                        <p>
+                            $$<span>/ Mês</span>
+                        </p>
+
+                        <div class="butonPreco butonPreco2">
+                            <button onclick="comecar()">
+                            Comece Agora
+                            </button>
+                        </div>
+                    </div>
+                    <div class="divBoxCheck">
+                        <div class="check">
+                            <div class="divImgCheck">
+                                <img src="assets/Certinho.png" alt="">
+                            </div>
+                            <div class="ConteudoCheck">
+                                <p>
+                                    Monitoramento de CPU
+                                </p>
+                            </div>
+                        </div>
+                        <div class="check">
+                            <div class="divImgCheck">
+                                <img src="assets/Certinho.png" alt="">
+                            </div>
+                            <div class="ConteudoCheck">
+                                <p>
+                                    Monitoramento de Disco
+                                </p>
+                            </div>
+                        </div>
+                        <div class="check">
+                            <div class="divImgCheck">
+                                <img src="assets/Certinho.png" alt="">
+                            </div>
+                            <div class="ConteudoCheck">
+                                <p>
+                                    Monitoramento de RAM
+                                </p>
+                            </div>
+                        </div>
+                        <div class="check">
+                            <div class="divImgCheck">
+                                <img src="assets/Certinho.png" alt="">
+                            </div>
+                            <div class="ConteudoCheck">
+                                <p>
+                                    Monitoramento de Rede
+                                </p>
+                            </div>
+                        </div>
+                        <div class="check">
+                            <div class="divImgCheck">
+                                <img src="assets/Certinho.png" alt="">
+                            </div>
+                            <div class="ConteudoCheck">
+                                <p>
+                                    Monitoramento de GPU
+                                </p>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    
+
     <div class="chatbot-container">
         <div id="chatbot-icon">Chat</div>
         <div id="chatbot-body">
-          <div>🤖 Bot: Olá! Como posso ajudar?</div>
-          <div class="opcoes">
-            <div id="margin" class="opt">Dúvidas Frequentes</div>
-            <div class="opt">Relatar problema no site</div>
-            <div class="opt">Mudança de plano</div>
-          </div>
+            <div>🤖 Bot: Olá! Como posso ajudar?</div>
+            <div class="opcoes">
+                <div id="margin" class="opt">Dúvidas Frequentes</div>
+                <div class="opt">Relatar problema no site</div>
+                <div class="opt">Mudança de plano</div>
+            </div>
         </div>
-      </div>
+    </div>
 
     <footer>
         <div class="footer">
@@ -199,9 +315,9 @@
     }
 
     const chatbotIcon = document.getElementById('chatbot-icon');
-  const chatbotBody = document.getElementById('chatbot-body');
+    const chatbotBody = document.getElementById('chatbot-body');
 
-  chatbotIcon.addEventListener('click', () => {
-    chatbotBody.style.display = chatbotBody.style.display === 'none' ? 'block' : 'none';
-  });
+    chatbotIcon.addEventListener('click', () => {
+        chatbotBody.style.display = chatbotBody.style.display === 'none' ? 'block' : 'none';
+    });
 </script>
