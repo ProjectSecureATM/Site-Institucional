@@ -696,75 +696,6 @@ ul {
     height: 5.5vh;
 }
 
-
-
-.chatbot-container {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background-color: #295897;
-    border-radius: 10px;
-    padding: 10px;
-    color: white;
-    box-shadow: 12px 10px 15px rgba(0, 0, 0, 0.402);
-    display: flex;
-}
-
-#chatbot-icon {
-    width: 40px;
-    height: 40px;
-    background-color: #FFCB45;
-    color: #000000;
-    border-radius: 50%;
-    text-align: center;
-    line-height: 40px;
-    cursor: pointer;
-}
-
-#chatbot-body {
-    display: none;
-    max-height: 300px;
-    overflow: auto;
-    padding: 10px;
-    
-}
-
-#chatbot-body .opcoes{
-    /* height: 10vh; */
-    width: 20vw;
-    display: flex;
-    flex-direction: column;
-    
-}
-.respostaChat{
-    width: 100%;
-    height: 7vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-}
-
-.opt{
-    width: 100%;
-    /* background-color: #FFCB45; */
-    border: 1.5px solid #FFCB45;
-    height: 7vh;
-    margin-bottom: 3%;
-    border-radius: 2vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: 0.4s ease-in-out;
-    cursor: pointer;
-}
-
-.opt:hover{
-    background-color: #FFCB45;
-    color: black;
-    transform: scale(1.03);
-}
-
 #margin{
     margin-top: 5%;
 }
@@ -974,18 +905,6 @@ ul {
         font-size: 3.7vh;
     }
 
-    #btn-saibamais {
-        width: 30vw;
-        height: 7vh;
-        border-style: none;
-        background-color: #FFCB45;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border-radius: 3vh;
-        font-weight: bold;
-        align-self: baseline;
-    }
 
     .banner-home {
         border-bottom-right-radius: 5vh;
