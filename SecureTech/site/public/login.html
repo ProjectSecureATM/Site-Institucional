@@ -60,31 +60,28 @@
             </div>
 
             
-      <div class="chatbot-container">
-        <div id="chatbot-icon">Chat</div>
-        <div id="chatbot-body">
-          <div>🤖 Bot: Olá! Como posso ajudar?</div>
-          <div class="opcoes">
-            <div id="margin" class="opt">Dúvidas Frequentes</div>
-            <div class="opt">Relatar problema no site</div>
-            <div class="opt">Mudança de plano</div>
-          </div>
-        </div>
-      </div>
+            <div class="chatbot-container">
+              <div id="chatbot-icon">Chat</div>
+              <div id="chatbot-body">
+                <div id="divOpcoes">
+                <div id="perguntaBot">🤖 Bot: Olá! Como posso ajudar?</div>
+                <div class="opcoes">
+                  <button onclick="opcao1()" id="margin" class="opt">1- Dúvidas frequentes</button>
+                  <button onclick="opcao2()" class="opt">2- Relatar problema</button>
+                  <button onclick="opcao3()" class="opt">3- Mudança de plano</button>
+                </div>
+                </div>
+              </div>
+            </div>
+        
         </div>
 </body>
+<script src="js/ChatBot.js"></script>
 </html>
 <script>
     function backToHome(){
         window.location = 'index.html'
     }
-
-    const chatbotIcon = document.getElementById('chatbot-icon');
-  const chatbotBody = document.getElementById('chatbot-body');
-
-  chatbotIcon.addEventListener('click', () => {
-    chatbotBody.style.display = chatbotBody.style.display === 'none' ? 'block' : 'none';
-  });
 </script>
 
 

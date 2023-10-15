@@ -1,32 +1,11 @@
-
-  const chatbotIcon = document.getElementById('chatbot-icon');
+const chatbotIcon = document.getElementById('chatbot-icon');
   const chatbotBody = document.getElementById('chatbot-body');
 
   chatbotIcon.addEventListener('click', () => {
     chatbotBody.style.display = chatbotBody.style.display === 'none' ? 'block' : 'none';
   });
 
-  function goToLogin() {
-    window.location = 'login.html';
-  }
-
-  function goToSolucoes() {
-    window.location = 'solucao.html';
-  }
-
-  function goToSobreNos() {
-    window.location = 'sobre_nos.html';
-  }
-
-  function goToFaleConosco() {
-    window.location = 'faleConosco.html';
-  }
-
-  function goToFaleHome() {
-    window.location = 'index.html';
-  }
-
-  var estadoAtual = 'inicio';
+var estadoAtual = 'inicio';
 
   function opcao1() {
     divOpcoes.innerHTML = `
@@ -151,5 +130,69 @@
             
               <button id="btNaoRespondida" onclick="TireDuvida()">Não foi respondida?</button>
               </div><br>
+              <button id="voltarChat" onclick="voltarBot()">Voltar</button>
             `  
             }
+
+  function opcao3_3() {
+    divOpcoes.innerHTML = `
+            <div id="perguntaBot">🤖 Bot: Aqui esta a resposta para sua dúvida:</div>
+            <div id="RespostaFinalBot"> RESPOSTA 3 </div>
+            
+              <button id="btNaoRespondida" onclick="TireDuvida()">Não foi respondida?</button>
+              </div><br>
+              <button id="voltarChat" onclick="voltarBot()">Voltar</button>
+            `  
+            }
+
+  function TireDuvida(){
+    window.location.href = 'faleConosco.html';
+}
+
+function voltarBot() {
+  divOpcoes.innerHTML = `
+    <div id="perguntaBot">🤖 Bot: Olá! Como posso ajudar?</div>
+    <div class="opcoes">
+      <button onclick="opcao1()" id="margin" class="opt">1- Dúvidas frequentes</button>
+      <button onclick="opcao2()" class="opt">2- Relatar problema</button>
+      <button onclick="opcao3()" class="opt">3- Mudança de plano</button>
+    </div>
+  `;
+}
+
+
+
+let chatbotAberto = false;
+
+
+function abrirChatbot() {
+  chatbotBody.style.display = 'block';
+  chatbotAberto = true;
+}
+
+
+function fecharChatbot() {
+  chatbotBody.style.display = 'none';
+  chatbotAberto = false;
+}
+
+
+chatbotIcon.addEventListener('click', function () {
+  if (chatbotAberto) {
+    fecharChatbot(); 
+  } else {
+    abrirChatbot(); 
+  }
+});
+
+
+document.addEventListener('click', function (event) {
+  if (chatbotAberto && event.target !== chatbotIcon && event.target !== chatbotBody && !chatbotBody.contains(event.target)) {
+    fecharChatbot(); 
+  }
+});
+
+
+chatbotBody.addEventListener('click', function (event) {
+  event.stopPropagation(); 
+});
