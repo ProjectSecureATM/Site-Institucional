@@ -945,6 +945,7 @@ a {
 
     .divTituloPlanos {
         position: relative;
+        font-size: 3vh;
     }
 
     .planos {
@@ -966,6 +967,7 @@ a {
         height: 95%;
         align-items: start;
         margin-top: -10vh;
+
     }
 
     .pricing {
