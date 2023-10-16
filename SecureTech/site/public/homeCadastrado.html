@@ -82,8 +82,8 @@
           </div>
         </div>
 
-        </div>
       </div>
+    </div>
 
   </header>
 
@@ -105,25 +105,28 @@
         </button>
       </div>
 
-      <button id="mostrarFormularioAgencia">Cadastrar nova Agência</button>
-      <div id="cadastroDivAgencia" style="display: none; background-color: #09346b94; padding: 5%; border-radius: 10px;">
-        <h2 style="color: aliceblue;">Cadastro de Agência</h2>
-        <form id="cadastroForm">
-          <label for="NAgencia" style="color: aliceblue;">N° Agência:</label>
-          <input type="text" id="NAgencia" name="NAgencia" style="border-radius: 5px;"><br><br>
-  
-          <label for="QtdATM" style="color: aliceblue;">Qtd ATM:</label>
-          <input type="number" id="QtdATM" name="QtdATM" style="border-radius: 5px;"><br><br>
-  
-          <label for="Empresa" style="color: aliceblue;">Código da Empresa:</label>
-          <input type="number" id="Empresa" name="Empresa" style="border-radius: 5px;"><br><br>
-  
-        </form>
-        <button onclick="cadastrarAgencia()">Cadastrar Agência</button>
+      <div class="divLinhaCard">
+        <div class="divBoxCard">
+          <button id="mostrarFormularioAgencia">Cadastrar nova Agência</button>
+          <div id="cadastroDivAgencia" style="display: none; background-color: #09346b94; padding: 5%; border-radius: 10px;">
+            <h2 style="color: aliceblue;">Cadastro de Agência</h2>
+            <form id="cadastroForm">
+              <label for="NAgencia" style="color: aliceblue;">N° Agência:</label>
+              <input type="text" id="NAgencia" name="NAgencia" style="border-radius: 5px;"><br><br>
+
+              <label for="QtdATM" style="color: aliceblue;">Qtd ATM:</label>
+              <input type="number" id="QtdATM" name="QtdATM" style="border-radius: 5px;"><br><br>
+
+              <label for="Empresa" style="color: aliceblue;">Código da Empresa:</label>
+              <input type="number" id="Empresa" name="Empresa" style="border-radius: 5px;"><br><br>
+            </form>
+            <button onclick="cadastrarAgencia()">Cadastrar Agência</button>
+          </div>
+        </div>
       </div>
     </div>
   </div>
-  </div>
+</div>
 
 </body>
 <!-- Fim Agências -->
