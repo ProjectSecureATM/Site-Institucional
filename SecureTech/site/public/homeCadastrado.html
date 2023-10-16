@@ -185,7 +185,10 @@
 <!-- Inicio Rodapé -->
 <!-- Fim Rodapé -->
 <script>
-
+function limparSessao() {
+    sessionStorage.clear();
+    window.location = "login.html";
+}
   var usuario = document.querySelector("#id_nome_usuario")
   var nomeUsuario = sessionStorage.getItem("nome_Funcionario")
   usuario.innerHTML = nomeUsuario
