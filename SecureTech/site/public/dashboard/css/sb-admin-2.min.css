@@ -625,11 +625,40 @@ pre code {
     }
 }
 
+.texto{
+    display: flex;
+    /* width: 10vw; */
+    /* background-color: #17a673; */
+}
+
+.formatTexto{
+    display: flex;
+    justify-content: center;
+    justify-content: space-around;
+    background-color: yellow;
+    width: 100%;
+
+}
+
+.formatTexto span{
+    color: #021e46;
+    font-size: 26px;
+    font-weight: bold;
+}
+
+.api{
+    display: flex;
+    justify-content: center;
+    justify-content: space-evenly;
+    /* background-color: #021e46; */
+}
+
+
 .row {
     display: flex;
     flex-wrap: wrap;
     margin-right: -.75rem;
-    margin-left: -.75rem
+    margin-left: -.75rem;
 }
 
 .no-gutters {
