@@ -7,6 +7,7 @@
     <title>SecureATM | Soluções </title>
 
     <link rel="stylesheet" href="css/chatBot.css">
+    <link rel="stylesheet" href="css/chatBot.css">
     <link rel="stylesheet" href="css/solucao.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -251,14 +252,16 @@
     <div class="chatbot-container">
         <div id="chatbot-icon">Chat</div>
         <div id="chatbot-body">
-            <div>🤖 Bot: Olá! Como posso ajudar?</div>
-            <div class="opcoes">
-                <div id="margin" class="opt">Dúvidas Frequentes</div>
-                <div class="opt">Relatar problema no site</div>
-                <div class="opt">Mudança de plano</div>
-            </div>
+          <div id="divOpcoes">
+          <div id="perguntaBot">🤖 Bot: Olá! Como posso ajudar?</div>
+          <div class="opcoes">
+            <button onclick="opcao1()" id="margin" class="opt">1- Dúvidas frequentes</button>
+            <button onclick="opcao2()" class="opt">2- Relatar problema</button>
+            <button onclick="opcao3()" class="opt">3- Mudança de plano</button>
+          </div>
+          </div>
         </div>
-    </div>
+      </div>
 
     <footer>
         <div class="footer">
@@ -304,7 +307,7 @@
 </body>
 
 </html>
-
+<script src="js/ChatBot.js"></script>
 <script>
     function goToLogin() {
         window.location = 'login.html'
