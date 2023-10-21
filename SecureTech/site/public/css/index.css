@@ -61,12 +61,12 @@ body {
 
 ul {
     list-style: none;
-  }
+}
 
-  a {
+a {
     color: inherit;
     text-decoration: none;
-  }
+}
 
 .menu {
     width: 100%;
@@ -82,17 +82,18 @@ ul {
     margin-bottom: 2%;
     cursor: pointer;
 }
-  .menu li {
-    margin-right: 30px;
-  }
 
-  .menu a {
+.menu li {
+    margin-right: 30px;
+}
+
+.menu a {
     position: relative;
     display: block;
     padding: 5px;
-  }
+}
 
-  .menu a::before {
+.menu a::before {
     content: '';
     position: absolute;
     bottom: 0;
@@ -104,21 +105,21 @@ ul {
     transform: scaleX(0);
     transform-origin: left;
     transition: transform 0.5s ease-in-out;
-  }
+}
 
-  .menu a:hover::before {
+.menu a:hover::before {
     transform: scaleX(1);
-  }
+}
 
 .menu[data-animation="bonus"] a::before {
     transform-origin: right;
-  }
+}
 
-  .menu[data-animation="bonus"] a:hover::before {
+.menu[data-animation="bonus"] a:hover::before {
     transform-origin: left;
     transform: scaleX(1);
     transition-timing-function: cubic-bezier(0.2, 1, 0.82, 0.94);
-  }
+}
 
 .botao-login img {
     height: 3vh;
@@ -393,7 +394,7 @@ ul {
     cursor: pointer;
 }
 
-.divBoxSobreNos{
+.divBoxSobreNos {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -405,7 +406,7 @@ ul {
     /* background-color: red; */
 }
 
-.divTituloSobreNos{
+.divTituloSobreNos {
     display: flex;
     align-items: end;
     justify-content: center;
@@ -415,13 +416,13 @@ ul {
     /* background-color: green; */
 }
 
-.divTituloSobreNos span{
+.divTituloSobreNos span {
     font-size: 42px;
     font-weight: bold;
     color: #4A4A4A;
 }
 
-.divSubTituloSobreNos{
+.divSubTituloSobreNos {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -429,13 +430,13 @@ ul {
     height: 10vh;
 }
 
-.divSubTituloSobreNos span{
+.divSubTituloSobreNos span {
     font-size: 28px;
     font-weight: bold;
-    color: #4A4A4A; 
+    color: #4A4A4A;
 }
 
-.divSobreNos{
+.divSobreNos {
     display: flex;
     flex-direction: row;
     height: 50vh;
@@ -447,7 +448,7 @@ ul {
     background-color: #021e46;
 }
 
-.divSobreNosEsquerdo{
+.divSobreNosEsquerdo {
     display: flex;
     flex-direction: row;
     height: 50vh;
@@ -459,29 +460,29 @@ ul {
     background-color: #021e46;
 }
 
-.divConteudoSobreNos{
+.divConteudoSobreNos {
     display: flex;
     flex-direction: column;
     height: 100%;
     width: 90%;
-    
+
     justify-content: center;
 
     /* background-color: rgb(0, 0, 0); */
 }
 
 
-.divConteudoTextoSobreNos{
+.divConteudoTextoSobreNos {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 60vh;
     width: 100%;
- 
+
     /* background-color: green; */
 }
 
-.textoSobreNos{
+.textoSobreNos {
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
@@ -491,20 +492,20 @@ ul {
 
 .divConteudoTextoSobreNos #subTitulo {
     font-size: 26px;
-    color:#FFCB45;
+    color: #FFCB45;
     font-weight: bold;
 }
 
 .divConteudoTextoSobreNos p {
     font-size: 20px;
     color: #ffffff;
-   
+
     text-align: justify;
 
-    
+
 }
 
-.divConteudoImagemSobreNos{
+.divConteudoImagemSobreNos {
     display: flex;
     align-items: center;
     height: 100%;
@@ -514,14 +515,14 @@ ul {
 }
 
 
-.divImagemSobreNos{
+.divImagemSobreNos {
     width: 50%;
     height: auto;
 
 }
 
 
-.divImagemSobreNos img{
+.divImagemSobreNos img {
     width: 100%;
     height: 100%;
     background-repeat: no-repeat;
@@ -558,7 +559,7 @@ ul {
     position: relative;
     border-bottom-right-radius: 32px;
     border-top-right-radius: 32px;
-    
+
 }
 
 .text-card-monit {
@@ -696,7 +697,7 @@ ul {
     height: 5.5vh;
 }
 
-#margin{
+#margin {
     margin-top: 5%;
 }
 
@@ -721,7 +722,7 @@ ul {
     transition: transform 1s ease;
 }
 
-.clientesImg:hover{
+.clientesImg:hover {
     transform: scale(1.1);
     transition: 1s;
 }
@@ -738,11 +739,9 @@ ul {
 
 .footer {
     display: flex;
-    width: 100%;
+    width: 120%;
     height: 20rem;
-    border-top-left-radius: 30vh;
-    border-bottom-right-radius: 30vh;
-    background-color: #021e46;
+    background-color: #FFCB45;
 }
 
 .footerContainer {
@@ -822,22 +821,24 @@ ul {
     justify-content: space-around;
 }
 
-.footerInfo h3{
-    color: #FFCB45;
+.linha {
+    border-bottom: 1px solid #000;
 }
+
 
 .footerInfo span,
 .footerInfo a {
     font-weight: lighter;
-    color: white;
     text-decoration: none;
 }
 
 
 
-.footerInfo a:hover {
+.footerInfo a:hover,
+span:hover {
+    cursor: pointer;
     font-weight: bold;
-    color: #FFCB45;
+    color: #021e46;
 }
 
 .footerRights {
@@ -845,7 +846,7 @@ ul {
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    
+
     margin-top: 1%;
 }
 
@@ -853,18 +854,21 @@ ul {
 
 
 /* RESPONSIVIDADE */
-@media screen and (max-width: 600px) {
-    .menu {
-        display: none;
-    }
+@media screen and (max-width: 1024px) {
 
-    .opt{
+
+    .opt {
         width: 60vw;
     }
 
     .logo img {
-        width: 25vh;
-        height: 14vh;
+        width: 24vw;
+        height: 10vh;
+        margin-top: -1vh;
+    }
+
+    .menu a {
+        font-size: 2vh;
     }
 
     #login-home {
@@ -906,13 +910,8 @@ ul {
     }
 
 
-    .banner-home {
-        border-bottom-right-radius: 5vh;
-    }
-
-    .cards-home {
-        display: block;
-        width: 90%;
+    .clientes-grupo {
+        display: none;
     }
 
     .card-home {
@@ -925,44 +924,11 @@ ul {
         font-size: 3.5vh;
     }
 
-    .about-us {
-        display: block;
-        height: 100vh;
-        margin-top: 110vh;
+    .container-card h2{
+        font-size: 30px;
     }
 
-    .img-about-us {
-        width: 100%;
-        height: 30vh;
-        align-self: center;
-        background-size: cover;
-        background-position: 40%;
-    }
 
-    .text-about-us {
-        width: 100%;
-        height: 60vh;
-        font-size: 2vh;
-        text-align: center;
-        margin: auto;
-    }
-
-    .text-about-us button {
-        width: 70%;
-        align-self: center;
-    }
-
-    .text-about-us p {
-        width: 100%;
-    }
-
-    .bolinha {
-        display: none;
-    }
-
-    .about-us {
-        margin-bottom: -7vh;
-    }
 
     .foto-card-monit {
         display: none;
@@ -973,130 +939,57 @@ ul {
         width: 100%;
     }
 
-    .card-monit {
-        width: 100%;
-        background-color: #295897;
-        display: block;
-        flex-direction: column;
-    }
-
-    .div-card-monit {
-        background: linear-gradient(90.04deg, #294e9774 49.97%, #5886c163 95.59%), url('../assets/midia-banco24horas-farmacia-2.jpg');
-        background-size: cover;
-    }
-
-    .content-text p {
-        font-size: 3vh;
-    }
-
-    .content-text h1 {
-        font-size: 4vh;
-    }
 
     .content-text button {
         width: 65%;
         align-self: center;
     }
 
-    .fale-conosco {
-        width: 143vw;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-
-    .card-fale-conosco img {
-        width: auto;
-        height: 5vh;
-    }
 
 
-    #aqui {
-        height: 4vh;
-    }
 
-    .card-fale-conosco {
-        width: 90vw;
-        align-self: center;
-    }
 
-    .text-card-fc button {
-        width: 100%;
-    }
 
-    .text-card-fc {
-        font-size: 2.7vh;
-    }
+
+
+
+
+
+
 
     .footer {
-        width: 100vh;
-        flex-direction: column;
-        height: fit-content;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-
-    .footerContent {
-        flex-direction: column-reverse;
-        height: fit-content;
-    }
-
-    .footerContainer {
-        width: 50vh;
-        height: fit-content;
-
-    }
-
-    .nossos-clientes {
-        width: fit-content;
-        display: none;
-    }
-
-    .clientes-grupo {
-        width: inherit;
-    }
-
-    .footerText {
-        flex-direction: column;
-
-    }
-
-    .footerRights {
-        display: none;
-    }
-
-    .principal {
-        overflow-x: hidden;
-    }
-
-    .footerMedia {
-        width: 100%;
-        align-self: center;
-        margin-bottom: 10%;
-    }
-
-    .footerLogo{
-        display: flex;
-        align-items: center;
-        justify-content: center;
+        height: 25vh;
     }
 
     .footerLogo img {
-        width: auto;
-        height: 15vh;
+        width: fit-content;
+        height: 13vh;
+        position: relative;
+        right: 3rem;
+        bottom: 1rem;
+    }
+
+    .footerMedia {
+        display: flex;
+        flex-direction: row;
     }
 
     .footerSocialMidia {
-        width: 100%;
+        display: flex;
+        position: relative;
+        top: 9vh;
+        left: 11vw;
+        gap: 2rem;
+        margin: 0;
     }
 
-    .footerInfo{
-        margin-bottom: 15%;
-        font-size: 3vh;
+    .bgWhite {
+        padding: 1vh 2vw;
     }
 
-    #aqui3{
-        margin-top: 15%;
+    .bgYellow {
+        padding: 1vh 2.5vw;
     }
+
+  
 }

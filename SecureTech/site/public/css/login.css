@@ -275,11 +275,9 @@ input {
     color: black;
   }
 
-  @media screen and (max-width: 600px) {
+  @media screen and (max-width: 1024px) {
 
-    *{
-        margin: 0;
-    }
+
 
    html{
     overflow-x: hidden;
@@ -324,9 +322,26 @@ input {
     }
 
     .titulo-user2 {
-        font-size: 1.2em; 
+        font-size: 2em; 
     } 
+
+    .titulo-user1{
+        font-size: 2em; 
+    }
+
+    .texto-user{
+        font-size: 25px; 
+    }
+
+    .text-field input{
+        font-size: 20px; 
+    }
+    
+    .texto-user2{
+        font-size: 20px;
+    }
    
+    
     .card-login-user{
         width: 90vw;
         height: 65vh;

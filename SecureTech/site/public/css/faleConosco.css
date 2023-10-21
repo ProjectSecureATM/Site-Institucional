@@ -470,9 +470,11 @@ a {
     text-decoration: none;
 }
 
-.footerInfo a:hover {
+.footerInfo a:hover,
+span:hover {
     font-weight: bold;
-    color: #295897;
+    cursor: pointer;
+    color: #021e46;
 }
 
 .footerRights {
@@ -486,100 +488,91 @@ a {
     border-top-color: black;
 }
 
-@media screen and (max-width: 600px) {
-    .menu {
-        display: none;
-    }
+@media screen and (max-width: 1024px) {
 
     .opt {
         width: 60vw;
     }
 
-    .nav-bar {
-        width: 100vw;
-    }
+
 
     .footer {
-        width: 100vh;
-        flex-direction: column;
-        height: fit-content;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-
-    .footerContent {
-        flex-direction: column-reverse;
-        height: fit-content;
-    }
-
-    .footerContainer {
-        width: 50vh;
-        height: fit-content;
-
-    }
-
-    .nossos-clientes {
-        width: fit-content;
-        display: none;
-    }
-
-    .clientes-grupo {
-        width: inherit;
-    }
-
-    .footerText {
-        flex-direction: column;
-
-    }
-
-    .footerRights {
-        display: none;
-    }
-
-    .principal {
-        overflow-x: hidden;
-    }
-
-    .footerMedia {
-        width: 100%;
-        align-self: center;
-        margin-bottom: 10%;
-    }
-
-    .footerLogo {
-        display: flex;
-        align-items: center;
-        justify-content: center;
+        height: 25vh;
     }
 
     .footerLogo img {
-        width: auto;
-        height: 15vh;
+        width: fit-content;
+        height: 13vh;
+        position: relative;
+        right: 3rem;
+        bottom: 1rem;
+    }
+
+    .footerMedia {
+        display: flex;
+        flex-direction: row;
     }
 
     .footerSocialMidia {
+        display: flex;
+        position: relative;
+        top: 9vh;
+        left: 11vw;
+        gap: 2rem;
+        margin: 0;
+    }
+
+    .bgWhite {
+        padding: 1vh 2vw;
+    }
+
+    .bgYellow {
+        padding: 1vh 2.5vw;
+    }
+
+    .footer {
         width: 100%;
     }
 
-    .footerInfo {
-        margin-bottom: 15%;
-        font-size: 3vh;
+  .div_menu{
+    margin-left: 2vw;
+  }
+
+    .menu a {
+        font-size: 2vh;
     }
 
+
     .logo img {
-        height: 13vh;
-        width: auto;
-        margin-right: 12%;
+        width: 20vw;
+        height: 10vh;
+        margin-top: -1vh;
+    }
+
+    .navBar .login-button {
+        width: 12vh;
+        height: 5vh;
+    }
+
+    .login-button .logo {
+        height: 3vh;
+        width: 4vw;
+        margin-top: 0.1vh;
+    }
+
+    .content-left p {
+        font-size: 35px;
     }
 
     #login-home {
         width: 20vw;
+        height: 5vh;
     }
 
     #login-home img {
-        width: 50%;
-
+        height: 3vh;
+        width: 4vw;
+        margin-top: 0.1vh;
     }
 
     .text {
