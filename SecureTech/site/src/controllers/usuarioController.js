@@ -149,9 +149,53 @@ function cadastrarAgencia(req, res) {
             );
     }
 }
+
+function relatarProblema(req, res) {
+    var nome = req.body.nomeServer
+    var email = req.body.emailServer
+    var titulo = req.body.tituloServer
+    var detalhe = req.body.detalheServer
+    var dataHoraProblema = req.body.dataHoraProblemaServer
+
+    if (nome == undefined) {
+        res.status(400).send("Seu nome está undefined!");
+    } else if (email == undefined) {
+        res.status(400).send("Seu email está indefinido!");
+    } else if (titulo == undefined) {
+        res.status(400).send("O titulo do problema está indefinido!");
+    }else if (detalhe == undefined) {
+            res.status(400).send("O detalhe do problema está indefinido!");
+    }else {
+
+        usuarioModel.relatarProblema(nome, email, titulo, detalhe, dataHoraProblema)
+            .then(
+                function (resultado) {
+                    console.log(`\nResultados encontrados: ${resultado.length}`);
+                    console.log(`Resultados: ${JSON.stringify(resultado)}`); // transforma JSON em String
+
+                    if (resultado.length == 1) {
+                        console.log(resultado);
+                        res.json(resultado[0]);
+                    } else if (resultado.length == 0) {
+                        res.status(403).send("Relato do problema inválido(s)");
+                    } else {
+                        res.status(403).send("Mais de um relato do mesmo problema!");
+                    }
+                }
+            ).catch(
+                function (erro) {
+                    console.log(erro);
+                    console.log("\nHouve um erro ao realizar o relato de problemas! Erro: ", erro.sqlMessage);
+                    res.status(500).json(erro.sqlMessage);
+                }
+            );
+    }
+
+}
 module.exports = {
     autenticar,
     cadastrar,
     cadastrarATM,
-    cadastrarAgencia
+    cadastrarAgencia,
+    relatarProblema
 }

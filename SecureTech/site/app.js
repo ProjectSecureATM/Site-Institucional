@@ -10,7 +10,7 @@ var app = express();
 
 var indexRouter = require("./src/routes/index");
 var usuarioRouter = require("./src/routes/usuarios");
-var pythonRouter = require("./src/routes/usuarios");
+var pythonRouter = require("./src/routes/python");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));

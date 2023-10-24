@@ -74,7 +74,7 @@ function opcao2() {
         <div><label for="inputProblema">Primeiro nome: </label></div>
         <div id="primeiroNome"><input id="inputProblemaNome" type="text"></div>
         <div><label for="inputProblema">Último nome: </label></div>
-        <div id="ultimoNome"><input id="inputProblemaNome" type="text"></div>
+        <div id="ultimoNome"><input id="inputProblemaNomeF" type="text"></div>
       </div>
   
       <div id="emailTotal">
@@ -92,7 +92,7 @@ function opcao2() {
         <div id="detalheProblema"><textarea id="inputProblemaDetalhes" cols="30" rows="3"></textarea></div>
       </div>
   
-      <button id="btProblema">Enviar Problema</button>
+      <button id="btProblema" onclick="chamar()">Enviar Problema</button>
   
     
     </div>
@@ -100,40 +100,58 @@ function opcao2() {
         
         <button id="voltarChat" onclick="voltarBot()">Voltar</button>
           `
-}
+    }
 
-function opcao1_2() {
-  divOpcoes.innerHTML = `
-              <div id="perguntaBot">🤖 Bot: Aqui esta a resposta para sua dúvida:</div>
-              <div id="RespostaFinalBot"> RESPOSTA 1 </div>
-                
-                <button id="btNaoRespondida" onclick="TireDuvida()">Não foi respondida?</button>
-                </div><br>
-                <button id="voltarChat" onclick="voltarBot()">Voltar</button>
-            `
-}
+    function chamar(){
 
-function opcao2_2() {
-  divOpcoes.innerHTML = `
-            <div id="perguntaBot">🤖 Bot: Aqui esta a resposta para sua dúvida:</div>
-            <div id="RespostaFinalBot"> RESPOSTA 2 </div>
-            
-              <button id="btNaoRespondida" onclick="TireDuvida()">Não foi respondida?</button>
-              </div><br>
-              <button id="voltarChat" onclick="voltarBot()">Voltar</button>
-              `
-}
+      var nomeCompleto = `${inputProblemaNome.value} ` + `${inputProblemaNomeF.value}` ;
+      var nomeVar = nomeCompleto;
+      var emailVar = inputProblemaEmail.value;
+      var tituloVar = inputProblemaTitulo.value;
+      var detalheVar = inputProblemaDetalhes.value;
 
-function opcao3_2() {
-  divOpcoes.innerHTML = `
-            <div id="perguntaBot">🤖 Bot: Aqui esta a resposta para sua dúvida:</div>
-            <div id="RespostaFinalBot"> RESPOSTA 3 </div>
-            
-              <button id="btNaoRespondida" onclick="TireDuvida()">Não foi respondida?</button>
-              </div><br>
-              <button id="voltarChat" onclick="voltarBot()">Voltar</button>
-          `
-}
+      enviarProblema(nomeVar,emailVar,tituloVar,detalheVar)
+
+    }
+
+    function enviarProblema(nomeVar, emailVar, tituloVar, detalheVar) {
+    var dataHoraProblemaVar = ""
+      if (nomeVar == "" || emailVar == "" || tituloVar == "" || detalheVar == "") {
+        alert("Preencha os campos vazios")
+      }
+      else if (nomeVar != "" || emailVar != "" || tituloVar != "" || detalheVar != ""){
+      if (emailVar.indexOf("@") == -1 || emailVar.endsWith(".com") == false) {
+    
+      alert("email inválido")
+    
+    
+      if (emailVar.indexOf("@") == -1) {
+    
+      alert(`Está faltando o @`)
+      }
+      else if (emailVar.endsWith(".com") == false) {
+        alert(`Está faltando o ".com"`)
+      }
+        }
+      }
+    
+    
+    fetch("/usuarios/relatarProblema", {
+       method: "POST",
+       headers: {
+         "Content-Type": "application/json"
+       },
+       body: JSON.stringify({
+         nomeServer: nomeVar,
+         emailServer: emailVar,
+         tituloServer: tituloVar,
+         detalheServer: detalheVar,
+         dataHoraProblemaServer: dataHoraProblemaVar
+       })
+    })
+  }
+  
+
 
 function opcao3() {
   window.location.href = 'faleConosco.html';
