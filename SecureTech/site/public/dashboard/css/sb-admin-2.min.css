@@ -11732,6 +11732,13 @@ a:focus {
     font-size: 2rem
 }
 
+.imgLogoDash{
+    height: 100%;
+    width: 100%;
+
+}
+
+
 .sidebar .sidebar-brand .sidebar-brand-text {
     display: none
 }

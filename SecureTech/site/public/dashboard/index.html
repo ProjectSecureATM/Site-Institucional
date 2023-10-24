@@ -32,14 +32,14 @@
 
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
-                <div class="sidebar-brand-icon rotate-n-15">
-                    <i class="fas fa-laugh-wink"></i>
+                <div class="sidebar-brand-icon" style="width: 35%; height: 14vh;">
+                    <img class="imgLogoDash" src="../assets/logo Securu ATM.png" alt="">
                 </div>
-                <div class="sidebar-brand-text mx-3"> Secure ATM</div>
+                <div class="sidebar-brand-text"> Secure ATM</div>
             </a>
 
             <!-- Divider -->
-            <hr class="sidebar-divider my-0">
+            <hr class="sidebar-divider my-0 espacamento">
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
@@ -347,7 +347,7 @@
                     <div class="d-sm-flex align-items-center mb-4">
                         <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
                         <div class="informacao">
-                            <div class="iconeInformacao">
+                            <div class="iconeInformacao" onclick="testeBotao()">
                                 <img src="../assets/information.png" alt="">
                             </div>
                         </div>
@@ -356,7 +356,7 @@
                     <!-- Content Row -->
 
                     <div class="row api">
-                       
+
                         <div class="col-xl-3 col-md-6 mb-4">
                             <div class="card border-left-primary shadow h-100 py-2">
                                 <div class="card-body">
@@ -364,7 +364,8 @@
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                                 CPU</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800" style="text-align: center;">10%</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800"
+                                                style="text-align: center;">10%</div>
                                         </div>
                                     </div>
                                 </div>
@@ -377,7 +378,8 @@
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                                 RAM</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800" style="text-align: center;">20%</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800"
+                                                style="text-align: center;">20%</div>
                                         </div>
                                     </div>
                                 </div>
@@ -390,13 +392,14 @@
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                                 DISCO</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800" style="text-align: center;">30%</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800"
+                                                style="text-align: center;">30%</div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        
+
                     </div>
 
 
@@ -411,7 +414,7 @@
                                     class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                                     <h6 class="m-0 font-weight-bold text-primary">Rede - Latência</h6>
                                     <div class="dropdown no-arrow">
-                                      
+
                                         <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
                                             aria-labelledby="dropdownMenuLink">
                                             <!-- <div class="dropdown-header">Dropdown Header:</div>
@@ -439,7 +442,7 @@
                                     class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                                     <h6 class="m-0 font-weight-bold text-primary">Revenue Sources</h6>
                                     <div class="dropdown no-arrow">
-                                        
+
                                         <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
                                             aria-labelledby="dropdownMenuLink">
                                             <!-- <div class="dropdown-header">Dropdown Header:</div> -->
@@ -626,6 +629,7 @@
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
                         <span>Copyright &copy; Secure ATM 1910</span>
+                        <button onclick="testeBotao()">teste</button>
                     </div>
                 </div>
             </footer>
@@ -655,12 +659,16 @@
                 </div>
                 <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
                 <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                    <button style="text-align: left;" class="btn btn-secondary" type="button"
+                        data-dismiss="modal">Cancel</button>
                     <a class="btn btn-primary" href="login.html">Logout</a>
                 </div>
             </div>
         </div>
     </div>
+
+    <!-- pop up sweet alert -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <!-- Bootstrap core JavaScript-->
     <script src="vendor/jquery/jquery.min.js"></script>
@@ -683,3 +691,17 @@
 </body>
 
 </html>
+
+<script>
+    function testeBotao() {
+        Swal.fire({
+            title: 'Métricas (KPI`s)</br></br><span style="color: blue;">CPU</span><p style="text-align: left;">Ideal: 0% a 50% </br> Aceitável: 50% a 70% </br> Crítico: 70% a 100%</p></br><span style="color: blue;">RAM</span><p style="text-align: left;">Ideal: 0% a 70% </br> Aceitável: 70% a 90% </br> Crítico: 90% a 100%</p></br><span style="color: blue;">DISCO</span><p style="text-align: left;">Ideal: 0% a 60% </br> Aceitável: 60% a 80% </br> Crítico: 80% a 100%</p>',
+            showClass: {
+                popup: 'animate__animated animate__fadeInDown'
+            },
+            hideClass: {
+                popup: 'animate__animated animate__fadeOutUp'
+            }
+        })
+    }
+</script>
