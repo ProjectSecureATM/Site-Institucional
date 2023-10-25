@@ -104,22 +104,22 @@ function opcao2() {
 
     function chamar(){
 
-      var nomeCompleto = `${inputProblemaNome.value} ` + `${inputProblemaNomeF.value}` ;
-      var nomeVar = nomeCompleto;
+      var nomeVar = inputProblemaNome.value ;
+      var sobrenomeVar = inputProblemaNomeF.value;
       var emailVar = inputProblemaEmail.value;
       var tituloVar = inputProblemaTitulo.value;
       var detalheVar = inputProblemaDetalhes.value;
 
-      enviarProblema(nomeVar,emailVar,tituloVar,detalheVar)
+      enviarProblema(nomeVar, sobrenomeVar,emailVar,tituloVar,detalheVar)
 
     }
 
-    function enviarProblema(nomeVar, emailVar, tituloVar, detalheVar) {
-    var dataHoraProblemaVar = ""
-      if (nomeVar == "" || emailVar == "" || tituloVar == "" || detalheVar == "") {
+    function enviarProblema(nomeVar, sobrenomeVar, emailVar, tituloVar, detalheVar) {
+      dataHoraProblemaVar = 'CURRENT_TIMESTAMP()'
+      if (nomeVar == "" || sobrenomeVar == "" || emailVar == "" || tituloVar == "" || detalheVar == "") {
         alert("Preencha os campos vazios")
       }
-      else if (nomeVar != "" || emailVar != "" || tituloVar != "" || detalheVar != ""){
+    else if (nomeVar != "" || sobrenomeVar != "" || emailVar != "" || tituloVar != "" || detalheVar != ""){
       if (emailVar.indexOf("@") == -1 || emailVar.endsWith(".com") == false) {
     
       alert("email inválido")
@@ -135,20 +135,22 @@ function opcao2() {
         }
       }
     
-    
-    fetch("/usuarios/relatarProblema", {
+    if (nomeVar != "" || sobrenomeVar != "" || emailVar != "" || tituloVar != "" || detalheVar != "") {
+      fetch("/usuarios/relatarProblema", {
        method: "POST",
        headers: {
          "Content-Type": "application/json"
        },
        body: JSON.stringify({
          nomeServer: nomeVar,
+         sobrenomeServer: sobrenomeVar,
          emailServer: emailVar,
          tituloServer: tituloVar,
          detalheServer: detalheVar,
          dataHoraProblemaServer: dataHoraProblemaVar
-       })
-    })
+        })
+      })
+    }
   }
   
 
