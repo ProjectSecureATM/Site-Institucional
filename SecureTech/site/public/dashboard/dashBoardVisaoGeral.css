@@ -1,0 +1,58 @@
+.boxDivConteudo{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: auto;
+    height: 85vh;
+    width: 77vw;
+}
+
+.divTitulo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: auto;
+    width: 100%;
+}
+
+.titulo{
+    display: flex;
+    width: 40%;
+}
+.titulo span{
+    font-size: 32px;
+    font-weight: bold;
+    text-align: center;
+    color: #021e46;
+
+}
+
+.divLinhaCard{
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-items: center;
+}
+
+.divBoxCard{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 20%;
+    height: 20vh;
+
+}
+
+.card{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 60%;
+    width: 70%;
+
+    border-radius: 0.5rem;
+    background-color: white;
+}
