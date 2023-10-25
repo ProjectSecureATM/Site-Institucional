@@ -284,7 +284,7 @@ a {
     border: 0;
     height: 5vh;
     font-size: 2.6vh;
-    color: rgba(0, 0, 0, 0.211);
+    color: rgb(0, 0, 0);
     font-weight: 100;
     width: 100%;
     border-bottom: 1px solid rgba(0, 0, 0, 0.318);
@@ -293,7 +293,7 @@ a {
 
 #form input:focus {
     outline: none;
-    border-bottom: 1.4px solid #00000062;
+    border-bottom: 1.4px solid #000000af;
 }
 
 #form button {
@@ -442,7 +442,7 @@ a {
 }
 
 .bgYellow {
-    background-color: #FFCB45;
+    background-color: #ffffff;
 }
 
 .bgWhite {

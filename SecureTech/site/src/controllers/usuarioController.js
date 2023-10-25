@@ -152,6 +152,7 @@ function cadastrarAgencia(req, res) {
 
 function relatarProblema(req, res) {
     var nome = req.body.nomeServer
+    var sobrenome = req.body.sobrenomeServer
     var email = req.body.emailServer
     var titulo = req.body.tituloServer
     var detalhe = req.body.detalheServer
@@ -159,6 +160,8 @@ function relatarProblema(req, res) {
 
     if (nome == undefined) {
         res.status(400).send("Seu nome está undefined!");
+    }  else if (sobrenome == undefined) {
+        res.status(400).send("Seu sobrenome está indefinido!");
     } else if (email == undefined) {
         res.status(400).send("Seu email está indefinido!");
     } else if (titulo == undefined) {
@@ -167,7 +170,7 @@ function relatarProblema(req, res) {
             res.status(400).send("O detalhe do problema está indefinido!");
     }else {
 
-        usuarioModel.relatarProblema(nome, email, titulo, detalhe, dataHoraProblema)
+        usuarioModel.relatarProblema(nome, sobrenome, email, titulo, detalhe, dataHoraProblema)
             .then(
                 function (resultado) {
                     console.log(`\nResultados encontrados: ${resultado.length}`);
@@ -178,7 +181,8 @@ function relatarProblema(req, res) {
                         res.json(resultado[0]);
                     } else if (resultado.length == 0) {
                         res.status(403).send("Relato do problema inválido(s)");
-                    } else {
+                    }
+                    else {
                         res.status(403).send("Mais de um relato do mesmo problema!");
                     }
                 }

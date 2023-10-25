@@ -46,16 +46,11 @@ function cadastrarAgencia(NAgencia, qtdATM, codigoEmp) {
     return database.executar(instrucao);
 }
 
-function relatarProblema(nome, email, titulo, detalhe, dataHoraProblema) {
-    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrar():", nome, email, titulo, detalhe, dataHoraProblema);
+function relatarProblema(nome, sobrenome, email, titulo, detalhe, dataHoraProblema) {
+    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrar():", nome, sobrenome, email, titulo, detalhe, dataHoraProblema);
     
-    // Insira exatamente a query do banco aqui, lembrando da nomenclatura exata nos valores
-    //  e na ordem de inserção dos dados.
-    if(nomeVar != "" || emailVar != "" || tituloVar != "" || detalheVar != "") {
-        dataHoraProblema = 'CURRENT_TIMESTAMP()'
-    }
     var instrucao = `
-        INSERT INTO relatarProblema (nome, email, tituloProblema, descricao, dataHoraProblema) VALUES ('${nome}', '${email}', '${titulo}', '${detalhe}', '${dataHoraProblema}');
+        INSERT INTO relatarProblema (nome, sobrenome, email, tituloProblema, descricao, dataHoraProblema) VALUES ('${nome}', '${sobrenome}', '${email}', '${titulo}', '${detalhe}', CURRENT_TIMESTAMP());
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
