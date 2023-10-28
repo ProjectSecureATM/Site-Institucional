@@ -19,6 +19,8 @@
 
     <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="dashBoardVisaoGeral.css">
+    <link rel="stylesheet" href="dashBoard-AddATM.css">
 
 </head>
 
@@ -43,17 +45,17 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
-                <a class="nav-link" href="index.html">
+                <a class="nav-link" href="DashBoard-VisaoGeral.html">
                     <img class="fas fa-fw fa-tachometer-alt" src="../assets/binoculars.png" alt="">
                     <span>Visão Geral</span>
                 </a>
-                <a class="nav-link" href="index.html">
+                <a class="nav-link" href="DashBoard.html">
                     <img class="fas fa-fw fa-tachometer-alt" src="../assets/icon_DashBoard.png" alt="">
                     <span>Dashboard</span>
                 </a>
-                <a class="nav-link" href="index.html">
-                    <img class="fas fa-fw fa-tachometer-alt" src="../assets/add_ATM.png" alt="">
-                    <span>Cadastrar ATM</span>
+                <a class="nav-link" href="DashBoard-AddATM.html">
+                    <img class="fas fa-fw fa-tachometer-alt" src="../assets/add-amarelo.png" alt="">
+                    <span style="color: goldenrod; font-weight: bold;">Cadastrar ATM</span>
                 </a>
             </li>
 
@@ -100,6 +102,9 @@
 
                 <!-- Topbar -->
                 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+                    <button class="buttonNavBar">
+                        Voltar para Agencia
+                    </button>
 
                     <!-- Sidebar Toggle (Topbar) -->
                     <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
@@ -158,125 +163,101 @@
 
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
-
-                    <!-- Page Heading -->
-                    <div class="d-sm-flex align-items-center mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
-                        <div class="informacao">
-                            <div class="iconeInformacao" onclick="testeBotao()">
-                                <img src="../assets/information.png" alt="">
+                    <div class="conteudo">
+                        <div class="divTitulo">
+                            <div class="titulo">
+                                <span>
+                                    Adicionar um novo ATM
+                                </span>
                             </div>
                         </div>
-                    </div>
-
-                    <!-- Content Row -->
-
-                    <div class="row api">
-
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-primary shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                                CPU</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800"
-                                                style="text-align: center;">10%</div>
-                                        </div>
+                        
+                        <div class="boxAddATM">
+                            <div class="conteudoAddATM">
+                                <div class="addATM">
+                                    <div class="plano_fundo"></div>
+                                    <div class="addATMTexto">
+                                        <span>
+                                            Modelo:
+                                        </span>
+                                    </div>
+                                    <div class="addATMInput">
+                                        <input type="text">
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-primary shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                                RAM</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800"
-                                                style="text-align: center;">20%</div>
-                                        </div>
+                                <div class="addATM">
+                                    <div class="addATMTexto">
+                                        <span>
+                                            Sistema Operacional:
+                                        </span>
+                                    </div>
+
+                                    <div class="addATMInput">
+                                        <input type="text">
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-primary shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                                DISCO</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800"
-                                                style="text-align: center;">30%</div>
-                                        </div>
+                                <div class="addATM">
+                                    <div class="addATMTexto">
+                                        <span>
+                                            Processador:
+                                        </span>
+                                    </div>
+
+                                    <div class="addATMInput">
+                                        <input type="text">
                                     </div>
                                 </div>
-                            </div>
-                        </div>
+                                <div class="addATM">
+                                    <div class="addATMTexto">
+                                        <span>
+                                            RAM:
+                                        </span>
+                                    </div>
 
-                    </div>
-
-
-
-                    <div class="row">
-
-                        <!-- Area Chart -->
-                        <div class="col-xl-8 col-lg-7">
-                            <div class="card shadow mb-4">
-                                <!-- Card Header - Dropdown -->
-                                <div
-                                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary">Rede - Latência</h6>
-                                    <div class="dropdown no-arrow">
-
-                                        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
-                                            aria-labelledby="dropdownMenuLink">
-                                            <a class="dropdown-item" href="#">Something else here</a>
-                                        </div>
+                                    <div class="addATMInput">
+                                        <input type="text">
                                     </div>
                                 </div>
-                                <!-- Card Body -->
-                                <div class="card-body">
-                                    <div class="chart-area">
-                                        <canvas id="myAreaChart"></canvas>
+                                <div class="addATM">
+                                    <div class="addATMTexto">
+                                        <span>
+                                            Quantidade de Discos:
+                                        </span>
+                                    </div>
+
+                                    <div class="addATMInput">
+                                        <input type="text">
                                     </div>
                                 </div>
-                            </div>
-                        </div>
+                                <div class="addATM">
+                                    <div class="addATMTexto">
+                                        <span>
+                                            Fabricante:
+                                        </span>
+                                    </div>
 
-                        <!-- Pie Chart -->
-                        <div class="col-xl-4 col-lg-5">
-                            <div class="card shadow mb-4">
-                                <!-- Card Header - Dropdown -->
-                                <div
-                                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary">Revenue Sources</h6>
-                                    <div class="dropdown no-arrow">
-
-                                        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
-                                            aria-labelledby="dropdownMenuLink">
-                                            <a class="dropdown-item" href="#">Something else here</a>
-                                        </div>
+                                    <div class="addATMInput">
+                                        <input type="text">
                                     </div>
                                 </div>
-                                <!-- Card Body -->
-                                <div class="card-body">
-                                    <div class="chart-bar">
-                                        <canvas id="myBarChart"></canvas>
+                                <div class="addATM">
+                                    <div class="addATMTexto">
+                                        <span>
+                                            Código da Agencia
+                                        </span>
+                                    </div>
+
+                                    <div class="addATMInput">
+                                        <input type="text">
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-
                 </div>
                 <!-- /.container-fluid -->
-
             </div>
             <!-- End of Main Content -->
-
             <!-- Footer -->
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">

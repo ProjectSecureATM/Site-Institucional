@@ -2609,6 +2609,25 @@ textarea.form-control.is-invalid {
     align-items: center
 }
 
+.buttonNavBar{
+    font-size: 14px;
+    font-weight: bold;
+    color: white;
+    
+    border-radius: 2rem;
+
+    height: 7vh;
+    width: 15vw;
+    background-color: #021e46;
+}
+
+.buttonNavBar:hover{
+    background-color: goldenrod;
+    transition: 2s;
+
+    border: none;
+}
+
 .form-inline .form-check {
     width: 100%
 }

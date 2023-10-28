@@ -1,0 +1,86 @@
+.conteudo{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: auto;
+    height: 85vh;
+    width: 77vw;
+}
+
+.boxAddATM{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+
+    /* background-color: aqua; */
+}
+.plano_fundo{
+    display: flex;
+    
+}
+
+.conteudoAddATM{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-evenly;
+
+    border-radius: 1rem;
+
+    height: 95%;
+    width: 75%;
+
+    background-color: #021e46;
+}
+
+.addATM{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    height: 5vh;
+    width: 60%;
+
+    /* background-color: red; */
+}
+
+.addATMTexto{
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    height: 100%;
+    width: 40%;
+
+
+    /* background-color: blue; */
+}
+
+.addATMTexto span{
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+}
+
+.addATMInput{
+    display: flex;
+    justify-content: center;
+    height: 100%;
+    width: 60%;
+
+
+    /* background-color: rgb(255, 255, 255); */
+}
+
+.addATMInput input{
+    width: 95%;
+	appearance: none;
+	border: none;
+	outline: none;
+	border-bottom: .1em solid #000000;
+	background: rgba(#E91E63, .2);
+	border-radius: .2em .2em 0 0;
+	padding: .4em;
+	color: #000000;
+}
