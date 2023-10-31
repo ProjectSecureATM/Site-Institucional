@@ -84,3 +84,19 @@
 	padding: .4em;
 	color: #000000;
 }
+
+.button {
+    background-color: #fff;
+    color: #021e46;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  /* Efeito de hover */
+  .button:hover {
+    background-color: #253853; /* Altera o background para branco no hover */
+    color: #fff; /* Altera a cor do texto para a cor original no hover */
+    transition: 2s;
+}

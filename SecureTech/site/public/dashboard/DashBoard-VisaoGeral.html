@@ -48,7 +48,7 @@
                     <img class="fas fa-fw fa-tachometer-alt" src="../assets/binoculars amarelo.png" alt="">
                     <span style="color: #daa520; font-weight: bold;">Visão Geral</span>
                 </a>
-                <a class="nav-link" href="DashBoard.html">
+                <a class="nav-link pointer" onclick="testeBotao()">
                     <img class="fas fa-fw fa-tachometer-alt" src="../assets/icon_DashBoard.png" alt="">
                     <span>Dashboard</span>
                 </a>
@@ -60,11 +60,6 @@
 
             <!-- Divider -->
             <hr class="sidebar-divider">
-
-            <!-- Heading -->
-            <div class="sidebar-heading">
-                Interface
-            </div>
 
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
@@ -170,7 +165,7 @@
                         </div>
                         <div class="divLinhaCard">
                             <div class="divBoxCard">
-                                <div class="card">
+                                <div class="card pointer" onclick="goToDash()">
                                     <div class="divFormat-card">
                                         <span>
                                             ATM
@@ -185,7 +180,7 @@
                                 </div>
                             </div>
                             <div class="divBoxCard">
-                                <div class="card">
+                                <div class="card pointer" onclick="goToDash()">
                                     <div class="divFormat-card">
                                         <span>
                                             ATM
@@ -200,7 +195,7 @@
                                 </div>
                             </div>
                             <div class="divBoxCard">
-                                <div class="card">
+                                <div class="card pointer" onclick="goToDash()">
                                     <div class="divFormat-card">
                                         <span>
                                             ATM
@@ -209,57 +204,11 @@
                                     </div>
                                     <div class="divNumeroATM">
                                         <span>
-                                            $numeroAtm
+                                            $numeroAtmX
                                         </span>
                                     </div>
                                 </div>
                             </div>
-                            <div class="divBoxCard">
-                                <div class="card">
-                                    <div class="divFormat-card">
-                                        <span>
-                                            ATM
-                                        </span>
-                                            <img src="../assets/alerta Visao Geral.png" alt="" >
-                                    </div>
-                                    <div class="divNumeroATM">
-                                        <span>
-                                            $numeroAtm
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="divBoxCard">
-                                <div class="card">
-                                    <div class="divFormat-card">
-                                        <span>
-                                            ATM
-                                        </span>
-                                            <img src="../assets/alerta Visao Geral.png" alt="" >
-                                    </div>
-                                    <div class="divNumeroATM">
-                                        <span>
-                                            $numeroAtm
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="divBoxCard">
-                                <div class="card">
-                                    <div class="divFormat-card">
-                                        <span>
-                                            ATM
-                                        </span>
-                                            <img src="../assets/alerta Visao Geral.png" alt="" >
-                                    </div>
-                                    <div class="divNumeroATM">
-                                        <span>
-                                            $numeroAtm
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                            
                         </div>
                     </div>
                 </div>
@@ -331,15 +280,14 @@
 </html>
 
 <script>
+    function goToDash() {
+        window.location = "DashBoard.html"
+    }
+
     function testeBotao() {
         Swal.fire({
-            title: 'Métricas (KPI`s)</br></br><span style="color: blue;">CPU</span><p style="text-align: left;">Ideal: 0% a 50% </br> Aceitável: 50% a 70% </br> Crítico: 70% a 100%</p></br><span style="color: blue;">RAM</span><p style="text-align: left;">Ideal: 0% a 70% </br> Aceitável: 70% a 90% </br> Crítico: 90% a 100%</p></br><span style="color: blue;">DISCO</span><p style="text-align: left;">Ideal: 0% a 60% </br> Aceitável: 60% a 80% </br> Crítico: 80% a 100%</p>',
-            showClass: {
-                popup: 'animate__animated animate__fadeInDown'
-            },
-            hideClass: {
-                popup: 'animate__animated animate__fadeOutUp'
-            }
+        icon: 'error',
+        title: 'Selecione um ATM primeiro',
         })
     }
 </script>

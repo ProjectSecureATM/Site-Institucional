@@ -2609,22 +2609,25 @@ textarea.form-control.is-invalid {
     align-items: center
 }
 
-.buttonNavBar{
+.buttonNavBar{    
+    height: 7vh;
+    width: 15vw;
+    border-radius: 2rem;
+    background-color: #021e46;
+}
+
+.buttonNavBar a{
     font-size: 14px;
     font-weight: bold;
     color: white;
-    
-    border-radius: 2rem;
-
-    height: 7vh;
-    width: 15vw;
-    background-color: #021e46;
+    text-decoration: none;
 }
 
 .buttonNavBar:hover{
     background-color: goldenrod;
     transition: 2s;
 
+    text-decoration: none;
     border: none;
 }
 
@@ -4663,7 +4666,8 @@ input[type=submit].btn-block {
     height: 2.5vh;
     width: auto;
     cursor: pointer;
-    /* background-color: white; */
+    
+    margin-left: 3%;
 }
 .iconeInformacao img{
     height: 100%;
