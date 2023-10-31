@@ -16,25 +16,37 @@
   <link href="https://fonts.googleapis.com/css2?family=Abel&family=Fira+Sans:wght@300&family=Readex+Pro&display=swap"
     rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Nunito&display=swap" rel="stylesheet">
-
   <link rel="shortcut icon" href="./assets/fiveicon.png" type="image/x-icon">
 
 </head>
 
 <body>
   <header> <!-- principal -->
-    <div class="container">
-      <div class="navBar"> <!-- nav-bar -->
-        <img src="assets/secure_atm_logo.png" alt="Logo" onclick="goToHome()">
-        <nav class="menu">
-          <ul id="menu">
-            <li class="agora"><a href="homeCadastrado.html">Agências</a></li>
-          </ul>
-        </nav>
-        <button class="login-button" onclick="limparSessao()"><img src="assets/img-logout.png" alt="img-Logout"
-            class="logo">Logout</button>
+    <div class="NavBar">
+      <div class="container-navBar">
+        <div class="divNavBar">
+          <div class="divImgNavBar">
+            <img src="assets/secure_atm_logo.png" alt="">
+          </div>
+          <div class="conteudoNavBar">
+            <div class="divTexto">
+              <span style="border-bottom: solid 0.6vh #FFCB45;">
+                Agencia
+              </span>
+            </div>
+            <div class="divTexto">
+              <span>
+                Cadastrar Agencia
+              </span>
+            </div>
+          </div>
+          <div onclick="goToLogin()" class="botao-login">
+            <button id="login-home" onclick="goToLogin()">Logout</button>
+          </div>
+        </div>
       </div>
-
+    </div>
+    <div class="container">
       <div class="banner"> <!-- Banner Home -->
         <div class="container">
           <div class="bd-img-banner">
@@ -56,26 +68,58 @@
 
   <!-- Inicio Agências -->
 
-  <div class="divAgencia">
-    <div class="divTituloAgencia">
-      <a>São Paulo - SP</a>
+  <div class="boxDivTitulo">
+    <div class="containerConteudo">
+      <div class="divTitulo">
+        <span>
+          Essas são suas agências cadastradas
+        </span>
+      </div>
     </div>
-    <div class="divLinhaCard">
-      <div class="divBoxCard">
-        <button class="buttonCard" onclick="">
-          <div class="divNome">
-            <span>Agência</span>
+  </div>
+
+  <div class="divAgencia">
+    <div class="containerConteudo">
+
+      <div class="divTituloAgencia">
+        <a>São Paulo - SP</a>
+      </div>
+    </div>
+
+    <div class="divLinhaCard ">
+      <div class="containerConteudoCard">
+        <div class="divBoxCard ">
+          <div class="buttonCard pointer" onclick="goToDashBoard">
+            <!-- <div class="divFormatIMG">
+              <img src="assets/alerta Visao Geral.png" alt="">
+            </div> -->
+            <div class="divNome">
+              <span>Agência</span>
+
+            </div>
+            <div class="divNumero">
+              <span>123-4</span>
+            </div>
           </div>
-          <div class="divNumero">
-            <a href="../public/dashboard/DashBoard-VisaoGeral.html"><span>123-4</span></a>
+        </div>
+        <div class="divBoxCard " onclick="goToDashBoard">
+          <div class="buttonCard pointer" onclick="goToDashBoard">
+            <div class="divNome">
+              <span>Agência</span>
+            </div>
+            <div class="divNumero">
+              <span>123-4</span>
+            </div>
           </div>
-        </button>
+        </div>
       </div>
 
-      <div class="divLinhaCard">
+
+      <!-- <div class="divLinhaCard">
         <div class="divBoxCard">
           <button id="mostrarFormularioAgencia">Cadastrar nova Agência</button>
-          <div id="cadastroDivAgencia" style="display: none; background-color: #09346b94; padding: 5%; border-radius: 10px;">
+          <div id="cadastroDivAgencia"
+            style="display: none; background-color: #09346b94; padding: 5%; border-radius: 10px;">
             <h2 style="color: aliceblue;">Cadastro de Agência</h2>
             <form id="cadastroForm">
               <label for="NAgencia" style="color: aliceblue;">N° Agência:</label>
@@ -90,10 +134,13 @@
             <button onclick="cadastrarAgencia()">Cadastrar Agência</button>
           </div>
         </div>
-      </div>
+      </div> -->
+
+      
+
+
     </div>
   </div>
-</div>
 
 </body>
 <!-- Fim Agências -->
@@ -101,6 +148,10 @@
 <!-- Inicio Rodapé -->
 <!-- Fim Rodapé -->
 <script>
+  function goToDashBoard() {
+    window.location = "DashBoard-VisaoGeral.html"
+  }
+
   function limparSessao() {
     sessionStorage.clear();
     window.location = "login.html";

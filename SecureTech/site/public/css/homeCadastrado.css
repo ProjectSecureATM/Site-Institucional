@@ -93,6 +93,133 @@ header {
     flex-direction: column;
 }
 
+.containerConteudo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 90%;
+    height: auto;
+    /* background-color: aliceblue; */
+}
+
+.containerConteudoCard{
+    display: flex;
+    width: 90%;
+    height: auto;
+    flex-direction: row;
+    flex-wrap: wrap;
+    /* background-color: aliceblue; */
+}
+
+.container-navBar{
+    display: flex;
+    width: 90%;
+    height: 10vh;
+
+    /* background-color: white; */
+}
+
+.column{
+    display: flex;
+    flex-direction: column;
+}
+
+.left{
+    display: flex;
+    justify-content: left;
+    align-items: left;
+}
+
+.NavBar{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 10vh;
+    justify-content: center;
+    align-items: center;
+}
+
+.divNavBar{
+    display: flex;
+    width: 100%;
+    height: 10vh;
+    justify-content: space-between;
+}
+
+.divImgNavBar{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 14%;
+    height: 10vh;
+
+    /* background-color: brown; */
+}
+
+.divImgNavBar img{
+
+    width: 100%;
+    height: 14vh;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.conteudoNavBar{
+    display: flex;
+    height: 100%;
+    width: 25%;
+    justify-content: space-around;
+    align-items: center;
+
+    /* background-color: #d2a83e; */
+}
+
+.conteudoNavBar span{
+    font-size: 18px;
+    color: white;
+    text-decoration: none;
+    /* font-weight: bold; */
+}
+
+
+
+
+
+.botao-login{
+    display: flex;
+    height: 100%;
+    width: auto;
+    align-items: center;
+
+}
+
+.botao-login button {
+    width: 12vw;
+    height: 6vh;
+    border-style: none;
+    background-color: #FFCB45;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 3vh;
+    font-weight: bolder;
+    transition: 0.5s ease-in-out;
+}
+
+.botao-login button:hover{
+    font-weight: bold;
+    background-color: #d2a83e;
+    transform: scale(1.05);
+    cursor: pointer;
+}
+
+.login-button img {
+    height: 3vh;
+    width: 1.5vw;
+    margin-right: 12%;
+}
+
+
 .navBar {
     width: 90%;
     height: 16vh;
@@ -163,7 +290,7 @@ header {
 
 .banner {
     width: 95%;
-    height: 79vh;
+    height: 50vh;
     /* margin-bottom: 3%; */
     display: flex;
     flex-direction: row;
@@ -173,21 +300,31 @@ header {
 
 .container {
     width: 100%;
-    height: fit-content;
+    height: 88vh;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-top: 1%;
     flex-direction: column;
 }
 
 .bd-img-banner {
     z-index: -1;
     position: absolute;
-    height: 90vh;
+    height: 85vh;
     width: 100%;
+
+    
     
     /* backdrop-filter: blue(2px); */
+}
+
+.divBoxCadastro{
+    display: flex;
+    height: 90vh;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+
 }
 
 
@@ -197,7 +334,7 @@ header {
     align-self: baseline;
     width: 90%;
     justify-content: space-evenly;
-    margin-top: 17%;
+    margin-top: 10%;
     font-size: 3.0vh;
 }
 
@@ -230,6 +367,25 @@ header {
     color: #FFCB45;
 }
 
+.boxDivTitulo{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 15vh;
+
+    /* background-color: #295897; */
+}
+
+.pointer{
+    cursor: pointer;
+}
+
+.divTitulo span{
+    font-size: 46px;
+    font-weight: bold;
+    color: #021e46;
+}
+
 /*Inicio Agências*/
 
 .divBoxAgencia{
@@ -244,9 +400,11 @@ header {
 }
 
 .divAgencia{
-    width: 90%;
-    height: auto;
     display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: auto;
     flex-direction: column;
 
     /* background-color: blue; */
@@ -269,21 +427,24 @@ header {
 }
 
 .divLinhaCard{
+    display: flex;
     width: 100%;
     height: auto;
-    display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     align-items: center;
+    justify-content: center;
 
 
     /* background-color: #FFCB45; */
 }
 
 .divBoxCard{
+    display: flex;
     width: 25%;
     height: 25vh;
     align-items: center;
+    /* background-color: #d2a83e; */
 
 }
 
@@ -317,9 +478,23 @@ height: 18vh;
     
 }
 
-.divForm{
-    /* display: none; */
+.divNome{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    justify-content: center;
+    width: 100%;
 }
+
+.buttonCard img{
+    /* margin-left: 16%;
+    margin-right: 3%; */
+    height: 1vh;
+    width: auto;
+}
+
+
 
 .buttonCard img {
     width: 5vw;

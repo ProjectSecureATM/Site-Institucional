@@ -1,0 +1,75 @@
+.divBoxCadastro{
+    height: 90vh;
+    width: 50%;
+}
+
+.boxCadastro{
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    justify-content: space-between;
+    align-items: center;
+    height: 85vh;
+    width: 60%;
+
+    border-radius: 3%;
+    background-color: #021e46;
+}
+
+.titulo{
+    display: flex;
+    height: 10vh;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+
+    /* background-color: beige; */
+}
+
+.titulo span{
+    color: white;
+    /* font-weight: bold; */
+    font-size: 24px;
+}
+
+.conteudoCadastrarAgencia{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 10vh;
+    width: 100%;
+    /* background-color: red; */
+}
+
+.addAgencia{
+    height: 10vh;
+    width: 100%;
+}
+
+.addAgenciaTexto span{
+    color: white;
+}
+
+.butonAddAgencia{
+    width: 12vw;
+    height: 6vh;
+    border-style: none;
+    background-color: #FFCB45;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 3vh;
+    font-weight: bolder;
+    transition: 0.5s ease-in-out;
+
+    margin-bottom: 7%;
+    width: 50%;
+}
+
+.butonAddAgencia:hover {
+    font-weight: bold;
+    background-color: #d2a83e;
+    transform: scale(1.05);
+    cursor: pointer;
+}

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SecureATM | Home do Usuário </title>
+    <script src="./js/sessao.js"></script>
+    <script src="./js/crudsAgenciaECadastro.js"></script>
+
+    <link rel="stylesheet" href="css/chatBot.css">
+    <link rel="stylesheet" href="css/homeCadastrado.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Abel&family=Fira+Sans:wght@300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Abel&family=Fira+Sans:wght@300&family=Readex+Pro&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="./assets/fiveicon.png" type="image/x-icon">
+    <link rel="stylesheet" href="homeCadastroAgencia.css">
+    <link rel="stylesheet" href="dashboard/dashBoard-AddATM.css">
+
+</head>
+
+<body>
+    <header> <!-- principal -->
+
+        <div class="NavBar">
+            <div class="container-navBar">
+                <div class="divNavBar">
+                    <div class="divImgNavBar">
+                        <img src="assets/secure_atm_logo.png" alt="">
+                    </div>
+
+                    <div class="conteudoNavBar">
+                        <div class="divTexto">
+                            <span>
+                                Agencia
+                            </span>
+                        </div>
+
+                        <div class="divTexto" style="border-bottom: solid 0.6vh #FFCB45;">
+                            <span>
+                                Cadastrar Agencia
+                            </span>
+                        </div>
+                    </div>
+
+                    <div onclick="goToLogin()" class="botao-login">
+                        <button id="login-home" onclick="goToLogin()">Logout</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="bd-img-banner">
+            
+        </div>
+        
+        <div class="divBoxCadastro">
+            <div class="boxCadastro">
+                <div class="titulo">
+                    <span>
+                        Cadastrar Agencia
+                    </span>
+                </div>
+                <div class="conteudoCadastrarAgencia">
+                    <div class="addAgenciaTexto">
+                        <span>
+                            xxxxxx:
+                        </span>
+                    </div>
+                    <div class="addAgenciaInput">
+                        <input type="text">
+                    </div>
+                    
+                </div>
+                <div class="conteudoCadastrarAgencia">
+                    <div class="addAgenciaTexto">
+                        <span>
+                            xxxxxx:
+                        </span>
+                    </div>
+                    <div class="addAgenciaInput">
+                        <input type="text">
+                    </div>
+                    
+                </div>
+                <div class="conteudoCadastrarAgencia">
+                    <div class="addAgenciaTexto">
+                        <span>
+                            xxxxxx:
+                        </span>
+                    </div>
+                    <div class="addAgenciaInput">
+                        <input type="text">
+                    </div>
+                    
+                </div>
+
+                <button class="butonAddAgencia">
+                    Cadastrar
+                </button>
+                
+            </div>
+
+        </div>
+
+
+    </header>
+</body>
+<!-- Fim Agências -->
+
+<!-- Inicio Rodapé -->
+<!-- Fim Rodapé -->
+<script>
+    function goToDashBoard() {
+        window.location = "DashBoard-VisaoGeral.html"
+    }
+
+    function limparSessao() {
+        sessionStorage.clear();
+        window.location = "login.html";
+    }
+    var usuario = document.querySelector("#id_nome_usuario")
+    var nomeUsuario = sessionStorage.getItem("nome_Funcionario")
+    usuario.innerHTML = nomeUsuario
+
+    if (sessionStorage.fkAgencia_Funcionario != null) {
+        document.getElementById("mostrarFormularioATM").style.display = "none";
+        document.getElementById("mostrarFormularioAgencia").style.display = "none";
+    }
+    else {
+        document.getElementById("mostrarFormularioATM").addEventListener("click", function () {
+            document.getElementById("cadastroDivATM").style.display = "block";
+        });
+        document.getElementById("mostrarFormularioAgencia").addEventListener("click", function () {
+            document.getElementById("cadastroDivAgencia").style.display = "block";
+        });
+    }
+
+    function addAgen() {
+
+
+        document.getElementById("AddAgencia").style.display = "nosne";
+    }
+</script>
