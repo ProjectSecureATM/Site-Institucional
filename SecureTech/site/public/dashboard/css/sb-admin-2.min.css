@@ -641,7 +641,7 @@ pre code {
 }
 
 .formatTexto span{
-    color: #021e46;
+    color: rgb(2, 30, 70);
     font-size: 26px;
     font-weight: bold;
 }

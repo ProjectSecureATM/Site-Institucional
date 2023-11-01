@@ -8,6 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
+    <link rel="shortcut icon" href="../assets/fiveicon.png" type="image/x-icon">
 
     <title>Dashboard</title>
 
@@ -137,7 +138,7 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Gabroh</span>
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Bruno</span>
                                 <img class="img-profile rounded-circle" src="img/undraw_profile.svg">
                             </a>
                             <!-- Dropdown - User Information -->
@@ -239,11 +240,40 @@
                                 <!-- Card Body -->
                                 <div class="card-body">
                                     <div class="chart-area">
-                                        <canvas id="myAreaChart"></canvas>
+                                        <canvas id="myChart"></canvas>
                                     </div>
                                 </div>
                             </div>
                         </div>
+
+                        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+  const ctx = document.getElementById('myChart');
+
+  new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: ['11:00','12:00', '13:00', '14:00', '15:00', '16:00'],
+      datasets: [{
+        label: 'Quantidade de Processos',
+        data: [100, 50, 300, 75, 350, 200],
+        backgroundColor:[
+            'rgb(2, 30, 70)'
+        ],
+        borderWidth: 3
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  });
+</script>
+ 
 
                         <!-- Pie Chart -->
                         <!-- <div class="col-xl-4 col-lg-5">
