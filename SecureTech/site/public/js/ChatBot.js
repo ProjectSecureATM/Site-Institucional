@@ -25,7 +25,7 @@ function opcao1_1() {
               <div id="ContainerResposta">
               <div id="perguntaBot">🤖 Bot: Aqui esta a resposta para sua dúvida:</div><br>
               <div id="RespostaFinalBot">
-              <span id="spanResposta"> Resposta 1</span>
+              <span id="spanResposta"> Dada a natureza de nossa solução, bancos com agências físicas são os que mais se beneficiam. </span>
               </div>
               </div><br>
               <div id="btBot">  
@@ -40,7 +40,7 @@ function opcao2_1() {
     <div id="ContainerResposta">
     <div id="perguntaBot">🤖 Bot: Aqui esta a resposta para sua dúvida:</div><br>
     <div id="RespostaFinalBot">
-    <span id="spanResposta"> Resposta 2 </span>
+    <span id="spanResposta"> O monitoramento do equipamento permite a tomada de decisões preventivas que poupam custos. </span>
     </div>
     </div><br>
     <div id="btBot">  
@@ -55,7 +55,7 @@ function opcao3_1() {
     <div id="ContainerResposta">
     <div id="perguntaBot">🤖 Bot: Aqui esta a resposta para sua dúvida:</div><br>
     <div id="RespostaFinalBot">
-    <span id="spanResposta"> Resposta 3 </span>
+    <span id="spanResposta"> É instalado em cada máquina um software feito para constantemente capturar e enviar informações ao nosso site. </span>
     </div>
     </div><br>
     <div id="btBot">  
@@ -74,7 +74,7 @@ function opcao2() {
         <div><label for="inputProblema">Primeiro nome: </label></div>
         <div id="primeiroNome"><input id="inputProblemaNome" type="text"></div>
         <div><label for="inputProblema">Último nome: </label></div>
-        <div id="ultimoNome"><input id="inputProblemaNomeF" type="text"></div>
+        <div id="ultimoNome"><input id="inputProblemaNome" type="text"></div>
       </div>
   
       <div id="emailTotal">

@@ -146,14 +146,16 @@
 
 #containerRelatarProblema{
     font-size: 15px;    
+    /* display: flex;
+    flex-direction: column; */
 }
 
 
 #NomeSobrenome{
     display: flex;
-    align-items: center;
+    align-items: start;
     justify-content: center;
-    flex-direction: row;
+    flex-direction: column;
     padding-bottom: 1vh;
 }
 
