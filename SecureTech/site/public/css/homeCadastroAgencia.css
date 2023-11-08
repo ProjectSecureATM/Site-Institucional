@@ -1,3 +1,11 @@
+#background{
+    height: auto;
+    width: 100%;
+    background-color: transparent;
+    background-image: url('../assets/backgroundCadastrarAgencia.jpg');
+    background-size: cover;
+}
+
 .divBoxCadastro{
     height: 90vh;
     width: 50%;
@@ -6,14 +14,13 @@
 .boxCadastro{
     display: flex;
     flex-direction: column;
-    justify-content: start;
+    justify-content: center;
     justify-content: space-between;
     align-items: center;
     height: 85vh;
     width: 60%;
-
     border-radius: 3%;
-    background-color: #021e46;
+    background-color: #021e46c9;
 }
 
 .titulo{
@@ -35,11 +42,42 @@
 .conteudoCadastrarAgencia{
     display: flex;
     flex-direction: row;
-    justify-content: space-evenly;
+    justify-content: space-between;
     align-items: center;
+    justify-content: center;
     height: 10vh;
     width: 100%;
     /* background-color: red; */
+}
+
+.format-conteudo{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: auto;
+    width: 90%;
+
+    /* background-color: red; */
+}
+
+.addAgenciaTexto {
+    display: flex;
+    height: auto;
+    justify-content: center;
+    width: 50%;
+    /* background-color: white; */
+}
+
+.addAgenciaTexto #Numero{
+    display: flex;
+    height: auto;
+    justify-content: end;
+    width: 50%;
+    /* background-color: white; */
+}
+
+.addAgenciaInput input{
+    width: 13vw;
 }
 
 .addAgencia{

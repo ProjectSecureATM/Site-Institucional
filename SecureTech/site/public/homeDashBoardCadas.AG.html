@@ -13,17 +13,16 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Abel&family=Fira+Sans:wght@300&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Abel&family=Fira+Sans:wght@300&family=Readex+Pro&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Abel&family=Fira+Sans:wght@300&family=Readex+Pro&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Nunito&display=swap" rel="stylesheet">
     <link rel="shortcut icon" href="./assets/fiveicon.png" type="image/x-icon">
-    <link rel="stylesheet" href="homeCadastroAgencia.css">
+    <link rel="stylesheet" href="css/homeCadastroAgencia.css">
     <link rel="stylesheet" href="dashboard/dashBoard-AddATM.css">
 
 </head>
 
 <body>
-    <header> <!-- principal -->
+    <header id="background" > <!-- principal -->
 
         <div class="NavBar">
             <div class="container-navBar">
@@ -31,21 +30,25 @@
                     <div class="divImgNavBar">
                         <img src="assets/secure_atm_logo.png" alt="">
                     </div>
-
                     <div class="conteudoNavBar">
                         <div class="divTexto">
                             <span>
-                                Agencia
+                                <a href="homeDashBoard.html" >Agencia</a>
                             </span>
                         </div>
 
-                        <div class="divTexto" style="border-bottom: solid 0.6vh #FFCB45;">
+                        <div class="divTexto">
                             <span>
-                                Cadastrar Agencia
+                                <a href="homeDashBoardCadas.AG.html" id="spanPag">Cadastrar Agencia</a>
+                            </span>
+                        </div>
+
+                        <div class="divTexto">
+                            <span>
+                               <a href="homeDashBoardCadas.Fun.html">Cadastrar Funcionario</a> 
                             </span>
                         </div>
                     </div>
-
                     <div onclick="goToLogin()" class="botao-login">
                         <button id="login-home" onclick="goToLogin()">Logout</button>
                     </div>
@@ -64,39 +67,46 @@
                         Cadastrar Agencia
                     </span>
                 </div>
+
+
                 <div class="conteudoCadastrarAgencia">
-                    <div class="addAgenciaTexto">
-                        <span>
-                            xxxxxx:
-                        </span>
+                    <div class="format-conteudo">
+                        <div class="addAgenciaTexto">
+                            <span>
+                                CEP :
+                            </span>
+                        </div>
+                        <div class="addAgenciaInput">
+                            <input type="text">
+                        </div>
                     </div>
-                    <div class="addAgenciaInput">
-                        <input type="text">
-                    </div>
-                    
                 </div>
                 <div class="conteudoCadastrarAgencia">
-                    <div class="addAgenciaTexto">
-                        <span>
-                            xxxxxx:
-                        </span>
+                    <div class="format-conteudo">
+                        <div class="addAgenciaTexto">
+                            <span>
+                                Número :
+                            </span>
+                        </div>
+                        <div class="addAgenciaInput">
+                            <input type="text">
+                        </div>
                     </div>
-                    <div class="addAgenciaInput">
-                        <input type="text">
-                    </div>
-                    
                 </div>
+
                 <div class="conteudoCadastrarAgencia">
-                    <div class="addAgenciaTexto">
-                        <span>
-                            xxxxxx:
-                        </span>
+                    <div class="format-conteudo">
+                        <div class="addAgenciaTexto" id="Numero">
+                            <span>
+                                Número da Agência :
+                            </span>
+                        </div>
+                        <div class="addAgenciaInput">
+                            <input type="text">
+                        </div>
                     </div>
-                    <div class="addAgenciaInput">
-                        <input type="text">
-                    </div>
-                    
                 </div>
+
 
                 <button class="butonAddAgencia">
                     Cadastrar
