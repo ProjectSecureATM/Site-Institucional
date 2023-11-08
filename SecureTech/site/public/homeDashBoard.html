@@ -24,28 +24,35 @@
   <header> <!-- principal -->
     <div class="NavBar">
       <div class="container-navBar">
-        <div class="divNavBar">
-          <div class="divImgNavBar">
-            <img src="assets/secure_atm_logo.png" alt="">
+          <div class="divNavBar">
+              <div class="divImgNavBar">
+                  <img src="assets/secure_atm_logo.png" alt="">
+              </div>
+              <div class="conteudoNavBar">
+                  <div class="divTexto">
+                      <span>
+                          <a href="homeDashBoard.html" id="spanPag">Agencia</a>
+                      </span>
+                  </div>
+
+                  <div class="divTexto">
+                      <span>
+                          <a href="homeDashBoardCadas.AG.html">Cadastrar Agencia</a>
+                      </span>
+                  </div>
+
+                  <div class="divTexto">
+                      <span>
+                         <a href="homeDashBoardCadas.Fun.html">Cadastrar Funcionario</a> 
+                      </span>
+                  </div>
+              </div>
+              <div onclick="goToLogin()" class="botao-login">
+                  <button id="login-home" onclick="goToLogin()">Logout</button>
+              </div>
           </div>
-          <div class="conteudoNavBar">
-            <div class="divTexto">
-              <span style="border-bottom: solid 0.6vh #FFCB45;">
-                Agencia
-              </span>
-            </div>
-            <div class="divTexto">
-              <span>
-                Cadastrar Agencia
-              </span>
-            </div>
-          </div>
-          <div onclick="goToLogin()" class="botao-login">
-            <button id="login-home" onclick="goToLogin()">Logout</button>
-          </div>
-        </div>
       </div>
-    </div>
+  </div>
     <div class="container">
       <div class="banner"> <!-- Banner Home -->
         <div class="container">
