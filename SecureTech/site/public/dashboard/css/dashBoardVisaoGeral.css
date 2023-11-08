@@ -7,6 +7,23 @@
     width: 77vw;
 }
 
+.BoxATMeColuna{
+    display: flex;
+    position: relative;
+    justify-content: space-between;
+    flex-direction: row;
+    height: 700px;
+}
+
+.coluna{
+    height: 70vh; 
+    width: 50vh;
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.377);
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 10px 24px;
+    margin-top: 25px;
+}
+
 .divTitulo{
     display: flex;
     justify-content: center;
@@ -28,12 +45,12 @@
 }
 
 .divLinhaCard{
-    width: 100%;
+    width: 120vh;
     height: auto;
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
-    align-items: center;
+    justify-content: center;
 }
 
 .divBoxCard{
