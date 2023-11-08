@@ -25,23 +25,24 @@
     display: flex;
     align-items: center;
     flex-direction: column;
+    
     justify-content: space-evenly;
 
-    border-radius: 1rem;
+    border-radius: 2rem;
 
-    height: 95%;
-    width: 75%;
+    height: 90%;
+    width: 55%;
 
     background-color: #021e46;
 }
 
 .addATM{
     display: flex;
-    flex-direction: row;
+    align-items: center;
     justify-content: space-between;
 
     height: 5vh;
-    width: 60%;
+    width: 70%;
 
     /* background-color: red; */
 }
@@ -86,7 +87,7 @@
 }
 
 .button {
-    background-color: #fff;
+    background-color: #FFCB45;
     color: #021e46;
     padding: 10px;
     border: none;

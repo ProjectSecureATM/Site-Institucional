@@ -19,8 +19,9 @@
 
     <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="dashBoardVisaoGeral.css">
-    <link rel="stylesheet" href="dashBoard-AddATM.css">
+    <link rel="stylesheet" href="../dashboard/css/dashBoardVisaoGeral.css">
+    <link rel="stylesheet" href="../dashboard/css/dashBoard-AddATM.css">
+    <link rel="shortcut icon" href="../assets/fiveicon.png" type="image/x-icon">
 
 </head>
 
@@ -176,41 +177,14 @@
                                             Modelo:
                                         </span>
                                     </div>
+                                    
                                     <div class="addATMInput">
-                                        <input type="text">
-                                    </div>
-                                </div>
-                                <div class="addATM">
-                                    <div class="addATMTexto">
-                                        <span>
-                                            Sistema Operacional:
-                                        </span>
-                                    </div>
-
-                                    <div class="addATMInput">
-                                        <input type="text">
-                                    </div>
-                                </div>
-                                <div class="addATM">
-                                    <div class="addATMTexto">
-                                        <span>
-                                            Processador:
-                                        </span>
-                                    </div>
-
-                                    <div class="addATMInput">
-                                        <input type="text">
-                                    </div>
-                                </div>
-                                <div class="addATM">
-                                    <div class="addATMTexto">
-                                        <span>
-                                            RAM:
-                                        </span>
-                                    </div>
-
-                                    <div class="addATMInput">
-                                        <input type="text">
+                                        <select name="" id="ATMmodelo">
+                                            <option value="XXXXXXX">Selecione o seu modelo de ATM</option>
+                                            <option value="ATM1">AutoAtendimento</option>
+                                            <option value="ATM2">Móvel</option>
+                                            <option value="ATM3">Com Acessibilidade</option>
+                                        </select>
                                     </div>
                                 </div>
                                 <div class="addATM">
@@ -221,7 +195,18 @@
                                     </div>
 
                                     <div class="addATMInput">
-                                        <input type="text">
+                                        <input type="number">
+                                    </div>
+                                </div>
+                                <div class="addATM">
+                                    <div class="addATMTexto">
+                                        <span>
+                                            Quantidade de RAM (pentes):
+                                        </span>
+                                    </div>
+
+                                    <div class="addATMInput">
+                                        <input type="number">
                                     </div>
                                 </div>
                                 <div class="addATM">
@@ -235,18 +220,6 @@
                                         <input type="text">
                                     </div>
                                 </div>
-                                <div class="addATM">
-                                    <div class="addATMTexto">
-                                        <span>
-                                            Código da Agencia
-                                        </span>
-                                    </div>
-
-                                    <div class="addATMInput">
-                                        <input type="text">
-                                    </div>
-                                </div>
-
                                 <button class="button">
                                     Cadastrar ATM
                                 </button>
