@@ -13,6 +13,11 @@
     justify-content: space-around;
 }
 
+.display-evenly{
+    display: flex;
+    justify-content: space-evenly;
+}
+
 .display-left{
     display: flex;
     justify-content: left;
@@ -29,7 +34,7 @@
     justify-content: center;
     align-items: center;
     width: 100%;
-    height: 100vh;
+    height: 85vh;
 }
 
 .dashBoard{
@@ -37,24 +42,19 @@
     flex-direction: column;
     width: 95%;
     height: 100%;
-
-    background-color: brown;
-
 }
 
 .containerDashComponentes{
     height: auto;
     width: 95%;
 
-    background-color: blanchedalmond;
 }
 
 .tituloDashBoard{
     display: flex;
     flex-direction: row;
     width: 100%;
-    height: 10vh;
-
+    height: 15vh;
 
 }
 
@@ -76,21 +76,35 @@
 
 .titulo{
     display: flex;
-    height: auto;
+    height: 7vh;
     width: 100%;
     justify-content: left;
-    align-items: center;
+    align-items: end;
+}
 
-    background-color: black;
+.titulo-end{
+    display: flex;
+    align-items: end;
+}
+
+.titulo-center{
+    display: flex;
+    align-items: center;
+}
+
+.titulo span{
+    color: #021e46;
+    font-weight: bold;
+    font-size: 20px;
 
 }
 
 .titulo-DashBoard{
-    width: 14%;
+    width: 18%;
 }
 
 .titulo-DashBoard span{
-    font-size: 24px;
+    font-size: 36px;
     color: black;
     font-weight: bold;
 }
@@ -124,16 +138,16 @@
     width: 100%;
     height: auto;
 
-    background-color: rgb(61, 135, 199);
+    /* background-color: rgb(61, 135, 199); */
 }
 
 .divColunaDash{
     display: flex;
     flex-direction: column;
     width:19.5vw;
-    height: 70vh;
+    height: 50vh;
 
-    background-color: rgb(62, 75, 86);
+    /* background-color: rgb(62, 75, 86); */
 }
 
 .justify-between{
@@ -147,9 +161,12 @@
     height: 20vh;
     width: 25%;
 
-    border-radius: 0.25rem;
+    border-radius: 0.35rem;
+    border: 1px solid #e3e6f0;
+    background-color: #fff;
+    background-color: rgb(255, 255, 255);
 
-    background-color: aquamarine;
+    box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, .15);
 }
 
 .conteudoComponente{
@@ -157,17 +174,14 @@
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    height: 16vh;
+    height: 10vh;
     width: 100%;
 
-    background-color: yellow;
 }
 
 .componente{
     height: auto;
     width: auto;
-
-    background-color: red;
 }
 
 .componente span{
@@ -176,7 +190,7 @@
     font-weight: bold;
 }
 
-.imgComponente{
+/* .imgComponente{
     display: flex;
     align-items: right;
     justify-content: end;
@@ -184,7 +198,7 @@
     width: 5vw;
 
     background-color: rgb(18, 38, 38);
-}
+} */
 
 .boxTimer{
     display: flex;
@@ -195,7 +209,13 @@
     height: 20vh;
     width: 100%;
 
-    background-color: blueviolet;
+    border-radius: 0.35rem;
+    border: 1px solid #e3e6f0;
+    background-color: #fff;
+    background-color: rgb(255, 255, 255);
+
+    box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, .15);
+
 }
 
 .divTimer{
@@ -203,46 +223,57 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 20vh;
+    height: 100%;
     width: 100%;
 
 
-    background-color: aqua;
+    /* background-color: aqua; */
 }
 
 .timer{
     display: flex;
-    height: 5vh;
+    height: 10vh;
     width: 10vw;
     justify-content: center;
     align-items: center;
 
-    background-color: blueviolet;
+    /* background-color: blueviolet; */
+}
+
+.timer span{
+    color: #021e46;
+    font-weight: bold;
+    font-size: 20px;
 }
 
 .boxGrafico{
     display: flex;
-    justify-content: center;
+    justify-content: right;
     align-items: center;
     width: 75%;
     height: 100%;
 
-    background-color: green;
+    /* background-color: green; */
 }
 
 .grafico{
     display: flex;
     justify-content: center;
-    height: 80%;
+    height: 86.5%;
     width: 95%;
 
-    background-color: yellow;
+    border-radius: 0.35rem;
+    border: 1px solid #e3e6f0;
+    background-color: #fff;
+    background-color: rgb(255, 255, 255);
+
+    box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, .15);
 }
 
 .divGrafico{
     display: flex;
-    height: 92%;
+    height: 83%;
     width: 100%;
 
-    background-color: #021e46;
+    background-color: blanchedalmond;
 }
