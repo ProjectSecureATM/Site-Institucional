@@ -39,12 +39,15 @@ body {
     position: relative;
 }
 
-.blue {
+.banner {
     position: absolute;
-    height: 120vh;
+    height: 130vh;
     width: 100%;
     margin: 0;
     background-color: #021e46;
+    background-image: url('../assets/bannerFaleConosco.jpeg');
+    background-position: cover;
+    background-repeat: no-repeat;
 }
 
 .logo img {
@@ -193,7 +196,7 @@ a {
 
 .text h1 {
     color: white;
-    font-size: 4.5vh;
+    font-size: 6.5vh;
 }
 
 .text span {
@@ -207,49 +210,70 @@ a {
     align-items: center;
     flex-direction: column;
     justify-content: center;
+    background-color: #FFCB45;
+}
+
+.text-left{
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+}
+
+.localizacao {
+    width: 100%;
+    height: 50%;
+}
+
+.localizacao p{
+    width: 70%;
+    height: 50%;
+}
+
+.contato {
+    width: 100%;
+    height: 50%;
 }
 
 .right {
     width: 48%;
-    height: inherit;
-    background-image: url('../assets/thumbnail_depositphotos_137474258-stock-photo-close-up-of-hand-entering.jpg');
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: 50%;
+    height: 65vh;
     display: flex;
     align-items: center;
     justify-content: center;
-    flex-direction: column;
 }
 
 .text-right {
     display: flex;
     flex-direction: column;
     width: 83%;
-    color: white;
+    color: #021e46;
     text-align: center;
-    font-size: 2.8vh;
-    height: 17vh;
+    font-size: 3.4vh;
+    height: 32vh;
     justify-content: space-between;
     text-shadow: 2px 1px 6px #00000091;
 }
 
 .text-right span {
-    color: #FFCB45;
+    color: #f1b929;
+    text-decoration: double;
 }
 
 .text-right button {
-    width: 60%;
+    width: 50%;
     background-color: #021e46;
     color: white;
     border-style: none;
-    height: 5vh;
     align-self: center;
     border-radius: 5px;
     font-weight: 900;
     font-size: 2.5vh;
     cursor: pointer;
     transition: 0.3s ease-in-out;
+    margin-top: 5vh;
+    height: 6vh;
 }
 
 .text-right button:hover {
@@ -268,53 +292,34 @@ a {
     justify-content: center;
 }
 
-.content-left span {
-    color: #021e46;
-}
-
-#form {
+.redes-sociais{
     display: flex;
+    justify-content: space-evenly;
     flex-direction: column;
-    height: 55vh;
-    justify-content: space-around;
-    width: 80%;
+    width: 60%;
+    height: 50%;
 }
 
-#form input {
-    border: 0;
-    height: 5vh;
-    font-size: 2.6vh;
-    color: rgb(0, 0, 0);
-    font-weight: 100;
+.contato h1, .redes-sociais h1, .localizacao h1 {
+    color: #295897;
+}
+
+.footerSocialMidia {
+    flex-direction: row;
     width: 100%;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.318);
-    transition: 0.3s ease-in-out;
+    height: 40%;
 }
 
-#form input:focus {
-    outline: none;
-    border-bottom: 1.4px solid #000000af;
+.footerSocialMidia {
+    display: flex;
+    top: 9vh;
+    left: 11vw;
+    gap: 2rem;
+    margin: 0;
 }
 
-#form button {
-    width: 100%;
-    background-color: #021e46;
-    color: white;
-    border-style: none;
-    height: 5.5vh;
-    align-self: center;
-    border-radius: 5px;
-    font-size: 2.5vh;
-    justify-self: end;
-    cursor: pointer;
-    transition: 0.3s ease-in-out;
-}
-
-#form button:hover {
-    transform: scale(1.08);
-    transition: 1s;
-    background-color: #FFCB45;
-    color: #021e46;
+.bgWhite, .bgYellow {
+    background-color: #ffffff;
 }
 
 .chatbot-container {
@@ -378,55 +383,6 @@ a {
     margin-top: 5%;
 }
 
-.footer {
-    display: flex;
-    width: 93rem;
-    height: 20rem;
-    background-color: #FFCB45;
-}
-
-.footerContainer {
-    display: flex;
-    flex-direction: column;
-    width: 80%;
-    height: 85%;
-    margin: auto;
-    margin-bottom: 0;
-}
-
-.footerContent {
-    display: flex;
-    width: 100%;
-    height: 70%;
-}
-
-.footerMedia {
-    display: flex;
-    flex-direction: column;
-    width: 40%;
-    height: 100%;
-}
-
-.footerLogo {
-    display: flex;
-    width: 100%;
-    height: 70%;
-}
-
-.footerLogo img {
-    width: auto;
-    height: 20vh;
-    margin-left: 5%;
-}
-
-.footerSocialMidia {
-    display: flex;
-    justify-content: space-evenly;
-    flex-direction: row;
-    width: 59%;
-    height: 30%;
-}
-
 .socialMedia {
     width: 2.81rem;
     height: 2.375rem;
@@ -441,97 +397,10 @@ a {
     font-size: x-large;
 }
 
-.bgYellow {
-    background-color: #ffffff;
-}
-
-.bgWhite {
-    background-color: white;
-}
-
-.footerText {
-    display: flex;
-    width: 60%;
-    height: 100%;
-}
-
-.footerInfo {
-    display: flex;
-    flex-direction: column;
-    width: 33.3%;
-    height: 53%;
-    justify-content: space-around;
-}
-
-.footerInfo span,
-.footerInfo a {
-    font-weight: lighter;
-    color: black;
-    text-decoration: none;
-}
-
-.footerInfo a:hover,
-span:hover {
-    font-weight: bold;
-    cursor: pointer;
-    color: #021e46;
-}
-
-.footerRights {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    height: 25%;
-    border-top-width: 1px;
-    border-top-style: outset;
-    border-top-color: black;
-}
-
 @media screen and (max-width: 1024px) {
 
     .opt {
         width: 60vw;
-    }
-
-
-
-    .footer {
-        height: 25vh;
-    }
-
-    .footerLogo img {
-        width: fit-content;
-        height: 13vh;
-        position: relative;
-        right: 3rem;
-        bottom: 1rem;
-    }
-
-    .footerMedia {
-        display: flex;
-        flex-direction: row;
-    }
-
-    .footerSocialMidia {
-        display: flex;
-        position: relative;
-        top: 9vh;
-        left: 11vw;
-        gap: 2rem;
-        margin: 0;
-    }
-
-    .bgWhite {
-        padding: 1vh 2vw;
-    }
-
-    .bgYellow {
-        padding: 1vh 2.5vw;
-    }
-
-    .footer {
-        width: 100%;
     }
 
   .div_menu{
