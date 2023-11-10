@@ -120,8 +120,11 @@ function cadastrarATM(req, res) {
 function cadastrarAgencia(req, res) {
     // Crie uma variável que vá recuperar os valores do arquivo cadastro.html
     var NAgencia = req.body.NAgenciaServer;
-    var qtdATM = req.body.qtdATMServer;
-    var codigoEmp = req.body.codigoEmpServer;
+    var cep = req.body.cep
+    var numero = req.body.numero
+    //var qtdATM = req.body.qtdATMServer; Variavel antiga
+    //var codigoEmp = req.body.codigoEmpServer; Variavel antiga
+
     // Faça as validações dos valores
     if (NAgencia == undefined) {
         res.status(400).send("Seu nome está undefined!");
@@ -132,7 +135,7 @@ function cadastrarAgencia(req, res) {
     }else  {
 
         // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
-        usuarioModel.cadastrarAgencia(NAgencia, qtdATM, codigoEmp)
+        usuarioModel.cadastrarAgencia(NAgencia, cep, numero)
             .then(
                 function (resultado) {
                     res.json(resultado);

@@ -15,8 +15,10 @@ function cadastrar(nome, email, senha, codigo) {
     
     // Insira exatamente a query do banco aqui, lembrando da nomenclatura exata nos valores
     //  e na ordem de inserção dos dados.
+
+    //código é a fkAgencia?? (Paulo_10/11)
     var instrucao = `
-        INSERT INTO funcionario (nome, email, senha, fkAgencia) VALUES ('${nome}', '${email}', '${senha}', '${codigo}');
+        INSERT INTO usuario (nome, email, senha, fkAgencia) VALUES ('${nome}', '${email}', '${senha}', '${codigo}');
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
@@ -34,11 +36,13 @@ function cadastrarATM(modelo, so, processador, ram, qtdDiscos, fabricante, codig
     return database.executar(instrucao);
 }
 
-function cadastrarAgencia(NAgencia, qtdATM, codigoEmp) {
-    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrar():", NAgencia, qtdATM, codigoEmp);
+function cadastrarAgencia(NAgencia, cep, numero) {
+    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrar():", NAgencia, cep, numero);
     
     // Insira exatamente a query do banco aqui, lembrando da nomenclatura exata nos valores
     //  e na ordem de inserção dos dados.
+
+    //Checar campos no banco (não estão coerentes com a modelagem)_Paulo10/11/2023
     var instrucao = `
         INSERT INTO agencia (nAgencia, QtdATM, fkEmpresa) VALUES ('${NAgencia}', '${qtdATM}', '${codigoEmp}');
     `;
