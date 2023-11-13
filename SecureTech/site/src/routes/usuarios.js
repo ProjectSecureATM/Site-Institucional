@@ -16,6 +16,15 @@ router.post("/cadastrarAgencia", function (req, res) {
     usuarioController.cadastrarAgencia(req, res);
 })
 
+// Em algum lugar do seu arquivo de rota
+router.post("/cadastrarAgencia", function (req, res) {
+    // Obtenha os dados do corpo da requisição
+    const { NAgencia, cep, numero, fkAgenciaLoc } = req.body;
+
+    // Chame a função de cadastro da agência no seu controller
+    usuarioController.cadastrarAgencia(req, res, NAgencia, cep, numero, fkAgenciaLoc);
+});
+
 router.post("/autenticar", function (req, res) {
     usuarioController.autenticar(req, res);
 })

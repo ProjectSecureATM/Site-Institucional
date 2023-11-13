@@ -65,22 +65,19 @@
 
             <div class="cadastro">
                 <div class="text-field">
-                    <!-- <label for="nome">Nome</label> -->
-                    <input type="text" id="nome_input" placeholder="Número da Agência">
+                    <input type="text" id="NAgencia_input" placeholder="Número da Agência">
                     <div id="erro_nome"></div>
                 </div>
                 <div class="text-field">
-                    <!-- <label for="email">Email</label> -->
-                    <input type="text" id="email_input" placeholder="CEP">
+                    <input type="text" id="cep_input" placeholder="CEP">
                     <div id="erro_email"></div>
                 </div>
                 <div class="text-field">
-                    <!-- <label for="senha">Criar Senha</label> -->
-                    <input type="password" id="senha_input" placeholder="Número">
+                    <input type="number" id="numero_input" placeholder="Número">
                     <div id="erro_senha"></div>
                 </div>
             </div>
-            <button onclick="cadastrar()" class="botao-cadastro-user botao-amarelo">Cadastrar</button>
+            <button onclick="cadastrarAgencia()" class="botao-cadastro-user botao-amarelo">Cadastrar</button>
         </div>
     </header>
 </body>
@@ -111,8 +108,6 @@
     }
 
     function addAgen() {
-
-
         document.getElementById("AddAgencia").style.display = "nosne";
     }
 </script>
