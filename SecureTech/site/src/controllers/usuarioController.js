@@ -41,7 +41,8 @@ function cadastrar(req, res) {
     var nome = req.body.nomeServer;
     var email = req.body.emailServer;
     var senha = req.body.senhaServer;
-    var codigo = req.body.codigoServer
+    var idUsuario = req.body.idUsuarioServer;
+    
     // Faça as validações dos valores
     if (nome == undefined) {
         res.status(400).send("Seu nome está undefined!");
@@ -49,12 +50,10 @@ function cadastrar(req, res) {
         res.status(400).send("Seu email está undefined!");
     } else if (senha == undefined) {
         res.status(400).send("Sua senha está undefined!");
-    }else if (codigo == undefined) {
-        res.status(400).send("Seu código está undefined!");
-    }else  {
+    }else {
 
         // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
-        usuarioModel.cadastrar(nome, email, senha, codigo)
+        usuarioModel.cadastrar(nome, email, senha, idUsuario)
             .then(
                 function (resultado) {
                     res.json(resultado);
@@ -118,37 +117,27 @@ function cadastrarATM(req, res) {
 }
 
 function cadastrarAgencia(req, res) {
-    // Crie uma variável que vá recuperar os valores do arquivo cadastro.html
-    var NAgencia = req.body.NAgenciaServer;
-    var qtdATM = req.body.qtdATMServer;
-    var codigoEmp = req.body.codigoEmpServer;
-    // Faça as validações dos valores
-    if (NAgencia == undefined) {
-        res.status(400).send("Seu nome está undefined!");
-    } else if (qtdATM == undefined) {
-        res.status(400).send("Seu email está undefined!");
-    } else if (codigoEmp == undefined) {
-        res.status(400).send("Sua senha está undefined!");
-    }else  {
+    // Obtenha os dados do corpo da solicitação
+    const { NAgenciaServer, CEPServer, numeroServer, idUsuarioServer } = req.body;
 
-        // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
-        usuarioModel.cadastrarAgencia(NAgencia, qtdATM, codigoEmp)
-            .then(
-                function (resultado) {
-                    res.json(resultado);
-                }
-            ).catch(
-                function (erro) {
-                    console.log(erro);
-                    console.log(
-                        "\nHouve um erro ao realizar o cadastro da Agência! Erro: ",
-                        erro.sqlMessage
-                    );
-                    res.status(500).json(erro.sqlMessage);
-                }
-            );
+    // Validação dos campos obrigatórios
+    if (!NAgenciaServer || !CEPServer || !numeroServer || !idUsuarioServer) {
+        return res.status(400).send("Preencha todos os campos obrigatórios");
     }
+
+    // Chame a função no modelo para cadastrar a agência
+    usuarioModel.cadastrarAgencia(NAgenciaServer, CEPServer, numeroServer, idUsuarioServer)
+        .then(resultados => {
+            // Envie uma resposta ao cliente
+            return res.json({ resultado: 'Algum resultado', resultados });
+        })
+        .catch(error => {
+            // Trate erros durante a execução do processo
+            console.error("Erro durante o cadastro da agência:", error);
+            return res.status(500).json(error);
+        });
 }
+
 
 function relatarProblema(req, res) {
     var nome = req.body.nomeServer

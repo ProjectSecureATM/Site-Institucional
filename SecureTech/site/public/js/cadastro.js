@@ -4,15 +4,16 @@ function cadastrar() {
     var nomeVar = nome_input.value;
     var emailVar = email_input.value;
     var senhaVar = senha_input.value;
-    var confirmacaoSenhaVar = confirmacao_senha_input.value;
-    var codigoVar = codigo_input.value;
 
-    erro_email.innerHTML = "";
-    erro_senha.innerHTML = "";
-    erro_confirmar_senha.innerHTML = "";
-    erro_codigo.innerHTML = "";
+    const idUsuario = sessionStorage.id_usuario;
+    
 
-    if (nomeVar == "" || emailVar == "" || senhaVar == "" || confirmacaoSenhaVar == "" || codigoVar == "") {
+    // erro_email.innerHTML = "";
+    // erro_senha.innerHTML = "";
+    // erro_confirmar_senha.innerHTML = "";
+    // erro_codigo.innerHTML = "";
+
+    if (nomeVar == "" || emailVar == "" || senhaVar == "" || idUsuario == "" ) {
         alert("Preencha os campos vazios")
 
     } else {
@@ -50,17 +51,12 @@ function cadastrar() {
 
         }
 
-        else if
-            (confirmacaoSenhaVar != senhaVar) {
-            erro_confirmar_senha.innerHTML = `A senha de confirmação não corresponde à senha inserida. Por favor, tente novamente`
-            input_confirmar_senha.className = "invalido"
+        // else if
+        //     (confirmacaoSenhaVar != senhaVar) {
+        //     erro_confirmar_senha.innerHTML = `A senha de confirmação não corresponde à senha inserida. Por favor, tente novamente`
+        //     input_confirmar_senha.className = "invalido"
 
-        } else if (codigoVar == '0121') {
-            codigoVar = 1
-            
-        } else if (codigoVar == '0242') {
-            codigoVar = 2
-        }
+        // } 
         window.location = 'index.html'
     }
 
@@ -74,7 +70,7 @@ function cadastrar() {
             nomeServer: nomeVar,
             emailServer: emailVar,
             senhaServer: senhaVar,
-            codigoServer: codigoVar,
+            idUsuarioServer: idUsuario
         })
     })
 

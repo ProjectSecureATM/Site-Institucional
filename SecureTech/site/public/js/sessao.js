@@ -2,10 +2,10 @@
 function validarSessao() {
     // aguardar();
 
-    var email = sessionStorage.email_Funcionario;
-    var nome = sessionStorage.nome_Funcionario;
-    var id = sessionStorage.id_funcionario_Funcionario;
-    var idAgencia = sessionStorage.fkAgencia_Funcionario;
+    var email = sessionStorage.email_usuario;
+    var nome = sessionStorage.nome_usuario;
+    var id = sessionStorage.id_funcionario_usuario;
+    var idAgencia = sessionStorage.fkAgencia_usuario;
 
     var b_usuario = document.getElementById("b_usuario");
 

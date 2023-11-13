@@ -6,14 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SecureATM | Home do Usuário </title>
     <script src="./js/sessao.js"></script>
-    <script src="./js/crudsAgenciaECadastro.js"></script>
+    <script src="./js/cadastro.js"></script>
 
     <link rel="stylesheet" href="css/chatBot.css">
     <link rel="stylesheet" href="css/homeCadastrado.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Abel&family=Fira+Sans:wght@300&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Abel&family=Fira+Sans:wght@300&family=Readex+Pro&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Abel&family=Fira+Sans:wght@300&family=Readex+Pro&display=swap"
+        rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Nunito&display=swap" rel="stylesheet">
     <link rel="shortcut icon" href="./assets/fiveicon.png" type="image/x-icon">
     <link rel="stylesheet" href="css/homeCadastroAgencia.css">
@@ -21,8 +22,8 @@
 
 </head>
 
-<body>
-    <header id="background" > <!-- principal -->
+<body >
+    <header id="background"> <!-- principal -->
 
         <div class="NavBar">
             <div class="container-navBar">
@@ -33,19 +34,19 @@
                     <div class="conteudoNavBar">
                         <div class="divTexto">
                             <span>
-                                <a href="homeDashBoard.html" >Agencia</a>
+                                <a href="homeDashBoard.html">Agencia</a>
                             </span>
                         </div>
 
                         <div class="divTexto">
                             <span>
-                                <a href="homeDashBoardCadas.AG.html" >Cadastrar Agencia</a>
+                                <a href="homeDashBoardCadas.AG.html">Cadastrar Agencia</a>
                             </span>
                         </div>
 
                         <div class="divTexto">
                             <span>
-                               <a href="homeDashBoardCadas.Fun.html" id="spanPag">Cadastrar Funcionario</a> 
+                                <a href="homeDashBoardCadas.Fun.html" id="spanPag">Cadastrar Usuário</a>
                             </span>
                         </div>
                     </div>
@@ -56,74 +57,38 @@
             </div>
         </div>
 
-        <div class="bd-img-banner">
-            
-        </div>
-        
-        <div class="divBoxCadastro">
-            <div class="boxCadastro">
-                <div class="titulo">
-                    <span>
-                        Cadastrar Usuário
-                    </span>
-                </div>
-
-                <div class="conteudoCadastrarAgencia">
-                    <div class="format-conteudo">
-                        <div class="addAgenciaTexto" id="Numero">
-                            <span>
-                                Nome Completo :
-                            </span>
-                        </div>
-                        <div class="addAgenciaInput">
-                            <input type="text">
-                        </div>
-                    </div>
-                </div>
-
-                <div class="conteudoCadastrarAgencia">
-                    <div class="format-conteudo">
-                        <div class="addAgenciaTexto" id="Numero">
-                            <span>
-                                Email :
-                            </span>
-                        </div>
-                        <div class="addAgenciaInput">
-                            <input type="text">
-                        </div>
-                    </div>
-                </div>
-
-
-                <div class="conteudoCadastrarAgencia">
-                    <div class="format-conteudo">
-                        <div class="addAgenciaTexto" id="Numero">
-                            <span>
-                                Senha :
-                            </span>
-                        </div>
-                        <div class="addAgenciaInput">
-                            <input type="text">
-                        </div>
-                    </div>
-                </div>
-                    
-                
-
-                <button class="butonAddAgencia">
-                    Cadastrar
-                </button>
-                
+        <div class="card-cadastro-user">
+            <div class="info-user">
+                <sapn class="titulo-user2">Crie uma conta de usuário</span>
+                <p class="texto-user">Preencha os dados abaixo para criar sua conta</p>
             </div>
+
+            <div class="cadastro">
+                <div class="text-field">
+                    <!-- <label for="nome">Nome</label> -->
+                    <input type="text" id="nome_input" placeholder="Nome">
+                    <div id="erro_nome"></div>
+                </div>
+                <div class="text-field">
+                    <!-- <label for="email">Email</label> -->
+                    <input type="text" id="email_input" placeholder="Email">
+                    <div id="erro_email"></div>
+                </div>
+                <div class="text-field">
+                    <!-- <label for="senha">Criar Senha</label> -->
+                    <input type="password" id="senha_input" placeholder="Senha">
+                    <div id="erro_senha"></div>
+                </div>
+                <div class="text-field">
+                    <!-- <label for="confirmar-senha">Confirmar Senha</label> -->
+                    <input type="password" id="confirmacao_senha_input" placeholder="Confirmação de senha">
+                    <div id="erro_confirmar_senha"></div>
+                </div>
+            </div>
+            <button onclick="cadastrar()" class="botao-cadastro-user botao-amarelo">Cadastrar</button>
         </div>
-
-
     </header>
 </body>
-<!-- Fim Agências -->
-
-<!-- Inicio Rodapé -->
-<!-- Fim Rodapé -->
 <script>
     function goToDashBoard() {
         window.location = "DashBoard-VisaoGeral.html"
