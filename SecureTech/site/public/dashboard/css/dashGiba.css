@@ -1,0 +1,22 @@
+.chart-area {
+    width: 40vw;
+    height: 40vh;
+    display: flex;
+
+}
+
+#myChart{
+    position: relative;
+    width: 80%;
+    justify-content: center;
+    display: flex;
+    margin: auto;
+}
+
+#myChart2{
+    position: relative;
+    width: 80%;
+    justify-content: center;
+    display: flex;
+    margin: auto;
+}
