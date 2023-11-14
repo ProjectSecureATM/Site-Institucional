@@ -31,6 +31,7 @@ function verificar() {
                 sessionStorage.nome_usuario = json.nome;
                 sessionStorage.id_usuario = json.idUsuario;
                 sessionStorage.fkAgencia_usuario = json.fkAgencia;
+                sessionStorage.fkEmpUsuario_usuario = json.fkEmpUsuario;
             
                 setTimeout(function () {
                     window.location = "./homeDashBoard.html";

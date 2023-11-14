@@ -74,31 +74,24 @@ function cadastrar(req, res) {
 function cadastrarATM(req, res) {
     // Crie uma variável que vá recuperar os valores do arquivo cadastro.html
     var modelo = req.body.modeloServer;
-    var so = req.body.soServer;
-    var processador = req.body.processadorServer;
-    var ram = req.body.ramServer;
-    var qtdDiscos = req.body.qtdDiscosServer;
+    var qtdRAM = req.body.qtdRAMServer;
+    var qtdDiscos = req.body.qtdDiscoServer;
     var fabricante = req.body.fabricanteServer;
-    var codigoAgencia = req.body.codigoAgenciaServer
+    var fkAgenciaID = req.body.fkAgenciaIDServer;
+    var fkAgenciaEmp = req.body.fkAgenciaEmpServer
     // Faça as validações dos valores
     if (modelo == undefined) {
         res.status(400).send("Seu nome está undefined!");
-    } else if (so == undefined) {
-        res.status(400).send("Seu email está undefined!");
-    } else if (processador == undefined) {
-        res.status(400).send("Sua senha está undefined!");
-    }else if (ram == undefined) {
+    } else if (qtdRAM == undefined) {
         res.status(400).send("Seu código está undefined!");
     }else if (qtdDiscos == undefined) {
         res.status(400).send("Seu código está undefined!");
     }else if (fabricante == undefined) {
         res.status(400).send("Seu código está undefined!");
-    }else if (codigoAgencia == undefined) {
-        res.status(400).send("Seu código está undefined!");
-    }else  {
+    }else {
 
         // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
-        usuarioModel.cadastrarATM(modelo, so, processador, ram, qtdDiscos, fabricante, codigoAgencia)
+        usuarioModel.cadastrarATM(modelo, fabricante, fkAgenciaID, fkAgenciaEmp, qtdRAM, qtdDiscos)
             .then(
                 function (resultado) {
                     res.json(resultado);

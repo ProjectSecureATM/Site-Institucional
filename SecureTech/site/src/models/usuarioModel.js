@@ -60,48 +60,35 @@ function cadastrar(nome, email, senha, idUsuario) {
 }
 
 
-function cadastrarATM(modelo, qtdRAM, qtdDISCO, fabricante, idUsuario) {
-    const instrucaoFkAgenciaEmpresa = `SELECT fkAgenciaEmpresa FROM usuario WHERE idUsuario = ${idUsuario}`;
+function cadastrarATM(modelo, fabricante, fkAgenciaID, fkAgenciaEmp, qtdRAM, qtdDiscos) {
 
-    console.log("Executando a instrução SQL de obtenção de fkEmpresa: \n" + instrucaoFkAgenciaEmpresa);
+    // Inicie a instrução de inserção da ATM
+    const instrucaoATM = `INSERT INTO ATM (Modelo, Fabricante, AgenciaID, fkAgenciaEmp) VALUES ('${modelo}', '${fabricante}', ${fkAgenciaID}, ${fkAgenciaEmp})`;
 
-    // Execute a instrução para obter o fkEmpresa do usuário
-    return database.executar(instrucaoFkAgenciaEmpresa)
-        .then((resultados) => {
-            // Obtenha o valor de fkEmpUsuario
-            const fkAgenciaEmpresa = resultados[0].fkAgenciaEmpresa;
 
-            // Verifique se fkEmpUsuario não é null
-            if (fkAgenciaEmpresa === null) {
-                throw new Error("Valor de fkAgenciaEmpresa é NULL. Não é possível cadastrar a agência.");
-            }
+    // Inicie a instrução de inserção dos componentes
 
-            // Agora, inicie a instrução de inserção da agência com o fkEmpUsuario obtido
-            const instrucaoATM = `INSERT INTO ATM (modelo, fabricante, AgenciaID, fkAgenciaEmpresa) VALUES ('${modelo}', '${fabricante}', '${AgenciaID}', '${fkAgenciaUsuario}')`;
+    const instrucaoComponenteRAM = `INSERT INTO Componentes (quantidade, CodigoComponenteID, ATMID, TipoID) VALUES ('${qtdRAM}', 1, ${fkAgenciaID}, 2)`;
+    const instrucaoComponenteDisco = `INSERT INTO Componentes (quantidade, CodigoComponenteID, ATMID, TipoID) VALUES ('${qtdDiscos}', 2, ${fkAgenciaID}, 1)`;
+    const instrucaoComponenteCPU = `INSERT INTO Componentes (quantidade, CodigoComponenteID, ATMID, TipoID) VALUES (1, 3, ${fkAgenciaID}, 1)`;
 
-            // Inicie a instrução de inserção da localização, usando o mesmo valor de idAgen da inserção anterior
-    
-            const instrucaoComponentesRAM = `
-            INSERT INTO Componentes (quantidade, CodigoComponenteID, ATMID, TipoID)
-            SELECT '${qtdRAM}', FROM Componentes JOIN CodigoComponentes ON CodigoComponenteID = '${CodigoComponenteID}'  JOIN ATM ON idATM = '${ATMID}' JOIN Tipo ON idTipo = '${TipoID})`; 
-            
-            const instrucaoComponentesDISCO = `
-            INSERT INTO Componentes (quantidade, CodigoComponenteID, ATMID, TipoID)
-            SELECT '${qtdDISCO}', FROM Componentes JOIN CodigoComponentes ON CodigoComponenteID = '${CodigoComponenteID}'  JOIN ATM ON idATM = '${ATMID}' JOIN Tipo ON idTipo = '${TipoID}' 
-            `;
+    console.log("Executando a instrução SQL de ATM: \n" + instrucaoATM);
+    console.log("Instrução Componente RAM:", instrucaoComponenteRAM);
+    console.log("Instrução Componente Disco:", instrucaoComponenteDisco);
+    console.log("Instrução Componente CPU:", instrucaoComponenteCPU);
 
-        console.log("Executando a instrução SQL de agência: \n" + instrucaoATM);
+    // Execute a instrução de inserção da ATM
+    return database.executar(instrucaoATM)
+        .then(() => {
+            console.log("ATM cadastrada com sucesso. Executando instruções SQL de Componentes: \n", instrucaoComponenteRAM, instrucaoComponenteDisco, instrucaoComponenteCPU);
 
-        // Execute a instrução de inserção da agência
-        return database.executar(instrucaoATM)
-            .then(() => {
-                console.log("Agência cadastrada com sucesso. Executando instrução SQL de localização: \n" + instrucaoComponentesRAM, instrucaoComponentesDISCO);
-
-                // Execute a instrução de inserção da localização
-                return database.executar(instrucaoComponentesRAM, instrucaoComponentesDISCO);
-            });
+            // Execute as instruções de inserção dos componentes
+            return database.executar(instrucaoComponenteRAM)
+                .then(() => database.executar(instrucaoComponenteDisco))
+                .then(() => database.executar(instrucaoComponenteCPU));
         });
 }
+
 
 function obterFkEmpresa(consulta) {
     return database.executar(consulta);

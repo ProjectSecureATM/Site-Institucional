@@ -4,12 +4,13 @@ function validarSessao() {
 
     var email = sessionStorage.email_usuario;
     var nome = sessionStorage.nome_usuario;
-    var id = sessionStorage.id_funcionario_usuario;
+    var id = sessionStorage.id_usuario;
     var idAgencia = sessionStorage.fkAgencia_usuario;
+    var idEmpresa = sessionStorage.fkEmpUsuario_usuario;
 
     var b_usuario = document.getElementById("b_usuario");
 
-    if (email != null && nome != null && id != null && idAgencia != null) {
+    if (email != null && nome != null && id != null && idAgencia != null && idEmpresa != null) {
          window.alert(`Seja bem-vindo, ${nome}!`);
         b_usuario.innerHTML = nome;
 

@@ -1,10 +1,10 @@
 function validarSessao() {
     // aguardar();
 
-    var email = sessionStorage.email_Funcionario;
-    var nome = sessionStorage.nome_Funcionario;
-    var id = sessionStorage.id_funcionario_Funcionario;
-    var idAgencia = sessionStorage.fkAgencia_Funcionario;
+    var email = sessionStorage.email_usuario;
+    var nome = sessionStorage.nome_usuario;
+    var id = sessionStorage.id_funcionario_usuario;
+    var idAgencia = sessionStorage.fkAgencia_usuario;
 
     var b_usuario = document.getElementById("b_usuario");
 
@@ -20,49 +20,34 @@ function validarSessao() {
 }
 
 function cadastrarATM() {
-    var modeloVar = modelo.value;
-    var soVar = so.value;
-    var processadorVar = processador.value;
-    var ramVar = ram.value;
-    var qtdDiscosVar = qtd_discos.value;
-    var fabricanteVar = ram.value;
-    var codigoAgenciaVar = Agencia.value;
+    const modeloVar = modelo_input.value;
+    const fabricanteVar = fabricante_input.value;
+    const qtdDiscoVar = qtdDisco_input.value; // Adicione .value aqui
+    const qtdRAMVar = qtdRAM_input.value; // Adicione .value aqui
+    const fkAgenciaIDVar = parseInt(sessionStorage.fkAgencia_usuario, 10); // Converta para número
+    const fkAgenciaEmpVar = parseInt(sessionStorage.fkEmpUsuario_usuario, 10); // Converta para número
 
-    // erro_modelo.innerHTML = "";
-    // erro_so.innerHTML = "";
-    // erro_processador.innerHTML = "";
-    // erro_ram.innerHTML = "";
-    // erro_qtdDiscos.innerHTML = "";
-    // erro_fabricante.innerHTML = "";
-    // erro_Agencia.innerHTML = "";
-
-    if (modeloVar == "" || soVar == "" || processadorVar == "" || ramVar == "" || qtdDiscosVar == "" || fabricanteVar == "" || codigoAgenciaVar == "") {
-        alert("Preencha os campos vazios")
-
+    if (modeloVar == "" || fabricanteVar == "") {
+        alert("Preencha os campos vazios");
     } else {
-          if (codigoAgenciaVar == '0121') {
-            codigoAgenciaVar = 1
-            
-        } else if (codigoAgenciaVar == '0242') {
-            codigoAgenciaVar = 2
-        }
-    }
-    fetch("/usuarios/cadastrarATM", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-            modeloServer: modeloVar,
-            soServer: soVar,
-            processadorServer: processadorVar,
-            ramServer: ramVar,
-            qtdDiscosServer: qtdDiscosVar,
-            fabricanteServer: fabricanteVar,
-            codigoAgenciaServer: codigoAgenciaVar
-        })
-    })
+        // Restante do código...
 
+        // Agora, você pode enviar os dados para o servidor
+        fetch("/usuarios/cadastrarATM", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                modeloServer: modeloVar,
+                fabricanteServer: fabricanteVar,
+                qtdDiscoServer: qtdDiscoVar,
+                qtdRAMServer: qtdRAMVar,
+                fkAgenciaIDServer: fkAgenciaIDVar,
+                fkAgenciaEmpServer: fkAgenciaEmpVar
+            })
+        });
+    }
 }
 
 

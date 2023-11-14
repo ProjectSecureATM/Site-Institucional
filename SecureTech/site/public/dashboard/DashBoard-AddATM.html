@@ -23,6 +23,9 @@
     <link rel="stylesheet" href="../dashboard/css/dashBoard-AddATM.css">
     <link rel="shortcut icon" href="../assets/fiveicon.png" type="image/x-icon">
 
+    <script src="../js/sessao.js"></script>
+    <script src="../js/crudsAgenciaECadastro.js"></script>
+
 </head>
 
 <body id="page-top">
@@ -99,7 +102,7 @@
                 <!-- Topbar -->
                 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
                     <button class="buttonNavBar" >
-                        <a href="../homeDashBoard.html">Voltar para Agencia</a>
+                        <a href="../homeDashBoard.html">Voltar para Agência</a>
                     </button>
 
                     <!-- Sidebar Toggle (Topbar) -->
@@ -181,10 +184,21 @@
                                     <div class="addATMInput">
                                         <select name="" id="modelo_input">
                                             <option value="XXXXXXX">Selecione o seu modelo de ATM</option>
-                                            <option value="ATM1">AutoAtendimento</option>
-                                            <option value="ATM2">Móvel</option>
-                                            <option value="ATM3">Com Acessibilidade</option>
+                                            <option value="AutoAtendimento">AutoAtendimento</option>
+                                            <option value="Móvel">Móvel</option>
+                                            <option value="Com Acessibilidade">Com Acessibilidade</option>
                                         </select>
+                                    </div>
+                                </div>
+                                <div class="addATM">
+                                    <div class="addATMTexto">
+                                        <span>
+                                            Fabricante:
+                                        </span>
+                                    </div>
+
+                                    <div class="addATMInput">
+                                        <input type="text" id="fabricante_input">
                                     </div>
                                 </div>
                                 <div class="addATM">
@@ -209,18 +223,7 @@
                                         <input type="number" id="qtdRAM_input">
                                     </div>
                                 </div>
-                                <div class="addATM">
-                                    <div class="addATMTexto">
-                                        <span>
-                                            Fabricante:
-                                        </span>
-                                    </div>
-
-                                    <div class="addATMInput">
-                                        <input type="text" id="fabricar_input">
-                                    </div>
-                                </div>
-                                <button class="button">
+                                <button class="button" onclick="cadastrarATM()">
                                     Cadastrar ATM
                                 </button>
                             </div>

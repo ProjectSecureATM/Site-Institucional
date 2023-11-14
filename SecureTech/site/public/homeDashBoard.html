@@ -31,24 +31,27 @@
           <div class="conteudoNavBar">
             <div class="divTexto">
               <span>
-                <a href="homeDashBoard.html" id="spanPag">Agencia</a>
+                <a href="./dashboard/DashBoard-AddATM.html" id="spanPag">sfhgdtfjgnrf</a>
+              </span>
+              
+              <span>
+                <a href="homeDashBoard.html" id="spanPag">Agência</a>
+              </span>
+            </div>
+            <div class="divTexto">
+              <span>
+                <a href="homeDashBoardCadas.AG.html">Cadastrar Agência</a>
               </span>
             </div>
 
             <div class="divTexto">
               <span>
-                <a href="homeDashBoardCadas.AG.html">Cadastrar Agencia</a>
-              </span>
-            </div>
-
-            <div class="divTexto">
-              <span>
-                <a href="homeDashBoardCadas.Fun.html">Cadastrar Funcionario</a>
+                <a href="homeDashBoardCadas.Fun.html">Cadastrar Usuário</a>
               </span>
             </div>
           </div>
-          <div onclick="goToLogin()" class="botao-login">
-            <button id="login-home" onclick="goToLogin()">Logout</button>
+          <div onclick="limparSessao()" class="botao-login">
+            <button id="login-home" onclick="limparSessao()">Logout</button>
           </div>
         </div>
       </div>
@@ -127,7 +130,7 @@ var fkEmpresa = sessionStorage
             divBoxCard.innerHTML += ` 
 
           
-          <div class="buttonCard pointer" onclick="goToDashBoard">
+          <div class="buttonCard pointer" onclick="goToDashBoard()">
             <!-- <div class="divFormatIMG">
               <img src="assets/alerta Visao Geral.png" alt="">
             </div> -->
@@ -152,12 +155,6 @@ var fkEmpresa = sessionStorage
     });
   }
 
-
-
-
-
-
-
   function goToDashBoard() {
     window.location = "DashBoard-VisaoGeral.html"
   }
@@ -167,25 +164,10 @@ var fkEmpresa = sessionStorage
     window.location = "login.html";
   }
   var usuario = document.querySelector("#id_nome_usuario")
-  var nomeUsuario = sessionStorage.getItem("nome_Funcionario")
+  var nomeUsuario = sessionStorage.getItem("nome_usuario")
   usuario.innerHTML = nomeUsuario
 
-  if (sessionStorage.fkAgencia_Funcionario != null) {
-    document.getElementById("mostrarFormularioATM").style.display = "none";
-    document.getElementById("mostrarFormularioAgencia").style.display = "none";
-  }
-  else {
-    document.getElementById("mostrarFormularioATM").addEventListener("click", function () {
-      document.getElementById("cadastroDivATM").style.display = "block";
-    });
-    document.getElementById("mostrarFormularioAgencia").addEventListener("click", function () {
-      document.getElementById("cadastroDivAgencia").style.display = "block";
-    });
-  }
-
   function addAgen() {
-
-
     document.getElementById("AddAgencia").style.display = "nosne";
   }
 </script>
