@@ -36,13 +36,44 @@ function autenticar(req, res) {
 
 }
 
+function autenticarATM(req, res) {
+    var nome = req.body.nomeServer;
+    var PID = req.body.PIDServer;
+    var fkATM = req.body.fkATM
+
+    usuarioModel.autenticar(nome, PID, fkATM)
+            .then(
+                function (resultado) {
+                    console.log(`\nResultados encontrados: ${resultado.length}`);
+                    console.log(`Resultados: ${JSON.stringify(resultado)}`); // transforma JSON em String
+
+                    if (resultado.length == 1) {
+                        console.log(resultado);
+                        res.json(resultado[0]);
+                    } else if (resultado.length == 0) {
+                        res.status(403).send("Email e/ou senha inválido(s)");
+                    } else {
+                        res.status(403).send("Mais de um ATM com o mesmo id!");
+                    }
+                }
+            ).catch(
+                function (erro) {
+                    console.log(erro);
+                    console.log("\nHouve um erro ao realizar o login do ATM! Erro: ", erro.sqlMessage);
+                    res.status(500).json(erro.sqlMessage);
+                }
+            );
+    }
+
+
+
 function cadastrar(req, res) {
     // Crie uma variável que vá recuperar os valores do arquivo cadastro.html
     var nome = req.body.nomeServer;
     var email = req.body.emailServer;
     var senha = req.body.senhaServer;
     var idUsuario = req.body.idUsuarioServer;
-    
+
     // Faça as validações dos valores
     if (nome == undefined) {
         res.status(400).send("Seu nome está undefined!");
@@ -50,7 +81,7 @@ function cadastrar(req, res) {
         res.status(400).send("Seu email está undefined!");
     } else if (senha == undefined) {
         res.status(400).send("Sua senha está undefined!");
-    }else {
+    } else {
 
         // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
         usuarioModel.cadastrar(nome, email, senha, idUsuario)
@@ -84,11 +115,11 @@ function cadastrarATM(req, res) {
         res.status(400).send("Seu nome está undefined!");
     } else if (qtdRAM == undefined) {
         res.status(400).send("Seu código está undefined!");
-    }else if (qtdDiscos == undefined) {
+    } else if (qtdDiscos == undefined) {
         res.status(400).send("Seu código está undefined!");
-    }else if (fabricante == undefined) {
+    } else if (fabricante == undefined) {
         res.status(400).send("Seu código está undefined!");
-    }else {
+    } else {
 
         // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
         usuarioModel.cadastrarATM(modelo, fabricante, fkAgenciaID, fkAgenciaEmp, qtdRAM, qtdDiscos)
@@ -142,15 +173,15 @@ function relatarProblema(req, res) {
 
     if (nome == undefined) {
         res.status(400).send("Seu nome está undefined!");
-    }  else if (sobrenome == undefined) {
+    } else if (sobrenome == undefined) {
         res.status(400).send("Seu sobrenome está indefinido!");
     } else if (email == undefined) {
         res.status(400).send("Seu email está indefinido!");
     } else if (titulo == undefined) {
         res.status(400).send("O titulo do problema está indefinido!");
-    }else if (detalhe == undefined) {
-            res.status(400).send("O detalhe do problema está indefinido!");
-    }else {
+    } else if (detalhe == undefined) {
+        res.status(400).send("O detalhe do problema está indefinido!");
+    } else {
 
         usuarioModel.relatarProblema(nome, sobrenome, email, titulo, detalhe, dataHoraProblema)
             .then(
@@ -176,12 +207,54 @@ function relatarProblema(req, res) {
                 }
             );
     }
-
 }
+
+function ProcessosPHora(req, res) {
+    const idAtm = req.body.idAtm;
+
+    usuarioModel.ProcessosPHora(idAtm)
+        .then(
+            function (resultado) {
+                if (resultado.length > 0) {
+                    const fkATM = resultado[0].fkATM;
+                    sessionStorage.setItem('fkATM', fkATM);
+                }else {
+                    res.status(204).send("Não há dados");
+                }
+            }
+        ).catch(
+            function (erro) {
+                console.log(erro);
+                console.log("\nHouve um erro ao realizar o login! Erro: ", erro.sqlMessage);
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
+}
+
+function listarATM(req, res) {
+
+    var fkAgencia_usuario =  req.body.fkagenciaServer;
+
+    usuarioModel.listarATM(fkAgencia_usuario).then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum resultado encontrado!")
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+        console.log("Houve um erro ao buscar os avisos: ", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+
+
 module.exports = {
     autenticar,
     cadastrar,
     cadastrarATM,
     cadastrarAgencia,
-    relatarProblema
+    relatarProblema,
+    ProcessosPHora,
+    listarATM
 }

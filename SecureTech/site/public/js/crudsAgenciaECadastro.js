@@ -26,6 +26,7 @@ function cadastrarATM() {
     const qtdRAMVar = qtdRAM_input.value; // Adicione .value aqui
     const fkAgenciaIDVar = parseInt(sessionStorage.fkAgencia_usuario, 10); // Converta para número
     const fkAgenciaEmpVar = parseInt(sessionStorage.fkEmpUsuario_usuario, 10); // Converta para número
+    const idATM = sessionStorage.fkATM_Processos = json.fkATM
 
     if (modeloVar == "" || fabricanteVar == "") {
         alert("Preencha os campos vazios");

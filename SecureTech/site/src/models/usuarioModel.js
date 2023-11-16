@@ -9,6 +9,15 @@ function autenticar(email, senha) {
     return database.executar(instrucao);
 }
 
+function autenticarATM(fkATM) {
+    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function entrar(): ", email, senha)
+    var instrucao = `
+        SELECT * FROM Processos WHERE fkATM = '${fkATM}';
+    `;
+    console.log("Executando a instrução SQL aaaa: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
 // Coloque os mesmos parâmetros aqui. Vá para a var instrucao
 function cadastrar(nome, email, senha, idUsuario) {
     console.log("Executando a função de cadastro de usuário...");
@@ -133,6 +142,25 @@ function cadastrarAgencia(NAgencia, CEP, numero, idUsuario) {
         });
 }
 
+function ProcessosPHora(idAtm) {
+    var instrucao =
+        `
+    SELECT 
+        MAX(PID) AS quantidade,
+        DATE_FORMAT(hora, '%H:00') AS hora,
+        fkATM
+    FROM 
+        Processos
+    WHERE 
+        fkATM = ${idAtm}
+    GROUP BY 
+        DATE_FORMAT(hora, '%Y-%m-%d %H')
+    ORDER BY 
+        hora;
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
 
 
 function relatarProblema(nome, sobrenome, email, titulo, detalhe, dataHoraProblema) {
@@ -145,11 +173,22 @@ function relatarProblema(nome, sobrenome, email, titulo, detalhe, dataHoraProble
     return database.executar(instrucao);
 }
 
+function listarATM(fkAgencia_usuario) {
+    console.log("ACESSEI O AVISO  MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function listar()");
+    var instrucao = `
+    select * from atm WHERE fkAgenciaEmpresa = ${fkAgencia_usuario};
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
 module.exports = {
     autenticar,
     cadastrar,
     cadastrarATM,
     obterFkEmpresa,
     cadastrarAgencia,
-    relatarProblema
+    relatarProblema,
+    ProcessosPHora,
+    listarATM
 };

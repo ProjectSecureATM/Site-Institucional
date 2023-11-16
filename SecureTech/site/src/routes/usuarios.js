@@ -27,10 +27,18 @@ router.post("/cadastrarAgencia", function (req, res) {
 
 router.post("/autenticar", function (req, res) {
     usuarioController.autenticar(req, res);
-})
+});
 
 router.post("/relatarProblema", function (req, res) {
     usuarioController.relatarProblema(req, res);
-})
+});
+
+router.get("/ProcessosPHora", function (req, res) {
+    usuarioController.ProcessosPHora(req, res);
+});
+
+router.post("/listarATM", function (req, res) {
+    usuarioController.listarATM(req, res);
+});
 
 module.exports = router;

@@ -99,7 +99,7 @@
                 <!-- Topbar -->
                 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
                     <button class="buttonNavBar" >
-                        <a href="../homeCadastrado.html">Voltar para Agência</a>
+                        <a href="/public/homeDashBoard.html">Voltar para Agência</a>
                     </button>
 
                     <!-- Sidebar Toggle (Topbar) -->
@@ -166,54 +166,8 @@
                             </div>
                         </div>
                 <div class="BoxATMeColuna">
-                        <div class="divLinhaCard">
-                            <div class="divBoxCard">
-                                <div class="card pointer" onclick="goToDash()">
-                                    <div class="divFormat-card">
-                                        <span>
-                                            ATM
-                                        </span>
-                                            <img src="../assets/alerta Visao Geral.png" alt="" >
-                                    </div>
-                                    <div class="divNumeroATM">
-                                        <span>
-                                            numeroAtm
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="divBoxCard">
-                                <div class="card pointer" onclick="goToDash()">
-                                    <div class="divFormat-card">
-                                        <span>
-                                            ATM
-                                        </span>
-                                            <img src="../assets/alerta Visao Geral.png" alt="" >
-                                    </div>
-                                    <div class="divNumeroATM">
-                                        <span>
-                                            numeroAtm
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="divBoxCard">
-                                <div class="card pointer" onclick="goToDash()">
-                                    <div class="divFormat-card">
-                                        <span>
-                                            ATM
-                                        </span>
-                                            <img src="../assets/alerta Visao Geral.png" alt="" >
-                                    </div>
-                                    <div class="divNumeroATM">
-                                        <span>
-                                            numeroAtm
-                                        </span>
-                                    
-                                    </div>
-                                    </div>
-                                </div>
-                            </div>
+                        <div class="divLinhaCard" id="divLinhaCard">
+                            
                             <div class="coluna"></div>
                         </div>
                             
@@ -281,14 +235,82 @@
 </html>
 
 <script>
-    function goToDash() {
+
+    window.onload = buscarATM();    
+
+    function goToDash(idATM) {
+        sessionStorage.idATM = idATM
         window.location = "DashBoard.html"
-    }
+    }   
 
     function testeBotao() {
         Swal.fire({
         icon: 'error',
         title: 'Selecione um ATM primeiro',
         })
+    }
+
+    function buscarATM() {
+
+        var fkAgencia_usuario = sessionStorage.fkAgencia_usuario;
+
+        fetch("/usuarios/listarATM", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                fkagenciaServer: fkAgencia_usuario
+            }) 
+        }).then(function (resposta) {
+
+            if (resposta.ok) {
+
+                var feed = document.getElementById("divLinhaCard");
+                feed.innerHTML = ""
+
+                resposta.json().then(function (resposta) {
+                console.log("Dados recebidos: ", JSON.stringify(resposta));
+
+                for (let i = 0; i < resposta.length; i++) {
+                    var publicacao = resposta[i];
+
+                    var box = document.createElement("div");
+                    box.className = "divBoxCard";
+                    feed.appendChild(box);
+                    
+                    var card = document.createElement("div");
+                    card.className = "card pointer";
+                    card.setAttribute("onclick", `goToDash(${publicacao.idATM})`);
+
+                    box.appendChild(card);
+
+                    var divFormat = document.createElement("div");
+                    
+                    var span = document.createElement("span");
+                    span.innerHTML = `ATM ${publicacao.idATM}`;
+                    divFormat.appendChild(span);
+
+                    var imagen = document.createElement("img");
+                    imagen.src = "../assets/alerta Visao Geral.png";
+                    divFormat.appendChild(imagen);
+
+                    card.appendChild(divFormat);
+
+                    var numeroatm = document.createElement("div");
+                    numeroatm.className = "divNumeroATM";
+
+                    var span2 = document.createElement("span");
+                    span2.innerHTML = publicacao.idATM;
+                    card.appendChild(numeroatm);
+                    
+                }
+                });
+            } else {
+                throw ('Houve um erro na API!');
+            }
+        }).catch(function (resposta) {
+            console.error(resposta);
+        });
     }
 </script>

@@ -12,6 +12,8 @@
 
     <title>Dashboard</title>
 
+    <script src="../js/crudsAgenciaECadastro.js"></script>
+
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link
@@ -60,7 +62,7 @@
 
             <!-- Divider -->
             <hr class="sidebar-divider">
-            
+
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
@@ -98,8 +100,8 @@
                 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 
                     <!-- Sidebar Toggle (Topbar) -->
-                    <button class="buttonNavBar" >
-                        <a href="../homeCadastrado.html">Voltar para Agencia</a>
+                    <button class="buttonNavBar">
+                        <a href="/public/homeDashBoard.html">Voltar para Agencia</a>
                     </button>
 
                     <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
@@ -171,112 +173,193 @@
 
                     <!-- Content Row -->
 
-                    <div class="row api">
+                    <div class="card">
 
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-primary shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                                CPU</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800"
-                                                style="text-align: center;">10%</div>
+                        <div class="card-linha">
+                            <div class="card">
+                                <div class="col-xl-3 col-md-6 mb-4">
+                                    <div class="card border-left-primary shadow h-100 py-2">
+                                        <div class="card-body">
+                                            <div class="row no-gutters align-items-center">
+                                                <div class="col mr-2">
+                                                    <div
+                                                        class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                                        CPU</div>
+                                                    <div id="cpuPercentage"
+                                                        class="h5 mb-0 font-weight-bold text-gray-800"
+                                                        style="text-align: center;">Loading...</div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-primary shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                                RAM</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800"
-                                                style="text-align: center;">20%</div>
+
+                            <div class="card">
+                                <div class="col-xl-3 col-md-6 mb-4">
+                                    <div class="card border-left-primary shadow h-100 py-2">
+                                        <div class="card-body">
+                                            <div class="row no-gutters align-items-center">
+                                                <div class="col mr-2">
+                                                    <div
+                                                        class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                                        RAM</div>
+                                                    <div id="RAMPercentage"
+                                                        class="h5 mb-0 font-weight-bold text-gray-800"
+                                                        style="text-align: center;">Loading...</div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-primary shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                                DISCO</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800"
-                                                style="text-align: center;">30%</div>
+
+                            <div class="card">
+                                <div class="col-xl-3 col-md-6 mb-4">
+                                    <div class="card border-left-primary shadow h-100 py-2">
+                                        <div class="card-body">
+                                            <div class="row no-gutters align-items-center">
+                                                <div class="col mr-2">
+                                                    <div
+                                                        class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                                        DISCO</div>
+                                                    <div id="DISCOPercentage"
+                                                        class="h5 mb-0 font-weight-bold text-gray-800"
+                                                        style="text-align: center;">Loading...</div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-
-                    </div>
 
 
 
-                    <div class="row" style="justify-content: center; align-items: center;">
 
-                        <!-- Area Chart -->
-                        <div class="col-xl-8 col-lg-7" >
-                            <div class="card shadow mb-4">
-                                <!-- Card Header - Dropdown -->
-                                <div
-                                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary">Processos</h6>
-                                    <div class="dropdown no-arrow">
+                            <div class="row" style="justify-content: center; align-items: center;">
 
-                                        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
-                                            aria-labelledby="dropdownMenuLink">
-                                            <a class="dropdown-item" href="#">Something else here</a>
+                                <!-- Area Chart -->
+                                <div class="col-xl-8 col-lg-7">
+                                    <div class="card shadow mb-4">
+                                        <!-- Card Header - Dropdown -->
+                                        <div
+                                            class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                            <h6 class="m-0 font-weight-bold text-primary">Processos</h6>
+                                            <div class="dropdown no-arrow">
+
+                                                <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
+                                                    aria-labelledby="dropdownMenuLink">
+                                                    <a class="dropdown-item" href="#">Something else here</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- Card Body -->
+                                        <div class="card">
+                                            <div class="chart-area">
+                                                <canvas id="Processos"></canvas>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                                <!-- Card Body -->
-                                <div class="card-body">
-                                    <div class="chart-area">
-                                        <canvas id="myChart"></canvas>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                                <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+                                <script src="js/script.js"></script>
 
-                        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-<script>
-  const ctx = document.getElementById('myChart');
+                                <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-  new Chart(ctx, {
-    type: 'line',
-    data: {
-      labels: ['11:00','12:00', '13:00', '14:00', '15:00', '16:00'],
-      datasets: [{
-        label: 'Quantidade de Processos',
-        data: [100, 50, 300, 75, 350, 200],
-        backgroundColor:[
-            'rgb(2, 30, 70)'
-        ],
-        borderWidth: 3
-      }]
-    },
-    options: {
-      scales: {
-        y: {
-          beginAtZero: true
-        }
-      }
-    }
-  });
-</script>
- 
+                                <script>
 
-                        <!-- Pie Chart -->
-                        <!-- <div class="col-xl-4 col-lg-5">
+                                    mostrarProcessos()
+
+                                    function mostrarProcessos() {
+
+                                        const idAtm = sessionStorage.getItem('fkATM')
+                                        fetch(`../usuarios/ProcessosPHora`, {
+                                            method: 'POST',
+                                            headers: {
+                                                'Content-Type': 'application/json',
+                                            },
+                                            body: JSON.stringify({ idAtm: idAtm }),
+                                        }).then(
+                                            function (resposta) {
+
+                                                console.log('DENTRO DO FETCH')
+                                                if (resposta.ok) {
+                                                    resposta.json().then(function (resposta) {
+                                                        console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                                                        plotarGrafico(resposta);
+
+                                                    });
+                                                } else {
+                                                    console.error('Nenhum dado encontrado ou erro na API');
+                                                }
+                                            })
+                                            .catch(function (error) {
+                                                console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+                                            });
+                                    }
+
+                                    // Esta função *plotarGrafico* usa os dados capturados na função anterior para criar o gráfico
+                                    // Configura o gráfico (cores, tipo, etc), materializa-o na página e, 
+                                    // A função *plotarGrafico* também invoca a função *atualizarGrafico*
+
+                                    function plotarGrafico(resposta) {
+                                        console.log('Iniciando plotagem do gráfico...' + resposta.length);
+
+                                        // Criando estrutura para plotar gráfico - labels
+                                        var labels = [];
+
+                                        // Criando estrutura para plotar gráfico - dados
+                                        let dados = {
+                                            labels: labels,
+                                            datasets: [{
+                                                label: 'Processos por Hora',
+                                                data: [],
+                                                backgroundColor: 'rgb(2, 30, 70)',
+                                                borderColor: 'rgba(75, 192, 192, 1)',
+                                                borderWidth: 1
+                                            }]
+                                        };
+
+                                        for (let i = 0; i < resposta.length; i++) {
+                                            var registro = resposta[i];
+                                            labels.push(registro.hora);
+                                            dados.datasets[0].data.push(registro.quantidade);
+                                        }
+
+                                        const config = {
+                                            type: 'line',
+                                            data: dados,
+                                            options: {
+                                                scales: {
+                                                    x: {
+                                                        title: {
+                                                            display: true,
+                                                            text: 'Horário'
+                                                        }
+                                                    },
+                                                    y: {
+                                                        title: {
+                                                            display: true,
+                                                            text: 'Processos'
+                                                        },
+                                                        beginAtZero: true
+                                                    }
+                                                }
+                                            }
+                                        };
+
+                                        let myChart = new Chart(
+                                            document.getElementById(`Processos`),
+                                            config
+                                        );
+                                    }
+
+                                </script>
+
+
+                                <!-- Pie Chart -->
+                                <!-- <div class="col-xl-4 col-lg-5">
                             <div class="card shadow mb-4">
                                  Card Header - Dropdown 
                                 <div
@@ -300,74 +383,74 @@
                         </div>
                     </div> -->
 
-                </div>
-                <!-- /.container-fluid -->
+                            </div>
+                            <!-- /.container-fluid -->
 
-            </div>
-            <!-- End of Main Content -->
+                        </div>
+                        <!-- End of Main Content -->
 
-            <!-- Footer -->
-            <!-- <footer class="sticky-footer bg-white">
+                        <!-- Footer -->
+                        <!-- <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
                         <span>Copyright &copy; Secure ATM 1910</span>
                     </div>
                 </div>
             </footer> -->
-            <!-- End of Footer -->
+                        <!-- End of Footer -->
 
-        </div>
-        <!-- End of Content Wrapper -->
+                    </div>
+                    <!-- End of Content Wrapper -->
 
-    </div>
-    <!-- End of Page Wrapper -->
-
-    <!-- Scroll to Top Button-->
-    <a class="scroll-to-top rounded" href="#page-top">
-        <i class="fas fa-angle-up"></i>
-    </a>
-
-    <!-- Logout Modal-->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Certeza que você quer sair?</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
                 </div>
-                <div class="modal-body">Selecione "Sair" para deslogar.</div>
-                <div class="modal-footer">
-                    <button style="text-align: left;" class="btn btn-secondary" type="button"
-                        data-dismiss="modal">Cancelar</button>
-                    <a class="btn btn-primary" href="../index.html">Sair</a>
+                <!-- End of Page Wrapper -->
+
+                <!-- Scroll to Top Button-->
+                <a class="scroll-to-top rounded" href="#page-top">
+                    <i class="fas fa-angle-up"></i>
+                </a>
+
+                <!-- Logout Modal-->
+                <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Certeza que você quer sair?</h5>
+                                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">×</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">Selecione "Sair" para deslogar.</div>
+                            <div class="modal-footer">
+                                <button style="text-align: left;" class="btn btn-secondary" type="button"
+                                    data-dismiss="modal">Cancelar</button>
+                                <a class="btn btn-primary" href="../index.html">Sair</a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
-    </div>
 
-    <!-- pop up sweet alert -->
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+                <!-- pop up sweet alert -->
+                <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-    <!-- Bootstrap core JavaScript-->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+                <!-- Bootstrap core JavaScript-->
+                <script src="vendor/jquery/jquery.min.js"></script>
+                <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-    <!-- Core plugin JavaScript-->
-    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+                <!-- Core plugin JavaScript-->
+                <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
-    <!-- Custom scripts for all pages-->
-    <script src="js/sb-admin-2.min.js"></script>
+                <!-- Custom scripts for all pages-->
+                <script src="js/sb-admin-2.min.js"></script>
 
-    <!-- Page level plugins -->
-    <script src="vendor/chart.js/Chart.min.js"></script>
+                <!-- Page level plugins -->
+                <script src="vendor/chart.js/Chart.min.js"></script>
 
-    <!-- Page level custom scripts -->
-    <script src="js/demo/chart-area-demo.js"></script>
-    <script src="js/demo/chart-pie-demo.js"></script>
-    <script src="js/demo/chart-bar-demo.js"></script>
+                <!-- Page level custom scripts -->
+                <!-- <script src="js/demo/chart-area-demo.js"></script>
+                    <script src="js/demo/chart-pie-demo.js"></script>
+                    <script src="js/demo/chart-bar-demo.js"></script> -->
 
 </body>
 
@@ -384,5 +467,37 @@
                 popup: 'animate__animated animate__fadeOutUp'
             }
         })
+    }
+
+    function buscarATM() {
+        fetch("/avisos/listar:fkEmpresa").then(function (resposta) {
+
+            if (resposta.ok) {
+                // if (resposta.status == 204) {
+                //     var feed = document.getElementById("feed_container");
+                //     var mensagem = document.createElement("span");
+                //     mensagem.innerHTML = "Nenhum resultado encontrado."
+                //     feed.appendChild(mensagem);
+                //     throw "Nenhum resultado encontrado!!";
+                // }
+                console.log("ENTREII")
+
+                resposta.json().then(function (resposta) {
+                    console.log("Dados recebidos: ", JSON.stringify(resposta));
+
+                    for (let i = 0; i < resposta.length; i++) {
+
+                        var publicacao = resposta[i];
+
+                    }
+                    // finalizarAguardar();
+                });
+            } else {
+                throw ('Houve um erro na API!');
+            }
+        }).catch(function (resposta) {
+            console.error(resposta);
+            // finalizarAguardar();
+        });
     }
 </script>
