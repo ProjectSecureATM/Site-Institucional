@@ -209,6 +209,7 @@ function relatarProblema(req, res) {
     }
 }
 
+
 function ProcessosPHora(req, res) {
     const idAtm = req.body.idAtm;
 
@@ -247,6 +248,26 @@ function listarATM(req, res) {
         res.status(500).json(erro.sqlMessage);
     });
 }
+
+
+exports.obterLeituraPorComponente = async (req, res) => {
+    const { componente } = req.params;
+    try {
+        const dadosLeitura = await leituraModel.obterLeituraPorComponente(componente);
+        res.json(dadosLeitura);
+    } catch (error) {
+        res.status(500).json({ error: 'Erro ao obter dados de leitura.' });
+    }
+};
+
+exports.obterProcessos = async (req, res) => {
+    try {
+        const dadosProcessos = await leituraModel.obterProcessos();
+        res.json(dadosProcessos);
+    } catch (error) {
+        res.status(500).json({ error: 'Erro ao obter dados dos processos.' });
+    }
+};
 
 
 module.exports = {

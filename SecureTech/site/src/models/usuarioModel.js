@@ -173,6 +173,7 @@ function relatarProblema(nome, sobrenome, email, titulo, detalhe, dataHoraProble
     return database.executar(instrucao);
 }
 
+
 function listarATM(fkAgencia_usuario) {
     console.log("ACESSEI O AVISO  MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function listar()");
     var instrucao = `
@@ -180,6 +181,36 @@ function listarATM(fkAgencia_usuario) {
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
+}
+function obterValoresParaGrafico(callback) {
+    exports.obterLeituraPorComponente = (componente) => {
+        return new Promise((resolve, reject) => {
+            const query = 'SELECT * FROM Leitura WHERE Componente_ID IN (SELECT idCodComponentes FROM CodigoComponentes WHERE Componente = ?)';
+            connection.query(query, [componente], (error, results) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    resolve(results);
+                }
+            });
+        });
+    };
+    
+    exports.obterProcessos = () => {
+        return new Promise((resolve, reject) => {
+            const query = 'SELECT * FROM Processos';
+            connection.query(query, (error, results) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    const labels = results.map((processo) => processo.nome);
+                    const quantidades = results.map((processo) => processo.PID);
+                    resolve({ labels, quantidades });
+                }
+            });
+        });
+    };
+
 }
 
 module.exports = {
@@ -190,5 +221,7 @@ module.exports = {
     cadastrarAgencia,
     relatarProblema,
     ProcessosPHora,
-    listarATM
+    listarATM,
+    obterValoresParaGrafico
+
 };
