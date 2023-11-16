@@ -33,4 +33,8 @@ router.post("/relatarProblema", function (req, res) {
     usuarioController.relatarProblema(req, res);
 })
 
+router.get('/obterValoresParaGrafico', function(req, res){
+    usuarioController.obterValoresParaGrafico(req, res)
+})
+
 module.exports = router;

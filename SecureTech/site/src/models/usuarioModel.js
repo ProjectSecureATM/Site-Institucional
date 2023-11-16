@@ -145,11 +145,42 @@ function relatarProblema(nome, sobrenome, email, titulo, detalhe, dataHoraProble
     return database.executar(instrucao);
 }
 
+function obterValoresParaGrafico(callback) {
+    exports.obterLeituraPorComponente = (componente) => {
+        return new Promise((resolve, reject) => {
+            const query = 'SELECT * FROM Leitura WHERE Componente_ID IN (SELECT idCodComponentes FROM CodigoComponentes WHERE Componente = ?)';
+            connection.query(query, [componente], (error, results) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    resolve(results);
+                }
+            });
+        });
+    };
+    
+    exports.obterProcessos = () => {
+        return new Promise((resolve, reject) => {
+            const query = 'SELECT * FROM Processos';
+            connection.query(query, (error, results) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    const labels = results.map((processo) => processo.nome);
+                    const quantidades = results.map((processo) => processo.PID);
+                    resolve({ labels, quantidades });
+                }
+            });
+        });
+    };
+}
+
 module.exports = {
     autenticar,
     cadastrar,
     cadastrarATM,
     obterFkEmpresa,
     cadastrarAgencia,
-    relatarProblema
+    relatarProblema,
+    obterValoresParaGrafico
 };
