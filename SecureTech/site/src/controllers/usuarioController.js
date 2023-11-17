@@ -269,13 +269,32 @@ exports.obterProcessos = async (req, res) => {
     }
 };
 
+function listarAgencia(req, res) {
+    var fkAgencia_usuario = req.body.fkagenciaServer;
+
+    usuarioModel.listarAgencia(fkAgencia_usuario).then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum resultado encontrado!");
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+        console.log("Houve um erro ao buscar as agências: ", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+
+
 
 module.exports = {
     autenticar,
     cadastrar,
     cadastrarATM,
+    autenticarATM,
     cadastrarAgencia,
     relatarProblema,
     ProcessosPHora,
-    listarATM
+    listarATM,
+    listarAgencia
 }

@@ -41,6 +41,10 @@ router.post("/listarATM", function (req, res) {
     usuarioController.listarATM(req, res);
 });
 
+router.post("/listarAgencia", function (req, res) {
+    usuarioController.listarAgencia(req, res);
+});
+
 router.get('/obterValoresParaGrafico', function(req, res){
     usuarioController.obterValoresParaGrafico(req, res)
 })

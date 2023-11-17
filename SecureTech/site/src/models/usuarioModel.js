@@ -177,7 +177,7 @@ function relatarProblema(nome, sobrenome, email, titulo, detalhe, dataHoraProble
 function listarATM(fkAgencia_usuario) {
     console.log("ACESSEI O AVISO  MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function listar()");
     var instrucao = `
-    select * from atm WHERE fkAgenciaEmpresa = ${fkAgencia_usuario};
+    select * from atm WHERE fkAgenciaEmp = ${fkAgencia_usuario};
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
@@ -213,6 +213,15 @@ function obterValoresParaGrafico(callback) {
 
 }
 
+function listarAgencia(fkAgencia_usuario) {
+    console.log("ACESSEI O AVISO  MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function listar()");
+    var instrucao = `
+    select * from Agencia WHERE fkEmpresa = ${fkAgencia_usuario};
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
 module.exports = {
     autenticar,
     cadastrar,
@@ -222,6 +231,7 @@ module.exports = {
     relatarProblema,
     ProcessosPHora,
     listarATM,
-    obterValoresParaGrafico
+    obterValoresParaGrafico,
+    listarAgencia
 
 };
