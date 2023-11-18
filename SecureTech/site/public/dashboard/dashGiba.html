@@ -71,7 +71,7 @@
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Inovações Secure ATM:</h6>
-                        <a href="PI.Gabriel-CUTE/dashVaz.html" class="collapse-item">Dash Gabroh</a>
+                        <a class="collapse-item">Dash Gabroh</a>
                         <a class="collapse-item">Dash Jujuba</a>
                         <a class="collapse-item">Dash Julião</a>
                         <a class="collapse-item">Dash Paulão</a>
@@ -162,26 +162,20 @@
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center mb-4">
                         <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
-                        <div class="informacao">
-                            <div class="iconeInformacao" onclick="testeBotao()">
-                                <img src="../assets/information.png" alt="">
-                            </div>
-                        </div>
                     </div>
 
                     <!-- Content Row -->
 
-                    <!-- <div class="row api">
 
+                    <div class="row">
                         <div class="col-xl-3 col-md-6 mb-4">
                             <div class="card border-left-primary shadow h-100 py-2">
-                                <div class="card-body">
+                                <div id="kpi"class="card-body">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                                CPU</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800"
-                                                style="text-align: center;">10%</div>
+                                                DESEMPENHO BOM</div>
+                                            <div id="metrica" class="h5 mb-0 font-weight-bold text-gray-800">80% a 100%</div>
                                         </div>
                                     </div>
                                 </div>
@@ -189,13 +183,12 @@
                         </div>
                         <div class="col-xl-3 col-md-6 mb-4">
                             <div class="card border-left-primary shadow h-100 py-2">
-                                <div class="card-body">
+                                <div id="kpi" class="card-body">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                                RAM</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800"
-                                                style="text-align: center;">20%</div>
+                                                DESEMPENHO MÉDIO</div>
+                                            <div id="metrica" class="h5 mb-0 font-weight-bold text-gray-800">60% a 79%</div>
                                         </div>
                                     </div>
                                 </div>
@@ -203,20 +196,19 @@
                         </div>
                         <div class="col-xl-3 col-md-6 mb-4">
                             <div class="card border-left-primary shadow h-100 py-2">
-                                <div class="card-body">
+                                <div id="kpi" class="card-body">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                                DISCO</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800"
-                                                style="text-align: center;">30%</div>
+                                                DESEMPENHO CRÍTICO</div>
+                                            <div id="metrica" class="h5 mb-0 font-weight-bold text-gray-800">0% a 59%</div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
-                    </div> -->
+                    </div>
 
 
 
@@ -256,7 +248,7 @@
                                                         class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                                         TEMPO DE ATIVIDADE</div>
                                                     <div class="h5 mb-0 font-weight-bold text-gray-800"
-                                                        style="text-align: center;">HH:MM:SS</div>
+                                                        style="text-align: center;">DD:HH:MM:SS</div>
                                                 </div>
                                             </div>
                                         </div>
@@ -265,23 +257,35 @@
 
                             </div>
                             <div class="botao-reiniciar">
-                                <button onclick="">NOTIFICAR ATM</button>
+                                <button id="openModalButton" onclick="notificarATM()">NOTIFICAR ATM</button>
                                 <div class="texto-reiniciar">
-                                    <b><p>Aviso de Desempenho: Ação Recomendada</p></b>
+                                    <b>
+                                        <p>Aviso de Desempenho: Ação Recomendada</p>
+                                    </b>
 
-                                        <p>Prezado Cliente,</p>
+                                    <p>Prezado Cliente,</p>
 
-                                        <p>Detectamos que o desempenho da ATM está abaixo de 50%, indicando uma possível
-                                            questão operacional. Recomendamos que clique no botão "Notificar ATM" para solicitar a assistência de um técnico.</p>
+                                    <p>Detectamos que o desempenho da ATM está abaixo de 50%, indicando uma possível
+                                        questão operacional. Recomendamos que clique no botão "Notificar ATM" para
+                                        solicitar a assistência de um técnico.</p>
 
-                                        <p>Essa ação permitirá que nossa equipe técnica avalie e solucione qualquer
-                                            problema potencial. Agradecemos pela sua cooperação para garantir um serviço
-                                            contínuo e eficiente.
+                                    <p>Essa ação permitirá que nossa equipe técnica avalie e solucione qualquer
+                                        problema potencial. Agradecemos pela sua cooperação para garantir um serviço
+                                        contínuo e eficiente.
 
-                                        </p>
-                                    
+                                    </p>
+
                                 </div>
                             </div>
+
+                            <div id="modal" class="modal">
+                                <div class="modal-content">
+                                    <span class="close" onclick="closeModal()">&times;</span>
+                                    <p>Notificação enviada para o ATM com sucesso.</p>
+                                </div>
+                            </div>
+
+                            <script src="../js/notificar.js"></script>
 
 
                             <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -473,7 +477,7 @@
             <!-- Page level plugins -->
             <script src="vendor/chart.js/Chart.min.js"></script>
 
-            <!-- Page level custom scripts -->
+            <!-- P  age level custom scripts -->
             <script src="js/demo/chart-area-demo.js"></script>
             <script src="js/demo/chart-pie-demo.js"></script>
             <script src="js/demo/chart-bar-demo.js"></script>
