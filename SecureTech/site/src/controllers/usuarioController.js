@@ -210,28 +210,6 @@ function relatarProblema(req, res) {
 }
 
 
-function ProcessosPHora(req, res) {
-    const idAtm = req.body.idAtm;
-
-    usuarioModel.ProcessosPHora(idAtm)
-        .then(
-            function (resultado) {
-                if (resultado.length > 0) {
-                    const fkATM = resultado[0].fkATM;
-                    sessionStorage.setItem('fkATM', fkATM);
-                }else {
-                    res.status(204).send("Não há dados");
-                }
-            }
-        ).catch(
-            function (erro) {
-                console.log(erro);
-                console.log("\nHouve um erro ao realizar o login! Erro: ", erro.sqlMessage);
-                res.status(500).json(erro.sqlMessage);
-            }
-        );
-}
-
 function listarATM(req, res) {
 
     var fkAgencia_usuario =  req.body.fkagenciaServer;
@@ -249,25 +227,22 @@ function listarATM(req, res) {
     });
 }
 
+function ProcessosPHora(req, res) {
+    const idAtm = req.body.idAtm;
 
-exports.obterLeituraPorComponente = async (req, res) => {
-    const { componente } = req.params;
-    try {
-        const dadosLeitura = await leituraModel.obterLeituraPorComponente(componente);
-        res.json(dadosLeitura);
-    } catch (error) {
-        res.status(500).json({ error: 'Erro ao obter dados de leitura.' });
-    }
-};
-
-exports.obterProcessos = async (req, res) => {
-    try {
-        const dadosProcessos = await leituraModel.obterProcessos();
-        res.json(dadosProcessos);
-    } catch (error) {
-        res.status(500).json({ error: 'Erro ao obter dados dos processos.' });
-    }
-};
+    usuarioModel.obterProcessosPHora(idAtm)
+        .then(function (dados) {
+            if (dados.length > 0) {
+                res.json(dados);
+            } else {
+                res.status(204).send("Não há dados");
+            }
+        })
+        .catch(function (erro) {
+            console.error(`Erro na obtenção dos dados para o gráfico: ${erro.message}`);
+            res.status(500).json(erro.sqlMessage);
+        });
+}
 
 function listarAgencia(req, res) {
     var fkAgencia_usuario = req.body.fkagenciaServer;
@@ -285,6 +260,23 @@ function listarAgencia(req, res) {
     });
 }
 
+exports.obterStatusSistema = async (req, res) => {
+    try {
+      const idAtm = req.body.idAtm;
+      const cpuPercentage = await usuarioModel.obterUltimaLeituraPorComponente(idAtm, 'CPU');
+      const ramPercentage = await usuarioModel.obterUltimaLeituraPorComponente(idAtm, 'RAM');
+      const discoPercentage = await usuarioModel.obterUltimaLeituraPorComponente(idAtm, 'DISCO');
+  
+      res.json({
+        cpu: cpuPercentage ? `${cpuPercentage.Valor}%` : 'N/A',
+        ram: ramPercentage ? `${ramPercentage.Valor}%` : 'N/A',
+        disco: discoPercentage ? `${discoPercentage.Valor}%` : 'N/A'
+      });
+    } catch (error) {
+      console.error(`Erro ao obter status do sistema: ${error.message}`);
+      res.status(500).json({ error: 'Erro ao obter status do sistema.' });
+    }
+  };
 
 
 module.exports = {

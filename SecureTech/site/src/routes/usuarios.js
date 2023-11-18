@@ -33,12 +33,16 @@ router.post("/relatarProblema", function (req, res) {
     usuarioController.relatarProblema(req, res);
 });
 
-router.get("/ProcessosPHora", function (req, res) {
-    usuarioController.ProcessosPHora(req, res);
+router.post('/usuarios/ProcessosPHora', function(req, res){
+     usuarioController.ProcessosPHora(req, res)
 });
 
 router.post("/listarATM", function (req, res) {
     usuarioController.listarATM(req, res);
+});
+
+router.post('/usuarios/status-sistema', function(req, res) { 
+    usuarioController.obterStatusSistema(req, res)
 });
 
 router.post("/listarAgencia", function (req, res) {

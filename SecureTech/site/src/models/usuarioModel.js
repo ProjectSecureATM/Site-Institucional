@@ -142,25 +142,45 @@ function cadastrarAgencia(NAgencia, CEP, numero, idUsuario) {
         });
 }
 
-function ProcessosPHora(idAtm) {
-    var instrucao =
-        `
-    SELECT 
-        MAX(PID) AS quantidade,
-        DATE_FORMAT(hora, '%H:00') AS hora,
-        fkATM
-    FROM 
-        Processos
-    WHERE 
-        fkATM = ${idAtm}
-    GROUP BY 
-        DATE_FORMAT(hora, '%Y-%m-%d %H')
-    ORDER BY 
-        hora;
-    `;
-    console.log("Executando a instrução SQL: \n" + instrucao);
-    return database.executar(instrucao);
+function ProcessosPHora(req, res) {
+    console.log('Chamando ProcessosPHora');
+    const idAtm = req.body.idAtm;
+    console.log('idAtm recebido:', idAtm);
+
+    exports.obterProcessosPHora = (idAtm) => {
+        return new Promise((resolve, reject) => {
+            var instrucao = `
+                SELECT 
+                    MAX(PID) AS quantidade,
+                    DATE_FORMAT(data_hora, '%H:00') AS hora,
+                    fkATM
+                FROM 
+                    Processos
+                WHERE 
+                    fkATM = ${idAtm}
+                GROUP BY 
+                    DATE_FORMAT(data_hora, '%Y-%m-%d %H')
+                ORDER BY 
+                    hora;
+            `;
+            console.log("Executando a instrução SQL: \n" + instrucao);
+            connection.query(instrucao, [idAtm], (error, results) => {
+                if (error) {
+                    console.error('Erro no banco de dados:', error);
+                    reject(error);
+                } else {
+                    console.log('Resultados do banco de dados:', results);
+                    const labels = results.map((processo) => processo.hora);
+                    const quantidades = results.map((processo) => processo.quantidade);
+                    resolve({ labels, quantidades });
+                }
+            });
+        });
+    };
 }
+
+
+
 
 
 function relatarProblema(nome, sobrenome, email, titulo, detalhe, dataHoraProblema) {
@@ -182,36 +202,6 @@ function listarATM(fkAgencia_usuario) {
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
 }
-function obterValoresParaGrafico(callback) {
-    exports.obterLeituraPorComponente = (componente) => {
-        return new Promise((resolve, reject) => {
-            const query = 'SELECT * FROM Leitura WHERE Componente_ID IN (SELECT idCodComponentes FROM CodigoComponentes WHERE Componente = ?)';
-            connection.query(query, [componente], (error, results) => {
-                if (error) {
-                    reject(error);
-                } else {
-                    resolve(results);
-                }
-            });
-        });
-    };
-    
-    exports.obterProcessos = () => {
-        return new Promise((resolve, reject) => {
-            const query = 'SELECT * FROM Processos';
-            connection.query(query, (error, results) => {
-                if (error) {
-                    reject(error);
-                } else {
-                    const labels = results.map((processo) => processo.nome);
-                    const quantidades = results.map((processo) => processo.PID);
-                    resolve({ labels, quantidades });
-                }
-            });
-        });
-    };
-
-}
 
 function listarAgencia(fkAgencia_usuario) {
     console.log("ACESSEI O AVISO  MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function listar()");
@@ -222,6 +212,26 @@ function listarAgencia(fkAgencia_usuario) {
     return database.executar(instrucao);
 }
 
+exports.obterUltimaLeituraPorComponente = (idAtm, componente) => {
+    return new Promise((resolve, reject) => {
+      const query = `
+        SELECT Valor
+        FROM Leitura
+        WHERE ATMComp_ID = ? AND Componente_ID = (SELECT id FROM Componentes WHERE Nome = ?)
+        ORDER BY DataRegistro DESC
+        LIMIT 1;
+      `;
+      
+      connection.query(query, [idAtm, componente], (error, results) => {
+        if (error) {
+          reject(error);
+        } else {
+          resolve(results[0]);
+        }
+      });
+    });
+  };
+
 module.exports = {
     autenticar,
     cadastrar,
@@ -231,7 +241,6 @@ module.exports = {
     relatarProblema,
     ProcessosPHora,
     listarATM,
-    obterValoresParaGrafico,
     listarAgencia
 
 };
