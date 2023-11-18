@@ -1,4 +1,3 @@
-
 function cadastrar() {
 
     var nomeVar = nome_input.value;
