@@ -21,7 +21,6 @@
     <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
     <link href="css/dashGiba.css" rel="stylesheet">
-
 </head>
 
 <body id="page-top">
@@ -61,7 +60,7 @@
 
             <!-- Divider -->
             <hr class="sidebar-divider">
-            
+
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
@@ -99,7 +98,7 @@
                 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 
                     <!-- Sidebar Toggle (Topbar) -->
-                    <button class="buttonNavBar" >
+                    <button class="buttonNavBar">
                         <a href="../homeCadastrado.html">Voltar para Agencia</a>
                     </button>
 
@@ -172,7 +171,7 @@
 
                     <!-- Content Row -->
 
-                    <div class="row api">
+                    <!-- <div class="row api">
 
                         <div class="col-xl-3 col-md-6 mb-4">
                             <div class="card border-left-primary shadow h-100 py-2">
@@ -217,96 +216,176 @@
                             </div>
                         </div>
 
-                    </div>
+                    </div> -->
 
 
 
-                        <!-- Area Chart -->
-                        <div class="col-xl-8 col-lg-7" >
-                        
-                                <!-- Card Body -->
-                                <div class="card-body">
-                                    <div class="chart-area" >
-                                        <canvas id="myChart"></canvas>
-                                        <canvas id="myChart2"></canvas>
+                    <!-- Area Chart -->
+                    <div class="col-xl-8 col-lg-7">
+
+                        <!-- Card Body -->
+                        <div id="giba" class="card-body">
+
+                            <div id="blocoKPI" class="col-xl-5 col-md-0 mb-8">
+                                <div class="chart-area">
+                                    <canvas id="myChart2"></canvas>
+                                    <canvas id="myChart3"></canvas>
+                                </div>
+                                <div class="teste">
+                                    <br><br>
+                                    <div class="card border-left-primary shadow h-100 py-2">
+                                        <div class="card-body">
+                                            <div class="row no-gutters align-items-center">
+
+                                                <div class="col mr-2">
+                                                    <div id="borda"
+                                                        class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                                        DESEMPENHO GERAL</div>
+                                                    <div class="h5 mb-0 font-weight-bold text-gray-800"
+                                                        style="text-align: center;">%</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div id="desempenho" class="card border-left-primary shadow h-100 py-2">
+                                        <div class="card-body">
+                                            <div class="row no-gutters align-items-center">
+                                                <div class="col mr-2">
+                                                    <div
+                                                        class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                                        TEMPO DE ATIVIDADE</div>
+                                                    <div class="h5 mb-0 font-weight-bold text-gray-800"
+                                                        style="text-align: center;">HH:MM:SS</div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
+
                             </div>
-                        
+                            <div class="botao-reiniciar">
+                                <button onclick="">NOTIFICAR ATM</button>
+                                <div class="texto-reiniciar">
+                                    <b><p>Aviso de Desempenho: Ação Recomendada</p></b>
+
+                                        <p>Prezado Cliente,</p>
+
+                                        <p>Detectamos que o desempenho da ATM está abaixo de 50%, indicando uma possível
+                                            questão operacional. Recomendamos que clique no botão "Notificar ATM" para solicitar a assistência de um técnico.</p>
+
+                                        <p>Essa ação permitirá que nossa equipe técnica avalie e solucione qualquer
+                                            problema potencial. Agradecemos pela sua cooperação para garantir um serviço
+                                            contínuo e eficiente.
+
+                                        </p>
+                                    
+                                </div>
+                            </div>
+
 
                             <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-                            <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+
 
                             <script>
-                                const ctx = document.getElementById('myChart');
-                              
-                                new Chart(ctx, {
-                                  type: 'bar',
-                                  data: {
-                                    labels: ['ATM 1', 'ATM 2', 'ATM 3', 'ATM 1', 'ATM 4', 'ATM 5'],
-                                    datasets: [{
-                                      label: 'Janelas abertas',
-                                      data: [12, 19, 3, 5, 2, 3],
-                                      borderWidth: 1,
-                                      backgroundColor: '#021e4694',
-                                      borderColor: '#021E46'
-                                    }]
-                                  },
-                                  options: {
-                                    scales: {
-                                        x:{beginAtZero: true,
-                                        grid: {
-                                            display: false
-                                        }
-                                        },
-                                      y: {
-                                        beginAtZero: true,
-                                        grid: {
-                                            display: false
-                                        }
-                                      }
-                                    }
-                                  }
-                                });
-                              </script>
-                               
-                               <script>
                                 const ctx1 = document.getElementById('myChart2');
-                              
-                                new Chart(ctx1, {
-                                  type: 'line',
-                                  data: {
-                                    labels: ['ATM 1', 'ATM 2', 'ATM 3', 'ATM 1', 'ATM 4', 'ATM 5'],
-                                    datasets: [{
-                                      label: 'Temperatura CPU',
-                                      data: [12, 19, 3, 5, 2, 3],
-                                      borderWidth: 1,
-                                      backgroundColor: '#021e4694',
-                                      borderColor: '#021E46'
-                                    }]
-                                  },
-                                  options: {
-                                    scales: {
-                                        x:{beginAtZero: true,
-                                        grid: {
-                                            display: false
-                                        }
-                                        },
-                                      y: {
-                                        beginAtZero: true,
-                                        grid: {
-                                            display: false
-                                        }
-                                      }
-                                    }
-                                  }
-                                });
-                              </script>
-                               
- 
 
-                        <!-- Pie Chart -->
-                        <!-- <div class="col-xl-4 col-lg-5">
+                                new Chart(ctx1, {
+                                    type: 'line',
+                                    data: {
+                                        labels: ['ATM 1', 'ATM 2', 'ATM 3', 'ATM 1', 'ATM 4', 'ATM 5'],
+                                        datasets: [{
+                                            label: ['Temperatura CPU'],
+                                            data: [12, 19, 3, 5, 2, 3],
+                                            borderWidth: 1,
+                                            backgroundColor: '#021e46',
+                                            borderColor: '#021e46'
+                                        }]
+                                    },
+                                    options: {
+                                        plugins: {
+                                            legend: {
+                                                labels: {
+                                                    color: '#021e46' // Cor da fonte da label
+                                                }
+                                            }
+                                        },
+                                        scales: {
+                                            y: {
+                                                beginAtZero: true,
+                                                grid: {
+                                                    display: false,
+                                                },
+                                                ticks: {
+                                                    color: '#021e46' // Cor da fonte no eixo X
+                                                },
+                                            },
+                                            x: {
+                                                beginAtZero: true,
+                                                grid: {
+                                                    display: false,
+                                                },
+                                                ticks: {
+                                                    color: '#021e46' // Cor da fonte no eixo X
+                                                },
+                                            },
+                                        }
+                                    }
+                                });
+                            </script>
+
+                            <script>
+                                const ctx2 = document.getElementById('myChart3');
+
+                                new Chart(ctx2, {
+                                    type: 'bar',
+                                    data: {
+                                        labels: ['ATM 1', 'ATM 2', 'ATM 3', 'ATM 1', 'ATM 4', 'ATM 5'],
+                                        datasets: [{
+                                            label: ['Uso CPU'],
+                                            data: [12, 19, 3, 5, 2, 3],
+                                            borderWidth: 1,
+                                            backgroundColor: '#021e46',
+                                            borderColor: '#021e46'
+                                        }]
+                                    },
+                                    options: {
+                                        plugins: {
+                                            legend: {
+                                                labels: {
+                                                    color: '#021e46' // Cor da fonte da label
+                                                }
+                                            }
+                                        },
+                                        scales: {
+                                            x: {
+                                                beginAtZero: true,
+                                                grid: {
+                                                    display: false,
+                                                },
+                                                ticks: {
+                                                    color: '#021e46' // Cor da fonte no eixo X
+                                                },
+                                            },
+                                            y: {
+                                                beginAtZero: true,
+                                                grid: {
+                                                    display: false
+                                                },
+                                                ticks: {
+                                                    color: '#021e46' // Cor da fonte no eixo X
+                                                },
+                                            }
+                                        }
+                                    }
+                                });
+                            </script>
+
+
+
+                            <!-- Pie Chart -->
+                            <!-- <div class="col-xl-4 col-lg-5">
                             <div class="card shadow mb-4">
                                  Card Header - Dropdown 
                                 <div
@@ -330,74 +409,74 @@
                         </div>
                     </div> -->
 
-                </div>
-                <!-- /.container-fluid -->
+                        </div>
+                        <!-- /.container-fluid -->
 
-            </div>
-            <!-- End of Main Content -->
+                    </div>
+                    <!-- End of Main Content -->
 
-            <!-- Footer -->
-            <!-- <footer class="sticky-footer bg-white">
+                    <!-- Footer -->
+                    <!-- <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
                         <span>Copyright &copy; Secure ATM 1910</span>
                     </div>
                 </div>
             </footer> -->
-            <!-- End of Footer -->
+                    <!-- End of Footer -->
 
-        </div>
-        <!-- End of Content Wrapper -->
-
-    </div>
-    <!-- End of Page Wrapper -->
-
-    <!-- Scroll to Top Button-->
-    <a class="scroll-to-top rounded" href="#page-top">
-        <i class="fas fa-angle-up"></i>
-    </a>
-
-    <!-- Logout Modal-->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Certeza que você quer sair?</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
                 </div>
-                <div class="modal-body">Selecione "Sair" para deslogar.</div>
-                <div class="modal-footer">
-                    <button style="text-align: left;" class="btn btn-secondary" type="button"
-                        data-dismiss="modal">Cancelar</button>
-                    <a class="btn btn-primary" href="../index.html">Sair</a>
+                <!-- End of Content Wrapper -->
+
+            </div>
+            <!-- End of Page Wrapper -->
+
+            <!-- Scroll to Top Button-->
+            <a class="scroll-to-top rounded" href="#page-top">
+                <i class="fas fa-angle-up"></i>
+            </a>
+
+            <!-- Logout Modal-->
+            <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Certeza que você quer sair?</h5>
+                            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">Selecione "Sair" para deslogar.</div>
+                        <div class="modal-footer">
+                            <button style="text-align: left;" class="btn btn-secondary" type="button"
+                                data-dismiss="modal">Cancelar</button>
+                            <a class="btn btn-primary" href="../index.html">Sair</a>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>
 
-    <!-- pop up sweet alert -->
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+            <!-- pop up sweet alert -->
+            <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-    <!-- Bootstrap core JavaScript-->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+            <!-- Bootstrap core JavaScript-->
+            <script src="vendor/jquery/jquery.min.js"></script>
+            <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-    <!-- Core plugin JavaScript-->
-    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+            <!-- Core plugin JavaScript-->
+            <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
-    <!-- Custom scripts for all pages-->
-    <script src="js/sb-admin-2.min.js"></script>
+            <!-- Custom scripts for all pages-->
+            <script src="js/sb-admin-2.min.js"></script>
 
-    <!-- Page level plugins -->
-    <script src="vendor/chart.js/Chart.min.js"></script>
+            <!-- Page level plugins -->
+            <script src="vendor/chart.js/Chart.min.js"></script>
 
-    <!-- Page level custom scripts -->
-    <script src="js/demo/chart-area-demo.js"></script>
-    <script src="js/demo/chart-pie-demo.js"></script>
-    <script src="js/demo/chart-bar-demo.js"></script>
+            <!-- Page level custom scripts -->
+            <script src="js/demo/chart-area-demo.js"></script>
+            <script src="js/demo/chart-pie-demo.js"></script>
+            <script src="js/demo/chart-bar-demo.js"></script>
 
 </body>
 

@@ -1,22 +1,101 @@
 .chart-area {
-    width: 40vw;
+    width: 44vw;
+    height: 44vh;
+    display: flex;
+    justify-content: space-between;
+    gap: 4.5rem;
+    flex-direction: column;
+    left: 30vw;
+}
+
+#myChart2 {
+    position: relative;
+    width: 80vw;
+    justify-content: center;
+    display: flex;
+    background-color: white;
+    box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, .15) !important;
+    border-radius: 10px;
+    padding: 1.5rem;
+    font-size: 5rem;
+    font-weight: bold;
+}
+
+#myChart3 {
+    position: relative;
+    width: 80vw;
+    justify-content: center;
+    display: flex;
+    background-color: white;
+    box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, .15) !important;
+    border-radius: 10px;
+    padding: 1.5rem;
+    font-size: 5rem;
+    color: rgba(218, 165, 32, 0.629);
+    font-weight: bold;
+}
+
+#desempenho {
+    height: -8vh;
+    position: relative;
+    display: flex;
+    width: 32vw;
+    border-left: 0.25rem solid rgb(174, 125, 1) !important;
+}
+
+#blocoKPI {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    height: 2vh;
+    width: 20vw;
+    border-left: 0.25rem solid rgb(174, 125, 1) !important;
+}
+
+.teste {
+    position: relative;
+    left: 35vw;
+    bottom: 3rem;
+}
+
+.botao-reiniciar button {
+    background-color: rgb(174, 125, 1);
+    color: white;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    position: relative;
+    left: 44rem;
+    width: 32.5vw;
+    height: 13vh;
+    outline: none;
+    border: none;
+    box-shadow: 0 0.50rem 1.90rem 0 rgba(58, 59, 69, .15) !important;
+    top: 12rem;
+}
+
+.botao-reiniciar p{
+    position: relative;
+    left: 46vw;
+    top: 14rem;
+    color: black;
+}
+
+.botao-reiniciar b{
+    font-weight: bolder
+}
+
+.card-body {
+    display: flex;
+    flex-direction: column;
     height: 40vh;
-    display: flex;
-
+    width: 30vw;
 }
 
-#myChart{
-    position: relative;
-    width: 80%;
-    justify-content: center;
-    display: flex;
-    margin: auto;
+.border-left-primary {
+    border-left: 0.25rem solid rgb(174, 125, 1) !important;
 }
 
-#myChart2{
-    position: relative;
-    width: 80%;
-    justify-content: center;
-    display: flex;
-    margin: auto;
+.text-primary {
+    color: rgb(174, 125, 1)!important;
 }
