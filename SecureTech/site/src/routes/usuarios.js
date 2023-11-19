@@ -33,8 +33,16 @@ router.post("/relatarProblema", function (req, res) {
     usuarioController.relatarProblema(req, res);
 });
 
-router.post('/usuarios/ProcessosPHora', function(req, res){
-     usuarioController.ProcessosPHora(req, res)
+// router.post('/usuarios/ProcessosPHora', function(req, res){
+//      usuarioController.ProcessosPHora(req, res)
+// });
+
+router.get("/ProcessosPHora/:idATM", function (req, res) {
+    usuarioController.ProcessosPHora(req, res);
+});
+
+router.get("/ProcessosPHora_tempoReal/:idATM", function (req, res) {
+    usuarioController.ProcessosPHora_tempoReal(req, res);
 });
 
 router.post("/listarATM", function (req, res) {

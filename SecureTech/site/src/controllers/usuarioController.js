@@ -228,20 +228,37 @@ function listarATM(req, res) {
 }
 
 function ProcessosPHora(req, res) {
-    const idAtm = req.body.idAtm;
 
-    usuarioModel.obterProcessosPHora(idAtm)
-        .then(function (dados) {
-            if (dados.length > 0) {
-                res.json(dados);
-            } else {
-                res.status(204).send("Não há dados");
-            }
-        })
-        .catch(function (erro) {
-            console.error(`Erro na obtenção dos dados para o gráfico: ${erro.message}`);
-            res.status(500).json(erro.sqlMessage);
-        });
+    var idATM = req.body.idATM;
+
+    usuarioModel.ProcessosPHora(idATM).then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum resultado encontrado!")
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+        console.log("Houve um erro ao buscar as ultimas medidas.", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+
+function ProcessosPHora_tempoReal(req, res) {
+
+    var idATM = req.body.idATM;
+
+    usuarioModel.ProcessosPHora_tempoReal(idATM).then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum resultado encontrado!")
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+        console.log("Houve um erro ao buscar as ultimas medidas.", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    });
 }
 
 function listarAgencia(req, res) {
@@ -287,6 +304,7 @@ module.exports = {
     cadastrarAgencia,
     relatarProblema,
     ProcessosPHora,
+    ProcessosPHora_tempoReal,
     listarATM,
     listarAgencia
 }
