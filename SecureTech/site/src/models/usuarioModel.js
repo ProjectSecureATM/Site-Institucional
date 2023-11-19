@@ -1,4 +1,5 @@
 var database = require("../database/config")
+const util = require('util');
 
 function autenticar(email, senha) {
     console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function entrar(): ", email, senha)
@@ -140,25 +141,25 @@ function cadastrarAgencia(NAgencia, CEP, numero, idUsuario) {
                     return database.executar(instrucaoLocalizacao);
                 });
         });
-}   
+}
 
 function ProcessosPHora(idATM) {
-    
+
     var instrucaoSql = `
     SELECT MAX(PID) AS quantidade, DATE_FORMAT(data_hora, '%Y-%m-%d %H:00:00') AS hora, fkATM 
 FROM Processos 
-WHERE fkATM = 1 
+WHERE fkATM = ${idATM}  
 GROUP BY DATE_FORMAT(data_hora, '%Y-%m-%d %H:00:00');`;
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
 }
 
 function ProcessosPHora_tempoReal(idATM) {
-    
+
     var instrucaoSql = `
     SELECT MAX(PID) AS quantidade, DATE_FORMAT(data_hora, '%Y-%m-%d %H:00:00') AS hora, fkATM 
 FROM Processos 
-WHERE fkATM = 1 
+WHERE fkATM = ${idATM} 
 GROUP BY DATE_FORMAT(data_hora, '%Y-%m-%d %H:00:00');`;
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
@@ -193,25 +194,37 @@ function listarAgencia(fkAgencia_usuario) {
     return database.executar(instrucao);
 }
 
-exports.obterUltimaLeituraPorComponente = (idAtm, componente) => {
-    return new Promise((resolve, reject) => {
-      const query = `
-        SELECT Valor
-        FROM Leitura
-        WHERE ATMComp_ID = ? AND Componente_ID = (SELECT id FROM Componentes WHERE Nome = ?)
-        ORDER BY DataRegistro DESC
-        LIMIT 1;
-      `;
-      
-      connection.query(query, [idAtm, componente], (error, results) => {
-        if (error) {
-          reject(error);
-        } else {
-          resolve(results[0]);
-        }
-      });
-    });
-  };
+async function obterMetricasComponentes(idATM) {
+    const RAMQuery = `SELECT L.Valor FROM Leitura L WHERE L.ATMComp_ID = ${idATM} AND L.Componente_ID = 1 ORDER BY DataRegistro DESC LIMIT 1`;
+const DISCOQuery = `SELECT L.Valor FROM Leitura L WHERE L.ATMComp_ID = ${idATM} AND L.Componente_ID = 2 ORDER BY DataRegistro DESC LIMIT 1`;
+const CPUQuery = `SELECT L.Valor FROM Leitura L WHERE L.ATMComp_ID = ${idATM} AND L.Componente_ID = 3 ORDER BY DataRegistro DESC LIMIT 1`;
+
+    console.log("Executando as instruções SQL:\n", RAMQuery, DISCOQuery, CPUQuery);
+
+    try {
+        const ramResult = await database.executar(RAMQuery);
+        const discoResult = await database.executar(DISCOQuery);
+        const cpuResult = await database.executar(CPUQuery);
+
+        return {
+            RAM: (ramResult && ramResult[0] && ramResult[0].Valor) || 'N/A',
+            DISCO: (discoResult && discoResult[0] && discoResult[0].Valor) || 'N/A',
+            CPU: (cpuResult && cpuResult[0] && cpuResult[0].Valor) || 'N/A',
+        };
+    } catch (error) {
+        console.error(`Erro na obtenção dos dados do sistema: ${error.message}`);
+        return {
+            RAM: 'N/A',
+            DISCO: 'N/A',
+            CPU: 'N/A',
+        };
+    }
+}
+
+module.exports = {
+    obterMetricasComponentes,
+};
+
 
 module.exports = {
     autenticar,
@@ -223,6 +236,7 @@ module.exports = {
     ProcessosPHora,
     ProcessosPHora_tempoReal,
     listarATM,
-    listarAgencia
+    listarAgencia,
+    obterMetricasComponentes
 
 };

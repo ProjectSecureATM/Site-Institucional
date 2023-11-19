@@ -42,28 +42,28 @@ function autenticarATM(req, res) {
     var fkATM = req.body.fkATM
 
     usuarioModel.autenticar(nome, PID, fkATM)
-            .then(
-                function (resultado) {
-                    console.log(`\nResultados encontrados: ${resultado.length}`);
-                    console.log(`Resultados: ${JSON.stringify(resultado)}`); // transforma JSON em String
+        .then(
+            function (resultado) {
+                console.log(`\nResultados encontrados: ${resultado.length}`);
+                console.log(`Resultados: ${JSON.stringify(resultado)}`); // transforma JSON em String
 
-                    if (resultado.length == 1) {
-                        console.log(resultado);
-                        res.json(resultado[0]);
-                    } else if (resultado.length == 0) {
-                        res.status(403).send("Email e/ou senha inválido(s)");
-                    } else {
-                        res.status(403).send("Mais de um ATM com o mesmo id!");
-                    }
+                if (resultado.length == 1) {
+                    console.log(resultado);
+                    res.json(resultado[0]);
+                } else if (resultado.length == 0) {
+                    res.status(403).send("Email e/ou senha inválido(s)");
+                } else {
+                    res.status(403).send("Mais de um ATM com o mesmo id!");
                 }
-            ).catch(
-                function (erro) {
-                    console.log(erro);
-                    console.log("\nHouve um erro ao realizar o login do ATM! Erro: ", erro.sqlMessage);
-                    res.status(500).json(erro.sqlMessage);
-                }
-            );
-    }
+            }
+        ).catch(
+            function (erro) {
+                console.log(erro);
+                console.log("\nHouve um erro ao realizar o login do ATM! Erro: ", erro.sqlMessage);
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
+}
 
 
 
@@ -211,9 +211,7 @@ function relatarProblema(req, res) {
 
 
 function listarATM(req, res) {
-
-    var fkAgencia_usuario =  req.body.fkagenciaServer;
-
+    var fkAgencia_usuario = req.body.fkagenciaServer;
     usuarioModel.listarATM(fkAgencia_usuario).then(function (resultado) {
         if (resultado.length > 0) {
             res.status(200).json(resultado);
@@ -228,9 +226,8 @@ function listarATM(req, res) {
 }
 
 function ProcessosPHora(req, res) {
-
-    var idATM = req.body.idATM;
-
+    idATM  = req.params.idATM;
+    
     usuarioModel.ProcessosPHora(idATM).then(function (resultado) {
         if (resultado.length > 0) {
             res.status(200).json(resultado);
@@ -245,9 +242,7 @@ function ProcessosPHora(req, res) {
 }
 
 function ProcessosPHora_tempoReal(req, res) {
-
-    var idATM = req.body.idATM;
-
+    idATM  = req.params.idATM;
     usuarioModel.ProcessosPHora_tempoReal(idATM).then(function (resultado) {
         if (resultado.length > 0) {
             res.status(200).json(resultado);
@@ -263,7 +258,6 @@ function ProcessosPHora_tempoReal(req, res) {
 
 function listarAgencia(req, res) {
     var fkAgencia_usuario = req.body.fkagenciaServer;
-
     usuarioModel.listarAgencia(fkAgencia_usuario).then(function (resultado) {
         if (resultado.length > 0) {
             res.status(200).json(resultado);
@@ -277,23 +271,14 @@ function listarAgencia(req, res) {
     });
 }
 
-exports.obterStatusSistema = async (req, res) => {
-    try {
-      const idAtm = req.body.idAtm;
-      const cpuPercentage = await usuarioModel.obterUltimaLeituraPorComponente(idAtm, 'CPU');
-      const ramPercentage = await usuarioModel.obterUltimaLeituraPorComponente(idAtm, 'RAM');
-      const discoPercentage = await usuarioModel.obterUltimaLeituraPorComponente(idAtm, 'DISCO');
-  
-      res.json({
-        cpu: cpuPercentage ? `${cpuPercentage.Valor}%` : 'N/A',
-        ram: ramPercentage ? `${ramPercentage.Valor}%` : 'N/A',
-        disco: discoPercentage ? `${discoPercentage.Valor}%` : 'N/A'
-      });
-    } catch (error) {
-      console.error(`Erro ao obter status do sistema: ${error.message}`);
-      res.status(500).json({ error: 'Erro ao obter status do sistema.' });
-    }
-  };
+function obterMetricasComponentes(req, res) {
+    const idATM = req.params.idATM;
+    usuarioModel.obterMetricasComponentes(idATM)
+        .then(dados => res.json(dados))
+        .catch(error => res.status(500).json({ error: error.message }));
+}
+
+
 
 
 module.exports = {
@@ -306,5 +291,6 @@ module.exports = {
     ProcessosPHora,
     ProcessosPHora_tempoReal,
     listarATM,
-    listarAgencia
+    listarAgencia,
+    obterMetricasComponentes
 }
