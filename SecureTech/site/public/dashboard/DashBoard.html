@@ -239,59 +239,12 @@
                             </div>
                         </div>
 
-                        <script>
-                            var idATM = sessionStorage.getItem('idATM');
+                        <div class="row" style="justify-content: center; align-items: center;">
 
-                            window.onload = function () {
-                                // Obtenha o idATM da sessionStorage
-                                idATM = sessionStorage.getItem('idATM');
-                                console.log('Valor de idATM:', idATM); // Adicione este log para verificar o valor
-                                // Verifique se idATM está definido antes de chamar as funções
-                                if (idATM) {
-                                    // Chame a função uma vez ao carregar a página
-                                    exibirStatusSistema(idATM);
 
-                                    // Atualize os dados a cada 5 segundos (5000 milissegundos)
-                                    setInterval(function () {
-                                        exibirStatusSistema(idATM);
-                                    }, 5000);
-                                } else {
-                                    console.error('idATM não está definido.');
-                                }
-                            };
-
-                            function exibirStatusSistema(idATM) {
-                                fetch(`/usuarios/obterMetricasComponentes/${idATM}`, { cache: 'no-store' })
-                                    .then(function (resposta) {
-                                        if (resposta.ok) {
-                                            return resposta.json();
-                                        } else {
-                                            console.error('Erro ao obter dados do sistema');
-                                            return {};
-                                        }
-                                    })
-                                    .then(function (dados) {
-                                        // Atualiza os valores nas divs
-                                        atualizarValorDOM('ramPercentage', dados.RAM);
-                                        atualizarValorDOM('discoPercentage', dados.DISCO);
-                                        atualizarValorDOM('cpuPercentage', dados.CPU);
-                                    })
-                                    .catch(function (error) {
-                                        console.error(`Erro na obtenção dos dados do sistema: ${error.message}`);
-                                    });
-                            }
-
-                            function atualizarValorDOM(elementID, valor) {
-                                // Atualiza o valor na div específica
-                                document.getElementById(elementID).textContent = valor;
-                            }
-                        </script>
-                        <!-- <div class="row" style="justify-content: center; align-items: center;">
-
-                            
                             <div class="col-xl-8 col-lg-7">
                                 <div class="card shadow mb-4">
-                                   
+
                                     <div
                                         class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                                         <h6 class="m-0 font-weight-bold text-primary">Processos</h6>
@@ -302,7 +255,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    
+
                                     <div class="card-body">
                                         <canvas id="ProcessosChart"></canvas>
                                     </div>
@@ -312,23 +265,47 @@
                             <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
                             <script>
-
-
                                 let proximaAtualizacao;
                                 var idATM = sessionStorage.getItem('idATM');
-                                window.onload = function (idATM) {
-                                    
-                                    idATM = sessionStorage.getItem('idATM');
-                                    
+
+                                window.onload = function () {
+                                    let idATM = sessionStorage.getItem('idATM');
+
                                     if (idATM) {
-                                        
+                                        exibirStatusSistema(idATM);
                                         mostrarProcesso(idATM);
                                     } else {
                                         console.error('idATM não está definido.');
                                     }
                                 };
 
-                               
+                                function exibirStatusSistema(idATM) {
+                                    fetch(`/usuarios/obterMetricasComponentes/${idATM}`, { cache: 'no-store' })
+                                        .then(function (resposta) {
+                                            if (resposta.ok) {
+                                                return resposta.json();
+                                            } else {
+                                                console.error('Erro ao obter dados do sistema');
+                                                return {};
+                                            }
+                                        })
+                                        .then(function (dados) {
+                                            // Atualiza os valores nas divs
+                                            atualizarValorDOM('ramPercentage', dados.RAM);
+                                            atualizarValorDOM('discoPercentage', dados.DISCO);
+                                            atualizarValorDOM('cpuPercentage', dados.CPU);
+                                        })
+                                        .catch(function (error) {
+                                            console.error(`Erro na obtenção dos dados do sistema: ${error.message}`);
+                                        });
+                                    setTimeout(() => atualizarValorDOM(elementID, valor), 2000);
+                                }
+
+                                function atualizarValorDOM(elementID, valor) {
+
+                                    document.getElementById(elementID).textContent = valor;
+                                }
+
                                 function mostrarProcesso(idATM) {
                                     idATM = sessionStorage.getItem('idATM');
                                     fetch(`/usuarios/ProcessosPHora/${idATM}`, { cache: 'no-store' }).then(function (response) {
@@ -353,7 +330,7 @@
 
                                     let labels = [];
 
-                                    
+
                                     let dados = {
                                         labels: labels,
                                         datasets: [{
@@ -372,11 +349,11 @@
                                     console.log('Estes dados foram recebidos pela funcao "obterDadosGrafico" e passados para "plotarGrafico":')
                                     console.log(resposta)
 
-                                   
+
                                     for (i = 0; i < resposta.length; i++) {
                                         var registro = resposta[i];
                                         dados.datasets[0].data.push(registro.quantidade);
-                                        
+
                                         labels.push(resposta[i].hora)
                                     }
 
@@ -388,7 +365,7 @@
                                     console.log(dados.datasets)
                                     console.log('----------------------------------------------')
 
-                                    
+
                                     const config = {
                                         type: 'bar',
                                         data: dados
@@ -429,19 +406,19 @@
                                                     console.log(dados.labels[dados.labels.length - 1])
                                                     console.log("---------------------------------------------------------------")
                                                 } else {
-                                                    dados.labels.push(novoRegistro[0].hora); 
+                                                    dados.labels.push(novoRegistro[0].hora);
                                                     dados.datasets[0].data.push(novoRegistro[0].quantidade);
 
                                                     myChart.update();
 
                                                 }
 
-                                                
+
                                                 proximaAtualizacao = setTimeout(() => atualizarGrafico(idATM, dados, myChart), 2000);
                                             });
                                         } else {
                                             console.error('Nenhum dado encontrado ou erro na API');
-                                            
+
                                             proximaAtualizacao = setTimeout(() => atualizarGrafico(idATM, dados, myChart), 2000);
                                         }
                                     })
@@ -451,30 +428,31 @@
 
                                 }
 
-                            </script> -->
+                            </script>
 
-                        <!-- Scroll to Top Button-->
-                        <a class="scroll-to-top rounded" href="#page-top">
-                            <i class="fas fa-angle-up"></i>
-                        </a>
+                            <!-- Scroll to Top Button-->
+                            <a class="scroll-to-top rounded" href="#page-top">
+                                <i class="fas fa-angle-up"></i>
+                            </a>
 
-                        <!-- Logout Modal-->
-                        <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog"
-                            aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">Certeza que você quer
-                                            sair?</h5>
-                                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">×</span>
-                                        </button>
-                                    </div>
-                                    <div class="modal-body">Selecione "Sair" para deslogar.</div>
-                                    <div class="modal-footer">
-                                        <button style="text-align: left;" class="btn btn-secondary" type="button"
-                                            data-dismiss="modal">Cancelar</button>
-                                        <a class="btn btn-primary" href="../index.html">Sair</a>
+                            <!-- Logout Modal-->
+                            <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog"
+                                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Certeza que você quer
+                                                sair?</h5>
+                                            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">×</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">Selecione "Sair" para deslogar.</div>
+                                        <div class="modal-footer">
+                                            <button style="text-align: left;" class="btn btn-secondary" type="button"
+                                                data-dismiss="modal">Cancelar</button>
+                                            <a class="btn btn-primary" href="../index.html">Sair</a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -483,7 +461,6 @@
                 </div>
             </div>
         </div>
-    </div>
     </div>
 </body>
 
