@@ -230,6 +230,18 @@
         <script src="js/demo/chart-pie-demo.js"></script>
         <script src="js/demo/chart-bar-demo.js"></script>
 
+        <!-- ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+      <!-- MURAL DE AVISOS -->
+      <!-- /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+
+      <div class="mural_avisos">
+
+        <div id="avisos-container"></div>
+
+      </div>
+
+      <!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+
 </body>
 
 </html>
@@ -311,6 +323,43 @@
             }
         }).catch(function (resposta) {
             console.error(resposta);
+        });
+    }
+      /////////////////////////////////////////////////////////////////////////////////////////////
+// /                               AVISOS                                                      /
+////////////////////////////////////////////////////////////////////////////////////////////
+const condicao1 = true;
+// const condicao1 = false;
+const condicao2 = false;
+// const condicao2 = true;
+
+if (condicao1) {
+    criarAviso('Alerta no ATM X. Clique aqui para ir até ele', 'index.html', 'aviso-vermelho');
+} else if (condicao2) {
+    criarAviso('Atenção ao ATM X. Clique aqui para ir até ele', 'index.html', 'aviso-amarelo');
+}
+
+function buscarAviso() {
+        fetch("/avisoController/Alertas:fkEmpresa").then(function (resposta) {
+
+            if (resposta.ok) {
+
+                resposta.json().then(function (resposta) {
+                    console.log("Dados recebidos: ", JSON.stringify(resposta));
+
+                    for (let i = 0; i < resposta.length; i++) {
+
+                        var publicacao = resposta[i];
+
+                    }
+                    // finalizarAguardar();
+                });
+            } else {
+                throw ('Houve um erro na API!');
+            }
+        }).catch(function (resposta) {
+            console.error(resposta);
+            // finalizarAguardar();
         });
     }
 </script>
