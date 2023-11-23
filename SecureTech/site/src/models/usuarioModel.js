@@ -221,14 +221,35 @@ const CPUQuery = `SELECT L.Valor FROM Leitura L WHERE L.ATMComp_ID = ${idATM} AN
     }
 }
 
+// P.I - COMEÇO - VAZ
 function selectPing(idATM) {
     console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function entrar(): ", idATM)
     var instrucao = `
-    SELECT ping FROM rede where fk_idATM = 1${idATM};
+    SELECT ping FROM rede where fk_idATM = ${idATM};
     `;
     console.log("Executando a instrução SQL aaaa: \n" + instrucao);
     return database.executar(instrucao);
 }
+
+function selectDownload(idATM) {
+    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function entrar(): ", idATM)
+    var instrucao = `
+    SELECT pacotesRecebidos FROM rede where fk__idATM = ${idATM};
+    `;
+    console.log("Executando a instrução SQL aaaa: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
+function selectUpload(idATM) {
+    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function entrar(): ", idATM)
+    var instrucao = `
+    SELECT pacotesEnviados FROM rede where fk_idATM = ${idATM};
+    `;
+    console.log("Executando a instrução SQL aaaa: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
+// P.I - FINAL - VAZ
 
 module.exports = {
     obterMetricasComponentes,
@@ -247,5 +268,7 @@ module.exports = {
     listarATM,
     listarAgencia,
     obterMetricasComponentes,
-    selectPing
+    selectPing,
+    selectDownload,
+    selectUpload
 };

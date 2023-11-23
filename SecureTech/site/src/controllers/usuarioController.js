@@ -285,6 +285,20 @@ function obterPing(req, res) {
         .catch(error => res.status(500).json({ error: error.message }));
 }
 
+function obterDownload(req, res) {
+    const idATM = req.params.idATM;
+    usuarioModel.obterDownload(idATM)
+        .then(dados => res.json(dados))
+        .catch(error => res.status(500).json({ error: error.message }));
+}
+
+function obterUpload(req, res) {
+    const idATM = req.params.idATM;
+    usuarioModel.obterUpload(idATM)
+        .then(dados => res.json(dados))
+        .catch(error => res.status(500).json({ error: error.message }));
+}
+
 
 module.exports = {
     autenticar,
@@ -298,5 +312,7 @@ module.exports = {
     listarATM,
     listarAgencia,
     obterMetricasComponentes,
-    obterPing
+    obterPing,
+    obterDownload,
+    obterUpload
 }

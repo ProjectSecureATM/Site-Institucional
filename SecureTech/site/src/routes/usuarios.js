@@ -60,4 +60,12 @@ router.get('/obterValoresParaGrafico', function(req, res){
 router.get('/obterPing:idATM', function(req, res){
     usuarioController.obterPing(req, res)
 })
+
+router.get('/obterDownload:idATM', function(req, res){
+    usuarioController.obterPing(req, res)
+})
+
+router.get('/obterUpload:idATM', function(req, res){
+    usuarioController.obterPing(req, res)
+})
 module.exports = router;

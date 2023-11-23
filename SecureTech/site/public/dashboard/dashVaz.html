@@ -171,11 +171,11 @@
                             <div class="titulo-DashBoard">
                                 <span>DashBoard</span>
                             </div>
-                            <div class="divButon">
+                            <!-- <div class="divButon">
                                 <button class="butonDashBoard">
                                     <span>Ver mais</span>
                                 </button>
-                            </div>
+                            </div> -->
                         </div>
 
                         <div class="divLinhaDash display-betwen">
@@ -183,12 +183,12 @@
                                 <div class="containerDashComponentes">
                                     <div class="divTitulo">
                                         <div class="titulo">
-                                            <span>CPU</span>
+                                            <span>Ping</span>
                                         </div>
                                     </div>
                                     <div class="conteudoComponente">
                                         <div class="componente">
-                                            <span>30%</span>
+                                            <span>%</span>
                                         </div>
                                     </div>
                                 </div>
@@ -197,12 +197,12 @@
                                 <div class="containerDashComponentes">
                                     <div class="divTitulo">
                                         <div class="titulo">
-                                            <span>RAM</span>
+                                            <span>Download</span>
                                         </div>
                                     </div>
                                     <div class="conteudoComponente">
                                         <div class="componente">
-                                            <span>30%</span>
+                                            <span>%</span>
                                         </div>
 
                                     </div>
@@ -212,12 +212,12 @@
                                 <div class="containerDashComponentes">
                                     <div class="divTitulo">
                                         <div class="titulo titulo-end">
-                                            <span>DISCO</span>
+                                            <span>Upload</span>
                                         </div>
                                     </div>
                                     <div class="conteudoComponente">
                                         <div class="componente">
-                                            <span>30%</span>
+                                            <span>%</span>
                                         </div>
                                     </div>
                                 </div>
@@ -272,7 +272,7 @@
                                             </div>
                                         </div>
                                         <div class="divGrafico">
-                                            
+
                                         </div>
                                     </div>
                                 </div>
@@ -346,17 +346,130 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
     window.onload = obterPing()
-    function testeBotao() {
-        Swal.fire({
-            title: 'Métricas (KPI`s)</br></br><span style="color: blue;">CPU</span><p style="text-align: left;">Ideal: 0% a 50% </br> Aceitável: 50% a 70% </br> Crítico: 70% a 100%</p></br><span style="color: blue;">RAM</span><p style="text-align: left;">Ideal: 0% a 70% </br> Aceitável: 70% a 90% </br> Crítico: 90% a 100%</p></br><span style="color: blue;">DISCO</span><p style="text-align: left;">Ideal: 0% a 60% </br> Aceitável: 60% a 80% </br> Crítico: 80% a 100%</p>',
-            showClass: {
-                popup: 'animate__animated animate__fadeInDown'
+    window.onload = obterDownload()
+    window.onload = obterUpload()
+
+    function obterPing() {
+        var idATM = sessionStorage.idATM
+
+        fetch("/usuarios/obterPing", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
             },
-            hideClass: {
-                popup: 'animate__animated animate__fadeOutUp'
+            body: JSON.stringify({
+                pingServer: idATM,
+            })
+        }).then(function (resposta) {
+            console.log("ESTOU NO THEN DO entrar()!");
+
+            if (resposta.ok) {
+                console.log("Ping Recebido")
+                console.log(resposta);
+
+                resposta.json().then(json => {
+                    console.log(json);
+                    console.log(JSON.stringify(json));
+                });
+
+            } else {
+                console.log("Houve um erro ao fazer o select");
+
+                resposta.text().then(texto => {
+                    console.error(texto);
+                    //finalizarAguardar(texto);
+                });
             }
-        })
+        }).catch(function (erro) {
+            console.log(erro);
+        });
+
+        return false;
     }
+
+    function obterDownload() {
+        var idATM = sessionStorage.idATM
+
+        fetch("/usuarios/obterPing", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                pingServer: idATM,
+            })
+        }).then(function (resposta) {
+            console.log("ESTOU NO THEN DO entrar()!");
+
+            if (resposta.ok) {
+                console.log("Donwload Recebido")
+                console.log(resposta);
+
+                resposta.json().then(json => {
+                    console.log(json);
+                    console.log(JSON.stringify(json));
+                });
+
+            } else {
+                console.log("Houve um erro ao fazer o select");
+
+                resposta.text().then(texto => {
+                    console.error(texto);
+                    //finalizarAguardar(texto);
+                });
+            }
+        }).catch(function (erro) {
+            console.log(erro);
+        });
+
+        return false;
+    }
+
+    function obterUpload() {
+        var idATM = sessionStorage.idATM
+
+        fetch("/usuarios/obterPing", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                pingServer: idATM,
+            })
+        }).then(function (resposta) {
+            console.log("ESTOU NO THEN DO entrar()!");
+
+            if (resposta.ok) {
+                console.log("Upload Recebido")
+                console.log(resposta);
+
+                resposta.json().then(json => {
+                    console.log(json);
+                    console.log(JSON.stringify(json));
+                });
+
+            } else {
+                console.log("Houve um erro ao fazer o select");
+
+                resposta.text().then(texto => {
+                    console.error(texto);
+                    //finalizarAguardar(texto);
+                });
+            }
+        }).catch(function (erro) {
+            console.log(erro);
+        });
+
+        return false;
+    }
+
+    
+
+
+
+
+
+
 
     const ctx = document.getElementById('myChart');
     new Chart(ctx, {
@@ -380,46 +493,5 @@
             }
         }
     });
-
-
-    function obterPing() {
-    var idATM = sessionStorage.idATM
-
-    fetch("/usuarios/obterPing", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-            pingServer: idATM,
-        })
-    }).then(function (resposta) {
-        console.log("ESTOU NO THEN DO entrar()!");
-
-        if (resposta.ok) {
-            console.log(resposta);
-
-            resposta.json().then(json => {
-                console.log(json);
-                console.log(JSON.stringify(json));
-            });
-
-        } else {
-            console.log("Houve um erro ao fazer o select");
-
-            resposta.text().then(texto => {
-                console.error(texto);
-                //finalizarAguardar(texto);
-            });
-        }
-    }).catch(function (erro) {
-        console.log(erro);
-    });
-
-    return false;
-
-}
-
-
 
 </script>
