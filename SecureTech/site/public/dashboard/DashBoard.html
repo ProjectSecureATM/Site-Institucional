@@ -263,14 +263,10 @@
                             </div>
 
                             <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
                             <script>
-                                let proximaAtualizacao;
                                 var idATM = sessionStorage.getItem('idATM');
 
                                 window.onload = function () {
-                                    let idATM = sessionStorage.getItem('idATM');
-
                                     if (idATM) {
                                         exibirStatusSistema(idATM);
                                         mostrarProcesso(idATM);
@@ -290,7 +286,6 @@
                                             }
                                         })
                                         .then(function (dados) {
-                                            // Atualiza os valores nas divs
                                             atualizarValorDOM('ramPercentage', dados.RAM);
                                             atualizarValorDOM('discoPercentage', dados.DISCO);
                                             atualizarValorDOM('cpuPercentage', dados.CPU);
@@ -298,39 +293,35 @@
                                         .catch(function (error) {
                                             console.error(`Erro na obtenção dos dados do sistema: ${error.message}`);
                                         });
-                                    setTimeout(() => atualizarValorDOM(elementID, valor), 2000);
+                                    setTimeout(() => atualizarValorDOM('ramPercentage', dados.RAM), 2000);
+                                    // Adicione mais chamadas para as outras métricas (disco e CPU) se necessário
                                 }
 
                                 function atualizarValorDOM(elementID, valor) {
-
                                     document.getElementById(elementID).textContent = valor;
                                 }
 
                                 function mostrarProcesso(idATM) {
-                                    idATM = sessionStorage.getItem('idATM');
-                                    fetch(`/usuarios/ProcessosPHora/${idATM}`, { cache: 'no-store' }).then(function (response) {
-                                        if (response.ok) {
-                                            response.json().then(function (resposta) {
-                                                console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
-                                                //resposta.reverse();
-
-                                                plotarGrafico(resposta, idATM);
-
-                                            });
-                                        } else {
-                                            console.error('Nenhum dado encontrado ou erro na API');
-                                        }
-                                    })
+                                    fetch(`/usuarios/ProcessosPHora/${idATM}`, { cache: 'no-store' })
+                                        .then(function (response) {
+                                            if (response.ok) {
+                                                return response.json();
+                                            } else {
+                                                console.error('Nenhum dado encontrado ou erro na API');
+                                                return [];
+                                            }
+                                        })
+                                        .then(function (resposta) {
+                                            console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                                            plotarGrafico(resposta, idATM);
+                                        })
                                         .catch(function (error) {
-                                            console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+                                            console.error(`Erro na obtenção dos dados para o gráfico: ${error.message}`);
                                         });
                                 }
 
                                 function plotarGrafico(resposta, idATM) {
-
                                     let labels = [];
-
-
                                     let dados = {
                                         labels: labels,
                                         datasets: [{
@@ -341,30 +332,14 @@
                                             borderColor: 'rgba(75, 192, 192, 1)',
                                             borderWidth: 5,
                                             tension: 0.5
-                                        },
-                                        ]
+                                        }]
                                     };
 
-                                    console.log('----------------------------------------------')
-                                    console.log('Estes dados foram recebidos pela funcao "obterDadosGrafico" e passados para "plotarGrafico":')
-                                    console.log(resposta)
-
-
-                                    for (i = 0; i < resposta.length; i++) {
-                                        var registro = resposta[i];
+                                    for (let i = 0; i < resposta.length; i++) {
+                                        let registro = resposta[i];
                                         dados.datasets[0].data.push(registro.quantidade);
-
-                                        labels.push(resposta[i].hora)
+                                        labels.push(registro.hora);
                                     }
-
-                                    console.log('----------------------------------------------')
-                                    console.log('O gráfico será plotado com os respectivos valores:')
-                                    console.log('Labels:')
-                                    console.log(labels)
-                                    console.log('Dados:')
-                                    console.log(dados.datasets)
-                                    console.log('----------------------------------------------')
-
 
                                     const config = {
                                         type: 'bar',
@@ -378,55 +353,45 @@
                                     setTimeout(() => atualizarGrafico(idATM, dados, myChart), 2000);
                                 }
 
-
                                 function atualizarGrafico(idATM, dados, myChart) {
+                                    fetch(`/usuarios/ProcessosPHora_tempoReal/${idATM}`, { cache: 'no-store' })
+                                        .then(function (response) {
+                                            if (response.ok) {
+                                                return response.json();
+                                            } else {
+                                                console.error('Nenhum dado encontrado ou erro na API');
+                                                return [];
+                                            }
+                                        })
+                                        .then(function (novoRegistro) {
+                                            console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
+                                            console.log('Dados atuais do gráfico:');
+                                            console.log(dados);
 
-                                    fetch(`/usuarios/ProcessosPHora_tempoReal/${idATM}`, { cache: 'no-store' }).then(function (response) {
-                                        if (response.ok) {
-                                            response.json().then(function (novoRegistro) {
+                                            let validacao = novoRegistro.some(item => item.hora === dados.labels[dados.labels.length - 1]);
 
-                                                console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
-                                                console.log(`Dados atuais do gráfico:`);
-                                                console.log(dados);
+                                            if (!validacao) {
+                                                dados.labels.push(novoRegistro[0].hora);
+                                                dados.datasets[0].data.push(novoRegistro[0].quantidade);
+                                                myChart.update();
+                                            } else {
+                                                console.log("---------------------------------------------------------------");
+                                                console.log("Como não há dados novos para captura, o gráfico não atualizará.");
+                                                console.log("Horário do novo dado capturado:");
+                                                console.log(novoRegistro[0].hora);
+                                                console.log("Horário do último dado capturado:");
+                                                console.log(dados.labels[dados.labels.length - 1]);
+                                                console.log("---------------------------------------------------------------");
+                                            }
 
-                                                var validacao = 0
-
-                                                for (var i = 0; i < novoRegistro.length; i++) {
-                                                    if (novoRegistro[i].hora == dados.labels[dados.labels.length - 1]) {
-                                                        validacao += 1
-                                                    }
-                                                }
-
-                                                if (validacao != 0) {
-                                                    console.log("---------------------------------------------------------------")
-                                                    console.log("Como não há dados novos para captura, o gráfico não atualizará.")
-                                                    console.log("Horário do novo dado capturado:")
-                                                    console.log(novoRegistro[0].Hora)
-                                                    console.log("Horário do último dado capturado:")
-                                                    console.log(dados.labels[dados.labels.length - 1])
-                                                    console.log("---------------------------------------------------------------")
-                                                } else {
-                                                    dados.labels.push(novoRegistro[0].hora);
-                                                    dados.datasets[0].data.push(novoRegistro[0].quantidade);
-
-                                                    myChart.update();
-
-                                                }
-
-
-                                                proximaAtualizacao = setTimeout(() => atualizarGrafico(idATM, dados, myChart), 2000);
-                                            });
-                                        } else {
-                                            console.error('Nenhum dado encontrado ou erro na API');
-
-                                            proximaAtualizacao = setTimeout(() => atualizarGrafico(idATM, dados, myChart), 2000);
-                                        }
-                                    })
+                                            setTimeout(() => atualizarGrafico(idATM, dados, myChart), 2000);
+                                        })
                                         .catch(function (error) {
-                                            console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+                                            console.error(`Erro na obtenção dos dados para o gráfico: ${error.message}`);
+                                            setTimeout(() => atualizarGrafico(idATM, dados, myChart), 2000);
                                         });
-
                                 }
+
 
                             </script>
 
