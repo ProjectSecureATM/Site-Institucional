@@ -278,7 +278,12 @@ function obterMetricasComponentes(req, res) {
         .catch(error => res.status(500).json({ error: error.message }));
 }
 
-
+function obterPing(req, res) {
+    const idATM = req.params.idATM;
+    usuarioModel.obterPing(idATM)
+        .then(dados => res.json(dados))
+        .catch(error => res.status(500).json({ error: error.message }));
+}
 
 
 module.exports = {
@@ -292,5 +297,6 @@ module.exports = {
     ProcessosPHora_tempoReal,
     listarATM,
     listarAgencia,
-    obterMetricasComponentes
+    obterMetricasComponentes,
+    obterPing
 }

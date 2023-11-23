@@ -345,6 +345,7 @@
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
+    window.onload = obterPing()
     function testeBotao() {
         Swal.fire({
             title: 'Métricas (KPI`s)</br></br><span style="color: blue;">CPU</span><p style="text-align: left;">Ideal: 0% a 50% </br> Aceitável: 50% a 70% </br> Crítico: 70% a 100%</p></br><span style="color: blue;">RAM</span><p style="text-align: left;">Ideal: 0% a 70% </br> Aceitável: 70% a 90% </br> Crítico: 90% a 100%</p></br><span style="color: blue;">DISCO</span><p style="text-align: left;">Ideal: 0% a 60% </br> Aceitável: 60% a 80% </br> Crítico: 80% a 100%</p>',
@@ -379,5 +380,46 @@
             }
         }
     });
+
+
+    function obterPing() {
+    var idATM = sessionStorage.idATM
+
+    fetch("/usuarios/obterPing", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            pingServer: idATM,
+        })
+    }).then(function (resposta) {
+        console.log("ESTOU NO THEN DO entrar()!");
+
+        if (resposta.ok) {
+            console.log(resposta);
+
+            resposta.json().then(json => {
+                console.log(json);
+                console.log(JSON.stringify(json));
+            });
+
+        } else {
+            console.log("Houve um erro ao fazer o select");
+
+            resposta.text().then(texto => {
+                console.error(texto);
+                //finalizarAguardar(texto);
+            });
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+    });
+
+    return false;
+
+}
+
+
 
 </script>

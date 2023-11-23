@@ -221,6 +221,15 @@ const CPUQuery = `SELECT L.Valor FROM Leitura L WHERE L.ATMComp_ID = ${idATM} AN
     }
 }
 
+function selectPing(idATM) {
+    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function entrar(): ", idATM)
+    var instrucao = `
+    SELECT ping FROM rede where fk_idATM = 1${idATM};
+    `;
+    console.log("Executando a instrução SQL aaaa: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
 module.exports = {
     obterMetricasComponentes,
 };
@@ -237,6 +246,6 @@ module.exports = {
     ProcessosPHora_tempoReal,
     listarATM,
     listarAgencia,
-    obterMetricasComponentes
-
+    obterMetricasComponentes,
+    selectPing
 };
