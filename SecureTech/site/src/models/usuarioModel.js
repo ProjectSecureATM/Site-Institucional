@@ -196,8 +196,8 @@ function listarAgencia(fkAgencia_usuario) {
 
 async function obterMetricasComponentes(idATM) {
     const RAMQuery = `SELECT L.Valor FROM Leitura L WHERE L.ATMComp_ID = ${idATM} AND L.Componente_ID = 1 ORDER BY DataRegistro DESC LIMIT 1`;
-const DISCOQuery = `SELECT L.Valor FROM Leitura L WHERE L.ATMComp_ID = ${idATM} AND L.Componente_ID = 2 ORDER BY DataRegistro DESC LIMIT 1`;
-const CPUQuery = `SELECT L.Valor FROM Leitura L WHERE L.ATMComp_ID = ${idATM} AND L.Componente_ID = 3 ORDER BY DataRegistro DESC LIMIT 1`;
+    const DISCOQuery = `SELECT L.Valor FROM Leitura L WHERE L.ATMComp_ID = ${idATM} AND L.Componente_ID = 2 ORDER BY DataRegistro DESC LIMIT 1`;
+    const CPUQuery = `SELECT L.Valor FROM Leitura L WHERE L.ATMComp_ID = ${idATM} AND L.Componente_ID = 3 ORDER BY DataRegistro DESC LIMIT 1`;
 
     console.log("Executando as instruções SQL:\n", RAMQuery, DISCOQuery, CPUQuery);
 
@@ -221,39 +221,34 @@ const CPUQuery = `SELECT L.Valor FROM Leitura L WHERE L.ATMComp_ID = ${idATM} AN
     }
 }
 
-// P.I - COMEÇO - VAZ
-function selectPing(idATM) {
-    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function entrar(): ", idATM)
-    var instrucao = `
-    SELECT ping FROM rede where fk_idATM = ${idATM};
-    `;
-    console.log("Executando a instrução SQL aaaa: \n" + instrucao);
-    return database.executar(instrucao);
+async function obterMetricasRede(idATM) {
+    const PINGQuery = `SELECT ping FROM rede WHERE fk__idATM = ${idATM} order by data_hora desc limit 1`;
+    const DOWNLOADQuery = `SELECT pacotesRecebidos FROM rede WHERE fk__idATM = ${idATM} order by data_hora desc limit 1`;
+    const UPLOADQuery = `SELECT pacotesEnviados FROM rede WHERE fk__idATM = ${idATM} order by data_hora desc limit 1`;
+
+    console.log("Executando as instruções SQL:\n", PINGQuery, DOWNLOADQuery, UPLOADQuery);
+
+    try {
+        const pingResult = await database.executar(PINGQuery);
+        const downloadResult = await database.executar(DOWNLOADQuery);
+        const uploadResult = await database.executar(UPLOADQuery);
+
+        return {
+            PING: (pingResult && pingResult[0] && pingResult[0].ping) || 'N/A',
+            DOWNLOAD: (downloadResult && downloadResult[0] && downloadResult[0].pacotesRecebidos) || 'N/A',
+            UPLOAD: (uploadResult && uploadResult[0] && uploadResult[0].pacotesEnviados) || 'N/A',
+        };
+    } catch (error) {
+        console.error(`Erro na obtenção dos dados do sistema: ${error.message}`);
+        return {
+            PING: 'N/A',
+            DOWNLOAD: 'N/A',
+            UPLOAD: 'N/A',
+        };
+    }
 }
 
-function selectDownload(idATM) {
-    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function entrar(): ", idATM)
-    var instrucao = `
-    SELECT pacotesRecebidos FROM rede where fk__idATM = ${idATM};
-    `;
-    console.log("Executando a instrução SQL aaaa: \n" + instrucao);
-    return database.executar(instrucao);
-}
 
-function selectUpload(idATM) {
-    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function entrar(): ", idATM)
-    var instrucao = `
-    SELECT pacotesEnviados FROM rede where fk_idATM = ${idATM};
-    `;
-    console.log("Executando a instrução SQL aaaa: \n" + instrucao);
-    return database.executar(instrucao);
-}
-
-// P.I - FINAL - VAZ
-
-module.exports = {
-    obterMetricasComponentes,
-};
 
 
 module.exports = {
@@ -268,7 +263,5 @@ module.exports = {
     listarATM,
     listarAgencia,
     obterMetricasComponentes,
-    selectPing,
-    selectDownload,
-    selectUpload
+    obterMetricasRede
 };

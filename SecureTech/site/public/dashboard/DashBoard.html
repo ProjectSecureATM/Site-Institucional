@@ -78,8 +78,8 @@
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Inovações Secure ATM:</h6>
-                        <a href="PI.Gabriel-CUTE/dashVaz.html" class="collapse-item">Dash Gabroh</a>
-                        <a class="collapse-item">Dash Jujuba</a>
+                        <a href="DashBoard-VisaoGeral-Vaz.html" class="collapse-item">Dash Gabroh</a>
+                        <a href="DashBoard-VisaoGeral-Giba.html" class="collapse-item">Dash Jujuba</a>
                         <a class="collapse-item">Dash Julião</a>
                         <a class="collapse-item">Dash Paulão</a>
                         <a class="collapse-item">Dash Primon</a>
@@ -262,136 +262,6 @@
                                 </div>
                             </div>
 
-                            <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-                            <script>
-                                var idATM = sessionStorage.getItem('idATM');
-
-                                window.onload = function () {
-                                    if (idATM) {
-                                        exibirStatusSistema(idATM);
-                                        mostrarProcesso(idATM);
-                                    } else {
-                                        console.error('idATM não está definido.');
-                                    }
-                                };
-
-                                function exibirStatusSistema(idATM) {
-                                    fetch(`/usuarios/obterMetricasComponentes/${idATM}`, { cache: 'no-store' })
-                                        .then(function (resposta) {
-                                            if (resposta.ok) {
-                                                return resposta.json();
-                                            } else {
-                                                console.error('Erro ao obter dados do sistema');
-                                                return {};
-                                            }
-                                        })
-                                        .then(function (dados) {
-                                            atualizarValorDOM('ramPercentage', dados.RAM);
-                                            atualizarValorDOM('discoPercentage', dados.DISCO);
-                                            atualizarValorDOM('cpuPercentage', dados.CPU);
-                                        })
-                                        .catch(function (error) {
-                                            console.error(`Erro na obtenção dos dados do sistema: ${error.message}`);
-                                        });
-                                    setTimeout(() => atualizarValorDOM('ramPercentage', dados.RAM), 2000);
-                                    // Adicione mais chamadas para as outras métricas (disco e CPU) se necessário
-                                }
-
-                                function atualizarValorDOM(elementID, valor) {
-                                    document.getElementById(elementID).textContent = valor;
-                                }
-
-                                function mostrarProcesso(idATM) {
-                                    fetch(`/usuarios/ProcessosPHora/${idATM}`, { cache: 'no-store' })
-                                        .then(function (response) {
-                                            if (response.ok) {
-                                                return response.json();
-                                            } else {
-                                                console.error('Nenhum dado encontrado ou erro na API');
-                                                return [];
-                                            }
-                                        })
-                                        .then(function (resposta) {
-                                            console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
-                                            plotarGrafico(resposta, idATM);
-                                        })
-                                        .catch(function (error) {
-                                            console.error(`Erro na obtenção dos dados para o gráfico: ${error.message}`);
-                                        });
-                                }
-
-                                function plotarGrafico(resposta, idATM) {
-                                    let labels = [];
-                                    let dados = {
-                                        labels: labels,
-                                        datasets: [{
-                                            label: 'Processos',
-                                            data: [],
-                                            fill: false,
-                                            backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                                            borderColor: 'rgba(75, 192, 192, 1)',
-                                            borderWidth: 5,
-                                            tension: 0.5
-                                        }]
-                                    };
-
-                                    for (let i = 0; i < resposta.length; i++) {
-                                        let registro = resposta[i];
-                                        dados.datasets[0].data.push(registro.quantidade);
-                                        labels.push(registro.hora);
-                                    }
-
-                                    const config = {
-                                        type: 'bar',
-                                        data: dados
-                                    };
-
-                                    let myChart = new Chart(
-                                        document.getElementById(`ProcessosChart`),
-                                        config
-                                    );
-                                    setTimeout(() => atualizarGrafico(idATM, dados, myChart), 2000);
-                                }
-
-                                function atualizarGrafico(idATM, dados, myChart) {
-                                    fetch(`/usuarios/ProcessosPHora_tempoReal/${idATM}`, { cache: 'no-store' })
-                                        .then(function (response) {
-                                            if (response.ok) {
-                                                return response.json();
-                                            } else {
-                                                console.error('Nenhum dado encontrado ou erro na API');
-                                                return [];
-                                            }
-                                        })
-                                        .then(function (novoRegistro) {
-                                            console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
-                                            console.log('Dados atuais do gráfico:');
-                                            console.log(dados);
-
-                                            let validacao = novoRegistro.some(item => item.hora === dados.labels[dados.labels.length - 1]);
-
-                                            if (!validacao) {
-                                                dados.labels.push(novoRegistro[0].hora);
-                                                dados.datasets[0].data.push(novoRegistro[0].quantidade);
-                                                myChart.update();
-                                            } else {
-                                                console.log("---------------------------------------------------------------");
-                                                console.log("Como não há dados novos para captura, o gráfico não atualizará.");
-                                                console.log("Horário do novo dado capturado:");
-                                                console.log(novoRegistro[0].hora);
-                                                console.log("Horário do último dado capturado:");
-                                                console.log(dados.labels[dados.labels.length - 1]);
-                                                console.log("---------------------------------------------------------------");
-                                            }
-
-                                            setTimeout(() => atualizarGrafico(idATM, dados, myChart), 2000);
-                                        })
-                                        .catch(function (error) {
-                                            console.error(`Erro na obtenção dos dados para o gráfico: ${error.message}`);
-                                            setTimeout(() => atualizarGrafico(idATM, dados, myChart), 2000);
-                                        });
-                                }
-
 
                             </script>
 
@@ -431,7 +301,10 @@
 
 </html>
 
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
+    var idATM = sessionStorage.getItem('idATM');
+
     function testeBotao() {
         Swal.fire({
             title: 'Métricas (KPI`s)</br></br><span style="color: blue;">CPU</span><p style="text-align: left;">Ideal: 0% a 50% </br> Aceitável: 50% a 70% </br> Crítico: 70% a 100%</p></br><span style="color: blue;">RAM</span><p style="text-align: left;">Ideal: 0% a 70% </br> Aceitável: 70% a 90% </br> Crítico: 90% a 100%</p></br><span style="color: blue;">DISCO</span><p style="text-align: left;">Ideal: 0% a 60% </br> Aceitável: 60% a 80% </br> Crítico: 80% a 100%</p>',
@@ -444,28 +317,137 @@
         })
     }
 
-    function buscarATM() {
-        fetch("/avisos/listar:fkEmpresa").then(function (resposta) {
+    window.onload = function () {
+        if (idATM) {
+            exibirStatusSistema(idATM);
+            mostrarProcesso(idATM);
+        } else {
+            console.error('idATM não está definido.');
+        }
+    };
 
-            if (resposta.ok) {
-                console.log("ENTREII")
+    function exibirStatusSistema() {
+        obterDadosSistema()
 
-                resposta.json().then(function (resposta) {
-                    console.log("Dados recebidos: ", JSON.stringify(resposta));
-
-                    for (let i = 0; i < resposta.length; i++) {
-
-                        var publicacao = resposta[i];
-
-                    }
-                    // finalizarAguardar();
-                });
-            } else {
-                throw ('Houve um erro na API!');
-            }
-        }).catch(function (resposta) {
-            console.error(resposta);
-            // finalizarAguardar();
-        });
+        setInterval(obterDadosSistema, 5000);
     }
+
+    function obterDadosSistema(idATM) {
+        fetch(`/usuarios/obterMetricasComponentes/${idATM}`, { cache: 'no-store' })
+            .then(function (resposta) {
+                if (resposta.ok) {
+                    return resposta.json();
+                } else {
+                    console.error('Erro ao obter dados do sistema');
+                    return {};
+                }
+            })
+            .then(function (dados) {
+                atualizarValorDOM('ramPercentage', dados.RAM);
+                atualizarValorDOM('discoPercentage', dados.DISCO);
+                atualizarValorDOM('cpuPercentage', dados.CPU);
+            })
+            .catch(function (error) {
+                console.error(`Erro na obtenção dos dados do sistema: ${error.message}`);
+            });
+
+        // Adicione mais chamadas para as outras métricas (disco e CPU) se necessário
+    }
+
+    function atualizarValorDOM(elementID, valor) {
+        document.getElementById(elementID).textContent = valor;
+    }
+
+    function mostrarProcesso(idATM) {
+        fetch(`/usuarios/ProcessosPHora/${idATM}`, { cache: 'no-store' })
+            .then(function (response) {
+                if (response.ok) {
+                    return response.json();
+                } else {
+                    console.error('Nenhum dado encontrado ou erro na API');
+                    return [];
+                }
+            })
+            .then(function (resposta) {
+                console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                plotarGrafico(resposta, idATM);
+            })
+            .catch(function (error) {
+                console.error(`Erro na obtenção dos dados para o gráfico: ${error.message}`);
+            });
+    }
+
+    function plotarGrafico(resposta, idATM) {
+        let labels = [];
+        let dados = {
+            labels: labels,
+            datasets: [{
+                label: 'Processos',
+                data: [],
+                fill: false,
+                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                borderColor: 'rgba(75, 192, 192, 1)',
+                borderWidth: 5,
+                tension: 0.5
+            }]
+        };
+
+        for (let i = 0; i < resposta.length; i++) {
+            let registro = resposta[i];
+            dados.datasets[0].data.push(registro.quantidade);
+            labels.push(registro.hora);
+        }
+
+        const config = {
+            type: 'bar',
+            data: dados
+        };
+
+        let myChart = new Chart(
+            document.getElementById(`ProcessosChart`),
+            config
+        );
+        setTimeout(() => atualizarGrafico(idATM, dados, myChart), 2000);
+    }
+
+    function atualizarGrafico(idATM, dados, myChart) {
+        fetch(`/usuarios/ProcessosPHora_tempoReal/${idATM}`, { cache: 'no-store' })
+            .then(function (response) {
+                if (response.ok) {
+                    return response.json();
+                } else {
+                    console.error('Nenhum dado encontrado ou erro na API');
+                    return [];
+                }
+            })
+            .then(function (novoRegistro) {
+                console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
+                console.log('Dados atuais do gráfico:');
+                console.log(dados);
+
+                let validacao = novoRegistro.some(item => item.hora === dados.labels[dados.labels.length - 1]);
+
+                if (!validacao) {
+                    dados.labels.push(novoRegistro[0].hora);
+                    dados.datasets[0].data.push(novoRegistro[0].quantidade);
+                    myChart.update();
+                } else {
+                    console.log("---------------------------------------------------------------");
+                    console.log("Como não há dados novos para captura, o gráfico não atualizará.");
+                    console.log("Horário do novo dado capturado:");
+                    console.log(novoRegistro[0].hora);
+                    console.log("Horário do último dado capturado:");
+                    console.log(dados.labels[dados.labels.length - 1]);
+                    console.log("---------------------------------------------------------------");
+                }
+
+                setTimeout(() => atualizarGrafico(idATM, dados, myChart), 2000);
+            })
+            .catch(function (error) {
+                console.error(`Erro na obtenção dos dados para o gráfico: ${error.message}`);
+                setTimeout(() => atualizarGrafico(idATM, dados, myChart), 2000);
+            });
+    }
+
+
 </script>

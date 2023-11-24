@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Adicionar ATM</title>
+    <title>Visão Geral</title>
 
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -19,12 +19,9 @@
 
     <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="../dashboard/css/dashBoardVisaoGeral.css">
-    <link rel="stylesheet" href="../dashboard/css/dashBoard-AddATM.css">
-    <link rel="shortcut icon" href="../assets/fiveicon.png" type="image/x-icon">
+<link rel="stylesheet" href="../dashboard/css/dashBoardVisaoGeral.css">
+<link rel="stylesheet" href="css/dashBoardVisaoGeral.css">
 
-    <script src="../js/sessao.js"></script>
-    <script src="../js/crudsAgenciaECadastro.js"></script>
 
 </head>
 
@@ -50,16 +47,16 @@
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
                 <a class="nav-link" href="DashBoard-VisaoGeral.html">
-                    <img class="fas fa-fw fa-tachometer-alt" src="../assets/binoculars.png" alt="">
-                    <span>Visão Geral</span>
+                    <img class="fas fa-fw fa-tachometer-alt" src="../assets/binoculars amarelo.png" alt="">
+                    <span style="color: #daa520; font-weight: bold;">Visão Geral</span>
                 </a>
-                <a class="nav-link" href="DashBoard.html">
+                <a class="nav-link pointer" onclick="testeBotao()">
                     <img class="fas fa-fw fa-tachometer-alt" src="../assets/icon_DashBoard.png" alt="">
                     <span>Dashboard</span>
                 </a>
                 <a class="nav-link" href="DashBoard-AddATM.html">
-                    <img class="fas fa-fw fa-tachometer-alt" src="../assets/add-amarelo.png" alt="">
-                    <span style="color: goldenrod; font-weight: bold;">Cadastrar ATM</span>
+                    <img class="fas fa-fw fa-tachometer-alt" src="../assets/add_ATM.png" alt="">
+                    <span>Cadastrar ATM</span>
                 </a>
             </li>
 
@@ -158,158 +155,211 @@
                     </ul>
 
                 </nav>
-                <!-- End of Topbar -->
 
-                <!-- Begin Page Content -->
                 <div class="container-fluid">
-                    <div class="conteudo">
+                    <div class="boxDivConteudo">
                         <div class="divTitulo">
                             <div class="titulo">
                                 <span>
-                                    Adicionar um novo ATM
+                                    Visão geral de todos ATM`s
                                 </span>
                             </div>
                         </div>
-                        
-                        <div class="boxAddATM">
-                            <div class="conteudoAddATM">
-                                <div class="addATM">
-                                    <div class="plano_fundo"></div>
-                                    <div class="addATMTexto">
-                                        <span>
-                                            Modelo:
-                                        </span>
-                                    </div>
-                                    
-                                    <div class="addATMInput">
-                                        <select name="" id="modelo_input">
-                                            <option value="XXXXXXX">Selecione o seu modelo de ATM</option>
-                                            <option value="AutoAtendimento">AutoAtendimento</option>
-                                            <option value="Móvel">Móvel</option>
-                                            <option value="Com Acessibilidade">Com Acessibilidade</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="addATM">
-                                    <div class="addATMTexto">
-                                        <span>
-                                            Fabricante:
-                                        </span>
-                                    </div>
-
-                                    <div class="addATMInput">
-                                        <input type="text" id="fabricante_input">
-                                    </div>
-                                </div>
-                                <div class="addATM">
-                                    <div class="addATMTexto">
-                                        <span>
-                                            Quantidade de Discos:
-                                        </span>
-                                    </div>
-
-                                    <div class="addATMInput">
-                                        <input type="number" id="qtdDisco_input">
-                                    </div>
-                                </div>
-                                <div class="addATM">
-                                    <div class="addATMTexto">
-                                        <span>
-                                            Quantidade de RAM (pentes):
-                                        </span>
-                                    </div>
-
-                                    <div class="addATMInput">
-                                        <input type="number" id="qtdRAM_input">
-                                    </div>
-                                </div>
-                                <button class="button" onclick="cadastrarATM()">
-                                    Cadastrar ATM
-                                </button>
-                            </div>
+                <div class="BoxATMeColuna">
+                        <div class="divLinhaCard" id="divLinhaCard">
+                            
+                            <div class="coluna"></div>
+                        </div>
+                            
                         </div>
                     </div>
                 </div>
-                <!-- /.container-fluid -->
             </div>
-            <!-- End of Main Content -->
-            <!-- Footer -->
-            <footer class="sticky-footer bg-white">
-                <div class="container my-auto">
-                    <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Secure ATM 1910</span>
+                
+                
+            </div>
+            <!-- End of Content Wrapper -->
+
+        </div>
+        <!-- End of Page Wrapper -->
+
+        <!-- Scroll to Top Button-->
+        <a class="scroll-to-top rounded" href="#page-top">
+            <i class="fas fa-angle-up"></i>
+        </a>
+
+        <!-- Logout Modal-->
+        <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                    <div class="modal-footer">
+                        <button style="text-align: left;" class="btn btn-secondary" type="button"
+                            data-dismiss="modal">Cancel</button>
+                        <a class="btn btn-primary" href="login.html">Logout</a>
                     </div>
                 </div>
-            </footer>
-            <!-- End of Footer -->
-
-        </div>
-        <!-- End of Content Wrapper -->
-
-    </div>
-    <!-- End of Page Wrapper -->
-
-    <!-- Scroll to Top Button-->
-    <a class="scroll-to-top rounded" href="#page-top">
-        <i class="fas fa-angle-up"></i>
-    </a>
-
-    <!-- Logout Modal-->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-                <div class="modal-footer">
-                    <button style="text-align: left;" class="btn btn-secondary" type="button"
-                        data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="login.html">Logout</a>
-                </div>
             </div>
         </div>
-    </div>
 
-    <!-- pop up sweet alert -->
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <!-- pop up sweet alert -->
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-    <!-- Bootstrap core JavaScript-->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <!-- Bootstrap core JavaScript-->
+        <script src="vendor/jquery/jquery.min.js"></script>
+        <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-    <!-- Core plugin JavaScript-->
-    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+        <!-- Core plugin JavaScript-->
+        <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
-    <!-- Custom scripts for all pages-->
-    <script src="js/sb-admin-2.min.js"></script>
+        <!-- Custom scripts for all pages-->
+        <script src="js/sb-admin-2.min.js"></script>
 
-    <!-- Page level plugins -->
-    <script src="vendor/chart.js/Chart.min.js"></script>
+        <!-- Page level plugins -->
+        <script src="vendor/chart.js/Chart.min.js"></script>
 
-    <!-- Page level custom scripts -->
-    <script src="js/demo/chart-area-demo.js"></script>
-    <script src="js/demo/chart-pie-demo.js"></script>
-    <script src="js/demo/chart-bar-demo.js"></script>
+        <!-- Page level custom scripts -->
+        <script src="js/demo/chart-area-demo.js"></script>
+        <script src="js/demo/chart-pie-demo.js"></script>
+        <script src="js/demo/chart-bar-demo.js"></script>
+
+        <!-- ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+      <!-- MURAL DE AVISOS -->
+      <!-- /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+
+      <div class="mural_avisos">
+
+        <div id="avisos-container"></div>
+
+      </div>
+
+      <!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
 
 </body>
 
 </html>
 
 <script>
+
+    window.onload = buscarATM();    
+
+    function goToDash(idATM) {
+        sessionStorage.idATM = idATM
+        window.location = "dashVaz.html"
+    }   
+
     function testeBotao() {
         Swal.fire({
-            title: 'Métricas (KPI`s)</br></br><span style="color: blue;">CPU</span><p style="text-align: left;">Ideal: 0% a 50% </br> Aceitável: 50% a 70% </br> Crítico: 70% a 100%</p></br><span style="color: blue;">RAM</span><p style="text-align: left;">Ideal: 0% a 70% </br> Aceitável: 70% a 90% </br> Crítico: 90% a 100%</p></br><span style="color: blue;">DISCO</span><p style="text-align: left;">Ideal: 0% a 60% </br> Aceitável: 60% a 80% </br> Crítico: 80% a 100%</p>',
-            showClass: {
-                popup: 'animate__animated animate__fadeInDown'
-            },
-            hideClass: {
-                popup: 'animate__animated animate__fadeOutUp'
-            }
+        icon: 'error',
+        title: 'Selecione um ATM primeiro',
         })
+    }
+
+    function buscarATM() {
+
+        var fkAgencia_usuario = sessionStorage.fkAgencia_usuario;
+
+        fetch("/usuarios/listarATM", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                fkagenciaServer: fkAgencia_usuario
+            }) 
+        }).then(function (resposta) {
+
+            if (resposta.ok) {
+
+                var feed = document.getElementById("divLinhaCard");
+                feed.innerHTML = ""
+
+                resposta.json().then(function (resposta) {
+                console.log("Dados recebidos: ", JSON.stringify(resposta));
+
+                for (let i = 0; i < resposta.length; i++) {
+                    var publicacao = resposta[i];
+
+                    var box = document.createElement("div");
+                    box.className = "divBoxCard";
+                    feed.appendChild(box);
+                    
+                    var card = document.createElement("div");
+                    card.className = "card pointer";
+                    card.setAttribute("onclick", `goToDash(${publicacao.idATM})`);
+
+                    box.appendChild(card);
+
+                    var divFormat = document.createElement("div");
+                    
+                    var span = document.createElement("span");
+                    span.innerHTML = `ATM ${publicacao.idATM}`;
+                    divFormat.appendChild(span);
+
+                    var imagen = document.createElement("img");
+                    imagen.src = "../assets/alerta Visao Geral.png";
+                    divFormat.appendChild(imagen);
+
+                    card.appendChild(divFormat);
+
+                    var numeroatm = document.createElement("div");
+                    numeroatm.className = "divNumeroATM";
+
+                    var span2 = document.createElement("span");
+                    span2.innerHTML = publicacao.idATM;
+                    card.appendChild(numeroatm);
+                    
+                }
+                });
+            } else {
+                throw ('Houve um erro na API!');
+            }
+        }).catch(function (resposta) {
+            console.error(resposta);
+        });
+    }
+      /////////////////////////////////////////////////////////////////////////////////////////////
+// /                               AVISOS                                                      /
+////////////////////////////////////////////////////////////////////////////////////////////
+const condicao1 = true;
+// const condicao1 = false;
+const condicao2 = false;
+// const condicao2 = true;
+
+if (condicao1) {
+    criarAviso('Alerta no ATM X. Clique aqui para ir até ele', 'index.html', 'aviso-vermelho');
+} else if (condicao2) {
+    criarAviso('Atenção ao ATM X. Clique aqui para ir até ele', 'index.html', 'aviso-amarelo');
+}
+
+function buscarAviso() {
+        fetch("/avisoController/Alertas:fkEmpresa").then(function (resposta) {
+
+            if (resposta.ok) {
+
+                resposta.json().then(function (resposta) {
+                    console.log("Dados recebidos: ", JSON.stringify(resposta));
+
+                    for (let i = 0; i < resposta.length; i++) {
+
+                        var publicacao = resposta[i];
+
+                    }
+                    // finalizarAguardar();
+                });
+            } else {
+                throw ('Houve um erro na API!');
+            }
+        }).catch(function (resposta) {
+            console.error(resposta);
+            // finalizarAguardar();
+        });
     }
 </script>

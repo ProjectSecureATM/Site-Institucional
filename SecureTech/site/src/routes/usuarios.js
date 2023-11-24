@@ -49,23 +49,15 @@ router.get('/obterMetricasComponentes/:idATM', function (req, res) {
     usuarioController.obterMetricasComponentes(req, res)
 });
 
+router.get('/obterMetricasRede/:idATM', function (req, res) {
+    usuarioController.obterMetricasRede(req, res)
+});
+
 router.post("/listarAgencia", function (req, res) {
     usuarioController.listarAgencia(req, res);
 });
 
 router.get('/obterValoresParaGrafico', function(req, res){
     usuarioController.obterValoresParaGrafico(req, res)
-})
-
-router.get('/obterPing:idATM', function(req, res){
-    usuarioController.obterPing(req, res)
-})
-
-router.get('/obterDownload:idATM', function(req, res){
-    usuarioController.obterPing(req, res)
-})
-
-router.get('/obterUpload:idATM', function(req, res){
-    usuarioController.obterPing(req, res)
 })
 module.exports = router;
