@@ -19,8 +19,8 @@
 
     <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
-<link rel="stylesheet" href="../dashboard/css/dashBoardVisaoGeral.css">
-<link rel="stylesheet" href="css/dashBoardVisaoGeral.css">
+    <link rel="stylesheet" href="../dashboard/css/dashBoardVisaoGeral.css">
+    <link rel="stylesheet" href="css/dashBoardVisaoGeral.css">
 
 
 </head>
@@ -98,7 +98,7 @@
 
                 <!-- Topbar -->
                 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-                    <button class="buttonNavBar" >
+                    <button class="buttonNavBar">
                         <a href="../homeDashBoard.html">Voltar para Agencia</a>
                     </button>
 
@@ -165,82 +165,82 @@
                                 </span>
                             </div>
                         </div>
-                <div class="BoxATMeColuna">
-                        <div class="divLinhaCard" id="divLinhaCard">
-                            
-                            <div class="coluna"></div>
-                        </div>
-                            
+                        <div class="BoxATMeColuna">
+                            <div class="divLinhaCard" id="divLinhaCard">
+
+                                <div class="coluna"></div>
+                            </div>
+
                         </div>
                     </div>
                 </div>
             </div>
-                
-                
-            </div>
-            <!-- End of Content Wrapper -->
+
 
         </div>
-        <!-- End of Page Wrapper -->
+        <!-- End of Content Wrapper -->
 
-        <!-- Scroll to Top Button-->
-        <a class="scroll-to-top rounded" href="#page-top">
-            <i class="fas fa-angle-up"></i>
-        </a>
+    </div>
+    <!-- End of Page Wrapper -->
 
-        <!-- Logout Modal-->
-        <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-            aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">×</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-                    <div class="modal-footer">
-                        <button style="text-align: left;" class="btn btn-secondary" type="button"
-                            data-dismiss="modal">Cancel</button>
-                        <a class="btn btn-primary" href="login.html">Logout</a>
-                    </div>
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
+
+    <!-- Logout Modal-->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                <div class="modal-footer">
+                    <button style="text-align: left;" class="btn btn-secondary" type="button"
+                        data-dismiss="modal">Cancel</button>
+                    <a class="btn btn-primary" href="login.html">Logout</a>
                 </div>
             </div>
         </div>
+    </div>
 
-        <!-- pop up sweet alert -->
-        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!-- pop up sweet alert -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-        <!-- Bootstrap core JavaScript-->
-        <script src="vendor/jquery/jquery.min.js"></script>
-        <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- Bootstrap core JavaScript-->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-        <!-- Core plugin JavaScript-->
-        <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+    <!-- Core plugin JavaScript-->
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
-        <!-- Custom scripts for all pages-->
-        <script src="js/sb-admin-2.min.js"></script>
+    <!-- Custom scripts for all pages-->
+    <script src="js/sb-admin-2.min.js"></script>
 
-        <!-- Page level plugins -->
-        <script src="vendor/chart.js/Chart.min.js"></script>
+    <!-- Page level plugins -->
+    <script src="vendor/chart.js/Chart.min.js"></script>
 
-        <!-- Page level custom scripts -->
-        <script src="js/demo/chart-area-demo.js"></script>
-        <script src="js/demo/chart-pie-demo.js"></script>
-        <script src="js/demo/chart-bar-demo.js"></script>
+    <!-- Page level custom scripts -->
+    <script src="js/demo/chart-area-demo.js"></script>
+    <script src="js/demo/chart-pie-demo.js"></script>
+    <script src="js/demo/chart-bar-demo.js"></script>
 
-        <!-- ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
-      <!-- MURAL DE AVISOS -->
-      <!-- /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+    <!-- ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+    <!-- MURAL DE AVISOS -->
+    <!-- /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
 
-      <div class="mural_avisos">
+    <div class="mural_avisos">
 
         <div id="avisos-container"></div>
 
-      </div>
+    </div>
 
-      <!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+    <!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
 
 </body>
 
@@ -248,17 +248,17 @@
 
 <script>
 
-    window.onload = buscarATM();    
+    window.onload = buscarATM();
 
     function goToDash(idATM) {
         sessionStorage.idATM = idATM
         window.location = "DashBoard.html"
-    }   
+    }
 
     function testeBotao() {
         Swal.fire({
-        icon: 'error',
-        title: 'Selecione um ATM primeiro',
+            icon: 'error',
+            title: 'Selecione um ATM primeiro',
         })
     }
 
@@ -273,7 +273,7 @@
             },
             body: JSON.stringify({
                 fkagenciaServer: fkAgencia_usuario
-            }) 
+            })
         }).then(function (resposta) {
 
             if (resposta.ok) {
@@ -282,84 +282,104 @@
                 feed.innerHTML = ""
 
                 resposta.json().then(function (resposta) {
-                console.log("Dados recebidos: ", JSON.stringify(resposta));
-
-                for (let i = 0; i < resposta.length; i++) {
-                    var publicacao = resposta[i];
-
-                    var box = document.createElement("div");
-                    box.className = "divBoxCard";
-                    feed.appendChild(box);
-                    
-                    var card = document.createElement("div");
-                    card.className = "card pointer";
-                    card.setAttribute("onclick", `goToDash(${publicacao.idATM})`);
-
-                    box.appendChild(card);
-
-                    var divFormat = document.createElement("div");
-                    
-                    var span = document.createElement("span");
-                    span.innerHTML = `ATM ${publicacao.idATM}`;
-                    divFormat.appendChild(span);
-
-                    var imagen = document.createElement("img");
-                    imagen.src = "../assets/alerta Visao Geral.png";
-                    divFormat.appendChild(imagen);
-
-                    card.appendChild(divFormat);
-
-                    var numeroatm = document.createElement("div");
-                    numeroatm.className = "divNumeroATM";
-
-                    var span2 = document.createElement("span");
-                    span2.innerHTML = publicacao.idATM;
-                    card.appendChild(numeroatm);
-                    
-                }
-                });
-            } else {
-                throw ('Houve um erro na API!');
-            }
-        }).catch(function (resposta) {
-            console.error(resposta);
-        });
-    }
-      /////////////////////////////////////////////////////////////////////////////////////////////
-// /                               AVISOS                                                      /
-////////////////////////////////////////////////////////////////////////////////////////////
-const condicao1 = true;
-// const condicao1 = false;
-const condicao2 = false;
-// const condicao2 = true;
-
-if (condicao1) {
-    criarAviso('Alerta no ATM X. Clique aqui para ir até ele', 'index.html', 'aviso-vermelho');
-} else if (condicao2) {
-    criarAviso('Atenção ao ATM X. Clique aqui para ir até ele', 'index.html', 'aviso-amarelo');
-}
-
-function buscarAviso() {
-        fetch("/avisoController/Alertas:fkEmpresa").then(function (resposta) {
-
-            if (resposta.ok) {
-
-                resposta.json().then(function (resposta) {
                     console.log("Dados recebidos: ", JSON.stringify(resposta));
 
                     for (let i = 0; i < resposta.length; i++) {
-
                         var publicacao = resposta[i];
 
+                        var box = document.createElement("div");
+                        box.className = "divBoxCard";
+                        feed.appendChild(box);
+
+                        var card = document.createElement("div");
+                        card.className = "card pointer";
+                        card.setAttribute("onclick", `goToDash(${publicacao.idATM})`);
+
+                        box.appendChild(card);
+
+                        var divFormat = document.createElement("div");
+
+                        var span = document.createElement("span");
+                        span.innerHTML = `ATM ${publicacao.idATM}`;
+                        divFormat.appendChild(span);
+
+                        var imagen = document.createElement("img");
+                        imagen.src = "../assets/alerta Visao Geral.png";
+                        divFormat.appendChild(imagen);
+
+                        card.appendChild(divFormat);
+
+                        var numeroatm = document.createElement("div");
+                        numeroatm.className = "divNumeroATM";
+
+                        var span2 = document.createElement("span");
+                        span2.innerHTML = publicacao.idATM;
+                        card.appendChild(numeroatm);
+
                     }
-                    // finalizarAguardar();
                 });
             } else {
                 throw ('Houve um erro na API!');
             }
         }).catch(function (resposta) {
             console.error(resposta);
-            // finalizarAguardar();
         });
     }
+    /////////////////////////////////////////////////////////////////////////////////////////////
+    // /                               AVISOS                                                      /
+    ////////////////////////////////////////////////////////////////////////////////////////////
+
+    // if (condicao1) {
+    //     criarAviso('Alerta no ATM X. Clique aqui para ir até ele', 'index.html', 'aviso-vermelho');
+    // } else if (condicao2) {
+    //     criarAviso('Atenção ao ATM X. Clique aqui para ir até ele', 'index.html', 'aviso-amarelo');
+    // }
+
+    function buscarAviso() {
+        function obterAlertas() {
+            fetch("/Alertas/:fkEmpresa").then(function (resposta) {
+                if (resposta.ok) {
+                    resposta.json().then(function (resposta) {
+                        console.log("Dados recebidos: ", JSON.stringify(resposta));
+
+                        for (let i = 0; i < resposta.length; i++) {
+                            var alerta = resposta[i];
+
+                            if (alerta.Componente_ID === 1) { // RAM
+                                if (alerta.Valor > 65 && alerta.Valor < 80) {
+                                    criarAviso('Alerta no ATM ' + alerta.ATMComp_ID + '. Clique aqui para ir até ele', 'index.html', 'aviso-amarelo', alerta);
+                                } else if (alerta.Valor >= 80) {
+                                    criarAviso('Alerta no ATM ' + alerta.ATMComp_ID + '. Clique aqui para ir até ele', 'index.html', 'aviso-vermelho', alerta);
+                                }
+                            } else if (alerta.Componente_ID === 2) { // DISCO
+                                if (alerta.Valor > 70 && alerta.Valor < 85) {
+                                    criarAviso('Alerta no ATM ' + alerta.ATMComp_ID + '. Clique aqui para ir até ele', 'index.html', 'aviso-amarelo', alerta);
+                                } else if (alerta.Valor >= 80) {
+                                    criarAviso('Alerta no ATM ' + alerta.ATMComp_ID + '. Clique aqui para ir até ele', 'index.html', 'aviso-vermelho', alerta);
+                                }
+                            } else if (alerta.Componente_ID === 3) { // CPU
+                                if (alerta.Valor > 40 && alerta.Valor < 55) {
+                                    criarAviso('Alerta no ATM ' + alerta.ATMComp_ID + '. Clique aqui para ir até ele', 'index.html', 'aviso-amarelo', alerta);
+                                } else if (alerta.Valor >= 55) {
+                                    criarAviso('Alerta no ATM ' + alerta.ATMComp_ID + '. Clique aqui para ir até ele', 'index.html', 'aviso-vermelho', alerta);
+                                }
+                            }
+                        }
+                    });
+                } else {
+                    throw ('Houve um erro na API!');
+                }
+            }).catch(function (resposta) {
+                console.error(resposta);
+            });
+        }
+
+        // Chamar a função de obterAlertas a cada 5 segundos (5000 milissegundos)
+        setInterval(obterAlertas, 5000);
+    }
+
+    // Chamar a função buscarAviso para iniciar o processo de busca contínua de alertas
+    buscarAviso();
+
+
 </script>
