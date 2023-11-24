@@ -256,6 +256,68 @@ function ProcessosPHora_tempoReal(req, res) {
     });
 }
 
+function CPUHora(req, res) {
+    idATM  = req.params.idATM;
+    
+    usuarioModel.CPUHora(idATM).then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum resultado encontrado!")
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+        console.log("Houve um erro ao buscar as ultimas medidas.", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+
+function CPU_tempoReal(req, res) {
+    idATM  = req.params.idATM;
+    usuarioModel.CPU_tempoReal(idATM).then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum resultado encontrado!")
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+        console.log("Houve um erro ao buscar as ultimas medidas.", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+
+function TEMPHora(req, res) {
+    idATM  = req.params.idATM;
+    
+    usuarioModel.TEMPHora(idATM).then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum resultado encontrado!")
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+        console.log("Houve um erro ao buscar as ultimas medidas.", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+
+function TEMP_tempoReal(req, res) {
+    idATM  = req.params.idATM;
+    usuarioModel.TEMP_tempoReal(idATM).then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum resultado encontrado!")
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+        console.log("Houve um erro ao buscar as ultimas medidas.", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+
 function listarAgencia(req, res) {
     var fkAgencia_usuario = req.body.fkagenciaServer;
     usuarioModel.listarAgencia(fkAgencia_usuario).then(function (resultado) {
@@ -297,6 +359,8 @@ module.exports = {
     relatarProblema,
     ProcessosPHora,
     ProcessosPHora_tempoReal,
+    CPUHora,
+    CPU_tempoReal,
     listarATM,
     listarAgencia,
     obterMetricasComponentes,

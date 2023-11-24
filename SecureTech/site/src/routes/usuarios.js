@@ -41,6 +41,22 @@ router.get("/ProcessosPHora_tempoReal/:idATM", function (req, res) {
     usuarioController.ProcessosPHora_tempoReal(req, res);
 });
 
+router.get("/CPUHora/:idATM", function (req, res) {
+    usuarioController.CPUHora(req, res);
+});
+
+router.get("/CPU_tempoReal/:idATM", function (req, res) {
+    usuarioController.CPU_tempoReal(req, res);
+});
+
+router.get("/TEMPHora/:idATM", function (req, res) {
+    usuarioController.TEMPHora(req, res);
+});
+
+router.get("/TEMP_tempoReal/:idATM", function (req, res) {
+    usuarioController.TEMP_tempoReal(req, res);
+});
+
 router.post("/listarATM", function (req, res) {
     usuarioController.listarATM(req, res);
 });

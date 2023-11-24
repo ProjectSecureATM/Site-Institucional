@@ -165,6 +165,28 @@ GROUP BY DATE_FORMAT(data_hora, '%Y-%m-%d %H:00:00');`;
     return database.executar(instrucaoSql);
 }
 
+function CPUHora(idATM) {
+
+    var instrucaoSql = `
+    SELECT MAX(Valor) AS quantidade, DATE_FORMAT(DataRegistro, '%Y-%m-%d %H:00:00') AS hora, ATMComp_ID 
+FROM Leitura 
+WHERE ATMComp_ID = ${idATM}  
+GROUP BY DATE_FORMAT(DataRegistro, '%Y-%m-%d %H:00:00');`;
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
+function CPU_tempoReal(idATM) {
+
+    var instrucaoSql = `
+    SELECT MAX(Valor) AS quantidade, DATE_FORMAT(DataRegistro, '%Y-%m-%d %H:00:00') AS hora, ATMComp_ID 
+FROM Leitura 
+WHERE ATMComp_ID = ${idATM}  
+GROUP BY DATE_FORMAT(DataRegistro, '%Y-%m-%d %H:00:00');`;
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
 function relatarProblema(nome, sobrenome, email, titulo, detalhe, dataHoraProblema) {
     console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrar():", nome, sobrenome, email, titulo, detalhe, dataHoraProblema);
 
@@ -260,6 +282,8 @@ module.exports = {
     relatarProblema,
     ProcessosPHora,
     ProcessosPHora_tempoReal,
+    CPUHora,
+    CPU_tempoReal,
     listarATM,
     listarAgencia,
     obterMetricasComponentes,
