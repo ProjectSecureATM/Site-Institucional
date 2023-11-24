@@ -19,10 +19,11 @@
         rel="stylesheet">
 
     <!-- Custom styles for this template-->
+    <link href="../css/sb-admin-2.min.css" rel="stylesheet">
+    <link href="vaz.css" rel="stylesheet">
 
     <link rel="stylesheet" href="css/sb-admin-2.min.css">
     <link rel="stylesheet" href="css/vaz.css">
-
 </head>
 
 <body id="page-top">
@@ -74,7 +75,7 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Inovações Secure ATM:</h6>
                         <a class="collapse-item" style="color: goldenrod;">Dash Gabroh</a>
-                        <a href="DashBoard-VisaoGeral-Giba.html" class="collapse-item">Dash Jujuba</a>
+                        <a class="collapse-item">Dash Jujuba</a>
                         <a class="collapse-item">Dash Julião</a>
                         <a class="collapse-item">Dash Paulão</a>
                         <a class="collapse-item">Dash Primon</a>
@@ -164,148 +165,134 @@
                 <!-- End of Topbar -->
 
                 <!-- Begin Page Content -->
-                <div class="container-fluid">
-
-                    <!-- Page Heading -->
-                    <div class="d-sm-flex align-items-center mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
-                        <div class="informacao">
-                            <div class="iconeInformacao" onclick="testeBotao()">
-                                <img src="../assets/information.png" alt="">
+                <div class="boxDashBoard">
+                    <div class="dashBoard">
+                        <div class="tituloDashBoard">
+                            <div class="titulo-DashBoard">
+                                <span>DashBoard</span>
                             </div>
-                        </div>
-                    </div>
-
-
-
-                    <div class="card">
-                        <div class="card">
-                            <div class="col-xl-3 col-md-6 mb-4">
-                                <div class="card border-left-primary shadow h-100 py-2">
-                                    <div class="card-body">
-                                        <div class="row no-gutters align-items-center">
-                                            <div class="col mr-2">
-                                                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                                    PING</div>
-                                                <div id="pingPercentage" class="h5 mb-0 font-weight-bold text-gray-800"
-                                                    style="text-align: center;">Loading...</div>
-                                                <div class="h5 mb-0 font-weight-bold text-gray-800"
-                                                    style="text-align: center;">%</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            <!-- <div class="divButon">
+                                <button class="butonDashBoard">
+                                    <span>Ver mais</span>
+                                </button>
+                            </div> -->
                         </div>
 
-                        <div class="card">
-                            <div class="col-xl-3 col-md-6 mb-4">
-                                <div class="card border-left-primary shadow h-100 py-2">
-                                    <div class="card-body">
-                                        <div class="row no-gutters align-items-center">
-                                            <div class="col mr-2">
-                                                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                                    DOWNLOAD</div>
-                                                <div id="downloadPercentage"
-                                                    class="h5 mb-0 font-weight-bold text-gray-800"
-                                                    style="text-align: center;">Loading...</div>
-                                                <div class="h5 mb-0 font-weight-bold text-gray-800"
-                                                    style="text-align: center;">%</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="card-linha">
-                        <div class="card">
-                            <div class="col-xl-3 col-md-6 mb-4">
-                                <div class="card border-left-primary shadow h-100 py-2">
-                                    <div class="card-body">
-                                        <div class="row no-gutters align-items-center">
-                                            <div class="col mr-2">
-                                                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                                    UPLOAD</div>
-                                                <div id="uploadPercentage"
-                                                    class="h5 mb-0 font-weight-bold text-gray-800"
-                                                    style="text-align: center;">Loading...</div>
-                                                <div class="h5 mb-0 font-weight-bold text-gray-800"
-                                                    style="text-align: center;">%</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-
-
-                        <div class="divColunaDash display-evenly">
-                            <div class="boxTimer">
-                                <div class="containerDashComponentes">
-                                    <div class="divTimer">
-                                        <div class="divTitulo">
-                                            <div class="titulo titulo-center">
-                                                <span>Horas de Funcionamento</span>
-                                            </div>
-                                        </div>
-
-                                        <div class="divTimer">
-                                            <div class="timer">
-                                                <span> Selvagem</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="boxTimer">
-                                <div class="containerDashComponentes">
-                                    <div class="divTimer">
-                                        <div class="divTitulo">
-                                            <div class="titulo">
-                                                <span>Reinicio do Sistema</span>
-                                            </div>
-                                        </div>
-
-                                        <div class="divTimer">
-                                            <div class="timer">
-                                                <span>13</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="boxGrafico">
-                            <div class="grafico">
+                        <div class="divLinhaDash display-betwen">
+                            <div class="boxDashComponentes">
                                 <div class="containerDashComponentes">
                                     <div class="divTitulo">
-                                        <div class="titulo titulo-center">
-                                            <span>Variedades dos Componenetes Hoje</span>
+                                        <div class="titulo">
+                                            <span>Ping</span>
                                         </div>
                                     </div>
-                                    <div class="divGrafico">
+                                    <div class="conteudoComponente">
+                                        <div class="componente">
+                                            <span id="pingPercentage"></span>
+                                            <span>%</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="boxDashComponentes">
+                                <div class="containerDashComponentes">
+                                    <div class="divTitulo">
+                                        <div class="titulo">
+                                            <span>Download</span>
+                                        </div>
+                                    </div>
+                                    <div class="conteudoComponente">
+                                        <div class="componente">
+                                            <span id="downloadPercentage"></span>
+                                            <span>%</span>
+                                        </div>
 
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="boxDashComponentes">
+                                <div class="containerDashComponentes">
+                                    <div class="divTitulo">
+                                        <div class="titulo titulo-end">
+                                            <span>Upload</span>
+                                        </div>
+                                    </div>
+                                    <div class="conteudoComponente">
+                                        <div class="componente">
+                                            <span id="uploadPercentage"></span>
+                                            <span>%</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="divLinhaDash">
+
+
+                            <div class="divColunaDash display-evenly">
+                                <div class="boxTimer">
+                                    <div class="containerDashComponentes">
+                                        <div class="divTimer">
+                                            <div class="divTitulo">
+                                                <div class="titulo titulo-center">
+                                                    <span>Horas de Funcionamento</span>
+                                                </div>
+                                            </div>
+
+                                            <div class="divTimer">
+                                                <div class="timer">
+                                                    <span> Selvagem</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="boxTimer">
+                                    <div class="containerDashComponentes">
+                                        <div class="divTimer">
+                                            <div class="divTitulo">
+                                                <div class="titulo">
+                                                    <span>Reinicio do Sistema</span>
+                                                </div>
+                                            </div>
+
+                                            <div class="divTimer">
+                                                <div class="timer">
+                                                    <span>13</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="boxGrafico">
+                                <div class="grafico">
+                                    <div class="containerDashComponentes">
+                                        <div class="divTitulo">
+                                            <div class="titulo titulo-center">
+                                                <span>Variedades dos Componenetes Hoje</span>
+                                            </div>
+                                        </div>
+                                        <div class="divGrafico">
+
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
 
-            </div>
-            <footer class="sticky-footer bg-white">
-                <div class="container my-auto">
-                    <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; programdor: Gabriel Vaz - SpTech 2023</span>
-                    </div>
                 </div>
-            </footer>
+                <footer class="sticky-footer bg-white">
+                    <div class="container my-auto">
+                        <div class="copyright text-center my-auto">
+                            <span>Copyright &copy; programdor: Gabriel Vaz - SpTech 2023</span>
+                        </div>
+                    </div>
+                </footer>
+            </div>
         </div>
-    </div>
     </div>
 
     <!-- Scroll to Top Button-->
@@ -333,6 +320,28 @@
             </div>
         </div>
     </div>
+
+    <!-- pop up sweet alert -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <!-- Bootstrap core JavaScript-->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="js/sb-admin-2.min.js"></script>
+
+    <!-- Page level plugins -->
+    <script src="vendor/chart.js/Chart.min.js"></script>
+
+    <!-- Page level custom scripts -->
+    <script src="js/demo/chart-area-demo.js"></script>
+    <script src="js/demo/chart-pie-demo.js"></script>
+    <script src="js/demo/chart-bar-demo.js"></script>
+
 </body>
 
 </html>
