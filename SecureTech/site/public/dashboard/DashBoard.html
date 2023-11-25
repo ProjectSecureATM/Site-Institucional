@@ -297,8 +297,6 @@
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
-    var idATM = sessionStorage.getItem('idATM');
-
     function testeBotao() {
         Swal.fire({
             title: 'Métricas (KPI`s)</br></br><span style="color: blue;">CPU</span><p style="text-align: left;">Ideal: 0% a 50% </br> Aceitável: 50% a 70% </br> Crítico: 70% a 100%</p></br><span style="color: blue;">RAM</span><p style="text-align: left;">Ideal: 0% a 70% </br> Aceitável: 70% a 90% </br> Crítico: 90% a 100%</p></br><span style="color: blue;">DISCO</span><p style="text-align: left;">Ideal: 0% a 60% </br> Aceitável: 60% a 80% </br> Crítico: 80% a 100%</p>',
@@ -311,6 +309,7 @@
         })
     }
 
+    var idATM = sessionStorage.getItem('idATM');
     window.onload = function () {
         if (idATM) {
             exibirStatusSistema(idATM);
@@ -322,7 +321,7 @@
 
     function exibirStatusSistema(idATM) {
         obterDadosSistema(idATM)
-        setInterval(obterDadosSistema, 5000);
+        setInterval(obterDadosSistema(idATM), 1000);
     }
 
     function obterDadosSistema(idATM) {

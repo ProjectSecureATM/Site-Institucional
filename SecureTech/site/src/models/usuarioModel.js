@@ -165,13 +165,35 @@ GROUP BY DATE_FORMAT(data_hora, '%Y-%m-%d %H:00:00');`;
     return database.executar(instrucaoSql);
 }
 
+function TEMPHora(idATM) {
+
+    var instrucaoSql = `
+    SELECT MAX(temperatura) AS temp_cpu, DATE_FORMAT(data_hora, '%Y-%m-%d %H:00:00') AS hora, fkATM 
+FROM temperaturaCPU 
+WHERE fkATM = ${idATM}  
+GROUP BY DATE_FORMAT(data_hora, '%Y-%m-%d %H:00:00');`;
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
+function TEMP_tempoReal(idATM) {
+
+    var instrucaoSql = `
+    SELECT MAX(temperatura) AS temp_cpu, DATE_FORMAT(data_hora, '%Y-%m-%d %H:00:00') AS hora, fkATM 
+FROM temperaturaCPU 
+WHERE fkATM = ${idATM} 
+GROUP BY DATE_FORMAT(data_hora, '%Y-%m-%d %H:00:00');`;
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
 function CPUHora(idATM) {
 
     var instrucaoSql = `
     SELECT MAX(Valor) AS quantidade, DATE_FORMAT(DataRegistro, '%Y-%m-%d %H:00:00') AS hora, ATMComp_ID 
-FROM Leitura 
-WHERE ATMComp_ID = ${idATM}  
-GROUP BY DATE_FORMAT(DataRegistro, '%Y-%m-%d %H:00:00');`;
+    FROM Leitura 
+    WHERE ATMComp_ID = ${idATM} AND Componente_ID = 3 
+    GROUP BY DATE_FORMAT(DataRegistro, '%Y-%m-%d %H:00:00');`;
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
 }
@@ -180,9 +202,9 @@ function CPU_tempoReal(idATM) {
 
     var instrucaoSql = `
     SELECT MAX(Valor) AS quantidade, DATE_FORMAT(DataRegistro, '%Y-%m-%d %H:00:00') AS hora, ATMComp_ID 
-FROM Leitura 
-WHERE ATMComp_ID = ${idATM}  
-GROUP BY DATE_FORMAT(DataRegistro, '%Y-%m-%d %H:00:00');`;
+    FROM Leitura 
+    WHERE ATMComp_ID = ${idATM} AND Componente_ID = 3 
+    GROUP BY DATE_FORMAT(DataRegistro, '%Y-%m-%d %H:00:00');`;
 
 
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
@@ -320,6 +342,8 @@ module.exports = {
     relatarProblema,
     ProcessosPHora,
     ProcessosPHora_tempoReal,
+    TEMPHora,
+    TEMP_tempoReal,
     CPUHora,
     CPU_tempoReal,
     VariedadeHoraHora,
