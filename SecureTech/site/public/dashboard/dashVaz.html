@@ -271,11 +271,13 @@
                                     <div class="containerDashComponentes">
                                         <div class="divTitulo">
                                             <div class="titulo titulo-center">
-                                                <span>Variedades dos Componenetes Hoje</span>
+                                                <span>Variedades de Download e Upload</span>
                                             </div>
                                         </div>
                                         <div class="divGrafico">
-
+                                            <div>
+                                                <canvas id="myChart"></canvas>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -347,6 +349,7 @@
 </html>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 <script>
     var idATM = sessionStorage.getItem('idATM');
 
@@ -389,4 +392,25 @@
     function atualizarValorDOM(elementID, valor) {
         document.getElementById(elementID).textContent = valor;
     }
+
+    
+    const ctx = document.getElementById('myChart');
+    new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+            datasets: [{
+                label: '# of Votes',
+                data: [12, 19, 3, 5, 2, 3],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
 </script>
