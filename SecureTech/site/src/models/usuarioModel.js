@@ -147,9 +147,10 @@ function ProcessosPHora(idATM) {
 
     var instrucaoSql = `
     SELECT MAX(PID) AS quantidade, DATE_FORMAT(data_hora, '%Y-%m-%d %H:00:00') AS hora, fkATM 
-FROM Processos 
-WHERE fkATM = ${idATM}  
-GROUP BY DATE_FORMAT(data_hora, '%Y-%m-%d %H:00:00');`;
+    FROM Processos 
+    WHERE fkATM = ${idATM}
+    GROUP BY DATE_FORMAT(data_hora, '%Y-%m-%d %H:00:00')
+    ORDER BY DATE_FORMAT(data_hora, '%Y-%m-%d %H:00:00');`;
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
 }
@@ -159,8 +160,10 @@ function ProcessosPHora_tempoReal(idATM) {
     var instrucaoSql = `
     SELECT MAX(PID) AS quantidade, DATE_FORMAT(data_hora, '%Y-%m-%d %H:00:00') AS hora, fkATM 
 FROM Processos 
-WHERE fkATM = ${idATM} 
-GROUP BY DATE_FORMAT(data_hora, '%Y-%m-%d %H:00:00');`;
+WHERE fkATM = ${idATM}
+GROUP BY DATE_FORMAT(data_hora, '%Y-%m-%d %H:00:00')
+ORDER BY DATE_FORMAT(data_hora, '%Y-%m-%d %H:00:00') DESC
+LIMIT 1;`;
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
 }
