@@ -76,10 +76,12 @@
 
 .titulo{
     display: flex;
-    height: 7vh;
+    height: 5.5vh;
     width: 100%;
     justify-content: left;
     align-items: end;
+
+    /* background-color: aqua; */
 }
 
 .titulo-end{
@@ -95,7 +97,7 @@
 .titulo span{
     color: #021e46;
     font-weight: bold;
-    font-size: 20px;
+    font-size: 19px;
 
 }
 
@@ -174,7 +176,7 @@
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    height: 10vh;
+    height: 75%;
     width: 100%;
 
 }
@@ -215,7 +217,6 @@
     background-color: rgb(255, 255, 255);
 
     box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, .15);
-
 }
 
 .divTimer{
@@ -232,7 +233,7 @@
 
 .timer{
     display: flex;
-    height: 10vh;
+    height: 14vh;
     width: 10vw;
     justify-content: center;
     align-items: center;
@@ -268,12 +269,18 @@
     background-color: rgb(255, 255, 255);
 
     box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, .15);
+
 }
 
 .divGrafico{
     display: flex;
-    height: 83%;
+    height: 85%;
     width: 100%;
 
-    /* background-color: blanchedalmond; */
+}
+
+.chart-area{
+    display: flex;
+    height: 100%;
+    width: 100%;
 }
