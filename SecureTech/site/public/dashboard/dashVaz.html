@@ -19,11 +19,10 @@
         rel="stylesheet">
 
     <!-- Custom styles for this template-->
-    <link href="../css/sb-admin-2.min.css" rel="stylesheet">
-    <link href="vaz.css" rel="stylesheet">
+    <link href="css/sb-admin-2.min.css" rel="stylesheet">
+    <link href="css/vaz.css" rel="stylesheet">
 
-    <link rel="stylesheet" href="css/sb-admin-2.min.css">
-    <link rel="stylesheet" href="css/vaz.css">
+    
 </head>
 
 <body id="page-top">
@@ -241,7 +240,7 @@
 
                                             <div class="divTimer">
                                                 <div class="timer">
-                                                    <span> Selvagem</span>
+                                                    <span id="spanTempoDecorrido"></span>
                                                 </div>
                                             </div>
                                         </div>
@@ -271,11 +270,13 @@
                                     <div class="containerDashComponentes">
                                         <div class="divTitulo">
                                             <div class="titulo titulo-center">
-                                                <span>Variedades dos Componenetes Hoje</span>
+                                                <span>Variedade Download e Upload</span>
                                             </div>
                                         </div>
                                         <div class="divGrafico">
-
+                                            <div class="chart-area">
+                                                <canvas id="variedadeChart"></canvas>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -321,26 +322,7 @@
         </div>
     </div>
 
-    <!-- pop up sweet alert -->
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
-    <!-- Bootstrap core JavaScript-->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-    <!-- Core plugin JavaScript-->
-    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
-
-    <!-- Custom scripts for all pages-->
-    <script src="js/sb-admin-2.min.js"></script>
-
-    <!-- Page level plugins -->
-    <script src="vendor/chart.js/Chart.min.js"></script>
-
-    <!-- Page level custom scripts -->
-    <script src="js/demo/chart-area-demo.js"></script>
-    <script src="js/demo/chart-pie-demo.js"></script>
-    <script src="js/demo/chart-bar-demo.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 </body>
 
@@ -352,14 +334,15 @@
 
     window.onload = function () {
         if (idATM) {
-            exibirStatusRede();
+            exibirStatusRede(idATM);
+            mostrarVariedade(idATM);
         } else {
             console.error('idATM não está definido.');
         }
     };
 
-    function exibirStatusRede() {
-        obterDadosRede(); // Chama a função inicialmente
+    function exibirStatusRede(idATM) {
+        obterDadosRede(idATM); // Chama a função inicialmente
 
         // Define um intervalo de atualização a cada 5 segundos (5000 milissegundos)
         setInterval(obterDadosRede, 5000);
@@ -389,4 +372,139 @@
     function atualizarValorDOM(elementID, valor) {
         document.getElementById(elementID).textContent = valor;
     }
+
+    function mostrarVariedade(idATM) {
+        fetch(`/usuarios/VariedadeHora/${idATM}`, { cache: 'no-store' })
+            .then(function (response) {
+                if (response.ok) {
+                    return response.json();
+                } else {
+                    console.error('Nenhum dado encontrado ou erro na API');
+                    return [];
+                }
+            })
+            .then(function (resposta) {
+                console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                plotarGrafico(resposta, idATM);
+            })
+            .catch(function (error) {
+                console.error(`Erro na obtenção dos dados para o gráfico: ${error.message}`);
+            });
+    }
+
+    function plotarGrafico(resposta, idATM) {
+        let labels = [];
+        let dados = {
+            labels: labels,
+            datasets: [
+                {
+                    label: 'Download',
+                    data: [],
+                    fill: false,
+                    backgroundColor: '#021e46',
+                    borderColor: '#021e46',
+                    borderWidth: 1
+                },
+                {
+                    label: 'Upload',
+                    data: [], // Coloque seus dados aqui
+                    fill: false,
+                    backgroundColor: '#ff5733', // Cor de fundo para a linha de Upload (substitua conforme necessário)
+                    borderColor: '#ff5733', // Cor da borda para a linha de Upload (substitua conforme necessário)
+                    borderWidth: 1
+                }
+            ]
+        };
+
+        for (let i = 0; i < resposta.length; i++) {
+            let registro = resposta[i];
+            dados.datasets[0].data.push(registro.quantidade);
+            labels.push(registro.hora);
+        }
+
+        const config = {
+            type: 'line',
+            data: dados
+        };
+
+        let myChart = new Chart(
+            document.getElementById(`variedadeChart`),
+            config
+        );
+        setTimeout(() => atualizarGrafico(idATM, dados, myChart), 2000);
+    }
+
+    function atualizarGrafico(idATM, dados, myChart) {
+        fetch(`/usuarios/Variedade_tempoReal/${idATM}`, { cache: 'no-store' })
+            .then(function (response) {
+                if (response.ok) {
+                    return response.json();
+                } else {
+                    console.error('Nenhum dado encontrado ou erro na API');
+                    return [];
+                }
+            })
+            .then(function (novoRegistro) {
+                console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
+                console.log('Dados atuais do gráfico:');
+                console.log(dados);
+
+                let validacao = novoRegistro.some(item => item.hora === dados.labels[dados.labels.length - 1]);
+
+                if (!validacao) {
+                    dados.labels.push(novoRegistro[0].hora);
+                    dados.datasets[0].data.push(novoRegistro[0].quantidade);
+                    myChart.update();
+                } else {
+                    console.log("---------------------------------------------------------------");
+                    console.log("Como não há dados novos para captura, o gráfico não atualizará.");
+                    console.log("Horário do novo dado capturado:");
+                    console.log(novoRegistro[0].hora);
+                    console.log("Horário do último dado capturado:");
+                    console.log(dados.labels[dados.labels.length - 1]);
+                    console.log("---------------------------------------------------------------");
+                }
+                setTimeout(() => atualizarGrafico(idATM, dados, myChart), 2000);
+            })
+            .catch(function (error) {
+                console.error(`Erro na obtenção dos dados para o gráfico: ${error.message}`);
+                setTimeout(() => atualizarGrafico(idATM, dados, myChart), 2000);
+            });
+    }
+
+
+
+    // Kotlin INICIO
+    function converterSegundosParaDHM(segundos) {
+        const umMinutoEmSegundos = 60;
+        const umaHoraEmSegundos = umMinutoEmSegundos * 60;
+        const umDiaEmSegundos = umaHoraEmSegundos * 24;
+
+        const dias = Math.floor(segundos / umDiaEmSegundos);
+        const horas = Math.floor((segundos % umDiaEmSegundos) / umaHoraEmSegundos);
+        const minutos = Math.floor((segundos % umaHoraEmSegundos) / umMinutoEmSegundos);
+
+        return {
+            dias: dias,
+            horas: horas,
+            minutos: minutos
+        };
+    }
+
+    function atualizarTempoDecorrido(segundosTotais) {
+        const resultado = converterSegundosParaDHM(segundosTotais);
+        const divTempoDecorrido = document.getElementById(resultado);
+        
+        spanTempoDecorrido.innerHTML = `Dias: ${resultado.dias}, Horas: ${resultado.horas}, Minutos: ${resultado.minutos}`;
+    }
+
+    // Exemplo de uso:
+    const segundosTotais = 1234567;
+    const resultado = converterSegundosParaDHM(segundosTotais);
+
+    console.log(`Dias:${resultado.dias}, Horas:${resultado.horas}, Minutos:${resultado.minutos}`);
+    
+    // Kotlin FINAL
+
+
 </script>

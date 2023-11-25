@@ -318,6 +318,37 @@ function TEMP_tempoReal(req, res) {
     });
 }
 
+function VariedadeHora(req, res) {
+    idATM  = req.params.idATM;
+    
+    usuarioModel.VariedadeHora(idATM).then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum resultado encontrado!")
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+        console.log("Houve um erro ao buscar as ultimas medidas.", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+
+function Variedade_tempoReal(req, res) {
+    idATM  = req.params.idATM;
+    usuarioModel.Variedade_tempoReal(idATM).then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum resultado encontrado!")
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+        console.log("Houve um erro ao buscar as ultimas medidas.", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+
 function listarAgencia(req, res) {
     var fkAgencia_usuario = req.body.fkagenciaServer;
     usuarioModel.listarAgencia(fkAgencia_usuario).then(function (resultado) {
@@ -361,6 +392,10 @@ module.exports = {
     ProcessosPHora_tempoReal,
     CPUHora,
     CPU_tempoReal,
+    TEMP_tempoReal,
+    TEMPHora,
+    VariedadeHora,
+    Variedade_tempoReal,
     listarATM,
     listarAgencia,
     obterMetricasComponentes,

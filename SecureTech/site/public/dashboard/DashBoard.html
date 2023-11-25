@@ -188,10 +188,8 @@
                                             <div class="col mr-2">
                                                 <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                                     RAM</div>
-                                                <div id="ramPercentage" class="h5 mb-0 font-weight-bold text-gray-800"
-                                                    style="text-align: center;">Loading...</div>
-                                                <div class="h5 mb-0 font-weight-bold text-gray-800"
-                                                    style="text-align: center;">%</div>
+                                                    <span id="ramPercentage"></span>
+                                                    <span>%</span>
                                             </div>
                                         </div>
                                     </div>
@@ -207,10 +205,8 @@
                                             <div class="col mr-2">
                                                 <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                                     DISCO</div>
-                                                <div id="discoPercentage" class="h5 mb-0 font-weight-bold text-gray-800"
-                                                    style="text-align: center;">Loading...</div>
-                                                <div class="h5 mb-0 font-weight-bold text-gray-800"
-                                                    style="text-align: center;">%</div>
+                                                    <span id="discoPercentage"></span>
+                                                    <span>%</span>
                                             </div>
                                         </div>
                                     </div>
@@ -228,10 +224,8 @@
                                             <div class="col mr-2">
                                                 <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                                     CPU</div>
-                                                <div id="cpuPercentage" class="h5 mb-0 font-weight-bold text-gray-800"
-                                                    style="text-align: center;">Loading...</div>
-                                                <div class="h5 mb-0 font-weight-bold text-gray-800"
-                                                    style="text-align: center;">%</div>
+                                                    <span id="cpuPercentage"></span>
+                                                    <span>%</span>
                                             </div>
                                         </div>
                                     </div>
@@ -326,9 +320,8 @@
         }
     };
 
-    function exibirStatusSistema() {
-        obterDadosSistema()
-
+    function exibirStatusSistema(idATM) {
+        obterDadosSistema(idATM)
         setInterval(obterDadosSistema, 5000);
     }
 

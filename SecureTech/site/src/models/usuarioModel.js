@@ -183,8 +183,46 @@ function CPU_tempoReal(idATM) {
 FROM Leitura 
 WHERE ATMComp_ID = ${idATM}  
 GROUP BY DATE_FORMAT(DataRegistro, '%Y-%m-%d %H:00:00');`;
+
+
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
+}
+
+function VariedadeHoraHora(idATM) {
+
+    var instrucaoSql1 = `
+    SELECT MAX(pacotesRecebidos) AS quantidade, DATE_FORMAT(data_hora, '%Y-%m-%d %H:00:00') AS hora, fk__idATM
+FROM rede 
+WHERE fk__idATM = ${idATM}  
+GROUP BY DATE_FORMAT(data_hora, '%Y-%m-%d %H:00:00');`;
+
+var instrucaoSql2 = `
+SELECT MAX(pacotesEnviados) AS quantidade, DATE_FORMAT(data_hora, '%Y-%m-%d %H:00:00') AS hora, ATMComp_ID 
+FROM rede 
+WHERE ATMComp_ID = ${idATM}  
+GROUP BY DATE_FORMAT(data_hora, '%Y-%m-%d %H:00:00');`;
+
+
+    console.log("Executando a instrução SQL: \n" + instrucaoSql1, instrucaoSql2);
+    return database.executar(instrucaoSql1, instrucaoSql2);
+}
+
+function Variedade_tempoReal(idATM) {
+
+    var instrucaoSql1 = `
+    SELECT MAX(pacotesRecebidos) AS pacotesRecebidos, DATE_FORMAT(data_hora, '%Y-%m-%d %H:00:00') AS hora, fk__idATM
+FROM rede 
+WHERE fk__idATM = ${idATM}  
+GROUP BY DATE_FORMAT(data_hora, '%Y-%m-%d %H:00:00');`;
+
+var instrucaoSql2 = `
+SELECT MAX(pacotesEnviados) AS pacotesEnviados, DATE_FORMAT(data_hora, '%Y-%m-%d %H:00:00') AS hora, ATMComp_ID 
+FROM rede 
+WHERE ATMComp_ID = ${idATM}  
+GROUP BY DATE_FORMAT(data_hora, '%Y-%m-%d %H:00:00');`;
+    console.log("Executando a instrução SQL: \n" + instrucaoSql1, instrucaoSql2);
+    return database.executar(instrucaoSql1, instrucaoSql2);
 }
 
 function relatarProblema(nome, sobrenome, email, titulo, detalhe, dataHoraProblema) {
@@ -217,9 +255,9 @@ function listarAgencia(fkAgencia_usuario) {
 }
 
 async function obterMetricasComponentes(idATM) {
-    const RAMQuery = `SELECT L.Valor FROM Leitura L WHERE L.ATMComp_ID = ${idATM} AND L.Componente_ID = 1 ORDER BY DataRegistro DESC LIMIT 1`;
-    const DISCOQuery = `SELECT L.Valor FROM Leitura L WHERE L.ATMComp_ID = ${idATM} AND L.Componente_ID = 2 ORDER BY DataRegistro DESC LIMIT 1`;
-    const CPUQuery = `SELECT L.Valor FROM Leitura L WHERE L.ATMComp_ID = ${idATM} AND L.Componente_ID = 3 ORDER BY DataRegistro DESC LIMIT 1`;
+    const RAMQuery = `SELECT Valor FROM Leitura WHERE ATMComp_ID = ${idATM} AND Componente_ID = 1 ORDER BY DataRegistro DESC LIMIT 1`;
+    const DISCOQuery = `SELECT Valor FROM Leitura WHERE ATMComp_ID = ${idATM} AND Componente_ID = 2 ORDER BY DataRegistro DESC LIMIT 1`;
+    const CPUQuery = `SELECT Valor FROM Leitura WHERE ATMComp_ID = ${idATM} AND Componente_ID = 3 ORDER BY DataRegistro DESC LIMIT 1`;
 
     console.log("Executando as instruções SQL:\n", RAMQuery, DISCOQuery, CPUQuery);
 
@@ -284,6 +322,8 @@ module.exports = {
     ProcessosPHora_tempoReal,
     CPUHora,
     CPU_tempoReal,
+    VariedadeHoraHora,
+    Variedade_tempoReal,
     listarATM,
     listarAgencia,
     obterMetricasComponentes,

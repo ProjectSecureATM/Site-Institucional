@@ -57,6 +57,14 @@ router.get("/TEMP_tempoReal/:idATM", function (req, res) {
     usuarioController.TEMP_tempoReal(req, res);
 });
 
+router.get("/VariedadeHora/:idATM", function (req, res) {
+    usuarioController.VariedadeHora(req, res);
+});
+
+router.get("/Variedade_tempoReal/:idATM", function (req, res) {
+    usuarioController.Variedade_tempoReal(req, res);
+});
+
 router.post("/listarATM", function (req, res) {
     usuarioController.listarATM(req, res);
 });
