@@ -375,12 +375,12 @@
         let dados = {
             labels: labels,
             datasets: [{
-                label: 'Temp_Cpu',
+                label: 'Temperatura CPU',
                 data: [],
                 fill: false,
-                backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                borderColor: 'rgba(75, 192, 192, 1)',
-                borderWidth: 5,
+                backgroundColor: '#021e46',
+                borderColor: '#021e46',
+                borderWidth: 1,
                 tension: 0.5
             }]
         };
@@ -392,7 +392,7 @@
         }
 
         const config = {
-            type: 'bar',
+            type: 'line',
             data: dados
         };
 
@@ -434,11 +434,11 @@
                     console.log("---------------------------------------------------------------");
                 }
 
-                setTimeout(() => atualizarGrafico(idATM, dados, myChart), 2000);
+                setTimeout(() => atualizarGraficoTEMP(idATM, dados, myChart), 2000);
             })
             .catch(function (error) {
                 console.error(`Erro na obtenção dos dados para o gráfico: ${error.message}`);
-                setTimeout(() => atualizarGrafico(idATM, dados, myChart), 2000);
+                setTimeout(() => atualizarGraficoTEMP(idATM, dados, myChart), 2000);
             });
     }
 
