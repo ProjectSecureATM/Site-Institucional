@@ -80,6 +80,8 @@ module.exports = {
     Alertas
 }
 
+
+//Sugestão de outra forma de fazer esse bloco de código. Não entendi muito bem como funciona então deixei comentado aqui. _Paulo
 // var avisoModel = require("../models/avisoModel");
 
 // async function Alertas(req, res) {
