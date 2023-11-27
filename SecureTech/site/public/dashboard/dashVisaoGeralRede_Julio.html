@@ -10,7 +10,7 @@
     <meta name="author" content="">
     <link rel="shortcut icon" href="../assets/fiveicon.png" type="image/x-icon">
 
-    <title>Dashboard</title>
+    <title>Informações de Segurança da Rede</title>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <!-- Outros scripts -->
@@ -80,7 +80,7 @@
                         <h6 class="collapse-header">Inovações Secure ATM:</h6>
                         <a href="DashBoard-VisaoGeral-Vaz.html" class="collapse-item">Dash Gabroh</a>
                         <a href="DashBoard-VisaoGeral-Giba.html" class="collapse-item">Dash Jujuba</a>
-                        <a href="dashVisaoGeralRede_Julio.html"class="collapse-item">Dash Julião</a>
+                        <a href="dashVisaoGeralRede_Julio.html" class="collapse-item">Dash Julião</a>
                         <a class="collapse-item">Dash Paulão</a>
                         <a class="collapse-item">Dash Primon</a>
                         <a class="collapse-item">Dash Alice</a>
@@ -178,101 +178,170 @@
                     </div>
 
                     <!-- Content Row -->
-
-                    <div class="card">
+                    <div id="infosRede">
                         <div class="card">
-                            <div class="col-xl-3 col-md-6 mb-4">
-                                <div class="card border-left-primary shadow h-100 py-2">
-                                    <div class="card-body">
-                                        <div class="row no-gutters align-items-center">
-                                            <div class="col mr-2">
-                                                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                                    Alerta Pacotes</div>
-                                                <span id="pctTotais"></span>
+                            <div class="card">
+                                <div class="col-xl-3 col-md-6 mb-4">
+                                    <div class="card border-left-primary shadow h-100 py-2">
+                                        <div class="card-body">
+                                            <div class="row no-gutters align-items-center">
+                                                <div class="col mr-2">
+                                                    <div
+                                                        class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                                        Meu IP:</div>
+                                                    <span id="pctTotais"></span>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
 
-                        <div class="row" style="justify-content: center; align-items: center;">
-
-
-                            <div class="col-xl-8 col-lg-7">
-                                <div class="card shadow mb-4">
-
-                                    <div
-                                        class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                        <h6 class="m-0 font-weight-bold text-primary">Picos de Pacotes</h6>
-                                        <div class="dropdown no-arrow">
-                                            <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
-                                                aria-labelledby="dropdownMenuLink">
-                                                <a class="dropdown-item" href="#">Something else here</a>
+                            <div class="card">
+                                <div class="card">
+                                    <div class="col-xl-3 col-md-6 mb-4">
+                                        <div class="card border-left-primary shadow h-100 py-2">
+                                            <div class="card-body">
+                                                <div class="row no-gutters align-items-center">
+                                                    <div class="col mr-2">
+                                                        <div
+                                                            class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                                            Tráfego de Rede:</div>
+                                                        <span id="pctTotais"></span>
+                                                    </div>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="card-body">
-                                        <canvas id="ProcessosChart"></canvas>
-                                    </div>
-                                </div>
-                            </div>
-
-
-                            <div class="col-xl-8 col-lg-7">
-                                <div class="card shadow mb-4">
-
-                                    <div
-                                        class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                        <h6 class="m-0 font-weight-bold text-primary">Registro de IP por Pacotes</h6>
-                                        <div class="dropdown no-arrow">
-                                            <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
-                                                aria-labelledby="dropdownMenuLink">
-                                                <a class="dropdown-item" href="#">Something else here</a>
-                                            </div>
-                                        </div>
-                                    </div>   
-                                                                        
-                            </div>
-
-                            <!-- Scroll to Top Button-->
-                            <a class="scroll-to-top rounded" href="#page-top">
-                                <i class="fas fa-angle-up"></i>
-                            </a>
-
-                            <!-- Logout Modal-->
-                            <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog"
-                                aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                <div class="modal-dialog" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLabel">Certeza que você quer
-                                                sair?</h5>
-                                            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true">×</span>
-                                            </button>
-                                        </div>
-                                        <div class="modal-body">Selecione "Sair" para deslogar.</div>
-                                        <div class="modal-footer">
-                                            <button style="text-align: left;" class="btn btn-secondary" type="button"
-                                                data-dismiss="modal">Cancelar</button>
-                                            <a class="btn btn-primary" href="../index.html">Sair</a>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</body>
+                            <div class="row" style="justify-content: center; align-items: center;">
 
-</html>
 
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script>
-    var idATM = sessionStorage.getItem('idATM');
-</script>
+                                <div class="col-xl-8 col-lg-7">
+                                    <div class="card shadow mb-4">
+
+                                        <div
+                                            class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                            <h6 class="m-0 font-weight-bold text-primary">Picos de Pacotes</h6>
+                                            <div class="dropdown no-arrow">
+                                                <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
+                                                    aria-labelledby="dropdownMenuLink">
+                                                    <a class="dropdown-item" href="#">Something else here</a>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="card-body">
+                                            <canvas id="ProcessosChart"></canvas>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="col-xl-8 col-lg-7">
+                                    <div class="card shadow mb-4">
+
+                                        <div
+                                            class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                            <h6 class="m-0 font-weight-bold text-primary">Registro de IP por Pacotes
+                                            </h6>
+                                            <button id="buttonNavBar" class="buttonNavBar" onclick="infosRede()"><span
+                                                    style="color: aliceblue;">Ver informações de IP</span></button>
+                                            <div class="dropdown no-arrow">
+                                                <div id="infoIpDiv">
+                                                    <!-- This is the div where you will display the fetched information -->
+                                                </div>
+                                                <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
+                                                    aria-labelledby="dropdownMenuLink">
+                                                    <a class="dropdown-item" href="#">Something else here</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Scroll to Top Button-->
+                                    <a class="scroll-to-top rounded" href="#page-top">
+                                        <i class="fas fa-angle-up"></i>
+                                    </a>
+
+                                    <!-- Logout Modal-->
+                                    <div class="modal fade" id="secureModal" tabindex="-1" role="dialog"
+                                        aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="labelSecurity" id="labelSeguranca">
+                                                        Confirme suas informações para ter acesso a esses dados</h5>
+                                                    <button class="close" type="button" data-bs-dismiss="modal"
+                                                        aria-label="Close">
+                                                        <span aria-hidden="true">×</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    Selecione "Cancelar" para sair.
+                                                    <form id="infoRedeForm">
+                                                        <div class="form-group">
+                                                            <label for="inputEmail">Email:</label>
+                                                            <input type="email" class="form-control" id="inputEmail"
+                                                                placeholder="Digite seu email" required>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="inputPassword">Senha:</label>
+                                                            <input type="password" class="form-control"
+                                                                id="inputPassword" placeholder="Digite sua senha"
+                                                                required>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button style="text-align: left;" class="btn btn-secondary"
+                                                        type="button" data-bs-dismiss="modal">
+                                                        Cancelar
+                                                    </button>
+                                                    <button class="btn btn-primary"
+                                                        onclick="submitInfoRedeForm()">Enviar</button>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+                                    <script
+                                        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+                                    <script>
+                                        function infosRede() {
+                                            $('#secureModal').modal('show');
+                                        }
+
+                                        function submitInfoRedeForm() {
+                                            var email = document.getElementById('inputEmail').value;
+                                            var password = document.getElementById('inputPassword').value;
+
+                                            // Check if both email and password are filled
+                                            if (email.trim() === '' || password.trim() === '') {
+                                                // Show a tooltip, alert, or any other form of notification to inform the user
+                                                alert('Por favor, preencha todos os campos.');
+                                                return; // Do not proceed with form submission
+                                            }
+
+                                            // AJAX request to fetch data from the server
+                                            $.ajax({
+                                                type: 'POST',
+                                                url: 'your_server_endpoint', // Replace with your server endpoint
+                                                data: { email: email, password: password },
+                                                success: function (data) {
+                                                    // Assuming your server returns data in JSON format
+                                                    // Update the div with the fetched data
+                                                    $('#infoIpDiv').html(data);
+                                                },
+                                                error: function (error) {
+                                                    console.error('Error:', error);
+                                                    alert('Erro ao obter informações do servidor.');
+                                                }
+                                            });
+
+                                            // Close the modal after submission
+                                            $('#secureModal').modal('hide');
+                                        }
+                                    </script>
