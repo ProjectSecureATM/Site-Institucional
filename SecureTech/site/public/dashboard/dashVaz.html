@@ -22,7 +22,7 @@
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
     <link href="css/vaz.css" rel="stylesheet">
 
-    
+
 </head>
 
 <body id="page-top">
@@ -75,7 +75,7 @@
                         <h6 class="collapse-header">Inovações Secure ATM:</h6>
                         <a class="collapse-item" style="color: goldenrod;">Dash Gabroh</a>
                         <a href="DashBoard-VisaoGeral-Giba.html" class="collapse-item">Dash Jujuba</a>
-                        <a href="dashVisaoGeralRede_Julio.html"class="collapse-item">Dash Julião</a>
+                        <a href="dashVisaoGeralRede_Julio.html" class="collapse-item">Dash Julião</a>
                         <a class="collapse-item">Dash Paulão</a>
                         <a class="collapse-item">Dash Primon</a>
                         <a class="collapse-item">Dash Alice</a>
@@ -191,6 +191,15 @@
                                             <span>%</span>
                                         </div>
                                     </div>
+                                    <div class="divMetricas display-betwen">
+                                        <div class="divTextoMetricas">
+                                            <span>Instável</span>
+                                        </div>
+                                        <div class="divIconMetricas">
+                                            <img src="../assets/ponto-de-interrogacao-em-um-fundo-preto-circular.png"
+                                                alt="" onclick="metricasPing()">
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <div class="boxDashComponentes">
@@ -205,7 +214,15 @@
                                             <span id="downloadPercentage"></span>
                                             <span>%</span>
                                         </div>
-
+                                    </div>
+                                    <div class="divMetricas display-betwen">
+                                        <div class="divTextoMetricas">
+                                            <span>Instável</span>
+                                        </div>
+                                        <div class="divIconMetricas">
+                                            <img src="../assets/ponto-de-interrogacao-em-um-fundo-preto-circular.png"
+                                                alt="" onclick="metricasDownload()">
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -222,6 +239,15 @@
                                             <span>%</span>
                                         </div>
                                     </div>
+                                    <div class="divMetricas display-betwen">
+                                        <div class="divTextoMetricas">
+                                            <span>Instável</span>
+                                        </div>
+                                        <div class="divIconMetricas">
+                                            <img src="../assets/ponto-de-interrogacao-em-um-fundo-preto-circular.png"
+                                                alt="" onclick="metricasUpload()">
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -234,13 +260,13 @@
                                         <div class="divTimer">
                                             <div class="divTitulo">
                                                 <div class="titulo titulo-center">
-                                                    <span>Horas de Funcionamento</span>
+                                                    <span>analisar</span>
                                                 </div>
                                             </div>
 
                                             <div class="divTimer">
                                                 <div class="timer">
-                                                    <span id="spanTempoDecorrido"></span>
+                                                    <span id=""></span>
                                                 </div>
                                             </div>
                                         </div>
@@ -251,13 +277,13 @@
                                         <div class="divTimer">
                                             <div class="divTitulo">
                                                 <div class="titulo">
-                                                    <span>Reinicio do Sistema</span>
+                                                    <span>Horas de Funcionamento</span>
                                                 </div>
                                             </div>
 
                                             <div class="divTimer">
                                                 <div class="timer">
-                                                    <span>13</span>
+                                                    <span id="spanTempoDecorrido"></span>
                                                 </div>
                                             </div>
                                         </div>
@@ -275,7 +301,7 @@
                                         </div>
                                         <div class="divGrafico" style="background-color: aqua;">
                                             <div class="chart-area" style="background-color: rgba(255, 0, 0, 0.415);">
-                                                <canvas id="variedadeChart"></canvas >
+                                                <canvas id="variedadeChart"></canvas>
                                             </div>
                                         </div>
                                     </div>
@@ -328,10 +354,10 @@
 </html>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <script>
     var idATM = sessionStorage.getItem('idATM');
-
     window.onload = function () {
         if (idATM) {
             exibirStatusRede(idATM);
@@ -493,7 +519,7 @@
     function atualizarTempoDecorrido(segundosTotais) {
         const resultado = converterSegundosParaDHM(segundosTotais);
         const divTempoDecorrido = document.getElementById(resultado);
-        
+
         spanTempoDecorrido.innerHTML = `Dias: ${resultado.dias}, Horas: ${resultado.horas}, Minutos: ${resultado.minutos}`;
     }
 
@@ -502,6 +528,53 @@
     const resultado = converterSegundosParaDHM(segundosTotais);
 
     console.log(`Dias:${resultado.dias}, Horas:${resultado.horas}, Minutos:${resultado.minutos}`);
-    
+
     // Kotlin FINAL
+
+
+
+
+    function metricasPing() {
+        Swal.fire({
+            icon: "warning",
+            width: 550,
+            title: "Atenção!!",
+            html: `
+            <b>Métricas sobre o Ping</b></br></br>
+        Se seu ping estiver abaixo de x ele está em estado <span style="color: rgb(0, 86, 0);">Instável</span> </br>
+        Se seu ping estiver entre x e y ele está em estado <span style="color: goldenrod">Alerta</span> </br>
+        Se seu ping estiver maior de x ele está em estado <span style="color: rgb(158, 1, 1)">Crítico</span>
+            `,
+        });
+    }
+
+    function metricasDownload() {
+        Swal.fire({
+            icon: "warning",
+            width: 550,
+            title: "Atenção!!",
+            html: `
+            <b>Métricas sobre o Download</b></br></br>
+            Se seu ping estiver abaixo de x ele está em estado <span style="color: rgb(0, 86, 0);">Instável</span></br>
+            Se seu ping estiver entre x e y ele está em estado <span style="color: goldenrod">Alerta</span></br>
+            Se seu ping estiver maior de x ele está em estado <span style="color: rgb(158, 1, 1)">Crítico</span>
+            `,
+        });
+    }
+
+    function metricasUpload() {
+        Swal.fire({
+            icon: "warning",
+            width: 550,
+            title: "Atenção!!",
+            html: `
+            <b>Métricas sobre o Upload</b></br></br>
+            Se seu ping estiver abaixo de x ele está em estado <span style="color: rgb(0, 86, 0);">Instável</span></br>
+            Se seu ping estiver entre x e y ele está em estado <span style="color: goldenrod">Alerta</span></br>
+            Se seu ping estiver maior de x ele está em estado <span style="color: rgb(158, 1, 1)">Crítico</span>
+
+            `,
+            
+        });
+    }
 </script>
