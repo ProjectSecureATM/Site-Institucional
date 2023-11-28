@@ -265,8 +265,8 @@
 
                             <div id="blocoKPI" class="col-xl-5 col-md-0 mb-8">
                                 <div class="chart-area">
-                                    <canvas id="TEMPChart"></canvas>
                                     <canvas id="CPUChart"></canvas>
+                                    <canvas id="TEMPChart"></canvas>
                                 </div>
                                 <div class="teste">
                                     <br><br>
@@ -276,9 +276,9 @@
                                                 <div class="col mr-2">
                                                     <div id="borda"
                                                         class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                                        DESEMPENHO_GERAL</div>
+                                                        DESEMPENHO GERAL</div>
                                                     <span id="desempenhoGeral"></span>
-                                                    <span>%</span>
+                                                    <span id="percent">%</span>
                                                 </div>
                                             </div>
                                         </div>
@@ -291,7 +291,7 @@
                                                     <div
                                                         class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                                         TEMPO DE ATIVIDADE</div>
-                                                        <span id="tempoAtividade"></span>
+                                                    <span id="tempoAtividade"></span>
                                                 </div>
                                             </div>
                                         </div>
@@ -486,10 +486,12 @@
             labels: labels,
             datasets: [{
                 label: 'Temperatura CPU',
+                color: 'white',
                 data: [],
                 fill: false,
-                backgroundColor: '#021e46',
-                borderColor: '#021e46',
+                backgroundColor: '#021e46   ',
+                borderColor: '#021e46   ',
+                fontColor: 'white',
                 borderWidth: 1,
                 tension: 0.5
             }]
@@ -501,9 +503,38 @@
             labels.push(registro.hora);
         }
 
+        const opcoes = {
+            plugins: {
+                legend: {
+                    labels: {
+                        color: '#021e46 ' // Cor da fonte da label
+                    }
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    grid: {
+                        display: false,
+                    },
+                    ticks: {
+                        color: 'black' // Cor da fonte no eixo X
+                    },
+                },
+                x: {
+                    beginAtZero: true,
+                    display: false,
+                    ticks: {
+                        color: 'white' // Cor da fonte no eixo X
+                    },
+                }
+            }
+        }
+
         const config = {
             type: 'line',
-            data: dados
+            data: dados,
+            options: opcoes
         };
 
         let myChart = new Chart(
@@ -582,7 +613,7 @@
                 data: [],
                 fill: false,
                 backgroundColor: '#021e46',
-                borderColor: '#021e46',
+                borderColor: '#01142e',
                 borderWidth: 1
             }]
         };
@@ -593,9 +624,38 @@
             labels.push(registro.hora);
         }
 
+        const opcoes = {
+            plugins: {
+                legend: {
+                    labels: {
+                        color: '#021e46' // Cor da fonte da label
+                    }
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    grid: {
+                        display: false,
+                    },
+                    ticks: {
+                        color: 'black' // Cor da fonte no eixo X
+                    },
+                },
+                x: {
+                    beginAtZero: true,
+                    display: false,
+                    ticks: {
+                        color: 'white' // Cor da fonte no eixo X
+                    },
+                }
+            }
+        }
+
         const config = {
-            type: 'bar',
-            data: dados
+            type: 'line',
+            data: dados,
+            options: opcoes
         };
 
         let myChart = new Chart(

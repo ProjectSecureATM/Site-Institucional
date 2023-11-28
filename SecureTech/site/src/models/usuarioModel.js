@@ -187,8 +187,7 @@ function TEMP_tempoReal(idATM) {
 FROM temperaturaCPU 
 WHERE fkATM = ${idATM} 
 GROUP BY DATE_FORMAT(data_hora, '%Y-%m-%d %H:00:00')
-ORDER BY DATE_FORMAT(data_hora, '%Y-%m-%d %H:00:00') DESC
-LIMIT 1;`;
+ORDER BY DATE_FORMAT(data_hora, '%Y-%m-%d %H:00:00');`;
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
 }
