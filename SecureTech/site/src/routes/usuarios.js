@@ -84,4 +84,12 @@ router.post("/listarAgencia", function (req, res) {
 router.get('/obterValoresParaGrafico', function(req, res){
     usuarioController.obterValoresParaGrafico(req, res)
 })
+
+router.get('/obterDesempenho/:idATM', function(req, res) {
+    usuarioController.obterDesempenho(req, res)
+})
+
+router.get('/obterTempoAtv/:idATM', function(req, res) {
+    usuarioController.obterTempoAtv(req, res)
+})
 module.exports = router;

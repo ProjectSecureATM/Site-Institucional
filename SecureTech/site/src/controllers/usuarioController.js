@@ -381,6 +381,26 @@ async function obterMetricasRede(req, res) {
     }
 }
 
+async function obterDesempenho(req, res) {
+    const idATM = req.params.idATM;
+    try {
+        const dados = await usuarioModel.obterDesempenho(idATM);
+        res.json(dados);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+}
+
+async function obterTempoAtv(req, res) {
+    const idATM = req.params.idATM;
+    try {
+        const dados = await usuarioModel.obterTempoAtv(idATM);
+        res.json(dados);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+}
+
 module.exports = {
     autenticar,
     cadastrar,
@@ -399,5 +419,8 @@ module.exports = {
     listarATM,
     listarAgencia,
     obterMetricasComponentes,
-    obterMetricasRede
+    obterMetricasRede,
+    obterDesempenho,
+    obterTempoAtv
+     
 }

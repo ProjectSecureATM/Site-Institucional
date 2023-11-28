@@ -188,8 +188,8 @@
                                             <div class="col mr-2">
                                                 <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                                     RAM</div>
-                                                    <span id="ramPercentage"></span>
-                                                    <span>%</span>
+                                                <span id="ramPercentage"></span>
+                                                <span>%</span>
                                             </div>
                                         </div>
                                     </div>
@@ -205,8 +205,8 @@
                                             <div class="col mr-2">
                                                 <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                                     DISCO</div>
-                                                    <span id="discoPercentage"></span>
-                                                    <span>%</span>
+                                                <span id="discoPercentage"></span>
+                                                <span>%</span>
                                             </div>
                                         </div>
                                     </div>
@@ -224,8 +224,8 @@
                                             <div class="col mr-2">
                                                 <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                                     CPU</div>
-                                                    <span id="cpuPercentage"></span>
-                                                    <span>%</span>
+                                                <span id="cpuPercentage"></span>
+                                                <span>%</span>
                                             </div>
                                         </div>
                                     </div>
@@ -324,11 +324,11 @@
     };
 
     function exibirStatusSistema(idATM) {
-    obterDadosSistema(idATM);
-    setInterval(function() {
         obterDadosSistema(idATM);
-    }, 1000);
-}
+        setInterval(function () {
+            obterDadosSistema(idATM);
+        }, 1000);
+    }
 
 
     function obterDadosSistema(idATM) {
@@ -376,81 +376,81 @@
     }
 
     function plotarGrafico(resposta, idATM) {
-    let labels = [];
-    let dados = {
-        labels: labels,
-        datasets: [{
-            label: 'Processos',
-            data: [],
-            fill: false,
-            backgroundColor: 'rgba(75, 192, 192, 0.2)',
-            borderColor: 'rgba(75, 192, 192, 1)',
-            borderWidth: 5,
-            tension: 0.5
-        }]
-    };
+        let labels = [];
+        let dados = {
+            labels: labels,
+            datasets: [{
+                label: 'Processos',
+                data: [],
+                fill: false,
+                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                borderColor: 'rgba(75, 192, 192, 1)',
+                borderWidth: 5,
+                tension: 0.5
+            }]
+        };
 
-    for (let i = 0; i < resposta.length; i++) {
-        let registro = resposta[i];
-        dados.datasets[0].data.push(registro.quantidade);
-        labels.push(registro.hora);
+        for (let i = 0; i < resposta.length; i++) {
+            let registro = resposta[i];
+            dados.datasets[0].data.push(registro.quantidade);
+            labels.push(registro.hora);
+        }
+
+        const config = {
+            type: 'bar',
+            data: dados
+        };
+
+        let myChart = new Chart(
+            document.getElementById(`ProcessosChart`),
+            config
+        );
+
+        // Chama a função para atualizar dinamicamente o gráfico
+        atualizarGrafico(idATM, dados, myChart);
     }
 
-    const config = {
-        type: 'bar',
-        data: dados
-    };
-
-    let myChart = new Chart(
-        document.getElementById(`ProcessosChart`),
-        config
-    );
-
-    // Chama a função para atualizar dinamicamente o gráfico
-    atualizarGrafico(idATM, dados, myChart);
-}
-
-function atualizarGrafico(idATM, dados, myChart) {
-    fetch(`/usuarios/ProcessosPHora_tempoReal/${idATM}`, { cache: 'no-store' })
-        .then(function (response) {
-            if (response.ok) {
-                return response.json();
-            } else {
-                console.error('Nenhum dado encontrado ou erro na API');
-                return [];
-            }
-        })
-        .then(function (novoRegistro) {
-            console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
-            console.log('Dados atuais do gráfico:');
-            console.log(dados);
-
-            // Verifica se há novos registros
-            if (novoRegistro.length > 0) {
-                // Adapte a lógica de validação conforme necessário
-                if (novoRegistro[0].hora !== dados.labels[dados.labels.length - 1]) {
-                    dados.labels.push(novoRegistro[0].hora);
-                    dados.datasets[0].data.push(novoRegistro[0].quantidade);
-                    myChart.update();
+    function atualizarGrafico(idATM, dados, myChart) {
+        fetch(`/usuarios/ProcessosPHora_tempoReal/${idATM}`, { cache: 'no-store' })
+            .then(function (response) {
+                if (response.ok) {
+                    return response.json();
                 } else {
-                    console.log("---------------------------------------------------------------");
-                    console.log("Como não há dados novos para captura, o gráfico não atualizará.");
-                    console.log("Horário do novo dado capturado:");
-                    console.log(novoRegistro[0].hora);
-                    console.log("Horário do último dado capturado:");
-                    console.log(dados.labels[dados.labels.length - 1]);
-                    console.log("---------------------------------------------------------------");
+                    console.error('Nenhum dado encontrado ou erro na API');
+                    return [];
                 }
-            }
+            })
+            .then(function (novoRegistro) {
+                console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
+                console.log('Dados atuais do gráfico:');
+                console.log(dados);
 
-            // Chama a função recursivamente após 2 segundos
-            atualizarGrafico(idATM, dados, myChart);
-        })
-        .catch(function (error) {
-            console.error(`Erro na obtenção dos dados para o gráfico: ${error.message}`);
-        });
+                // Verifica se há novos registros
+                if (novoRegistro.length > 0) {
+                    // Adapte a lógica de validação conforme necessário
+                    if (novoRegistro[0].hora !== dados.labels[dados.labels.length - 1]) {
+                        dados.labels.push(novoRegistro[0].hora);
+                        dados.datasets[0].data.push(novoRegistro[0].quantidade);
+                        myChart.update();
+                    } else {
+                        console.log("---------------------------------------------------------------");
+                        console.log("Como não há dados novos para captura, o gráfico não atualizará.");
+                        console.log("Horário do novo dado capturado:");
+                        console.log(novoRegistro[0].hora);
+                        console.log("Horário do último dado capturado:");
+                        console.log(dados.labels[dados.labels.length - 1]);
+                        console.log("---------------------------------------------------------------");
+                    }
+                }
 
-}
+                // Chama a função recursivamente após 2 segundos
+                atualizarGrafico(idATM, dados, myChart);
+            })
+            .catch(function (error) {
+                console.error(`Erro na obtenção dos dados para o gráfico: ${error.message}`);
+            });
+
+    }
 
 
 </script>

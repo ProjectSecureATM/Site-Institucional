@@ -174,7 +174,8 @@ function TEMPHora(idATM) {
     SELECT MAX(temperatura) AS temp_cpu, DATE_FORMAT(data_hora, '%Y-%m-%d %H:00:00') AS hora, fkATM 
 FROM temperaturaCPU 
 WHERE fkATM = ${idATM}  
-GROUP BY DATE_FORMAT(data_hora, '%Y-%m-%d %H:00:00');`;
+GROUP BY DATE_FORMAT(data_hora, '%Y-%m-%d %H:00:00')
+ORDER BY DATE_FORMAT(data_hora, '%Y-%m-%d %H:00:00');`;
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
 }
@@ -185,7 +186,9 @@ function TEMP_tempoReal(idATM) {
     SELECT MAX(temperatura) AS temp_cpu, DATE_FORMAT(data_hora, '%Y-%m-%d %H:00:00') AS hora, fkATM 
 FROM temperaturaCPU 
 WHERE fkATM = ${idATM} 
-GROUP BY DATE_FORMAT(data_hora, '%Y-%m-%d %H:00:00');`;
+GROUP BY DATE_FORMAT(data_hora, '%Y-%m-%d %H:00:00')
+ORDER BY DATE_FORMAT(data_hora, '%Y-%m-%d %H:00:00') DESC
+LIMIT 1;`;
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
 }
@@ -333,6 +336,66 @@ async function obterMetricasRede(idATM) {
     }
 }
 
+async function obterDesempenho(idATM) {
+    const desempenhoQuery = `
+        SELECT
+            Leitura.ATMComp_ID,
+            ROUND(AVG(CASE WHEN codigocomponentes.idCodComponentes = 1 THEN 100 - Leitura.Valor ELSE NULL END), 2) AS MediaCPU,
+            ROUND(AVG(CASE WHEN codigocomponentes.idCodComponentes = 2 THEN 100 - Leitura.Valor ELSE NULL END), 2) AS MediaRAM,
+            ROUND(AVG(CASE WHEN codigocomponentes.idCodComponentes = 3 THEN 100 - Leitura.Valor ELSE NULL END), 2) AS MediaDisco,
+            COALESCE(ROUND(AVG(100 - Leitura.Valor), 2), 100) AS DesempenhoGeral
+        FROM
+            Leitura
+        JOIN
+            codigocomponentes ON Leitura.Componente_ID = codigocomponentes.idCodComponentes
+        WHERE
+            codigocomponentes.idCodComponentes IN (1, 2, 3)
+            AND 
+            ATMComp_ID = ${idATM}
+        GROUP BY
+            Leitura.ATMComp_ID
+        ORDER BY 
+            Leitura.ATMComp_ID
+        DESC LIMIT 1;`;
+
+    console.log("Executando a instrução SQL: \n" + desempenhoQuery);
+    try {
+        const desempenhoResult = await database.executar(desempenhoQuery);
+            return {
+                DESEMPENHO: (desempenhoResult && desempenhoResult[0] && desempenhoResult[0].DesempenhoGeral) || 'N/A',
+            }; 
+    } catch (error) {
+        console.error(`Erro na obtenção de Desempenho Geral: ${error.message}`);
+        return {
+            DESEMPENHO: 'N/A',
+        };
+    }
+}
+
+async function obterTempoAtv(idATM) {
+    const atividadeQuery = `
+    SELECT atividade
+    FROM tempoAtividade 
+    WHERE fk__idATM = ${idATM}
+    GROUP BY atividade
+    ORDER BY atividade
+    DESC LIMIT 1;`;
+
+    console.log("Executando a instrução SQL: \n" + atividadeQuery);
+    try {
+        const atividadeResult = await database.executar(atividadeQuery);
+            return {
+                TEMPO: (atividadeResult && atividadeResult[0] && atividadeResult[0].atividade) || 'N/A',
+            }; 
+    } catch (error) {
+        console.error(`Erro na obtenção de Tempo de Atividade: ${error.message}`);
+        return {
+            TEMPO: 'N/A',
+        };
+    }
+}
+
+
 
 
 
@@ -354,5 +417,7 @@ module.exports = {
     listarATM,
     listarAgencia,
     obterMetricasComponentes,
-    obterMetricasRede
+    obterMetricasRede,
+    obterDesempenho,
+    obterTempoAtv
 };
