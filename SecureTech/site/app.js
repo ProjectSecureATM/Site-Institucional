@@ -10,7 +10,7 @@ var app = express();
 
 var indexRouter = require("./src/routes/index");
 var usuarioRouter = require("./src/routes/usuarios");
-var pythonRouter = require("./src/routes/python");
+var redeRouter = require("./src/routes/rede");
 var avisosRouter = require("./src/routes/avisos");
 
 app.use(express.json());
@@ -21,7 +21,7 @@ app.use(cors());
 
 app.use("/", indexRouter);
 app.use("/usuarios", usuarioRouter);
-app.use("/python", pythonRouter);
+app.use("/rede", redeRouter);
 app.use("/avisos", avisosRouter);
 
 app.listen(PORTA, function () {

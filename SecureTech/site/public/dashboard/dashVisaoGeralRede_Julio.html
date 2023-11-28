@@ -12,7 +12,8 @@
 
     <title>Informações de Segurança da Rede</title>
 
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
     <!-- Outros scripts -->
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -252,10 +253,6 @@
                                                 <div id="infoIpDiv">
                                                     <!-- This is the div where you will display the fetched information -->
                                                 </div>
-                                                <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
-                                                    aria-labelledby="dropdownMenuLink">
-                                                    <a class="dropdown-item" href="#">Something else here</a>
-                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -302,46 +299,96 @@
                                                     <button class="btn btn-primary"
                                                         onclick="submitInfoRedeForm()">Enviar</button>
                                                 </div>
-
                                             </div>
                                         </div>
                                     </div>
-                                    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-                                    <script
-                                        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-                                    <script>
-                                        function infosRede() {
-                                            $('#secureModal').modal('show');
-                                        }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-                                        function submitInfoRedeForm() {
-                                            var email = document.getElementById('inputEmail').value;
-                                            var password = document.getElementById('inputPassword').value;
+                    <div id="conteudoDaPagina">
 
-                                            // Check if both email and password are filled
-                                            if (email.trim() === '' || password.trim() === '') {
-                                                // Show a tooltip, alert, or any other form of notification to inform the user
-                                                alert('Por favor, preencha todos os campos.');
-                                                return; // Do not proceed with form submission
-                                            }
+                    </div>
 
-                                            // AJAX request to fetch data from the server
-                                            $.ajax({
-                                                type: 'POST',
-                                                url: 'your_server_endpoint', // Replace with your server endpoint
-                                                data: { email: email, password: password },
-                                                success: function (data) {
-                                                    // Assuming your server returns data in JSON format
-                                                    // Update the div with the fetched data
-                                                    $('#infoIpDiv').html(data);
-                                                },
-                                                error: function (error) {
-                                                    console.error('Error:', error);
-                                                    alert('Erro ao obter informações do servidor.');
-                                                }
-                                            });
+                </div>
+            </div>
+        </div>
+    </div>
 
-                                            // Close the modal after submission
-                                            $('#secureModal').modal('hide');
-                                        }
-                                    </script>
+
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        function infosRede() {
+            $('#secureModal').modal('show');
+        }
+
+
+        function submitInfoRedeForm() {
+            var email = document.getElementById('inputEmail').value;
+            var password = document.getElementById('inputPassword').value;
+
+            if (email.trim() === '' || password.trim() === '') {
+                alert('Por favor, preencha todos os campos.');
+                return;
+            }
+
+            // Dados a serem enviados no corpo da requisição
+            const dados = {
+                email: email,
+                senha: password
+            };
+
+            fetch("/rede/confirmacaoSeguranca", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(dados)
+            })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`Erro na requisição: ${response.statusText}`);
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    // Lógica a ser executada quando a requisição for bem-sucedida
+                    alert('Dados recuperados com sucesso!');
+
+                    // Verificar se a pessoa foi verificada
+                    if (data && data.verificado) {
+                        // Abrir a nova modal com dados dinâmicos do banco
+                        
+                    }
+                    abrirNovaParteDaTela()
+                    // Atualizar a div existente com os dados recuperados
+                    $('#infoIpDiv').html(data);
+                    $('#secureModal').modal('hide');
+                })
+                .catch(error => {
+                    // Lógica a ser executada em caso de erro na requisição
+                    console.error("Erro ao obter informações do servidor:", error);
+                    alert('Erro ao obter informações do servidor.');
+                });
+        }
+
+        function abrirNovaParteDaTela() {
+            // Substitua esta lógica com a estrutura HTML ou funcionalidade específica que você deseja exibir
+            // Esta é apenas uma ilustração básica
+            var doido = document.getElementById("conteudoDaPagina")
+
+            conteudoDaPagina.innerHTML += `
+                
+                    <h2>Bem-vindo à Nova Parte da Tela!</h2>
+                    <p>Aqui está a sua div de texto com mensagens.</p>
+             
+                
+            `;
+        }
+    </script>
+</body>
+
+</html>
