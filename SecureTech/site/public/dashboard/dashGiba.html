@@ -12,6 +12,15 @@
 
     <title>Dashboard</title>
 
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Outros scripts -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="../js/notificar.js"></script>
+    <script src="../js/metricas.js"></script>
+    <!-- ... -->
+
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link
@@ -20,7 +29,8 @@
 
     <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
-    <link href="css/dashGiba.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/dashGiba.css">
+
 </head>
 
 <body id="page-top">
@@ -73,7 +83,7 @@
                         <h6 class="collapse-header">Inovações Secure ATM:</h6>
                         <a href="DashBoard-VisaoGeral-Vaz.html" class="collapse-item">Dash Gabroh</a>
                         <a href="DashBoard-VisaoGeral-Giba.html" class="collapse-item">Dash Jujuba</a>
-                        <a href="dashVisaoGeralRede_Julio.html"class="collapse-item">Dash Julião</a>
+                        <a class="collapse-item">Dash Julião</a>
                         <a class="collapse-item">Dash Paulão</a>
                         <a class="collapse-item">Dash Primon</a>
                         <a class="collapse-item">Dash Alice</a>
@@ -99,8 +109,33 @@
 
                     <!-- Sidebar Toggle (Topbar) -->
                     <button class="buttonNavBar">
-                        <a href="../homeCadastrado.html">Voltar para Agencia</a>
+                        <a href="../homeDashBoard.html">Agência</a>
                     </button>
+
+                    <button id="metricas_desempenho" class="buttonNavBar" onclick="notificarATM2()">Métricas</button>
+                    <div id="modal2" class="modal2">
+                        <div class="modal-content2">
+                            <span id="closeteste" class="close2" onclick="closeModal2()">&times;</span>
+                            <div class="caixa-container">
+                                <div class="caixa-desempenho">
+                                    <h6>DESEMPENHO CRÍTICO</h6>
+                                    <p>50% a 0%</p>
+                                </div>
+                            </div>
+                            <div class="caixa-container">
+                                <div class="caixa-desempenho">
+                                    <h6>DESEMPENHO MODERADO</h6>
+                                    <p>79% a 51%</p>
+                                </div>
+                            </div>
+                            <div class="caixa-container">
+                                <div class="caixa-desempenho">
+                                    <h6>DESEMPENHO IDEAL</h6>
+                                    <p>100% a 80%</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
                     <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
                         <i class="fa fa-bars"></i>
@@ -154,6 +189,7 @@
                     </ul>
 
                 </nav>
+
                 <!-- End of Topbar -->
 
                 <!-- Begin Page Content -->
@@ -166,56 +202,8 @@
 
                     <!-- Content Row -->
 
+                 
 
-                    <div class="row">
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-primary shadow h-100 py-2">
-                                <div id="kpi" class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                                DESEMPENHO BOM</div>
-                                            <div id="metrica" class="h5 mb-0 font-weight-bold text-gray-800">80% a 100%
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-primary shadow h-100 py-2">
-                                <div id="kpi" class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                                DESEMPENHO MÉDIO</div>
-                                            <div id="metrica" class="h5 mb-0 font-weight-bold text-gray-800">60% a 79%
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-primary shadow h-100 py-2">
-                                <div id="kpi" class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                                DESEMPENHO CRÍTICO</div>
-                                            <div id="metrica" class="h5 mb-0 font-weight-bold text-gray-800">0% a 59%
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-
-
-
-                    <!-- Area Chart -->
                     <div class="col-xl-8 col-lg-7">
 
                         <!-- Card Body -->
@@ -281,9 +269,9 @@
                                 </div>
                             </div>
 
-                            <div id="modal" class="modal">
-                                <div class="modal-content">
-                                    <span class="close" onclick="closeModal()">&times;</span>
+                            <div id="modal1" class="modal1">
+                                <div class="modal-content1">
+                                    <span class="close1" onclick="closeModal()">&times;</span>
                                     <p>Notificação enviada para o ATM com sucesso.</p>
                                 </div>
                             </div>
@@ -314,6 +302,13 @@
                             </div>
                         </div>
                     </div>
+
+
+
+
+
+
+
                 </div>
             </div>
         </div>
@@ -321,7 +316,6 @@
 </body>
 
 </html>
-
 
 <script src="../js/notificar.js"></script>
 
