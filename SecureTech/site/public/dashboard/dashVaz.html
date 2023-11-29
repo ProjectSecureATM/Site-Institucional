@@ -188,7 +188,7 @@
                                     <div class="conteudoComponente">
                                         <div class="componente">
                                             <span id="pingPercentage"></span>
-                                            <span>%</span>
+                                            <span>ms</span>
                                         </div>
                                     </div>
                                     <div class="divMetricas display-betwen">
@@ -212,7 +212,7 @@
                                     <div class="conteudoComponente">
                                         <div class="componente">
                                             <span id="downloadPercentage"></span>
-                                            <span>%</span>
+                                            <span>Mbps</span>
                                         </div>
                                     </div>
                                     <div class="divMetricas display-betwen">
@@ -236,7 +236,7 @@
                                     <div class="conteudoComponente">
                                         <div class="componente">
                                             <span id="uploadPercentage"></span>
-                                            <span>%</span>
+                                            <span>Mbps</span>
                                         </div>
                                     </div>
                                     <div class="divMetricas display-betwen">
@@ -299,8 +299,8 @@
                                                 <span>Variedade Download e Upload</span>
                                             </div>
                                         </div>
-                                        <div class="divGrafico" style="background-color: aqua;">
-                                            <div class="chart-area" style="background-color: rgba(255, 0, 0, 0.415);">
+                                        <div class="divGrafico">
+                                            <div class="chart-area">
                                                 <canvas id="variedadeChart"></canvas>
                                             </div>
                                         </div>
@@ -388,6 +388,8 @@
                 atualizarValorDOM('pingPercentage', dados.PING);
                 atualizarValorDOM('downloadPercentage', dados.DOWNLOAD);
                 atualizarValorDOM('uploadPercentage', dados.UPLOAD);
+
+                //atualizarValorDOM('dataHora', dados.DATAHORA);
             })
             .catch(function (error) {
                 console.error(`Erro na obtenção de REDE do sistema: ${error.message}`);
@@ -398,6 +400,7 @@
     function atualizarValorDOM(elementID, valor) {
         document.getElementById(elementID).textContent = valor;
     }
+
     function mostrarVariedade(idATM) {
         fetch(`/usuarios/VariedadeHora/${idATM}`, { cache: 'no-store' })
             .then(function (response) {
@@ -452,12 +455,30 @@
             data: dados
         };
 
+        // Obtém a largura da div que contém o gráfico
+        let chartContainer = document.getElementById(`variedadeChart`);
+        let containerWidth = chartContainer.clientWidth;
+
+        // Ajusta a largura do canvas para a largura da div
+        config.options = {
+            maintainAspectRatio: false,
+            responsive: true
+        };
+
         let myChart = new Chart(
             document.getElementById(`variedadeChart`),
             config
         );
+
+        window.addEventListener('resize', function () {
+            containerWidth = chartContainer.clientWidth;
+            myChart.canvas.width = containerWidth;
+            myChart.update();
+        });
+
         setTimeout(() => atualizarGrafico(idATM, dados, myChart), 2000);
     }
+
 
     function atualizarGrafico(idATM, dados, myChart) {
         fetch(`/usuarios/Variedade_tempoReal/${idATM}`, { cache: 'no-store' })
@@ -540,9 +561,9 @@
             width: 550,
             title: "Atenção!!",
             html: `
-            <b>Métricas sobre o Ping</b></br></br>
-        Se seu ping estiver abaixo de x ele está em estado <span style="color: rgb(0, 86, 0);">Instável</span> </br>
-        Se seu ping estiver entre x e y ele está em estado <span style="color: goldenrod">Alerta</span> </br>
+        <b>Métricas sobre o Ping</b></br></br>
+        Se seu ping estiver abaixo de x ele está em estado <span style="color: rgb(0, 86, 0);">Instável</span></br>
+        Se seu ping estiver entre x e y ele está em estado <span style="color: goldenrod">Alerta</span></br>
         Se seu ping estiver maior de x ele está em estado <span style="color: rgb(158, 1, 1)">Crítico</span>
             `,
         });
@@ -574,7 +595,7 @@
             Se seu ping estiver maior de x ele está em estado <span style="color: rgb(158, 1, 1)">Crítico</span>
 
             `,
-            
+
         });
     }
 </script>

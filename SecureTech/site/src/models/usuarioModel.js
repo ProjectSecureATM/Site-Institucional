@@ -224,7 +224,7 @@ FROM rede
 WHERE fk__idATM = ${idATM}  
 GROUP BY DATE_FORMAT(data_hora, '%Y-%m-%d %H:00:00');`;
 
-var instrucaoSql2 = `
+    var instrucaoSql2 = `
 SELECT MAX(pacotesEnviados) AS quantidade, DATE_FORMAT(data_hora, '%Y-%m-%d %H:00:00') AS hora, ATMComp_ID 
 FROM rede 
 WHERE ATMComp_ID = ${idATM}  
@@ -243,7 +243,7 @@ FROM rede
 WHERE fk__idATM = ${idATM}  
 GROUP BY DATE_FORMAT(data_hora, '%Y-%m-%d %H:00:00');`;
 
-var instrucaoSql2 = `
+    var instrucaoSql2 = `
 SELECT MAX(pacotesEnviados) AS pacotesEnviados, DATE_FORMAT(data_hora, '%Y-%m-%d %H:00:00') AS hora, ATMComp_ID 
 FROM rede 
 WHERE ATMComp_ID = ${idATM}  
@@ -360,9 +360,9 @@ async function obterDesempenho(idATM) {
     console.log("Executando a instrução SQL: \n" + desempenhoQuery);
     try {
         const desempenhoResult = await database.executar(desempenhoQuery);
-            return {
-                DESEMPENHO: (desempenhoResult && desempenhoResult[0] && desempenhoResult[0].DesempenhoGeral) || 'N/A',
-            }; 
+        return {
+            DESEMPENHO: (desempenhoResult && desempenhoResult[0] && desempenhoResult[0].DesempenhoGeral) || 'N/A',
+        };
     } catch (error) {
         console.error(`Erro na obtenção de Desempenho Geral: ${error.message}`);
         return {
@@ -383,9 +383,9 @@ async function obterTempoAtv(idATM) {
     console.log("Executando a instrução SQL: \n" + atividadeQuery);
     try {
         const atividadeResult = await database.executar(atividadeQuery);
-            return {
-                TEMPO: (atividadeResult && atividadeResult[0] && atividadeResult[0].atividade) || 'N/A',
-            }; 
+        return {
+            TEMPO: (atividadeResult && atividadeResult[0] && atividadeResult[0].atividade) || 'N/A',
+        };
     } catch (error) {
         console.error(`Erro na obtenção de Tempo de Atividade: ${error.message}`);
         return {
@@ -394,7 +394,7 @@ async function obterTempoAtv(idATM) {
     }
 }
 
-
+//select data_hora from rede WHERE fk__idATM = ${idATM} order by data_hora desc limit 1;
 
 
 
