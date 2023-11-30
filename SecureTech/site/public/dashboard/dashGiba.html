@@ -254,15 +254,92 @@
                         <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
                     </div>
 
-                    <!-- Content Row -->
+                    <style>
+                        .bola {
+                            display: inline-block;
+                            width: 20px;
+                            height: 20px;
+                            border-radius: 50%;
+                            margin-left: 5px;
+                        }
 
+                        .verde {
+                            background-color: green;
+                        }
+
+                        .amarela {
+                            background-color: yellow;
+                        }
+
+                        .vermelha {
+                            background-color: red;
+                        }
+                    </style>
+
+                    <!-- Content Row -->
+                    <div id="bloco" class="teste2">
+                        <br><br>
+                        <div class="card border-left-primary-kpi shadow h-100 py-2">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+                                        <div id="borda"
+                                            class="text-xs font-weight-bold text-primary-kpi text-uppercase mb-1">
+                                            TEMPERATURA</div>
+                                        <span id="cpuTemp"></span>
+                                        <span id="percent">°C</span>
+                                        <div id="bolaMetrica" class="bola"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card border-left-primary-kpi shadow h-100 py-2">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+                                        <div id="borda"
+                                            class="text-xs font-weight-bold text-primary-kpi text-uppercase mb-1">
+                                            CPU</div>
+                                        <span id="cpuPercentage"></span>
+                                        <span id="percent">%</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card border-left-primary-kpi shadow h-100 py-2">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+                                        <div id="borda"
+                                            class="text-xs font-weight-bold text-primary-kpi text-uppercase mb-1">
+                                            RAM</div>
+                                        <span id="ramPercentage"></span>
+                                        <span id="percent">%</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="card border-left-primary-kpi shadow h-100 py-2">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+                                        <div class="text-xs font-weight-bold text-primary-kpi text-uppercase mb-1">
+                                            DISCO</div>
+                                        <span id="discoPercentage"></span>
+                                        <span id="percent">%</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
 
                     <div class="col-xl-8 col-lg-7">
 
                         <!-- Card Body -->
                         <div id="giba" class="card-body">
-
+                            <br>
                             <div id="blocoKPI" class="col-xl-5 col-md-0 mb-8">
                                 <div class="chart-area">
                                     <canvas id="CPUChart"></canvas>
@@ -301,6 +378,7 @@
                             </div>
                             <div class="botao-reiniciar">
                                 <button id="openModalButton" onclick="notificarATM()">NOTIFICAR ATM</button>
+                                <span id="botao"></span>
                                 <div class="texto-reiniciar">
                                     <b>
                                         <p>Aviso de Desempenho: Ação Recomendada</p>
@@ -375,6 +453,19 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
     var idATM = sessionStorage.getItem('idATM');
+
+    var metricaTemp = parseInt(document.getElementById('cpuTemp').innerText);
+
+    var bolaMetrica = document.getElementById('bolaMetrica');
+
+    if(metricaTemp >= 0 && metricaTemp <= 50){
+        bolaMetrica.classList.add('verde');
+    } else if(metricaTemp >= 51  && metricaTemp <= 69){
+        bolaMetrica.classList.add('amarela');
+    }else if(metricaTemp >= 70 && metricaTemp <= 100){
+        bolaMetrica.classList.add('vermelha');
+    }
+
     function testeBotao() {
         Swal.fire({
             title: 'Métricas (KPI`s)</br></br><span style="color: blue;">CPU</span><p style="text-align: left;">Ideal: 0% a 50% </br> Aceitável: 50% a 70% </br> Crítico: 70% a 100%</p></br><span style="color: blue;">RAM</span><p style="text-align: left;">Ideal: 0% a 70% </br> Aceitável: 70% a 90% </br> Crítico: 90% a 100%</p></br><span style="color: blue;">DISCO</span><p style="text-align: left;">Ideal: 0% a 60% </br> Aceitável: 60% a 80% </br> Crítico: 80% a 100%</p>',
@@ -392,6 +483,7 @@
             mostrarTemp(idATM);
             mostrarCPU(idATM);
             obterDesempenhoETempoSistema(idATM);
+            obterBotaoSistema(idATM);
         } else {
             console.error('idATM não está definido.');
         }
@@ -433,6 +525,60 @@
         document.getElementById(elementID).textContent = valor;
     }
 
+    function obterBotaoSistema(idATM) {
+        obterBotao(idATM);
+        obterBotaoInsert(idATM);
+    }
+
+    function obterBotaoInsert(idATM) {
+        fetch(`/usuarios/obterBotaoInsert/${idATM}`, { cache: 'no-store' })
+            .then(function (resposta) {
+                if (resposta.ok) {
+                    return resposta.json();
+                } else {
+                    console.error('Erro ao obter dados do sistema');
+                    return {};
+                }
+            })
+            .then(function (dados) {
+                // Adicione logs para verificar os dados
+                console.log('Dados recebidos:', dados);
+                atualizarValorDOM4('botao', dados.BOTAOINSERT)
+            })
+            .catch(function (error) {
+                console.error(`Erro na obtenção dos dados do sistema: ${error.message}`);
+            });
+    }
+
+    function atualizarValorDOM4(elementID, valor) {
+        console.log(`Atualizando elemento ${elementID} com valor ${valor}`);
+        document.getElementById(elementID).textContent = valor;
+    }
+    function obterBotao(idATM) {
+        fetch(`/usuarios/obterBotao/${idATM}`, { cache: 'no-store' })
+            .then(function (resposta) {
+                if (resposta.ok) {
+                    return resposta.json();
+                } else {
+                    console.error('Erro ao obter dados do sistema');
+                    return {};
+                }
+            })
+            .then(function (dados) {
+                // Adicione logs para verificar os dados
+                console.log('Dados recebidos:', dados);
+                atualizarValorDOM3('botao', dados.BOTAO)
+            })
+            .catch(function (error) {
+                console.error(`Erro na obtenção dos dados do sistema: ${error.message}`);
+            });
+    }
+
+    function atualizarValorDOM3(elementID, valor) {
+        console.log(`Atualizando elemento ${elementID} com valor ${valor}`);
+        document.getElementById(elementID).textContent = valor;
+    }
+
     function obterTempoAtv(idATM) {
         fetch(`/usuarios/obterTempoAtv/${idATM}`, { cache: 'no-store' })
             .then(function (resposta) {
@@ -470,6 +616,10 @@
                     console.error('Nenhum dado encontrado ou erro na API');
                     return [];
                 }
+            })
+            .then(function (resposta) {
+                console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                plotarGraficoTEMP(resposta, idATM);
             })
             .then(function (resposta) {
                 console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
