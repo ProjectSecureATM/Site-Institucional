@@ -193,8 +193,8 @@
                                                     Pico Diário</div>
                                                 <div id="discoPercentage" class="h5 mb-0 font-weight-bold text-gray-800"
                                                     style="text-align: center;">Loading...</div>
-                                                <div class="h5 mb-0 font-weight-bold text-gray-800"
-                                                    style="text-align: center;">%</div>
+                                                <!-- <div class="h5 mb-0 font-weight-bold text-gray-800"
+                                                    style="text-align: center;"></div> -->
                                             </div>
                                         </div>
                                     </div>
@@ -212,8 +212,8 @@
                                                     Vale Diário</div>
                                                 <div id="cpuPercentage" class="h5 mb-0 font-weight-bold text-gray-800"
                                                     style="text-align: center;">Loading...</div>
-                                                <div class="h5 mb-0 font-weight-bold text-gray-800"
-                                                    style="text-align: center;">%</div>
+                                                <!-- <div class="h5 mb-0 font-weight-bold text-gray-800"
+                                                    style="text-align: center;"></div> -->
                                             </div>
                                         </div>
                                     </div>
@@ -319,7 +319,7 @@
             .then(function (dados) {
                 // Atualiza os valores nas divs
                 atualizarValorDOM('Ram', dados.RAM);
-                atualizarValorDOM('Hoar', dados.Hora);
+                atualizarValorDOM('Hora', dados.Hora);
             })
             .catch(function (error) {
                 console.error(`Erro na obtenção dos dados do sistema: ${error.message}`);
@@ -332,7 +332,11 @@
         document.getElementById(elementID).textContent = valor;
     }
 
-    function mostrarProcesso(idATM) {
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    function obterDados(idATM) {
         idATM = sessionStorage.getItem('idATM');
         fetch(`/Paulo/buscarRamHora/${idATM}`, { cache: 'no-store' }).then(function (response) {
             if (response.ok) {
@@ -378,7 +382,7 @@
 
         for (i = 0; i < resposta.length; i++) {
             var registro = resposta[i];
-            dados.datasets[0].data.push(registro.quantidade);
+            dados.datasets[0].data.push(registro.Valor);
 
             labels.push(resposta[i].hora)
         }
@@ -456,6 +460,9 @@
 
 </script>
 
+
+
+
 <!-- Scroll to Top Button
                             <a class="scroll-to-top rounded" href="#page-top">
                                 <i class="fas fa-angle-up"></i>
@@ -493,17 +500,6 @@
 </html>
 
 <script>
-    // function testeBotao() {
-    //     Swal.fire({
-    //         title: 'Métricas (KPI`s)</br></br><span style="color: blue;">CPU</span><p style="text-align: left;">Ideal: 0% a 50% </br> Aceitável: 50% a 70% </br> Crítico: 70% a 100%</p></br><span style="color: blue;">RAM</span><p style="text-align: left;">Ideal: 0% a 70% </br> Aceitável: 70% a 90% </br> Crítico: 90% a 100%</p></br><span style="color: blue;">DISCO</span><p style="text-align: left;">Ideal: 0% a 60% </br> Aceitável: 60% a 80% </br> Crítico: 80% a 100%</p>',
-    //         showClass: {
-    //             popup: 'animate__animated animate__fadeInDown'
-    //         },
-    //         hideClass: {
-    //             popup: 'animate__animated animate__fadeOutUp'
-    //         }
-    //     })
-    // }
 
     function buscarATM() {
         fetch("/avisos/listar:fkEmpresa").then(function (resposta) {
@@ -529,4 +525,5 @@
             // finalizarAguardar();
         });
     }
+    
 </script>
