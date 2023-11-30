@@ -108,4 +108,12 @@ router.get('/cpuTemperatura/:idATM', function(req, res) {
 router.get('/obterIP/:idATM', function(req, res) {
     usuarioController.obterIP(req, res)
 })
+
+router.get('/tempo-medidasRede/:idATM', function (req, res) {
+    usuarioController.buscarMedidasRede(req, res);
+})
+router.get('/atualiza/:idATM', function (req, res) {
+    usuarioController.atualiza(req, res);
+})
+
 module.exports = router;

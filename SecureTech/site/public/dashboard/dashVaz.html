@@ -9,6 +9,8 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="shortcut icon" href="../assets/fiveicon.png" type="image/x-icon">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> 
 
     <title>Dashboard</title>
 
@@ -282,7 +284,7 @@
                                             </div>
                                             <div class="divTimer">
                                                 <div class="timer">
-                                                    <span id="tempoAtividade"></span>
+                                                    <p id="tempoAtividade"></p>
                                                 </div>
                                             </div>
                                         </div>
@@ -300,7 +302,7 @@
                                         </div>
                                         <div class="divGrafico">
                                             <div class="chart-area">
-                                                <canvas id="variedadeChart"></canvas>
+                                                <canvas id="myChart"></canvas>
                                             </div>
                                         </div>
                                     </div>
@@ -346,37 +348,36 @@
         </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
 </body>
 
 </html>
 
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 
 <script>
+
     var idATM = sessionStorage.getItem('idATM');
     window.onload = function () {
         if (idATM) {
             exibirStatusRede(idATM);
             mostrarVariedade(idATM);
             tempoAtividadeEIP(idATM);
+            obterMedidasRede(idATM);
         } else {
             console.error('idATM não está definido.');
         }
     };
 
     function exibirStatusRede(idATM) {
-        obterDadosRede(idATM); 
+        obterDadosRede(idATM);
         setInterval(function () {
             obterDadosRede(idATM);
         }, 2000);
-        
+
     }
 
     function tempoAtividadeEIP(idATM) {
-        obterTempoAtv(idATM); 
+        obterTempoAtv(idATM);
         setInterval(function () {
             obterTempoAtv(idATM);
         }, 2000);
@@ -482,104 +483,186 @@
         document.getElementById(elementID).textContent = valor;
     }
 
+    function obterMedidasRede(idATM) {
+
+        var idATM = sessionStorage.idATM
+
+        fetch(`/usuarios/tempo-medidasRede/${idATM}`, { cache: 'no-store' }).then(function (response) {
+            console.log('n entrei')
+            if (response.ok) {
+                response.json().then(function (resposta) {
+                    console.log(`GABRIEL VAZZZZZZ: ${JSON.stringify(resposta)}`);
+                    console.log(`GABRIEL VAZZZZZZ1: ${JSON.stringify(resposta[0].dataHora)}`);
+                    console.log(`GABRIEL VAZZZZZZ2: ${JSON.stringify(resposta[1].pacotesEnviados)}`);
+                    console.log(`GABRIEL VAZZZZZZ3: ${JSON.stringify(resposta[2].pacotesRecebidos)}`);
+
+
+
+                    plotarGrafico(resposta, idATM);
+
+                });
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
+            }
+        })
+            .catch(function (error) {
+                console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+            });
+    }
 
     function plotarGrafico(resposta, idATM) {
+
+        // Criando estrutura para plotar gráfico - labels
         let labels = [];
+
+        // Criando estrutura para plotar gráfico - dados
         let dados = {
             labels: labels,
             datasets: [
                 {
-                    label: 'Download',
+                    label: 'Upload',
                     data: [],
-                    fill: false,
-                    backgroundColor: '#021e46',
-                    borderColor: '#021e46',
-                    borderWidth: 1
+                    backgroundColor: '#bde5e4',
+                    borderColor: '#26ABA7',
+                    tension: 0.1
                 },
                 {
-                    label: 'Upload',
-                    data: [], // Coloque seus dados aqui
-                    fill: false,
-                    backgroundColor: '#ff5733', // Cor de fundo para a linha de Upload (substitua conforme necessário)
-                    borderColor: '#ff5733', // Cor da borda para a linha de Upload (substitua conforme necessário)
-                    borderWidth: 1
+                    label: 'Download',
+                    data: [],
+                    backgroundColor: '#b7cef1',
+                    borderColor: '#115ED2',
+                    tension: 0.1
                 }
             ]
         };
 
-        for (let i = 0; i < resposta.length; i++) {
-            let registro = resposta[i];
-            dados.datasets[0].data.push(registro.quantidade);
-            labels.push(registro.hora);
+        let options = {
+            plugins: {
+                title: {
+                    display: true,
+                    text: 'Histórico de Velocidade', // Adicione o título desejado aqui
+                    font: {
+                        size: 16
+                    }
+                }
+            },
+        };
+
+        // Inserindo valores recebidos em estrutura para plotar o gráfico
+        for (i = resposta.length - 1; i >= 0; i--) {
+            var registro = resposta[i];
+            labels.push(registro.data_hora);
+            dados.datasets[0].data.push(registro.pacotesEnviados);
+            dados.datasets[1].data.push(registro.pacotesRecebidos);
+            console.log(`MACACO DATA: Upload=${registro[0]}`);
+            console.log(`MACACO: Upload=${registro.pacotesEnviados}, Download=${registro.pacotesRecebidos}`);
+            console.log(`MACACO: Upload=${registro.data}`);
         }
 
+        // Criando estrutura para plotar gráfico - config
         const config = {
             type: 'line',
-            data: dados
+            data: dados,
+            options: options
         };
 
         // Obtém a largura da div que contém o gráfico
-        let chartContainer = document.getElementById(`variedadeChart`);
-        let containerWidth = chartContainer.clientWidth;
+        // let chartContainer = document.getElementById(`variedadeChart`);
+        // let containerWidth = chartContainer.clientWidth;
 
         // Ajusta a largura do canvas para a largura da div
-        config.options = {
-            maintainAspectRatio: false,
-            responsive: true
-        };
+        // config.options = {
+        //     maintainAspectRatio: false,
+        //     responsive: true
+        // };
 
+        let existingChart = Chart.getChart("myChart");
+
+    if (existingChart) {
+        // Se o gráfico com ID 'myChart' já existir, destrua-o
+        existingChart.destroy();
+    }
+
+        // Adicionando gráfico criado em div na tela
         let myChart = new Chart(
-            document.getElementById(`variedadeChart`),
+            document.getElementById(`myChart`),
             config
         );
 
-        window.addEventListener('resize', function () {
-            containerWidth = chartContainer.clientWidth;
-            myChart.canvas.width = containerWidth;
-            myChart.update();
-        });
+        // window.addEventListener('resize', function () {
+        //     containerWidth = chartContainer.clientWidth;
+        //     myChart.canvas.width = containerWidth;
+        //     myChart.update();
+        // });
 
-        setTimeout(() => atualizarGrafico(idATM, dados, myChart), 2000);
+
+        // setTimeout(() => atualizarGrafico(idATM, dados, myChart), 2000);
+
+        
     }
 
+//     function atualizarGrafico(idATM,resposta, dados,  myChart) {
 
-    function atualizarGrafico(idATM, dados, myChart) {
-        fetch(`/usuarios/Variedade_tempoReal/${idATM}`, { cache: 'no-store' })
-            .then(function (response) {
-                if (response.ok) {
-                    return response.json();
-                } else {
-                    console.error('Nenhum dado encontrado ou erro na API');
-                    return [];
-                }
-            })
-            .then(function (novoRegistro) {
-                console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
-                console.log('Dados atuais do gráfico:');
-                console.log(dados);
 
-                let validacao = novoRegistro.some(item => item.hora === dados.labels[dados.labels.length - 1]);
 
-                if (!validacao) {
-                    dados.labels.push(novoRegistro[0].hora);
-                    dados.datasets[0].data.push(novoRegistro[0].quantidade);
-                    myChart.update();
-                } else {
-                    console.log("---------------------------------------------------------------");
-                    console.log("Como não há dados novos para captura, o gráfico não atualizará.");
-                    console.log("Horário do novo dado capturado:");
-                    console.log(novoRegistro[0].hora);
-                    console.log("Horário do último dado capturado:");
-                    console.log(dados.labels[dados.labels.length - 1]);
-                    console.log("---------------------------------------------------------------");
-                }
-                setTimeout(() => atualizarGrafico(idATM, dados, myChart), 2000);
-            })
-            .catch(function (error) {
-                console.error(`Erro na obtenção dos dados para o gráfico: ${error.message}`);
-                setTimeout(() => atualizarGrafico(idATM, dados, myChart), 2000);
-            });
-    }
+// fetch(`/usuarios/atualiza/${idATM}`, { cache: 'no-store' }).then(function (response) {
+//     if (response.ok) {
+//         response.json().then(function (novoRegistro) {
+
+//             console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
+//             console.log(`Dados atuais do gráfico:`);
+//             console.log(dados);
+
+//             // let avisoCaptura = document.getElementById(`avisoCaptura${disco}`)
+//             // avisoCaptura.innerHTML = ""
+
+
+//             if (novoRegistro[0].momento_grafico == dados.labels[dados.labels.length]) {
+//                 console.log("---------------------------------------------------------------")
+//                 console.log("Como não há dados novos para captura, o gráfico não atualizará.")
+//                 // avisoCaptura.innerHTML = "<i class='fa-solid fa-triangle-exclamation'></i> Foi trazido o dado mais atual capturado pelo sensor. <br> Como não há dados novos a exibir, o gráfico não atualizará."
+//                 console.log("Horário do novo dado capturado:")
+//                 console.log(novoRegistro[0].pacotesEnviados)
+//                 console.log("Horário do último dado capturado:")
+//                 console.log(dados.labels[dados.labels.length])
+//                 console.log("---------------------------------------------------------------")
+//             } else {
+//                 // tirando e colocando valores no gráfico
+//                 dados.labels.shift(); // apagar o primeiro
+//                 dados.labels.push(novoRegistro[0].data); // incluir um novo momento
+
+//                 dados.datasets[0].data.shift();  // apagar o primeiro de umidade
+//                 dados.datasets[0].data.push(novoRegistro[0].pacotesEnviados); // incluir uma nova medida de umidade
+
+//                 dados.datasets[1].data.shift();  // apagar o primeiro de temperatura
+//                 dados.datasets[1].data.push(novoRegistro[0].temperatura); // incluir uma nova medida de temperatura
+
+//                 myChart.update();
+//             }
+
+//             // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
+//             // proximaAtualizacao = setTimeout(() => atualizarGrafico(disco, dados, myChart), 2000);
+//         });
+//     } else {
+//         console.error('Nenhum dado encontrado ou erro na API');
+//         // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
+//         // proximaAtualizacao = setTimeout(() => atualizarGrafico(disco, dados, myChart), 2000);
+//     }
+// })
+//     .catch(function
+//         (error) {
+//         console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+//     });
+
+// }
+
+
+
+
+
+
+
+
 
 
 

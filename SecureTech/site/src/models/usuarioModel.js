@@ -468,6 +468,59 @@ async function obterIP(idATM) {
     }
 }
 
+function buscarMedidasRede(idATM, limite_linhas) {
+    instrucaoSql = ''
+  
+    if (process.env.AMBIENTE_PROCESSO == 'producao') {
+        //NUVEM
+      instrucaoSql = `
+      SELECT TOP ${limite_linhas} download, upload, FORMAT(dataHora, 'HH:mm') AS Horário
+      FROM monitoramentoRede
+      WHERE fkMaquina = ${idATM}
+      ORDER BY idMonitoramentoRede DESC;
+      `
+    } else if (process.env.AMBIENTE_PROCESSO == 'desenvolvimento') {
+      instrucaoSql = `
+      select date_format(data_hora, '%d-%m-%Y') as dataHora, pacotesEnviados, pacotesRecebidos from rede where fk__idATM=${idATM}  limit ${limite_linhas};
+      `
+    } else {
+      console.log(
+        '\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n'
+      )
+      return
+    }
+  
+    console.log('Executando a instrução SQL: \n' + instrucaoSql)
+    return database.executar(instrucaoSql)
+  }
+
+  function atualiza(idATM, limite_linhas) {
+    instrucaoSql = ''
+  
+    if (process.env.AMBIENTE_PROCESSO == 'producao') {
+        //NUVEM
+      instrucaoSql = `
+      SELECT TOP ${limite_linhas} download, upload, FORMAT(dataHora, 'HH:mm') AS Horário
+      FROM monitoramentoRede
+      WHERE fkMaquina = ${idATM}
+      ORDER BY idMonitoramentoRede DESC;
+      `
+    } else if (process.env.AMBIENTE_PROCESSO == 'desenvolvimento') {
+      instrucaoSql = `
+      select date_format(data_hora, '%d-%m-%Y'), pacotesEnviados, pacotesRecebidos from rede where fk__idATM=${idATM}  limit ${limite_linhas};
+      `
+    } else {
+      console.log(
+        '\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n'
+      )
+      return
+    }
+  
+    console.log('Executando a instrução SQL: \n' + instrucaoSql)
+    return database.executar(instrucaoSql)
+  }
+
+
 
 
 module.exports = {
@@ -494,5 +547,7 @@ module.exports = {
     obterBotaoInsert,
     obterBotao,
     cpuTemperatura,
-    obterIP
+    obterIP,
+    buscarMedidasRede,
+    atualiza
 };

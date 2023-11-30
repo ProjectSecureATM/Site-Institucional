@@ -441,6 +441,46 @@ async function obterIP(req, res) {
     }
 }
 
+function buscarMedidasRede(req, res) {
+
+    const limite_linhas = 8;
+
+    var idATM =  req.params.idATM;
+
+    console.log(`Recuperando medidas em tempo real`);
+
+    usuarioModel.buscarMedidasRede(idATM, limite_linhas).then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum resultado encontrado!")
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+        console.log("Houve um erro ao buscar as ultimas medidas.", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+function atualiza(req, res) {
+
+    const limite_linhas = 8;
+
+    var idATM =  req.params.idATM;
+
+    console.log(`Recuperando medidas em tempo real`);
+
+    usuarioModel.atualiza(idATM, limite_linhas).then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum resultado encontrado!")
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+        console.log("Houve um erro ao buscar as ultimas medidas.", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
 module.exports = {
     autenticar,
     cadastrar,
@@ -465,6 +505,8 @@ module.exports = {
     obterBotaoInsert,
     obterBotao,
     cpuTemperatura,
-    obterIP
+    obterIP,
+    buscarMedidasRede,
+    atualiza
      
 }
