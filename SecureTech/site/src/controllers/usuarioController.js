@@ -421,6 +421,16 @@ async function obterBotao(req, res) {
     }
 }
 
+async function cpuTemperatura(req, res) {
+    const idATM = req.params.idATM;
+    try {
+        const dados = await usuarioModel.cpuTemperatura(idATM);
+        res.json(dados);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+}
+
 module.exports = {
     autenticar,
     cadastrar,
@@ -443,6 +453,7 @@ module.exports = {
     obterDesempenho,
     obterTempoAtv,
     obterBotaoInsert,
-    obterBotao
+    obterBotao,
+    cpuTemperatura
      
 }

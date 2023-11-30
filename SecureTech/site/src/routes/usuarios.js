@@ -100,4 +100,8 @@ router.get('/obterBotao/:idATM', function(req, res) {
 router.get('/obterBotaoInsert/:idATM', function(req, res) {
     usuarioController.obterBotaoInsert(req, res)
 })
+
+router.get('/cpuTemperatura/:idATM', function(req, res) {
+    usuarioController.cpuTemperatura(req, res)
+})
 module.exports = router;

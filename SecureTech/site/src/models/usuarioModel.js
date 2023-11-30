@@ -425,6 +425,28 @@ async function obterBotao(idATM) {
     }
 }
 
+async function cpuTemperatura(idATM) {
+    const cpuTempQuery = `
+    SELECT MAX(temperatura) AS temp_cpu, DATE_FORMAT(data_hora, '%Y-%m-%d %H:00:00') AS hora, fkATM 
+FROM temperaturaCPU 
+WHERE fkATM = ${idATM}  
+GROUP BY DATE_FORMAT(data_hora, '%Y-%m-%d %H:00:00')
+ORDER BY DATE_FORMAT(data_hora, '%Y-%m-%d %H:00:00');`;
+
+    console.log("Executando a instrução SQL: \n" + cpuTempQuery);
+    try {
+        const cpuTempResult = await database.executar(cpuTempQuery);
+        return {
+            CPUTEMP: (cpuTempResult && cpuTempResult[0] && cpuTempResult[0].temp_cpu) || 'N/A',
+        };
+    } catch (error) {
+        console.error(`Erro na obtenção de Tempo de Atividade: ${error.message}`);
+        return {
+            CPUTEMP: 'N/A',
+        };
+    }
+}
+
 
 
 
@@ -451,5 +473,6 @@ module.exports = {
     obterDesempenho,
     obterTempoAtv,
     obterBotaoInsert,
-    obterBotao
+    obterBotao,
+    cpuTemperatura
 };
