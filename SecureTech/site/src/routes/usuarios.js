@@ -104,4 +104,8 @@ router.get('/obterBotaoInsert/:idATM', function(req, res) {
 router.get('/cpuTemperatura/:idATM', function(req, res) {
     usuarioController.cpuTemperatura(req, res)
 })
+
+router.get('/obterIP/:idATM', function(req, res) {
+    usuarioController.obterIP(req, res)
+})
 module.exports = router;

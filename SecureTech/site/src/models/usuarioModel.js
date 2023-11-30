@@ -447,7 +447,26 @@ ORDER BY DATE_FORMAT(data_hora, '%Y-%m-%d %H:00:00');`;
     }
 }
 
+async function obterIP(idATM) {
+    const IPQuery = `
+    SELECT MAX(IP) as iprede FROM rede WHERE fk__idATM = ${idATM}
+    GROUP BY DATE_FORMAT(data_hora, '%Y-%m-%d %H:00:00')
+    ORDER BY DATE_FORMAT(data_hora, '%Y-%m-%d %H:00:00') DESC LIMIT 1;
+    `;
 
+    console.log("Executando a instrução SQL: \n" + IPQuery);
+    try {
+        const IPResult = await database.executar(IPQuery);
+        return {
+            IP: (IPResult && IPResult[0] && IPResult[0].iprede) || 'N/A',
+        };
+    } catch (error) {
+        console.error(`Erro na obtenção de Tempo de Atividade: ${error.message}`);
+        return {
+            IP: 'N/A',
+        };
+    }
+}
 
 
 
@@ -474,5 +493,6 @@ module.exports = {
     obterTempoAtv,
     obterBotaoInsert,
     obterBotao,
-    cpuTemperatura
+    cpuTemperatura,
+    obterIP
 };

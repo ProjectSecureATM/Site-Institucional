@@ -266,7 +266,7 @@
 
                                             <div class="divTimer">
                                                 <div class="timer">
-                                                    <span id=""></span>
+                                                    <span id="IPAtm"></span>
                                                 </div>
                                             </div>
                                         </div>
@@ -361,19 +361,32 @@
         if (idATM) {
             exibirStatusRede(idATM);
             mostrarVariedade(idATM);
+            tempoAtividadeEIP(idATM);
         } else {
             console.error('idATM não está definido.');
         }
     };
 
     function exibirStatusRede(idATM) {
-        obterDadosRede(idATM); // Chama a função inicialmente
-
-        // Define um intervalo de atualização a cada 5 segundos (5000 milissegundos)
-        setInterval(obterDadosRede, 5000);
+        obterDadosRede(idATM); 
+        setInterval(function () {
+            obterDadosRede(idATM);
+        }, 2000);
+        
     }
 
-    function obterDadosRede() {
+    function tempoAtividadeEIP(idATM) {
+        obterTempoAtv(idATM); 
+        setInterval(function () {
+            obterTempoAtv(idATM);
+        }, 2000);
+        obterIP(idATM);
+        setInterval(function () {
+            obterIP(idATM)
+        }, 2000)
+    }
+
+    function obterDadosRede(idATM) {
         fetch(`/usuarios/obterMetricasRede/${idATM}`, { cache: 'no-store' })
             .then(function (resposta) {
                 if (resposta.ok) {
@@ -440,6 +453,31 @@
     }
 
     function atualizarValorDOM2(elementID, valor) {
+        console.log(`Atualizando elemento ${elementID} com valor ${valor}`);
+        document.getElementById(elementID).textContent = valor;
+    }
+
+    function obterIP(idATM) {
+        fetch(`/usuarios/obterIP/${idATM}`, { cache: 'no-store' })
+            .then(function (resposta) {
+                if (resposta.ok) {
+                    return resposta.json();
+                } else {
+                    console.error('Erro ao obter dados do sistema');
+                    return {};
+                }
+            })
+            .then(function (dados) {
+                // Adicione logs para verificar os dados
+                console.log('Dados recebidos:', dados);
+                atualizarValorDOM3('IPAtm', dados.IP)
+            })
+            .catch(function (error) {
+                console.error(`Erro na obtenção dos dados do sistema: ${error.message}`);
+            });
+    }
+
+    function atualizarValorDOM3(elementID, valor) {
         console.log(`Atualizando elemento ${elementID} com valor ${valor}`);
         document.getElementById(elementID).textContent = valor;
     }
