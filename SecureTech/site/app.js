@@ -12,6 +12,7 @@ var indexRouter = require("./src/routes/index");
 var usuarioRouter = require("./src/routes/usuarios");
 var redeRouter = require("./src/routes/rede");
 var avisosRouter = require("./src/routes/avisos");
+var pauloRouter = require("./src/routes/Paulo");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -23,6 +24,7 @@ app.use("/", indexRouter);
 app.use("/usuarios", usuarioRouter);
 app.use("/rede", redeRouter);
 app.use("/avisos", avisosRouter);
+app.use("/Paulo", pauloRouter);
 
 app.listen(PORTA, function () {
     console.log(`Servidor do seu site já está rodando! Acesse o caminho a seguir para visualizar: http://localhost:${PORTA} \n

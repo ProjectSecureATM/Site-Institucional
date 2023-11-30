@@ -193,8 +193,8 @@
                                                     Pico Diário</div>
                                                 <div id="discoPercentage" class="h5 mb-0 font-weight-bold text-gray-800"
                                                     style="text-align: center;">Loading...</div>
-                                                <div class="h5 mb-0 font-weight-bold text-gray-800"
-                                                    style="text-align: center;">%</div>
+                                                <!-- <div class="h5 mb-0 font-weight-bold text-gray-800"
+                                                    style="text-align: center;"></div> -->
                                             </div>
                                         </div>
                                     </div>
@@ -212,8 +212,8 @@
                                                     Vale Diário</div>
                                                 <div id="cpuPercentage" class="h5 mb-0 font-weight-bold text-gray-800"
                                                     style="text-align: center;">Loading...</div>
-                                                <div class="h5 mb-0 font-weight-bold text-gray-800"
-                                                    style="text-align: center;">%</div>
+                                                <!-- <div class="h5 mb-0 font-weight-bold text-gray-800"
+                                                    style="text-align: center;"></div> -->
                                             </div>
                                         </div>
                                     </div>
@@ -319,7 +319,7 @@
             .then(function (dados) {
                 // Atualiza os valores nas divs
                 atualizarValorDOM('Ram', dados.RAM);
-                atualizarValorDOM('Hoar', dados.Hora);
+                atualizarValorDOM('Hora', dados.Hora);
             })
             .catch(function (error) {
                 console.error(`Erro na obtenção dos dados do sistema: ${error.message}`);
@@ -332,7 +332,11 @@
         document.getElementById(elementID).textContent = valor;
     }
 
-    function mostrarProcesso(idATM) {
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    function obterDados(idATM) {
         idATM = sessionStorage.getItem('idATM');
         fetch(`/Paulo/buscarRamHora/${idATM}`, { cache: 'no-store' }).then(function (response) {
             if (response.ok) {
@@ -378,7 +382,7 @@
 
         for (i = 0; i < resposta.length; i++) {
             var registro = resposta[i];
-            dados.datasets[0].data.push(registro.quantidade);
+            dados.datasets[0].data.push(registro.Valor);
 
             labels.push(resposta[i].hora)
         }
