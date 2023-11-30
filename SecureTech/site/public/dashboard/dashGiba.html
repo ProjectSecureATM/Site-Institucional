@@ -484,6 +484,8 @@
             mostrarCPU(idATM);
             obterDesempenhoETempoSistema(idATM);
             obterBotaoSistema(idATM);
+            exibirStatusSistema(idATM);
+            cpuTemperatura(idATM);
         } else {
             console.error('idATM não está definido.');
         }
@@ -498,6 +500,67 @@
         setInterval(function () {
             obterTempoAtv(idATM);
         }, 2000);
+    }
+
+    function exibirStatusSistema(idATM) {
+        obterDadosSistema(idATM);
+        setInterval(function () {
+            obterDadosSistema(idATM);
+        }, 2000);
+        cpuTemperatura(idATM);
+        setInterval(function () {
+            cpuTemperatura(idATM);
+        }, 2000);
+    }
+
+    function cpuTemperatura(idATM) {
+        fetch(`/usuarios/cpuTemperatura/${idATM}`, { cache: 'no-store' })
+            .then(function (resposta) {
+                if (resposta.ok) {
+                    return resposta.json();
+                } else {
+                    console.error('Erro ao obter dados do sistema');
+                    return {};
+                }
+            })
+            .then(function (dados) {
+                // Adicione logs para verificar os dados
+                console.log('Dados recebidos:', dados);
+                atualizarValorDOM8('cpuTemp', dados.CPUTEMP)
+            })
+            .catch(function (error) {
+                console.error(`Erro na obtenção dos dados do sistema: ${error.message}`);
+            });
+    }
+
+    function atualizarValorDOM8(elementID, valor) {
+        console.log(`Atualizando elemento ${elementID} com valor ${valor}`);
+        document.getElementById(elementID).textContent = valor;
+    }
+
+    function obterDadosSistema(idATM) {
+        fetch(`/usuarios/obterMetricasComponentes/${idATM}`, { cache: 'no-store' })
+            .then(function (resposta) {
+                if (resposta.ok) {
+                    return resposta.json();
+                } else {
+                    console.error('Erro ao obter dados do sistema');
+                    return {};
+                }
+            })
+            .then(function (dados) {
+                atualizarValorDOM6('ramPercentage', dados.RAM);
+                atualizarValorDOM6('discoPercentage', dados.DISCO);
+                atualizarValorDOM6('cpuPercentage', dados.CPU);
+            })
+            .catch(function (error) {
+                console.error(`Erro na obtenção dos dados do sistema: ${error.message}`);
+            });
+        // Adicione mais chamadas para as outras métricas (disco e CPU) se necessário
+    }
+
+    function atualizarValorDOM6(elementID, valor) {
+        document.getElementById(elementID).textContent = valor;
     }
 
     function obterDesempenho(idATM) {
