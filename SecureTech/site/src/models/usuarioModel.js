@@ -394,7 +394,38 @@ async function obterTempoAtv(idATM) {
     }
 }
 
-//select data_hora from rede WHERE fk__idATM = ${idATM} order by data_hora desc limit 1;
+async function obterBotaoInsert(idATM) {
+    const botaoInsertQuery = `
+    INSERT INTO notificacao(idNotificacao, quantidade, data_hora, fkComp, fkATM) VALUES 
+    (null, 1, CURRENT_TIMESTAMP(), 1, ${idATM});`;
+
+    console.log("Executando a instrução SQL: \n" + botaoInsertQuery);
+
+    return database.executar(botaoInsertQuery);
+}
+
+async function obterBotao(idATM) {
+    const botaoQuery = `
+    UPDATE notificacao
+    SET quantidade = quantidade + 1,
+    data_hora = current_timestamp()
+    WHERE fkATM = ${idATM};`;
+
+    console.log("Executando a instrução SQL: \n" + botaoQuery);
+    try {
+        const botaoResult = await database.executar(botaoQuery);
+        return {
+            BOTAO: (botaoResult && botaoResult[0] && botaoResult[0].quantidade) || 'N/A',
+        };
+    } catch (error) {
+        console.error(`Erro na obtenção de Tempo de Atividade: ${error.message}`);
+        return {
+            BOTAO: 'N/A',
+        };
+    }
+}
+
+
 
 
 
@@ -418,5 +449,7 @@ module.exports = {
     obterMetricasComponentes,
     obterMetricasRede,
     obterDesempenho,
-    obterTempoAtv
+    obterTempoAtv,
+    obterBotaoInsert,
+    obterBotao
 };

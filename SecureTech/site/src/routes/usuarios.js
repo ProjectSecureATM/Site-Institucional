@@ -92,4 +92,12 @@ router.get('/obterDesempenho/:idATM', function(req, res) {
 router.get('/obterTempoAtv/:idATM', function(req, res) {
     usuarioController.obterTempoAtv(req, res)
 })
+
+router.get('/obterBotao/:idATM', function(req, res) {
+    usuarioController.obterBotao(req, res)
+})
+
+router.get('/obterBotaoInsert/:idATM', function(req, res) {
+    usuarioController.obterBotaoInsert(req, res)
+})
 module.exports = router;

@@ -401,6 +401,26 @@ async function obterTempoAtv(req, res) {
     }
 }
 
+async function obterBotaoInsert(req, res) {
+    const idATM = req.params.idATM;
+    try {
+        const dados = await usuarioModel.obterBotaoInsert(idATM);
+        res.json(dados);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+}
+
+async function obterBotao(req, res) {
+    const idATM = req.params.idATM;
+    try {
+        const dados = await usuarioModel.obterBotao(idATM);
+        res.json(dados);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+}
+
 module.exports = {
     autenticar,
     cadastrar,
@@ -421,6 +441,8 @@ module.exports = {
     obterMetricasComponentes,
     obterMetricasRede,
     obterDesempenho,
-    obterTempoAtv
+    obterTempoAtv,
+    obterBotaoInsert,
+    obterBotao
      
 }
