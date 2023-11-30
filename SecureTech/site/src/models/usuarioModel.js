@@ -216,7 +216,7 @@ function CPU_tempoReal(idATM) {
     return database.executar(instrucaoSql);
 }
 
-function VariedadeHoraHora(idATM) {
+function VariedadeHora(idATM) {
 
     var instrucaoSql1 = `
     SELECT MAX(pacotesRecebidos) AS quantidade, DATE_FORMAT(data_hora, '%Y-%m-%d %H:00:00') AS hora, fk__idATM
@@ -442,7 +442,7 @@ module.exports = {
     TEMP_tempoReal,
     CPUHora,
     CPU_tempoReal,
-    VariedadeHoraHora,
+    VariedadeHora,
     Variedade_tempoReal,
     listarATM,
     listarAgencia,

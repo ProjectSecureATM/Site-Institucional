@@ -260,7 +260,7 @@
                                         <div class="divTimer">
                                             <div class="divTitulo">
                                                 <div class="titulo titulo-center">
-                                                    <span>analisar</span>
+                                                    <span>IP - ATM</span>
                                                 </div>
                                             </div>
 
@@ -280,10 +280,9 @@
                                                     <span>Horas de Funcionamento</span>
                                                 </div>
                                             </div>
-
                                             <div class="divTimer">
                                                 <div class="timer">
-                                                    <span id="spanTempoDecorrido"></span>
+                                                    <span id="tempoAtividade"></span>
                                                 </div>
                                             </div>
                                         </div>
@@ -420,6 +419,32 @@
             });
     }
 
+    function obterTempoAtv(idATM) {
+        fetch(`/usuarios/obterTempoAtv/${idATM}`, { cache: 'no-store' })
+            .then(function (resposta) {
+                if (resposta.ok) {
+                    return resposta.json();
+                } else {
+                    console.error('Erro ao obter dados do sistema');
+                    return {};
+                }
+            })
+            .then(function (dados) {
+                // Adicione logs para verificar os dados
+                console.log('Dados recebidos:', dados);
+                atualizarValorDOM2('tempoAtividade', dados.TEMPO)
+            })
+            .catch(function (error) {
+                console.error(`Erro na obtenção dos dados do sistema: ${error.message}`);
+            });
+    }
+
+    function atualizarValorDOM2(elementID, valor) {
+        console.log(`Atualizando elemento ${elementID} com valor ${valor}`);
+        document.getElementById(elementID).textContent = valor;
+    }
+
+
     function plotarGrafico(resposta, idATM) {
         let labels = [];
         let dados = {
@@ -517,40 +542,6 @@
                 setTimeout(() => atualizarGrafico(idATM, dados, myChart), 2000);
             });
     }
-
-
-
-    // Kotlin INICIO
-    function converterSegundosParaDHM(segundos) {
-        const umMinutoEmSegundos = 60;
-        const umaHoraEmSegundos = umMinutoEmSegundos * 60;
-        const umDiaEmSegundos = umaHoraEmSegundos * 24;
-
-        const dias = Math.floor(segundos / umDiaEmSegundos);
-        const horas = Math.floor((segundos % umDiaEmSegundos) / umaHoraEmSegundos);
-        const minutos = Math.floor((segundos % umaHoraEmSegundos) / umMinutoEmSegundos);
-
-        return {
-            dias: dias,
-            horas: horas,
-            minutos: minutos
-        };
-    }
-
-    function atualizarTempoDecorrido(segundosTotais) {
-        const resultado = converterSegundosParaDHM(segundosTotais);
-        const divTempoDecorrido = document.getElementById(resultado);
-
-        spanTempoDecorrido.innerHTML = `Dias: ${resultado.dias}, Horas: ${resultado.horas}, Minutos: ${resultado.minutos}`;
-    }
-
-    // Exemplo de uso:
-    const segundosTotais = 1234567;
-    const resultado = converterSegundosParaDHM(segundosTotais);
-
-    console.log(`Dias:${resultado.dias}, Horas:${resultado.horas}, Minutos:${resultado.minutos}`);
-
-    // Kotlin FINAL
 
 
 
