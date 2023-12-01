@@ -32,5 +32,5 @@ function confirmacaoSeguranca(req, res) {
 }
 
 module.exports = {
-    confirmacaoSeguranca: confirmacaoSeguranca
+    confirmacaoSeguranca
 };
