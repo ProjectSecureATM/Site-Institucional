@@ -1,5 +1,5 @@
-// var mysql = require("mysql2");
-var sql = require('mssql');
+var mysql = require("mysql2");
+// var sql = require('mssql');
 
 // CONEXÃO DO SQL SERVER - AZURE (NUVEM)
 var sqlServerConfig = {
@@ -22,7 +22,8 @@ var mySqlConfig = {
     host: "localhost",
     database: "SecureATM",
     user: "root",
-    password: "#Gf45217532807"
+    // password: "#Gf45217532807"
+    password: "root"
 };
 
 function executar(instrucao) {
