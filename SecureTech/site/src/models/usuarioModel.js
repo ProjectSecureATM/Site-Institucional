@@ -538,6 +538,163 @@ function buscarMedidasRede(idATM, limite_linhas) {
     }
 }
 
+function buscarUltimasMedidasServidores(idUsuario) {
+
+    instrucaoSql = ''
+
+    if (process.env.AMBIENTE_PROCESSO == "producao") {
+        instrucaoSql = 
+        `SELECT Valor as valor, DataRegistro as data
+        FROM Leitura
+        WHERE Componente_ID = 3;`
+    
+    ;
+    } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
+        instrucaoSql = 
+        `SELECT Valor as valor, DataRegistro as data
+        FROM Leitura
+        WHERE Componente_ID = 3;`
+    
+    ;
+    } else {
+        console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
+        return
+    }
+
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
+function atualizandoMedidasServidores(idUsuario) {
+
+    instrucaoSql2 = ''
+
+    if (process.env.AMBIENTE_PROCESSO == "producao") {
+        instrucaoSql2 = 
+        `SELECT Valor as valor, DataRegistro as data
+        FROM Leitura
+        WHERE Componente_ID = 3;`
+
+    } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
+        instrucaoSql2 =  
+        `SELECT Valor as valor, DataRegistro as data
+        FROM Leitura
+        WHERE Componente_ID = 3;`
+    } else {
+        console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
+        return
+    }
+
+    console.log("Executando a instrução SQL: \n" + instrucaoSql2);
+    return database.executar(instrucaoSql2);
+}
+
+
+
+function buscarUltimasMedidasServidores2(idUsuario) {
+
+    instrucaoSql = ''
+
+    if (process.env.AMBIENTE_PROCESSO == "producao") {
+        instrucaoSql = 
+        `SELECT Valor as valorRam, DataRegistro dataRam
+        FROM Leitura
+        WHERE Componente_ID = 1;`
+    
+    ;
+    } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
+        instrucaoSql = 
+        `SELECT Valor as valorRam, DataRegistro dataRam
+        FROM Leitura
+        WHERE Componente_ID = 1;`
+    
+    ;
+    } else {
+        console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
+        return
+    }
+
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
+function atualizandoMedidasServidores2(idUsuario) {
+
+    instrucaoSql2 = ''
+
+    if (process.env.AMBIENTE_PROCESSO == "producao") {
+        instrucaoSql2 = 
+        `SELECT Valor as valorRam, DataRegistro dataRam
+        FROM Leitura
+        WHERE Componente_ID = 1;`
+
+    } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
+        instrucaoSql2 =  
+        `SELECT Valor as valorRam, DataRegistro dataRam
+        FROM Leitura
+        WHERE Componente_ID = 1;`
+    } else {
+        console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
+        return
+    }
+
+    console.log("Executando a instrução SQL: \n" + instrucaoSql2);
+    return database.executar(instrucaoSql2);
+}
+
+
+
+
+function buscarUltimasMedidasServidores3(idUsuario) {
+
+    instrucaoSql = ''
+
+    if (process.env.AMBIENTE_PROCESSO == "producao") {
+        instrucaoSql = 
+        `SELECT Valor as valorRam, DataRegistro dataRam
+        FROM Leitura
+        WHERE Componente_ID = 1;`
+    
+    ;
+    } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
+        instrucaoSql = 
+        `SELECT Valor as valorRam, DataRegistro dataRam
+        FROM Leitura
+        WHERE Componente_ID = 1;`
+    
+    ;
+    } else {
+        console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
+        return
+    }
+
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
+function atualizandoMedidasServidores3(idUsuario) {
+
+    instrucaoSql2 = ''
+
+    if (process.env.AMBIENTE_PROCESSO == "producao") {
+        instrucaoSql2 = 
+        `SELECT Valor as valorRam, DataRegistro dataRam
+        FROM Leitura
+        WHERE Componente_ID = 1;`
+
+    } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
+        instrucaoSql2 =  
+        `SELECT Valor as valorRam, DataRegistro dataRam
+        FROM Leitura
+        WHERE Componente_ID = 1;`
+    } else {
+        console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
+        return
+    }
+
+    console.log("Executando a instrução SQL: \n" + instrucaoSql2);
+    return database.executar(instrucaoSql2);
+}
 
 
 module.exports = {
@@ -567,5 +724,11 @@ module.exports = {
     obterIP,
     buscarMedidasRede,
     atualiza,
-    obterSelect
+    obterSelect,
+    buscarUltimasMedidasServidores,
+    atualizandoMedidasServidores,
+    buscarUltimasMedidasServidores2,
+    atualizandoMedidasServidores2,
+    buscarUltimasMedidasServidores3,
+    atualizandoMedidasServidores3
 };
