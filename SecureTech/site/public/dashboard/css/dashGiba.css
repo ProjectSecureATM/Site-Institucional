@@ -208,11 +208,11 @@
 /* Estilo para o conteúdo do modal */
 .modal-content2 {
     background-color: #fefefe;
-    margin: 15% auto;
-    padding: 15px;
+    margin: 10% auto;
+    /* padding: 5px; */
     border: 1px solid #888;
-    width: 75vw;
-    height: 85vh;
+    width: 95vw;
+    height: 70vh;
     text-align: center;
     align-items: center;
     /* justify-content: center; */
@@ -222,12 +222,13 @@
     display: flex;
     /* flex-direction: row-reverse; */
     position: relative;
-    gap: 2rem;
+    gap: 2.5rem;
 }
 
 .desempenho_content h5{
     text-align: center;
     font-weight: bolder;
+    font-size: 14px;
 }
 
 .desempenho_content h6{
@@ -235,6 +236,7 @@
     position: relative;
     left: 0.5rem;
     font-weight: bolder;
+    font-size: 12px;
 }
 
 /* Estilo para o botão de fechar o modal */
@@ -245,8 +247,8 @@
     font-weight: bold;
     text-align: left; 
     position: relative;
-    bottom: 14rem;
-    left: 60rem;
+    bottom: 11rem;
+    left: 77rem;
 }
 
 .close2:hover,
@@ -257,11 +259,13 @@
 }
 
 .caixa-container{
-    width: 20vw;
-    height: 16vh;
+    width: 15vw;
+    height: 12vh;
     box-shadow: 0 3rem 5rem 0 rgba(58, 59, 69, .15) !important;
     border-radius: 1rem;
     border-left: 0.25rem solid #021e46 !important;
+    position: relative;
+    
 }
 
 .caixa-desempenho{
@@ -274,6 +278,7 @@
     padding: 0.7rem;
     font-weight: bolder;
     color:#021e46;
+    font-size: 14px;
 }
 
 #desempenhoGeral{
@@ -300,5 +305,36 @@
 
 .border-left-primary-kpi{
     border-left: 0.25rem solid #021e46 !important;
+}
+
+.bola {
+    display: inline-block;
+    width: 1vw;
+    height: 2vh;
+    border-radius: 50%;
+    position: relative;
+    left: 1vw;
+    top: 0.1rem;
+    background-color: #021e46;
+}
+
+#discoPercentage{
+    color: #021e46;
+    font-weight: bolder;
+}
+
+#cpuPercentage{
+    color: #021e46;
+    font-weight: bolder;
+}
+
+#ramPercentage{
+    color: #021e46;
+    font-weight: bolder;
+}
+
+#cpuTemp{
+    color: #021e46;
+    font-weight: bolder;
 }
 
