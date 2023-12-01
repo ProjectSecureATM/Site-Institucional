@@ -481,6 +481,17 @@ function atualiza(req, res) {
         res.status(500).json(erro.sqlMessage);
     });
 }
+
+async function obterSelect(req, res) {
+    const idATM = req.params.idATM;
+    try {
+        const dados = await usuarioModel.obterSelect(idATM);
+        res.json(dados);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+}
+
 module.exports = {
     autenticar,
     cadastrar,
@@ -507,6 +518,6 @@ module.exports = {
     cpuTemperatura,
     obterIP,
     buscarMedidasRede,
-    atualiza
-     
+    atualiza,
+    obterSelect
 }

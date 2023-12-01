@@ -116,4 +116,8 @@ router.get('/atualiza/:idATM', function (req, res) {
     usuarioController.atualiza(req, res);
 })
 
+router.get('/obterSelect/:idATM', function(req, res) {
+    usuarioController.obterSelect(req, res)
+})
+
 module.exports = router;

@@ -520,6 +520,23 @@ function buscarMedidasRede(idATM, limite_linhas) {
     return database.executar(instrucaoSql)
   }
 
+  async function obterSelect(idATM) {
+    const selectQuery = `
+    SELECT count(*) as quantidade FROM notificacao WHERE fkATM = ${idATM};`;
+
+    console.log("Executando a instrução SQL: \n" + selectQuery);
+    try {
+        const selectResult = await database.executar(selectQuery);
+        return {
+            SELECT: (selectResult && selectResult[0] && selectResult[0].quantidade) || 'N/A',
+        };
+    } catch (error) {
+        console.error(`Erro na obtenção de Tempo de Atividade: ${error.message}`);
+        return {
+            SELECT: 'N/A',
+        };
+    }
+}
 
 
 
@@ -549,5 +566,6 @@ module.exports = {
     cpuTemperatura,
     obterIP,
     buscarMedidasRede,
-    atualiza
+    atualiza,
+    obterSelect
 };
