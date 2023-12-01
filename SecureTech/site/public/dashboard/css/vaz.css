@@ -70,6 +70,8 @@
     width: 100%;
     height: 15vh;
 
+    /* background-color: #e3e6f0; */
+
 }
 
 .titulo-DashBoard{
@@ -77,8 +79,12 @@
     justify-content: left;
     align-items: center;
     height: auto;
-    width: 10%;
+    width: 50%;
+
+    /* background-color: #021e46; */
 }
+
+
 
 .divTitulo{
     display: flex;
@@ -115,9 +121,7 @@
 
 }
 
-.titulo-DashBoard{
-    width: 18%;
-}
+
 
 .titulo-DashBoard span{
     font-size: 36px;

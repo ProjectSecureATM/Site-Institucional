@@ -12,7 +12,7 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> 
 
-    <title>Dashboard</title>
+    <title>Rede</title>
 
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -170,7 +170,7 @@
                     <div class="dashBoard">
                         <div class="tituloDashBoard">
                             <div class="titulo-DashBoard">
-                                <span>DashBoard</span>
+                                <span>Monitoramento de rede</span>
                             </div>
                             <!-- <div class="divButon">
                                 <button class="butonDashBoard">
@@ -194,8 +194,8 @@
                                         </div>
                                     </div>
                                     <div class="divMetricas display-betwen">
-                                        <div class="divTextoMetricas">
-                                            <span>Instável</span>
+                                        <div class="divTextoMetricas" id="statusPing">
+                                            <!-- <span id="statusPing">Instável</span> -->
                                         </div>
                                         <div class="divIconMetricas">
                                             <img src="../assets/ponto-de-interrogacao-em-um-fundo-preto-circular.png"
@@ -218,8 +218,8 @@
                                         </div>
                                     </div>
                                     <div class="divMetricas display-betwen">
-                                        <div class="divTextoMetricas">
-                                            <span>Instável</span>
+                                        <div class="divTextoMetricas" id="statusDownload">
+                                            <!-- <span>Instável</span> -->
                                         </div>
                                         <div class="divIconMetricas">
                                             <img src="../assets/ponto-de-interrogacao-em-um-fundo-preto-circular.png"
@@ -242,8 +242,8 @@
                                         </div>
                                     </div>
                                     <div class="divMetricas display-betwen">
-                                        <div class="divTextoMetricas">
-                                            <span>Instável</span>
+                                        <div class="divTextoMetricas" id="statusUpload">
+                                            <!-- <span>Instável</span> -->
                                         </div>
                                         <div class="divIconMetricas">
                                             <img src="../assets/ponto-de-interrogacao-em-um-fundo-preto-circular.png"
@@ -356,6 +356,54 @@
 
 <script>
 
+function metricasPing() {
+        Swal.fire({
+            icon: "warning",
+            width: 550,
+            title: "Atenção!!",
+            html: `
+        <b>Métricas sobre o Ping</b></br></br>
+        Se seu ping estiver abaixo de 50 ele está em estado <span style="color: rgb(0, 86, 0);">Instável</span></br>
+        Se seu ping estiver entre 50 e 100 ele está em estado <span style="color: goldenrod">Alerta</span></br>
+        Se seu ping estiver maior de 100 ele está em estado <span style="color: rgb(158, 1, 1)">Crítico</span>
+            `,
+        });
+    }
+
+    function metricasDownload() {
+        Swal.fire({
+            icon: "warning",
+            width: 550,
+            title: "Atenção!!",
+            html: `
+            <b>Métricas sobre o Download</b></br></br>
+            Se seu ping estiver abaixo de x ele está em estado <span style="color: rgb(0, 86, 0);">Instável</span></br>
+            Se seu ping estiver entre x e y ele está em estado <span style="color: goldenrod">Alerta</span></br>
+            Se seu ping estiver maior de x ele está em estado <span style="color: rgb(158, 1, 1)">Crítico</span>
+            `,
+        });
+    }
+
+    function metricasUpload() {
+        Swal.fire({
+            icon: "warning",
+            width: 550,
+            title: "Atenção!!",
+            html: `
+            <b>Métricas sobre o Upload</b></br></br>
+            Se seu ping estiver abaixo de x ele está em estado <span style="color: rgb(0, 86, 0);">Instável</span></br>
+            Se seu ping estiver entre x e y ele está em estado <span style="color: goldenrod">Alerta</span></br>
+            Se seu ping estiver maior de x ele está em estado <span style="color: rgb(158, 1, 1)">Crítico</span>
+
+            `,
+
+        });
+    }
+
+
+
+
+    
     var idATM = sessionStorage.getItem('idATM');
     window.onload = function () {
         if (idATM) {
@@ -388,6 +436,10 @@
     }
 
     function obterDadosRede(idATM) {
+        var statusPing = document.getElementById('statusPing')
+        var statusDownlaod = document.getElementById('statusDownload')
+        var statusUpload = document.getElementById('statusUpload')
+
         fetch(`/usuarios/obterMetricasRede/${idATM}`, { cache: 'no-store' })
             .then(function (resposta) {
                 if (resposta.ok) {
@@ -402,12 +454,56 @@
                 atualizarValorDOM('downloadPercentage', dados.DOWNLOAD);
                 atualizarValorDOM('uploadPercentage', dados.UPLOAD);
 
-                //atualizarValorDOM('dataHora', dados.DATAHORA);
+                if (dados.PING <= 50){
+                    statusPing.innerHTML=`
+                    <span style="color: rgb(0, 86, 0);">Instável</span>
+                    `
+                } else if(dados.PING >50 && dados.PING <= 100){
+                    statusPing.innerHTML=`
+                    <span style="color: goldenrod">Alerta</span>
+                    `
+                } else if (dados.PING > 100) {
+                    statusPing.innerHTML=`
+                    <span style="color: rgb(158, 1, 1)">Crítico</span>
+                    `
+                }
+
+                if (dados.DOWNLOAD <= 50){
+                    statusDownlaod.innerHTML=`
+                    <span style="color: rgb(0, 86, 0);">Instável</span>
+                    `
+                } else if(dados.DOWNLOAD >50 && dados.DOWNLOAD <= 100){
+                    statusDownlaod.innerHTML=`
+                    <span style="color: goldenrod">Alerta</span>
+                    `
+                } else if (dados.DOWNLOAD > 100) {
+                    statusDownlaod.innerHTML=`
+                    <span style="color: rgb(158, 1, 1)">Crítico</span>
+                    `
+                }
+
+                if (dados.UPLOAD <= 50){
+                    statusUpload.innerHTML=`
+                    <span style="color: rgb(0, 86, 0);">Instável</span>
+                    `
+                } else if(dados.UPLOAD >50 && dados.UPLOAD <= 100){
+                    statusUpload.innerHTML=`
+                    <span style="color: goldenrod">Alerta</span>
+                    `
+                } else if (dados.UPLOAD > 100) {
+                    statusUpload.innerHTML=`
+                    <span style="color: rgb(158, 1, 1)">Crítico</span>
+                    `
+                }
+
+                
             })
             .catch(function (error) {
                 console.error(`Erro na obtenção de REDE do sistema: ${error.message}`);
             });
-        // Adicione mais chamadas para as outras métricas (disco e CPU) se necessário
+
+            
+       
     }
 
     function atualizarValorDOM(elementID, valor) {
@@ -554,9 +650,9 @@
             labels.push(registro.data_hora);
             dados.datasets[0].data.push(registro.pacotesEnviados);
             dados.datasets[1].data.push(registro.pacotesRecebidos);
-            console.log(`MACACO DATA: Upload=${registro[0]}`);
+            console.log(`MACACO DATA: data=${registro[0]}`);
             console.log(`MACACO: Upload=${registro.pacotesEnviados}, Download=${registro.pacotesRecebidos}`);
-            console.log(`MACACO: Upload=${registro.data}`);
+            console.log(`MACACO: data=${registro.data}`);
         }
 
         // Criando estrutura para plotar gráfico - config
@@ -601,60 +697,6 @@
         
     }
 
-//     function atualizarGrafico(idATM,resposta, dados,  myChart) {
-
-
-
-// fetch(`/usuarios/atualiza/${idATM}`, { cache: 'no-store' }).then(function (response) {
-//     if (response.ok) {
-//         response.json().then(function (novoRegistro) {
-
-//             console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
-//             console.log(`Dados atuais do gráfico:`);
-//             console.log(dados);
-
-//             // let avisoCaptura = document.getElementById(`avisoCaptura${disco}`)
-//             // avisoCaptura.innerHTML = ""
-
-
-//             if (novoRegistro[0].momento_grafico == dados.labels[dados.labels.length]) {
-//                 console.log("---------------------------------------------------------------")
-//                 console.log("Como não há dados novos para captura, o gráfico não atualizará.")
-//                 // avisoCaptura.innerHTML = "<i class='fa-solid fa-triangle-exclamation'></i> Foi trazido o dado mais atual capturado pelo sensor. <br> Como não há dados novos a exibir, o gráfico não atualizará."
-//                 console.log("Horário do novo dado capturado:")
-//                 console.log(novoRegistro[0].pacotesEnviados)
-//                 console.log("Horário do último dado capturado:")
-//                 console.log(dados.labels[dados.labels.length])
-//                 console.log("---------------------------------------------------------------")
-//             } else {
-//                 // tirando e colocando valores no gráfico
-//                 dados.labels.shift(); // apagar o primeiro
-//                 dados.labels.push(novoRegistro[0].data); // incluir um novo momento
-
-//                 dados.datasets[0].data.shift();  // apagar o primeiro de umidade
-//                 dados.datasets[0].data.push(novoRegistro[0].pacotesEnviados); // incluir uma nova medida de umidade
-
-//                 dados.datasets[1].data.shift();  // apagar o primeiro de temperatura
-//                 dados.datasets[1].data.push(novoRegistro[0].temperatura); // incluir uma nova medida de temperatura
-
-//                 myChart.update();
-//             }
-
-//             // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
-//             // proximaAtualizacao = setTimeout(() => atualizarGrafico(disco, dados, myChart), 2000);
-//         });
-//     } else {
-//         console.error('Nenhum dado encontrado ou erro na API');
-//         // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
-//         // proximaAtualizacao = setTimeout(() => atualizarGrafico(disco, dados, myChart), 2000);
-//     }
-// })
-//     .catch(function
-//         (error) {
-//         console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
-//     });
-
-// }
 
 
 
@@ -666,48 +708,5 @@
 
 
 
-
-    function metricasPing() {
-        Swal.fire({
-            icon: "warning",
-            width: 550,
-            title: "Atenção!!",
-            html: `
-        <b>Métricas sobre o Ping</b></br></br>
-        Se seu ping estiver abaixo de x ele está em estado <span style="color: rgb(0, 86, 0);">Instável</span></br>
-        Se seu ping estiver entre x e y ele está em estado <span style="color: goldenrod">Alerta</span></br>
-        Se seu ping estiver maior de x ele está em estado <span style="color: rgb(158, 1, 1)">Crítico</span>
-            `,
-        });
-    }
-
-    function metricasDownload() {
-        Swal.fire({
-            icon: "warning",
-            width: 550,
-            title: "Atenção!!",
-            html: `
-            <b>Métricas sobre o Download</b></br></br>
-            Se seu ping estiver abaixo de x ele está em estado <span style="color: rgb(0, 86, 0);">Instável</span></br>
-            Se seu ping estiver entre x e y ele está em estado <span style="color: goldenrod">Alerta</span></br>
-            Se seu ping estiver maior de x ele está em estado <span style="color: rgb(158, 1, 1)">Crítico</span>
-            `,
-        });
-    }
-
-    function metricasUpload() {
-        Swal.fire({
-            icon: "warning",
-            width: 550,
-            title: "Atenção!!",
-            html: `
-            <b>Métricas sobre o Upload</b></br></br>
-            Se seu ping estiver abaixo de x ele está em estado <span style="color: rgb(0, 86, 0);">Instável</span></br>
-            Se seu ping estiver entre x e y ele está em estado <span style="color: goldenrod">Alerta</span></br>
-            Se seu ping estiver maior de x ele está em estado <span style="color: rgb(158, 1, 1)">Crítico</span>
-
-            `,
-
-        });
-    }
+    
 </script>
