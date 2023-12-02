@@ -82,7 +82,7 @@
                         <h6 class="collapse-header">Inovações Secure ATM:</h6>
                         <a href="DashBoard-VisaoGeral-Vaz.html" class="collapse-item">Dash Gabroh</a>
                         <a href="DashBoard-VisaoGeral-Giba.html" class="collapse-item">Dash Jujuba</a>
-                        <a href="dashVisaoGeralRede_Julio.html"class="collapse-item">Dash Julião</a>
+                        <a href="dashVisaoGeralRede_Julio.html" class="collapse-item">Dash Julião</a>
                         <a class="collapse-item">Dash Paulão</a>
                         <a class="collapse-item">Dash Primon</a>
                         <a class="collapse-item">Dash Alice</a>
@@ -184,41 +184,41 @@
 
 
                         <!-- <div class="card"> -->
-                            <div class="col-xl-3 col-md-6 mb-4">
-                                <div class="card border-left-primary shadow h-100 py-2">
-                                    <div class="card-body">
-                                        <div class="row no-gutters align-items-center">
-                                            <div class="col mr-2">
-                                                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                                    Pico Diário</div>
-                                                <div id="discoPercentage" class="h5 mb-0 font-weight-bold text-gray-800"
-                                                    style="text-align: center;">Loading...</div>
-                                                <!-- <div class="h5 mb-0 font-weight-bold text-gray-800"
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card border-left-primary shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div  class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                                Pico Diário</div>
+                                            <div id="KPIpico" class="h5 mb-0 font-weight-bold text-gray-800"
+                                                style="text-align: center;">Loading...</div>
+                                            <!-- <div class="h5 mb-0 font-weight-bold text-gray-800"
                                                     style="text-align: center;"></div> -->
-                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                        </div>
                         <!-- </div> -->
 
                         <!-- <div class="card"> -->
-                            <div class="col-xl-3 col-md-6 mb-4">
-                                <div class="card border-left-primary shadow h-100 py-2">
-                                    <div class="card-body">
-                                        <div class="row no-gutters align-items-center">
-                                            <div class="col mr-2">
-                                                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                                    Vale Diário</div>
-                                                <div id="cpuPercentage" class="h5 mb-0 font-weight-bold text-gray-800"
-                                                    style="text-align: center;">Loading...</div>
-                                                <!-- <div class="h5 mb-0 font-weight-bold text-gray-800"
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card border-left-primary shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                                Vale Diário</div>
+                                            <div id="KPIvale" class="h5 mb-0 font-weight-bold text-gray-800"
+                                                style="text-align: center;">Loading...</div>
+                                            <!-- <div class="h5 mb-0 font-weight-bold text-gray-800"
                                                     style="text-align: center;"></div> -->
-                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                        </div>
                         <!-- </div> -->
 
                     </div>
@@ -239,13 +239,13 @@
                                     <div class="dropdown no-arrow">
                                         <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
                                             aria-labelledby="dropdownMenuLink">
-                                            <a class="dropdown-item" href="#">Something else here</a>
+                                            <!-- <a class="dropdown-item" href="#">Something else here</a> -->
                                         </div>
                                     </div>
                                 </div>
-
-                                <div class="card-body">
-                                    <canvas id="EstresseChart"></canvas>
+                                <!-- class="card-body" -->
+                                <div style="height: 50%; width: 50%;">
+                                    <canvas id="EstresseChart" style="display: block;height: 100%; width: 100%;"></canvas>
                                 </div>
                             </div>
                         </div>
@@ -285,187 +285,6 @@
         </div>
     </div>
     </div>
-</body>
-
-</html>
-
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-<script>
-    let proximaAtualizacao;
-    var idATM = sessionStorage.getItem('idATM');
-
-    window.onload = function () {
-        let idATM = sessionStorage.getItem('idATM');
-
-        if (idATM) {
-            exibirStatusSistema(idATM);
-            mostrarProcesso(idATM);
-        } else {
-            console.error('idATM não está definido.');
-        }
-    };
-
-    function exibirStatusSistema(idATM) {
-        fetch(`/Paulo/buscarRamHora/${idATM}`, { cache: 'no-store' })
-            .then(function (resposta) {
-                if (resposta.ok) {
-                    return resposta.json();
-                } else {
-                    console.error('Erro ao obter dados do sistema');
-                    return {};
-                }
-            })
-            .then(function (dados) {
-                // Atualiza os valores nas divs
-                atualizarValorDOM('Ram', dados.RAM);
-                atualizarValorDOM('Hora', dados.Hora);
-            })
-            .catch(function (error) {
-                console.error(`Erro na obtenção dos dados do sistema: ${error.message}`);
-            });
-        setTimeout(() => atualizarValorDOM(elementID, valor), 2000);
-    }
-
-    function atualizarValorDOM(elementID, valor) {
-
-        document.getElementById(elementID).textContent = valor;
-    }
-
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-    function obterDados(idATM) {
-        idATM = sessionStorage.getItem('idATM');
-        fetch(`/Paulo/buscarRamHora/${idATM}`, { cache: 'no-store' }).then(function (response) {
-            if (response.ok) {
-                response.json().then(function (resposta) {
-                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
-
-                    plotarGrafico(resposta, idATM);
-
-                });
-            } else {
-                console.error('Nenhum dado encontrado ou erro na API');
-            }
-        })
-            .catch(function (error) {
-                console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
-            });
-    }
-
-    function plotarGrafico(resposta, idATM) {
-
-        let labels = [];
-
-
-        let dados = {
-            labels: labels,
-            datasets: [{
-                label: 'Estresse',
-                data: [],
-                fill: false,
-                backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                borderColor: 'rgba(75, 192, 192, 1)',
-                borderWidth: 5,
-                tension: 0.5
-            },
-            ]
-        };
-
-        console.log('----------------------------------------------')
-        console.log('Estes dados foram recebidos pela funcao "obterDadosGrafico" e passados para "plotarGrafico":')
-        console.log(resposta)
-
-
-        for (i = 0; i < resposta.length; i++) {
-            var registro = resposta[i];
-            dados.datasets[0].data.push(registro.Valor);
-
-            labels.push(resposta[i].hora)
-        }
-
-        console.log('----------------------------------------------')
-        console.log('O gráfico será plotado com os respectivos valores:')
-        console.log('Labels:')
-        console.log(labels)
-        console.log('Dados:')
-        console.log(dados.datasets)
-        console.log('----------------------------------------------')
-
-
-        const config = {
-            type: 'bar',
-            data: dados
-        };
-
-        let myChart = new Chart(
-            document.getElementById(`EstresseChart`),
-            config
-        );
-        setTimeout(() => atualizarGrafico(idATM, dados, myChart), 2000);
-    }
-
-
-    function atualizarGrafico(idATM, dados, myChart) {
-
-        fetch(`/Paulo/buscarRamHora/${idATM}`, { cache: 'no-store' }).then(function (response) {
-            if (response.ok) {
-                response.json().then(function (novoRegistro) {
-
-                    console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
-                    console.log(`Dados atuais do gráfico:`);
-                    console.log(dados);
-
-                    var validacao = 0
-
-                    for (var i = 0; i < novoRegistro.length; i++) {
-                        if (novoRegistro[i].hora == dados.labels[dados.labels.length - 1]) {
-                            validacao += 1
-                        }
-                    }
-
-                    if (validacao != 0) {
-                        console.log("---------------------------------------------------------------")
-                        console.log("Como não há dados novos para captura, o gráfico não atualizará.")
-                        console.log("Horário do novo dado capturado:")
-                        console.log(novoRegistro[0].Hora)
-                        console.log("Horário do último dado capturado:")
-                        console.log(dados.labels[dados.labels.length - 1])
-                        console.log("---------------------------------------------------------------")
-                    } else {
-                        dados.labels.push(novoRegistro[0].hora);
-                        dados.datasets[0].data.push(novoRegistro[0].quantidade);
-
-                        myChart.update();
-
-                    }
-
-
-                    proximaAtualizacao = setTimeout(() => atualizarGrafico(idATM, dados, myChart), 2000);
-                });
-            } else {
-                console.error('Nenhum dado encontrado ou erro na API');
-
-                proximaAtualizacao = setTimeout(() => atualizarGrafico(idATM, dados, myChart), 2000);
-            }
-        })
-            .catch(function (error) {
-                console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
-            });
-
-    }
-
-</script>
-
-
-
-
-<!-- Scroll to Top Button
-                            <a class="scroll-to-top rounded" href="#page-top">
-                                <i class="fas fa-angle-up"></i>
-                            </a> -->
 
 <!-- Logout Modal-->
 <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
@@ -498,31 +317,155 @@
 
 </html>
 
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 <script>
 
-    function buscarATM() {
-        fetch("/avisos/listar:fkEmpresa").then(function (resposta) {
+    var idATM = sessionStorage.getItem('idATM');
 
-            if (resposta.ok) {
-                console.log("ENTREII")
+    window.onload=obterDados(1);
+    window.onload= obterDadosMaxKpi(1);
+    window.onload= obterDadosMinKpi(1);
 
-                resposta.json().then(function (resposta) {
-                    console.log("Dados recebidos: ", JSON.stringify(resposta));
+    function obterDados(idATM) {
 
-                    for (let i = 0; i < resposta.length; i++) {
-
-                        var publicacao = resposta[i];
-
-                    }
-                    // finalizarAguardar();
-                });
-            } else {
-                throw ('Houve um erro na API!');
+        fetch(`/Paulo/buscarRamHora/${idATM}`, { cache: 'no-store' })
+        .then(function (response) {
+            if(response.ok){
+                response.json()
+                .then(function(resposta){
+                    console.log("Dados recebidos:",JSON.stringify(resposta))
+                    resposta.reverse()
+                    plotarGrafico(resposta, idATM)
+                })
             }
-        }).catch(function (resposta) {
-            console.error(resposta);
-            // finalizarAguardar();
-        });
+        })  
+
     }
-    
+
+    function plotarGrafico(resposta, idATM) {
+
+        let labels = [];
+        let dados = {
+            labels: labels,
+            datasets: [{
+                label: 'Estresse',
+                data: [],
+                fill: false,
+                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                borderColor: 'rgba(75, 192, 192, 1)',
+                borderWidth: 5,
+                tension: 0.5
+            }]
+        };
+
+
+        for (i = 0; i < resposta.length; i++) {
+            var registro = resposta[i];
+            dados.datasets[0].data.push(registro.Valor);
+            labels.push(registro.DataRegistro)
+        }
+
+        console.log('----------------------------------------------')
+        console.log('O gráfico será plotado com os respectivos valores:')
+        console.log('Labels:')
+        console.log(labels)
+        console.log('Dados:')
+        console.log(dados.datasets)
+        console.log('----------------------------------------------')
+
+
+        const config = {
+            type: 'bar',
+            data: dados
+        };
+
+        let myChart = new Chart(
+            document.getElementById(`EstresseChart`),
+            config
+        );
+        setTimeout(()=>atualizarGrafico(idATM, dados, myChart),2000)
+    }
+
+
+    function atualizarGrafico(idATM, dados, myChart) {
+        fetch(`/Paulo/buscarTempoReal/${idATM}`, { cache: 'no-store' })
+            .then(function (response) {
+                if (response.ok) {
+                    return response.json();
+                } else {
+                    console.error('Nenhum dado encontrado ou erro na API');
+                    return [];
+                }
+            })
+            .then(function (novoRegistro) {
+                console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
+                console.log('Dados atuais do gráfico:');
+                console.log(dados);
+
+                if (novoRegistro.length > 0) {
+                    if (novoRegistro[0].DataRegistro !== dados.labels[dados.labels.length - 1]) {
+                        dados.labels.push(novoRegistro[0].DataRegistro);
+                        dados.datasets[0].data.push(novoRegistro[0].Valor);
+                        myChart.update();
+                    } else {
+                        console.log("---------------------------------------------------------------");
+                        console.log("Como não há dados novos para captura, o gráfico não atualizará.");
+                        console.log("Horário do novo dado capturado:");
+                        console.log(novoRegistro[0].DataRegistro);
+                        console.log("Horário do último dado capturado:");
+                        console.log(dados.labels[dados.labels.length - 1]);
+                        console.log("---------------------------------------------------------------");
+                    }
+                }
+
+                // Chama a função recursivamente após 2 segundos
+                setTimeout(()=>atualizarGrafico(idATM, dados, myChart),2000)
+            })
+            .catch(function (error) {
+                console.error(`Erro na obtenção dos dados para o gráfico: ${error.message}`);
+            });
+
+    }
+
+    function obterDadosMaxKpi(idATM) {
+
+        fetch(`/Paulo/buscarMaximo/${idATM}`, { cache: 'no-store' })
+        .then(function (response) {
+            if(response.ok){
+                response.json()
+                .then(function(resposta){
+
+                    console.log("Dados recebidos:",JSON.stringify(resposta))
+                    
+                    var kpi = document.getElementById("KPIpico");
+                    kpi.innerHTML = "";
+                    kpi.innerHTML = resposta[0].Valor;
+
+                })
+            }
+        })  
+
+    }
+
+    function obterDadosMinKpi(idATM) {
+
+        fetch(`/Paulo/buscarMinimo/${idATM}`, { cache: 'no-store' })
+        .then(function (response) {
+            if(response.ok){
+                response.json()
+                .then(function(resposta){
+
+                    console.log("Dados recebidos:",JSON.stringify(resposta))
+                    
+                    var kpi = document.getElementById("KPIvale");
+                    kpi.innerHTML = "";
+                    kpi.innerHTML = resposta[0].Valor;
+
+                })
+            }
+        })  
+
+    }
+
 </script>
