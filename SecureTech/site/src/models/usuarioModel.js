@@ -570,19 +570,19 @@ function buscarUltimasMedidasServidores(idUsuario) {
     instrucaoSql = ''
 
     if (process.env.AMBIENTE_PROCESSO == "producao") {
-        instrucaoSql =
-            `SELECT Valor as valor, DataRegistro as data
+        instrucaoSql = 
+        `SELECT Valor as valor, DataRegistro as data
         FROM Leitura
         WHERE Componente_ID = 3;`
-
-            ;
+    
+    ;
     } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
-        instrucaoSql =
-            `SELECT Valor as valor, DataRegistro as data
+        instrucaoSql = 
+        `SELECT Valor as valor, DataRegistro as data
         FROM Leitura
         WHERE Componente_ID = 3;`
-
-            ;
+    
+    ;
     } else {
         console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
         return
@@ -597,14 +597,14 @@ function atualizandoMedidasServidores(idUsuario) {
     instrucaoSql2 = ''
 
     if (process.env.AMBIENTE_PROCESSO == "producao") {
-        instrucaoSql2 =
-            `SELECT Valor as valor, DataRegistro as data
+        instrucaoSql2 = 
+        `SELECT Valor as valor, DataRegistro as data
         FROM Leitura
         WHERE Componente_ID = 3;`
 
     } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
-        instrucaoSql2 =
-            `SELECT Valor as valor, DataRegistro as data
+        instrucaoSql2 =  
+        `SELECT Valor as valor, DataRegistro as data
         FROM Leitura
         WHERE Componente_ID = 3;`
     } else {
@@ -623,19 +623,19 @@ function buscarUltimasMedidasServidores2(idUsuario) {
     instrucaoSql = ''
 
     if (process.env.AMBIENTE_PROCESSO == "producao") {
-        instrucaoSql =
-            `SELECT Valor as valorRam, DataRegistro dataRam
+        instrucaoSql = 
+        `SELECT Valor as valorRam, DataRegistro dataRam
         FROM Leitura
         WHERE Componente_ID = 1;`
-
-            ;
+    
+    ;
     } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
-        instrucaoSql =
-            `SELECT Valor as valorRam, DataRegistro dataRam
+        instrucaoSql = 
+        `SELECT Valor as valorRam, DataRegistro dataRam
         FROM Leitura
         WHERE Componente_ID = 1;`
-
-            ;
+    
+    ;
     } else {
         console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
         return
@@ -650,14 +650,14 @@ function atualizandoMedidasServidores2(idUsuario) {
     instrucaoSql2 = ''
 
     if (process.env.AMBIENTE_PROCESSO == "producao") {
-        instrucaoSql2 =
-            `SELECT Valor as valorRam, DataRegistro dataRam
+        instrucaoSql2 = 
+        `SELECT Valor as valorRam, DataRegistro dataRam
         FROM Leitura
         WHERE Componente_ID = 1;`
 
     } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
-        instrucaoSql2 =
-            `SELECT Valor as valorRam, DataRegistro dataRam
+        instrucaoSql2 =  
+        `SELECT Valor as valorRam, DataRegistro dataRam
         FROM Leitura
         WHERE Componente_ID = 1;`
     } else {
@@ -677,19 +677,17 @@ function buscarUltimasMedidasServidores3(idUsuario) {
     instrucaoSql = ''
 
     if (process.env.AMBIENTE_PROCESSO == "producao") {
-        instrucaoSql =
-            `SELECT Valor as valorRam, DataRegistro dataRam
-        FROM Leitura
-        WHERE Componente_ID = 1;`
-
-            ;
+        instrucaoSql = 
+        `SELECT COUNT(DISTINCT produto, fabricante) AS Quantidade_Dispositivos_Unicos
+        FROM DescricaoComponentes;`
+    
+    ;
     } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
-        instrucaoSql =
-            `SELECT Valor as valorRam, DataRegistro dataRam
-        FROM Leitura
-        WHERE Componente_ID = 1;`
-
-            ;
+        instrucaoSql = 
+        `SELECT COUNT(DISTINCT produto, fabricante) AS Quantidade_Dispositivos_Unicos
+        FROM DescricaoComponentes;`
+    
+    ;
     } else {
         console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
         return
@@ -704,16 +702,71 @@ function atualizandoMedidasServidores3(idUsuario) {
     instrucaoSql2 = ''
 
     if (process.env.AMBIENTE_PROCESSO == "producao") {
-        instrucaoSql2 =
-            `SELECT Valor as valorRam, DataRegistro dataRam
-        FROM Leitura
-        WHERE Componente_ID = 1;`
+        instrucaoSql2 = 
+        `SELECT COUNT(DISTINCT produto, fabricante) AS Quantidade_Dispositivos_Unicos
+        FROM DescricaoComponentes;`
 
     } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
-        instrucaoSql2 =
-            `SELECT Valor as valorRam, DataRegistro dataRam
-        FROM Leitura
-        WHERE Componente_ID = 1;`
+        instrucaoSql2 =  
+        `SELECT COUNT(DISTINCT produto, fabricante) AS Quantidade_Dispositivos_Unicos
+        FROM DescricaoComponentes;`
+    } else {
+        console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
+        return
+    }
+
+    console.log("Executando a instrução SQL: \n" + instrucaoSql2);
+    return database.executar(instrucaoSql2);
+}
+
+
+
+function buscarUltimasMedidasServidores4(idUsuario) {
+
+    instrucaoSql = ''
+
+    if (process.env.AMBIENTE_PROCESSO == "producao") {
+        instrucaoSql = 
+        `SELECT produto as produto, fabricante as fabricante, dataDia as dataLista
+        FROM DescricaoComponentes
+        GROUP BY produto, fabricante, dataDia
+        HAVING COUNT(*) > 1;`
+    
+    ;
+    } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
+        instrucaoSql = 
+        `SELECT produto as produto, fabricante as fabricante, dataDia as dataLista
+        FROM DescricaoComponentes
+        GROUP BY produto, fabricante, dataDia
+        HAVING COUNT(*) > 1;`
+    
+    ;
+    } else {
+        console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
+        return
+    }
+
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
+function atualizandoMedidasServidores4(idUsuario) {
+
+    instrucaoSql2 = ''
+
+    if (process.env.AMBIENTE_PROCESSO == "producao") {
+        instrucaoSql2 = 
+        `SELECT produto as produto, fabricante as fabricante, dataDia as dataLista
+        FROM DescricaoComponentes
+        GROUP BY produto, fabricante, dataDia
+        HAVING COUNT(*) > 1;`
+
+    } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
+        instrucaoSql2 =  
+        `SELECT produto as produto, fabricante as fabricante, dataDia as dataLista
+        FROM DescricaoComponentes
+        GROUP BY produto, fabricante, dataDia
+        HAVING COUNT(*) > 1;`
     } else {
         console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
         return
@@ -758,5 +811,7 @@ module.exports = {
     buscarUltimasMedidasServidores2,
     atualizandoMedidasServidores2,
     buscarUltimasMedidasServidores3,
-    atualizandoMedidasServidores3
+    atualizandoMedidasServidores3,
+    buscarUltimasMedidasServidores4,
+    atualizandoMedidasServidores4
 };
