@@ -171,11 +171,12 @@ LIMIT 1;`;
 function TEMPHora(idATM) {
 
     var instrucaoSql = `
-    SELECT MAX(temperatura) AS temp_cpu, DATE_FORMAT(data_hora, '%Y-%m-%d %H:00:00') AS hora, fkATM 
-FROM temperaturaCPU 
-WHERE fkATM = ${idATM}  
-GROUP BY DATE_FORMAT(data_hora, '%Y-%m-%d %H:00:00')
-ORDER BY DATE_FORMAT(data_hora, '%Y-%m-%d %H:00:00');`;
+    SELECT MAX(temperatura) AS temp_cpu, DATE_FORMAT(data_hora, '%Y-%m-%d %H:%i:%s') AS hora, fkATM 
+    FROM temperaturaCPU 
+    WHERE fkATM = ${idATM}
+    GROUP BY DATE_FORMAT(data_hora, '%Y-%m-%d %H:%i:%s')
+    ORDER BY DATE_FORMAT(data_hora, '%Y-%m-%d %H:%i:%s')
+    DESC LIMIT 3;`;
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
 }
@@ -183,11 +184,12 @@ ORDER BY DATE_FORMAT(data_hora, '%Y-%m-%d %H:00:00');`;
 function TEMP_tempoReal(idATM) {
 
     var instrucaoSql = `
-    SELECT MAX(temperatura) AS temp_cpu, DATE_FORMAT(data_hora, '%Y-%m-%d %H:00:00') AS hora, fkATM 
-FROM temperaturaCPU 
-WHERE fkATM = ${idATM} 
-GROUP BY DATE_FORMAT(data_hora, '%Y-%m-%d %H:00:00')
-ORDER BY DATE_FORMAT(data_hora, '%Y-%m-%d %H:00:00');`;
+    SELECT MAX(temperatura) AS temp_cpu, DATE_FORMAT(data_hora, '%Y-%m-%d %H:%i:%s') AS hora, fkATM 
+    FROM temperaturaCPU 
+    WHERE fkATM = ${idATM}
+    GROUP BY DATE_FORMAT(data_hora, '%Y-%m-%d %H:%i:%s')
+    ORDER BY DATE_FORMAT(data_hora, '%Y-%m-%d %H:%i:%s')
+    DESC LIMIT 1;`;
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
 }
@@ -195,10 +197,12 @@ ORDER BY DATE_FORMAT(data_hora, '%Y-%m-%d %H:00:00');`;
 function CPUHora(idATM) {
 
     var instrucaoSql = `
-    SELECT MAX(Valor) AS quantidade, DATE_FORMAT(DataRegistro, '%Y-%m-%d %H:00:00') AS hora, ATMComp_ID 
+    SELECT MAX(Valor) AS quantidade, DATE_FORMAT(DataRegistro, '%Y-%m-%d %H:%i:%s') AS hora, ATMComp_ID 
     FROM Leitura 
     WHERE ATMComp_ID = ${idATM} AND Componente_ID = 3 
-    GROUP BY DATE_FORMAT(DataRegistro, '%Y-%m-%d %H:00:00');`;
+    GROUP BY DATE_FORMAT(DataRegistro, '%Y-%m-%d %H:%i:%s')
+    ORDER BY DATE_FORMAT(DataRegistro, '%Y-%m-%d %H:%i:%s')
+    DESC LIMIT 3;`;
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
 }
@@ -206,11 +210,12 @@ function CPUHora(idATM) {
 function CPU_tempoReal(idATM) {
 
     var instrucaoSql = `
-    SELECT MAX(Valor) AS quantidade, DATE_FORMAT(DataRegistro, '%Y-%m-%d %H:00:00') AS hora, ATMComp_ID 
+    SELECT MAX(Valor) AS quantidade, DATE_FORMAT(DataRegistro, '%Y-%m-%d %H:%i:%s') AS hora, ATMComp_ID 
     FROM Leitura 
     WHERE ATMComp_ID = ${idATM} AND Componente_ID = 3 
-    GROUP BY DATE_FORMAT(DataRegistro, '%Y-%m-%d %H:00:00');`;
-
+    GROUP BY DATE_FORMAT(DataRegistro, '%Y-%m-%d %H:%i:%s')
+    ORDER BY DATE_FORMAT(DataRegistro, '%Y-%m-%d %H:%i:%s') 
+    DESC LIMIT 1;`;
 
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
@@ -427,11 +432,13 @@ async function obterBotao(idATM) {
 
 async function cpuTemperatura(idATM) {
     const cpuTempQuery = `
-    SELECT MAX(temperatura) AS temp_cpu, DATE_FORMAT(data_hora, '%Y-%m-%d %H:00:00') AS hora, fkATM 
-FROM temperaturaCPU 
-WHERE fkATM = ${idATM}  
-GROUP BY DATE_FORMAT(data_hora, '%Y-%m-%d %H:00:00')
-ORDER BY DATE_FORMAT(data_hora, '%Y-%m-%d %H:00:00');`;
+    SELECT MAX(temperatura) AS temp_cpu, DATE_FORMAT(data_hora, '%Y-%m-%d %H:%i:%s') AS hora, fkATM 
+    FROM temperaturaCPU 
+    WHERE fkATM = ${idATM}
+    GROUP BY DATE_FORMAT(data_hora, '%Y-%m-%d %H:%i:%s')
+    ORDER BY DATE_FORMAT(data_hora, '%Y-%m-%d %H:%i:%s')
+    DESC LIMIT 1;
+    `;
 
     console.log("Executando a instrução SQL: \n" + cpuTempQuery);
     try {
