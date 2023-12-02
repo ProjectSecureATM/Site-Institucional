@@ -338,3 +338,36 @@
     font-weight: bolder;
 }
 
+.bolaIdeal {
+    display: inline-block;
+    width: 1vw;
+    height: 2vh;
+    border-radius: 50%;
+    position: relative;
+    left: 8vw;
+    bottom: 3.3rem;
+    background-color: green;
+}
+
+.bolaModerada {
+    display: inline-block;
+    width: 1vw;
+    height: 2vh;
+    border-radius: 50%;
+    position: relative;
+    left: 8vw;
+    bottom: 3.3rem;
+    background-color: yellow;
+}
+
+.bolaCritica {
+    display: inline-block;
+    width: 1vw;
+    height: 2vh;
+    border-radius: 50%;
+    position: relative;
+    left: 8vw;
+    bottom: 3.3rem;
+    background-color: rgb(160, 2, 2);
+}
+
