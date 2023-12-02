@@ -141,7 +141,13 @@ router.get("/ultimasServidores3/:idUsuario", function (req, res) {
 });
 router.get("/AtualizandoServidor3/:idUsuario", function (req, res) {
     usuarioController.atualizandoMedidasServidores3(req, res);
-});   
+});    
+router.get("/ultimasServidores4/:idUsuario", function (req, res) {
+    usuarioController.buscarUltimasMedidasServidores4(req, res);
+});
+router.get("/AtualizandoServidor4/:idUsuario", function (req, res) {
+    usuarioController.atualizandoMedidasServidores4(req, res);
+});  
    
 
 module.exports = router;
