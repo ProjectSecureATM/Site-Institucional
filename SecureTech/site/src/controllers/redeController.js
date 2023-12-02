@@ -31,6 +31,54 @@ function confirmacaoSeguranca(req, res) {
     }
 }
 
+function graficoPacotes(req, res) {
+
+    redeModel.graficoPacotes().then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum resultado encontrado!")
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+        console.log("Houve um erro ao buscar as ultimas medidas.", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+
+function graficoPacotes_TempMonitoramento(req, res) {
+
+    redeModel.graficoPacotes_TempMonitoramento().then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum resultado encontrado!")
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+        console.log("Houve um erro ao buscar as ultimas medidas.", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+
+function listarIPePacotes(req, res) {
+    
+    redeModel.listarIPePacotes().then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum resultado encontrado!");
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+        console.log("Houve um erro ao buscar as agências: ", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+
 module.exports = {
-    confirmacaoSeguranca
+    confirmacaoSeguranca,
+    graficoPacotes,
+    graficoPacotes_TempMonitoramento,
+    listarIPePacotes
 };
