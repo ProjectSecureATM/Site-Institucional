@@ -119,6 +119,11 @@ router.get('/atualiza/:idATM', function (req, res) {
 router.get('/obterSelect/:idATM', function(req, res) {
     usuarioController.obterSelect(req, res)
 })
+
+router.get("/atualizarGraficoRede/:idATM", function (req, res) {
+    usuarioController.atualizarGraficoRede(req, res);
+});
+
 router.get("/ultimasServidores/:idUsuario", function (req, res) {
     usuarioController.buscarUltimasMedidasServidores(req, res);
 });
@@ -136,6 +141,7 @@ router.get("/ultimasServidores3/:idUsuario", function (req, res) {
 });
 router.get("/AtualizandoServidor3/:idUsuario", function (req, res) {
     usuarioController.atualizandoMedidasServidores3(req, res);
-});    
+});   
+   
 
 module.exports = router;

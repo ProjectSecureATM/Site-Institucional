@@ -470,57 +470,77 @@ async function obterIP(idATM) {
 
 function buscarMedidasRede(idATM, limite_linhas) {
     instrucaoSql = ''
-  
+
     if (process.env.AMBIENTE_PROCESSO == 'producao') {
         //NUVEM
-      instrucaoSql = `
-      SELECT TOP ${limite_linhas} download, upload, FORMAT(dataHora, 'HH:mm') AS Horário
-      FROM monitoramentoRede
-      WHERE fkMaquina = ${idATM}
-      ORDER BY idMonitoramentoRede DESC;
+        instrucaoSql = `
+      
       `
     } else if (process.env.AMBIENTE_PROCESSO == 'desenvolvimento') {
-      instrucaoSql = `
+        instrucaoSql = `
       select date_format(data_hora, '%d-%m-%Y') as dataHora, pacotesEnviados, pacotesRecebidos from rede where fk__idATM=${idATM}  limit ${limite_linhas};
       `
     } else {
-      console.log(
-        '\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n'
-      )
-      return
+        console.log(
+            '\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n'
+        )
+        return
     }
-  
+
     console.log('Executando a instrução SQL: \n' + instrucaoSql)
     return database.executar(instrucaoSql)
-  }
+}
 
-  function atualiza(idATM, limite_linhas) {
+function atualizarGraficoRede(idATM, limite_linhas) {
     instrucaoSql = ''
-  
+
     if (process.env.AMBIENTE_PROCESSO == 'producao') {
         //NUVEM
-      instrucaoSql = `
+        instrucaoSql = `
+      
+      `
+    } else if (process.env.AMBIENTE_PROCESSO == 'desenvolvimento') {
+        instrucaoSql = `
+      select date_format(data_hora, '%d-%m-%Y') as dataHora, pacotesEnviados, pacotesRecebidos from rede where fk__idATM=${idATM}  limit ${limite_linhas};
+      `
+    } else {
+        console.log(
+            '\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n'
+        )
+        return
+    }
+
+    console.log('Executando a instrução SQL: \n' + instrucaoSql)
+    return database.executar(instrucaoSql)
+}
+
+function atualiza(idATM, limite_linhas) {
+    instrucaoSql = ''
+
+    if (process.env.AMBIENTE_PROCESSO == 'producao') {
+        //NUVEM
+        instrucaoSql = `
       SELECT TOP ${limite_linhas} download, upload, FORMAT(dataHora, 'HH:mm') AS Horário
       FROM monitoramentoRede
       WHERE fkMaquina = ${idATM}
       ORDER BY idMonitoramentoRede DESC;
       `
     } else if (process.env.AMBIENTE_PROCESSO == 'desenvolvimento') {
-      instrucaoSql = `
+        instrucaoSql = `
       select date_format(data_hora, '%d-%m-%Y'), pacotesEnviados, pacotesRecebidos from rede where fk__idATM=${idATM}  limit ${limite_linhas};
       `
     } else {
-      console.log(
-        '\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n'
-      )
-      return
+        console.log(
+            '\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n'
+        )
+        return
     }
-  
+
     console.log('Executando a instrução SQL: \n' + instrucaoSql)
     return database.executar(instrucaoSql)
-  }
+}
 
-  async function obterSelect(idATM) {
+async function obterSelect(idATM) {
     const selectQuery = `
     SELECT count(*) as quantidade FROM notificacao WHERE fkATM = ${idATM};`;
 
@@ -543,19 +563,19 @@ function buscarUltimasMedidasServidores(idUsuario) {
     instrucaoSql = ''
 
     if (process.env.AMBIENTE_PROCESSO == "producao") {
-        instrucaoSql = 
-        `SELECT Valor as valor, DataRegistro as data
+        instrucaoSql =
+            `SELECT Valor as valor, DataRegistro as data
         FROM Leitura
         WHERE Componente_ID = 3;`
-    
-    ;
+
+            ;
     } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
-        instrucaoSql = 
-        `SELECT Valor as valor, DataRegistro as data
+        instrucaoSql =
+            `SELECT Valor as valor, DataRegistro as data
         FROM Leitura
         WHERE Componente_ID = 3;`
-    
-    ;
+
+            ;
     } else {
         console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
         return
@@ -570,14 +590,14 @@ function atualizandoMedidasServidores(idUsuario) {
     instrucaoSql2 = ''
 
     if (process.env.AMBIENTE_PROCESSO == "producao") {
-        instrucaoSql2 = 
-        `SELECT Valor as valor, DataRegistro as data
+        instrucaoSql2 =
+            `SELECT Valor as valor, DataRegistro as data
         FROM Leitura
         WHERE Componente_ID = 3;`
 
     } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
-        instrucaoSql2 =  
-        `SELECT Valor as valor, DataRegistro as data
+        instrucaoSql2 =
+            `SELECT Valor as valor, DataRegistro as data
         FROM Leitura
         WHERE Componente_ID = 3;`
     } else {
@@ -596,19 +616,19 @@ function buscarUltimasMedidasServidores2(idUsuario) {
     instrucaoSql = ''
 
     if (process.env.AMBIENTE_PROCESSO == "producao") {
-        instrucaoSql = 
-        `SELECT Valor as valorRam, DataRegistro dataRam
+        instrucaoSql =
+            `SELECT Valor as valorRam, DataRegistro dataRam
         FROM Leitura
         WHERE Componente_ID = 1;`
-    
-    ;
+
+            ;
     } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
-        instrucaoSql = 
-        `SELECT Valor as valorRam, DataRegistro dataRam
+        instrucaoSql =
+            `SELECT Valor as valorRam, DataRegistro dataRam
         FROM Leitura
         WHERE Componente_ID = 1;`
-    
-    ;
+
+            ;
     } else {
         console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
         return
@@ -623,14 +643,14 @@ function atualizandoMedidasServidores2(idUsuario) {
     instrucaoSql2 = ''
 
     if (process.env.AMBIENTE_PROCESSO == "producao") {
-        instrucaoSql2 = 
-        `SELECT Valor as valorRam, DataRegistro dataRam
+        instrucaoSql2 =
+            `SELECT Valor as valorRam, DataRegistro dataRam
         FROM Leitura
         WHERE Componente_ID = 1;`
 
     } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
-        instrucaoSql2 =  
-        `SELECT Valor as valorRam, DataRegistro dataRam
+        instrucaoSql2 =
+            `SELECT Valor as valorRam, DataRegistro dataRam
         FROM Leitura
         WHERE Componente_ID = 1;`
     } else {
@@ -650,19 +670,19 @@ function buscarUltimasMedidasServidores3(idUsuario) {
     instrucaoSql = ''
 
     if (process.env.AMBIENTE_PROCESSO == "producao") {
-        instrucaoSql = 
-        `SELECT Valor as valorRam, DataRegistro dataRam
+        instrucaoSql =
+            `SELECT Valor as valorRam, DataRegistro dataRam
         FROM Leitura
         WHERE Componente_ID = 1;`
-    
-    ;
+
+            ;
     } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
-        instrucaoSql = 
-        `SELECT Valor as valorRam, DataRegistro dataRam
+        instrucaoSql =
+            `SELECT Valor as valorRam, DataRegistro dataRam
         FROM Leitura
         WHERE Componente_ID = 1;`
-    
-    ;
+
+            ;
     } else {
         console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
         return
@@ -677,14 +697,14 @@ function atualizandoMedidasServidores3(idUsuario) {
     instrucaoSql2 = ''
 
     if (process.env.AMBIENTE_PROCESSO == "producao") {
-        instrucaoSql2 = 
-        `SELECT Valor as valorRam, DataRegistro dataRam
+        instrucaoSql2 =
+            `SELECT Valor as valorRam, DataRegistro dataRam
         FROM Leitura
         WHERE Componente_ID = 1;`
 
     } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
-        instrucaoSql2 =  
-        `SELECT Valor as valorRam, DataRegistro dataRam
+        instrucaoSql2 =
+            `SELECT Valor as valorRam, DataRegistro dataRam
         FROM Leitura
         WHERE Componente_ID = 1;`
     } else {
@@ -724,6 +744,7 @@ module.exports = {
     obterIP,
     buscarMedidasRede,
     atualiza,
+    atualizarGraficoRede,
     obterSelect,
     buscarUltimasMedidasServidores,
     atualizandoMedidasServidores,
