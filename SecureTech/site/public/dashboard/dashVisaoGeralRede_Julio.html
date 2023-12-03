@@ -316,11 +316,22 @@
         </div>
     </div>
 
-
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
+
     <script>
+        window.onload = function () {
+            mostrarPacotesRede()
+        }
+        function mostrarPacotesRede() {
+            mostrarPacotes();
+            setInterval(function () {
+                mostrarPacotes();
+            }, 7000);
+        }
+
         function infosRede() {
             $('#secureModal').modal('show');
         }
@@ -361,9 +372,11 @@
                     // Verificar se a pessoa foi verificada
                     if (data && data.verificado) {
                         // Abrir a nova modal com dados dinâmicos do banco
-                        
+
+                        // Chamar a função para listar IPs e pacotes
+                        listarIPePacotes();
                     }
-                    abrirNovaParteDaTela()
+
                     // Atualizar a div existente com os dados recuperados
                     $('#infoIpDiv').html(data);
                     $('#secureModal').modal('hide');
@@ -375,19 +388,125 @@
                 });
         }
 
-        function abrirNovaParteDaTela() {
-            // Substitua esta lógica com a estrutura HTML ou funcionalidade específica que você deseja exibir
-            // Esta é apenas uma ilustração básica
-            var doido = document.getElementById("conteudoDaPagina")
+        // function abrirNovaParteDaTela() {
+        //     // Substitua esta lógica com a estrutura HTML ou funcionalidade específica que você deseja exibir
+        //     // Esta é apenas uma ilustração básica
+        //     var doido = document.getElementById("conteudoDaPagina")
 
-            conteudoDaPagina.innerHTML += `
+        //     conteudoDaPagina.innerHTML += `
                 
-                    <h2>Bem-vindo à Nova Parte da Tela!</h2>
-                    <p>Aqui está a sua div de texto com mensagens.</p>
+        //             <h2>Bem-vindo à Nova Parte da Tela!</h2>
+        //             <p>Aqui está a sua div de texto com mensagens.</p>
              
                 
-            `;
+        //     `;
+        // }
+
+        function mostrarPacotes() {
+            fetch(`/rede/graficoPacotes/`, { cache: 'no-store' })
+                .then(function (response) {
+                    if (response.ok) {
+                        return response.json();
+                    } else {
+                        console.error('Nenhum dado encontrado ou erro na API');
+                        return [];
+                    }
+                })
+                .then(function (resposta) {
+                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                    criarGrafico(resposta, idATM);
+                })
+                .catch(function (error) {
+                    console.error(`Erro na obtenção dos dados para o gráfico: ${error.message}`);
+                });
         }
+
+        function criarGrafico(labels, data) {
+            var ctx = document.getElementById('ProcessosChart').getContext('2d');
+            var myChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Total de Pacotes',
+                        data: data,
+                        backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+            setTimeout(() => atualizarGraficoPacotes(idATM, dados, myChart), 70000);
+        }
+
+        function atualizarGraficoPacotes(dados, myChart) {
+            fetch(`/rede/atualizarGraficoPacotes/`, { cache: 'no-store' })
+                .then(function (response) {
+                    if (response.ok) {
+                        return response.json();
+                    } else {
+                        console.error('Nenhum dado encontrado ou erro na API');
+                        return [];
+                    }
+                })
+                .then(function (novoRegistro) {
+                    console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
+                    console.log('Dados atuais do gráfico:');
+                    console.log(dados);
+
+                    let validacao = novoRegistro.some(item => item.data_hora === dados.labels[dados.labels.length - 1]);
+
+                    if (!validacao) {
+                        dados.labels.pop();
+                        dados.datasets[0].data.pop();
+
+                        dados.labels.push(novoRegistro[0].data_hora);
+                        dados.datasets[0].data.push(novoRegistro[0].total_pacotes);
+                        myChart.update();
+                    } else {
+                        console.log("---------------------------------------------------------------");
+                        console.log("Como não há dados novos para captura, o gráfico não atualizará.");
+                        console.log("Horário do novo dado capturado:");
+                        console.log(novoRegistro[0].data_hora);
+                        console.log("Horário do último dado capturado:");
+                        console.log(dados.labels[dados.labels.length - 1]);
+                        console.log("---------------------------------------------------------------");
+                    }
+
+                    setTimeout(() => atualizarGraficoPacotes(dados, myChart), 20000);
+                })
+                .catch(function (error) {
+                    console.error(`Erro na obtenção dos dados para o gráfico: ${error.message}`);
+                    setTimeout(() => atualizarGraficoPacotes(dados, myChart), 20000);
+                });
+        }
+
+        function listarIPePacotes() {
+    fetch("/rede/listarIPePacotes")
+        .then(response => response.json())
+        .then(data => {
+            const ipDiv = document.getElementById("infoIpDiv");
+            ipDiv.innerHTML = ""; // Limpar div existente antes de adicionar novas informações
+
+            data.IP.forEach(item => {
+                const newDiv = document.createElement("div");
+                newDiv.innerHTML = `<p>IP: ${item.IP} - Pacotes Enviados: ${item.total_pacotes}</p>`;
+                newDiv.style.color = (item.cor === 'Vermelho') ? 'red' : 'black';
+                ipDiv.appendChild(newDiv);
+            });
+        })
+        .catch(error => {
+            console.error("Erro ao obter informações do servidor:", error);
+            alert('Erro ao obter informações do servidor.');
+        });
+}
     </script>
 </body>
 

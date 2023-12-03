@@ -46,9 +46,9 @@ function graficoPacotes(req, res) {
     });
 }
 
-function graficoPacotes_TempMonitoramento(req, res) {
+function atualizarGraficoPacotes(req, res) {
 
-    redeModel.graficoPacotes_TempMonitoramento().then(function (resultado) {
+    redeModel.atualizarGraficoPacotes().then(function (resultado) {
         if (resultado.length > 0) {
             res.status(200).json(resultado);
         } else {
@@ -62,7 +62,6 @@ function graficoPacotes_TempMonitoramento(req, res) {
 }
 
 function listarIPePacotes(req, res) {
-    
     redeModel.listarIPePacotes().then(function (resultado) {
         if (resultado.length > 0) {
             res.status(200).json(resultado);
@@ -79,6 +78,6 @@ function listarIPePacotes(req, res) {
 module.exports = {
     confirmacaoSeguranca,
     graficoPacotes,
-    graficoPacotes_TempMonitoramento,
+    atualizarGraficoPacotes,
     listarIPePacotes
 };

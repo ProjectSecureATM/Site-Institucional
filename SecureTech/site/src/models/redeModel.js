@@ -11,65 +11,65 @@ function confirmacaoSeguranca(email, senha) {
 }
 
 function graficoPacotes() {
-
     var instrucaoSql = `
-    SELECT data_hora, SUM(pacotesEnviados) AS total_pacotes
-    FROM rede
-    GROUP BY data_hora
-    ORDER BY data_hora;`;
+        SELECT data_hora, SUM(pacotesEnviados) AS total_pacotes
+        FROM rede
+        GROUP BY data_hora
+        ORDER BY data_hora;`;
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
-    return database.executar(instrucaoSql);
+    return database.executar(instrucaoSql)
+        .then(resultados => {
+            // Formatando dados para Chart.js
+            const labels = resultados.map(item => item.data_hora);
+            const data = resultados.map(item => item.total_pacotes);
 
+            return { labels, data };
+        });
 }
 
 
-function graficoPacotes_TempMonitoramento() {
-    var instrucaoSql = `
-    SELECT IP, SUM(pacotesEnviados) AS total_pacotes
-    FROM rede
-    GROUP BY IP
-    ORDER BY total_pacotes DESC;`;
-    console.log("Executando a instrução SQL: \n" + instrucaoSql);
-    return database.executar(instrucaoSql);
-
-}
-
-
-async function listarIPePacotes(idATM) {
-    const ATQQuery = `SELECT
-        IP,
-        SUM(pacotesEnviados) AS total_pacotesATQ,
-        CASE WHEN IP = '10.0.2.15' THEN 'Vermelho' ELSE 'Outro' END AS cor
-    FROM rede
-    GROUP BY IP
-    ORDER BY total_pacotesATQ DESC`;  // Corrigir para ORDER BY total_pacotesATQ
-
-    const IPQuery = `SELECT
-    IP,
-    SUM(pacotesEnviados) AS total_pacotes,
-    CASE WHEN IP = '10.0.2.15' THEN 'Vermelho' ELSE 'Outro' END AS cor
-FROM rede
-WHERE IP != '10.0.2.15'  -- Adicionando a condição para excluir o IP específico
-GROUP BY IP
-ORDER BY total_pacotes DESC`;
-
-    console.log("Executando as instruções SQL:\n", ATQQuery, IPQuery);
-
+async function atualizarGraficoPacotes() {
     try {
-        const atqResult = await database.executar(ATQQuery);  // Corrigir para ATQQuery
-        const ipResult = await database.executar(IPQuery);
+        // Definindo valores padrão
+        var instrucaoSql = `
+        SELECT data_hora, SUM(pacotesEnviados) AS total_pacotes
+        FROM rede
+        GROUP BY data_hora
+        ORDER BY data_hora DESC LIMIT 1`;
+        console.log("Executando a instrução SQL: \n" + instrucaoSql);
+        const resultados = await database.executar(instrucaoSql);
 
-        return {
-            ATQ: atqResult.total_pacotesATQ || [],  // Corrigir para atqResult
-            IP: ipResult.total_pacotes || [],
-        };
+        // Formatando dados para Chart.js
+        const labels = resultados.map(item => item.data_hora);
+        const data = resultados.map(item => item.total_pacotes);
+
+        return { labels, data };
     } catch (error) {
-        console.error(`Erro na obtenção dos dados do sistema: ${error.message}`);
-        return {
-            ATQ: [],
-            IP: [],
-        };
+        console.error(`Erro ao executar instrução SQL: ${error.message}`);
+        throw error; // Rejogue o erro para tratamento adequado no controlador
     }
+}
+
+
+
+function listarIPePacotes() {
+    fetch("/rede/listarIPePacotes")
+        .then(response => response.json())
+        .then(data => {
+            const ipDiv = document.getElementById("infoIpDiv");
+            ipDiv.innerHTML = ""; // Limpar div existente antes de adicionar novas informações
+
+            data.IP.forEach(item => {
+                const newDiv = document.createElement("div");
+                newDiv.innerHTML = `<p>IP: ${item.IP} - Pacotes Enviados: ${item.total_pacotes}</p>`;
+                newDiv.style.color = (item.cor === 'Vermelho') ? 'red' : 'black'; // Adicione a cor conforme necessário
+                ipDiv.appendChild(newDiv);
+            });
+        })
+        .catch(error => {
+            console.error("Erro ao obter informações do servidor:", error);
+            alert('Erro ao obter informações do servidor.');
+        });
 }
 
 
@@ -78,6 +78,6 @@ ORDER BY total_pacotes DESC`;
 module.exports = {
     confirmacaoSeguranca,
     graficoPacotes,
-    graficoPacotes_TempMonitoramento,
+    atualizarGraficoPacotes,
     listarIPePacotes
 };
