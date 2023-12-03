@@ -323,9 +323,26 @@
 
     var idATM = sessionStorage.getItem('idATM');
 
-    window.onload=obterDados(1);
-    window.onload= obterDadosMaxKpi(1);
-    window.onload= obterDadosMinKpi(1);
+    window.onload = function() {
+        obterDadosKPIS(idATM)
+    }
+
+    function obterDadosKPIS(idATM) {
+        obterDados(idATM),
+        setInterval(function () {
+            obterDados(idATM);
+        }, 2000);
+        
+        obterDadosMaxKpi(idATM),
+        setInterval(function () {
+            obterDadosMaxKpi(1);
+        }, 7000);
+
+        obterDadosMinKpi(idATM) 
+        setInterval(function () {
+            obterDadosMinKpi(idATM);
+        }, 7000);
+    }
 
     function obterDados(idATM) {
 
