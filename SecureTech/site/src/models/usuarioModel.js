@@ -487,7 +487,7 @@ GROUP BY DATE_FORMAT(data_hora, '%Y-%m-%d %H:00:00');`;
       `
         } else if (process.env.AMBIENTE_PROCESSO == 'desenvolvimento') {
             instrucaoSql = `
-      select date_format(data_hora, '%d-%m-%Y') as dataHora, pacotesEnviados, pacotesRecebidos from rede where fk__idATM=${idATM}  limit ${limite_linhas};
+            select date_format(data_hora, '%h:%m:%s') as dataHora, pacotesEnviados, pacotesRecebidos from rede where fk__idATM=${idATM}  limit ${limite_linhas};
       `
         } else {
             console.log(
