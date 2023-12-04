@@ -186,6 +186,8 @@
     background-color: #fff;
     background-color: rgb(255, 255, 255);
 
+    border-left: 0.25rem solid #021e46 !important;
+
     box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, .15);
 }
 
@@ -268,6 +270,8 @@
     background-color: #fff;
     background-color: rgb(255, 255, 255);
 
+    border-left: 0.25rem solid #021e46 !important;
+
     box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, .15);
 }
 
@@ -325,6 +329,8 @@
     border: 1px solid #e3e6f0;
     background-color: #fff;
     background-color: rgb(255, 255, 255);
+
+    border-left: 0.25rem solid #021e46 !important;
 
     box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, .15);
 
