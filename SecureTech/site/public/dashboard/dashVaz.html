@@ -629,30 +629,10 @@
         document.getElementById(elementID).textContent = valor;
     }
 
-    // function obterMedidasRede(idATM) {
-    //     var idATM = sessionStorage.idATM
-
-    //     fetch(`/usuarios/tempo-medidasRede/${idATM}`, { cache: 'no-store' }).then(function (response) {
-    //         console.log('n entrei')
-    //         if (response.ok) {
-    //             response.json().then(function (resposta) {
 
 
 
-    //                 plotarGrafico(resposta, idATM);
-
-    //             });
-    //         } else {
-    //             console.error('Nenhum dado encontrado ou erro na API');
-    //         }
-    //     })
-    //         .catch(function (error) {
-    //             console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
-    //         });
-    // }
-
-
-
+    // GRAFICO
     function buscarMedidasRede(idATM) {
         var idATM = sessionStorage.idATM
 
@@ -686,17 +666,25 @@
             datasets: [
                 {
                     label: 'Upload',
+                    color: 'white',
                     data: [],
-                    backgroundColor: '#bde5e4',
-                    borderColor: '#26ABA7',
-                    tension: 0.1
+                    fill: false,
+                    backgroundColor: '#ff0000   ',
+                    borderColor: '#ff0000   ',
+                    fontColor: 'white',
+                    borderWidth: 1,
+                    tension: 0.5
                 },
                 {
                     label: 'Download',
+                    color: 'white',
                     data: [],
-                    backgroundColor: '#b7cef1',
-                    borderColor: '#115ED2',
-                    tension: 0.1
+                    fill: false,
+                    backgroundColor: '#021e46   ',
+                    borderColor: '#021e46   ',
+                    fontColor: 'white',
+                    borderWidth: 1,
+                    tension: 0.5
                 }
             ]
         };
@@ -710,7 +698,35 @@
             labels.push(registro.dataHora);
             dados.datasets[0].data.push(registro.pacotesEnviados);
             dados.datasets[1].data.push(registro.pacotesRecebidos);
+        }
 
+        const opcoes = {
+            plugins: {
+                legend: {
+                    labels: {
+                        color: '#021e46',
+                        fontStyle: 'bold' // Cor da fonte da label
+                    }
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    grid: {
+                        display: false,
+                    },
+                    ticks: {
+                        color: 'black' // Cor da fonte no eixo X
+                    },
+                },
+                x: {
+                    beginAtZero: true,
+                    display: false,
+                    ticks: {
+                        color: 'white' // Cor da fonte no eixo X
+                    },
+                }
+            }
         }
 
         console.log('----------------------------------------------')
@@ -723,15 +739,30 @@
 
         const config = {
             type: 'line',
-            data: dados
+            data: dados,
+            options: opcoes
         };
 
         let myChart3 = new Chart(
-            document.getElementById(myChartRede),
+            document.getElementById("myChartRede"),
             config
         );
 
-        console.log('VAI CORINTHAINS')
+        window.addEventListener('resize', function () {
+            containerWidth = chartContainer.clientWidth;
+            myChart.canvas.width = containerWidth;
+            myChart.update();
+        });
+
+        // Obtém a largura da div que contém o gráfico
+        let chartContainer = document.getElementById(`myChartRede`);
+        let containerWidth = chartContainer.clientWidth;
+
+        // Ajusta a largura do canvas para a largura da div
+        config.options = {
+            maintainAspectRatio: false,
+            responsive: true
+        };
 
         setTimeout(() => atualizarGraficoRede(idATM, dados, myChart3), 2000);
     }
@@ -743,7 +774,7 @@
                 console.log("papai socoro AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
                 response.json().then(function (novoRegistro) {
 
-                    console.log(`Dados recebidos: ${ JSON.stringify(novoRegistro)}`);
+                    console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
                     console.log("Dados atuais do gráfico:");
                     console.log(dados);
                     if (novoRegistro[0].dataHora == dados.labels[dados.labels.length]) {
@@ -757,12 +788,12 @@
                         console.log(dados.labels[dados.labels.length])
                         console.log("---------------------------------------------------------------")
                     } else {
-                        dados.labels.shift(); 
-                        dados.labels.push(novoRegistro[0].dataHora); 
+                        dados.labels.shift();
+                        dados.labels.push(novoRegistro[0].dataHora);
 
-                        dados.datasets[0].data.shift();  
+                        dados.datasets[0].data.shift();
                         dados.datasets[0].data.push(novoRegistro[0].pacotesEnviados);
-                        dados.datasets[1].data.push(novoRegistro[1].pacotesRecebidos); 
+                        dados.datasets[1].data.push(novoRegistro[1].pacotesRecebidos);
 
 
                         myChart3.update();

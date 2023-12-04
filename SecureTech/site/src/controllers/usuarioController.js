@@ -443,7 +443,7 @@ async function obterIP(req, res) {
 
 function buscarMedidasRede(req, res) {
 
-    const limite_linhas = 8;
+    const limite_linhas = 10;
 
     var idATM =  req.params.idATM;
 
