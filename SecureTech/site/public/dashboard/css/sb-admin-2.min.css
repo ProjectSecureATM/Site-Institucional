@@ -204,7 +204,7 @@ pre {
     margin-top: 0;
     margin-bottom: 1rem;
     overflow: auto;
-    
+
 }
 
 figure {
@@ -213,7 +213,7 @@ figure {
 
 img {
     vertical-align: middle;
-    border-style: none
+    border-style: none;
 }
 
 svg {
@@ -283,9 +283,7 @@ select {
 [type=button],
 [type=reset],
 [type=submit],
-button 
-
-[type=button]:not(:disabled),
+button [type=button]:not(:disabled),
 [type=reset]:not(:disabled),
 [type=submit]:not(:disabled),
 button:not(:disabled) {
@@ -341,7 +339,7 @@ progress {
 
 [type=search] {
     outline-offset: -2px;
-   
+
 }
 
 [type=search]::-webkit-search-decoration {
@@ -623,13 +621,13 @@ pre code {
     }
 }
 
-.texto{
+.texto {
     display: flex;
     /* width: 10vw; */
     /* background-color: #17a673; */
 }
 
-.formatTexto{
+.formatTexto {
     display: flex;
     justify-content: center;
     justify-content: space-around;
@@ -638,13 +636,13 @@ pre code {
 
 }
 
-.formatTexto span{
+.formatTexto span {
     color: rgb(2, 30, 70);
     font-size: 26px;
     font-weight: bold;
 }
 
-.api{
+.api {
     display: flex;
     justify-content: center;
     justify-content: space-evenly;
@@ -2607,21 +2605,21 @@ textarea.form-control.is-invalid {
     align-items: center
 }
 
-.buttonNavBar{    
+.buttonNavBar {
     height: 7vh;
     width: 15vw;
     border-radius: 2rem;
     background-color: #021e46;
 }
 
-.buttonNavBar a{
+.buttonNavBar a {
     font-size: 14px;
     font-weight: bold;
     color: white;
     text-decoration: none;
 }
 
-.buttonNavBar:hover{
+.buttonNavBar:hover {
     background-color: goldenrod;
     transition: 2s;
 
@@ -4019,7 +4017,7 @@ input[type=submit].btn-block {
     display: block;
     min-height: 1.5rem;
     padding-left: 1.5rem;
-    
+
 }
 
 .custom-control-inline {
@@ -4648,7 +4646,7 @@ input[type=submit].btn-block {
     border-radius: .35rem
 }
 
-.informacao{
+.informacao {
     display: flex;
     justify-content: left;
     height: 5vh;
@@ -4656,17 +4654,18 @@ input[type=submit].btn-block {
     /* background-color: #000; */
 }
 
-.iconeInformacao{
+.iconeInformacao {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 2.5vh;
     width: auto;
     cursor: pointer;
-    
+
     margin-left: 3%;
 }
-.iconeInformacao img{
+
+.iconeInformacao img {
     height: 100%;
     width: 100%;
     background-repeat: no-repeat;
@@ -5066,16 +5065,17 @@ input[type=submit].btn-block {
 
 .card {
     display: flex;
-    flex-direction: column;
     min-width: 0;
     word-wrap: break-word;
     background-color: #fff;
     background-clip: border-box;
     border: 1px solid #e3e6f0;
-    border-radius: .35rem
+    border-radius: .35rem;
+    position: relative;
+
 }
 
-.infoRede{
+.infoRede {
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
@@ -5109,16 +5109,205 @@ input[type=submit].btn-block {
 }
 
 .card-body {
-    flex: 1 1 auto;
-    min-height: 1px;
-    padding: 0.5rem
+    display: flex;
+    flex-direction: column;
+    height: 40vh;
+    width: 30vw;
+    padding: 0.5rem;
+}
+
+.border-left-primary-kpi{
+    border-left: 0.25rem solid #021e46 !important;
+}
+
+#proc{
+    position: relative;
+    font-size: 25px;
+    justify-content: center;
+    text-align: center;
+}
+
+#percent{
+    font-weight: bolder;
+    color: #021e46;
+}
+
+#discoPercentage,
+#cpuPercentage,
+#ramPercentage
+{
+    font-weight: bolder;
+    color: #021e46;
+}
+
+#metricas_desempenho{
+    position: relative;
+    left: 2rem;
+    color: white;
+    font-weight: bolder;
+}
+
+#metricas_desempenho:hover{
+    transform: scale(1.08);
+}
+
+.modal2 {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+    box-shadow: 0 0.50rem 1.90rem 0 rgba(58, 59, 69, .15) !important;
+    color: #021e46;
+}
+
+/* Estilo para o conteúdo do modal */
+.modal-content2 {
+    background-color: #fefefe;
+    margin: 10% auto;
+    /* padding: 5px; */
+    border: 1px solid #888;
+    width: 80vw;
+    height: 70vh;
+    text-align: center;
+    align-items: center;
+    /* justify-content: center; */
+    font-size: 20px;
+    color: #021e46;
+    border-radius: 1rem;
+    display: flex;
+    /* flex-direction: row-reverse; */
+    position: relative;
+    gap: 2.5rem;
+}
+
+.desempenho_content h5{
+    text-align: center;
+    font-weight: bolder;
+    font-size: 16px;
+}
+
+.desempenho_content h6{
+    text-align: left;
+    position: relative;
+    left: 0.5rem;
+    font-weight: bolder;
+    font-size: 14px;
+}
+
+/* Estilo para o botão de fechar o modal */
+#closeteste {   
+    color: #021e46;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    text-align: left; 
+    position: relative;
+    bottom: 12rem;
+    left: 66rem;
+}
+
+.close2:hover,
+.close2:focus {
+    color: #021e46;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.caixa-container{
+    width: 22vw;
+    height: 15vh;
+    box-shadow: 0 3rem 5rem 0 rgba(58, 59, 69, .15) !important;
+    border-radius: 1rem;
+    border-left: 0.25rem solid #021e46 !important;
+    position: relative;
+}
+
+.bolaIdeal {
+    display: inline-block;
+    width: 1vw;
+    height: 2vh;
+    border-radius: 50%;
+    position: relative;
+    left: 9vw;
+    bottom: 3.3rem;
+    background-color: green;
+}
+
+.bolaModerada {
+    display: inline-block;
+    width: 1vw;
+    height: 2vh;
+    border-radius: 50%;
+    position: relative;
+    left: 9vw;
+    bottom: 3.3rem;
+    background-color: yellow;
+}
+
+.bolaCritica {
+    display: inline-block;
+    width: 1vw;
+    height: 2vh;
+    border-radius: 50%;
+    position: relative;
+    left: 9vw;
+    bottom: 3.3rem;
+    background-color: rgb(160, 2, 2);
+}
+
+.caixa-desempenho{
+    padding: 0.7rem;
+    text-align: left;
+}
+
+.caixa-desempenho p{
+    text-align: left;
+    padding: 0.7rem;
+    font-weight: bolder;
+    color:#021e46;
+    font-size: 16px;
+}
+
+#desempenhoGeral{
+    font-weight: bolder;
+    font-size: 16px;
+    color: #021e46;
+}
+
+
+#ProcessosChart {
+    position: relative;
+    top: 1rem;
+    font-size: 5rem;
+
+    font-weight: bold;
+}
+
+.teste2 {
+    display: flex;
+}
+
+#bloco {
+    height: 15vh;
+}
+
+
+.chart-area {
+  position: relative;
+  height: 50vh;
+    
 }
 
 .card-title {
     margin-bottom: .75rem
 }
 
-.card-titulo{
+.card-titulo {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -5159,7 +5348,7 @@ input[type=submit].btn-block {
     border-top: 1px solid #e3e6f0
 }
 
-.textoAlinhado{
+.textoAlinhado {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -8594,7 +8783,7 @@ button.bg-dark:hover {
 
 .mr-2,
 .mx-2 {
-    margin-right: .5rem !important
+    margin-right: .5rem !important;
 }
 
 .mb-2,
@@ -11190,7 +11379,7 @@ a:focus {
 }
 
 .bg-gradient-primary {
-    background-color:#021e46;
+    background-color: #021e46;
     /* background-image: linear-gradient(180deg, #4e73df 10%, #224abe 100%); */
     background-size: cover
 }
@@ -11278,7 +11467,8 @@ a:focus {
 }
 
 .text-xs {
-    font-size: 14px
+    font-size: 14px;
+    color:#021e46;
 }
 
 .text-lg {
@@ -11757,7 +11947,7 @@ a:focus {
     font-size: 2rem
 }
 
-.imgLogoDash{
+.imgLogoDash {
     height: 100%;
     width: 100%;
 
@@ -12165,8 +12355,8 @@ a:focus {
 
 .chart-area {
     position: relative;
-    height: 10rem;
-    width: 100%
+    height: 50rem;
+    width: 85%
 }
 
 @media (min-width:768px) {

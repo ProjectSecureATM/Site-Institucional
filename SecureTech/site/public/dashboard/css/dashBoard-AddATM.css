@@ -40,9 +40,8 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-
     height: 5vh;
-    width: 70%;
+    width: 80%;
 
     /* background-color: red; */
 }
@@ -62,6 +61,7 @@
     font-size: 16px;
     font-weight: bold;
     color: white;
+    width: 30vw;
 }
 
 .addATMInput{
@@ -69,12 +69,20 @@
     justify-content: center;
     height: 100%;
     width: 60%;
+}
+
+
+#modelo_input{
+    display: flex;
+    justify-content: center;
+    height: 100%;
+    width: 70%;
 
 
     /* background-color: rgb(255, 255, 255); */
 }
 
-.addATMInput input{
+/* .addATMInput input{
     width: 95%;
 	appearance: none;
 	border: none;
@@ -84,7 +92,7 @@
 	border-radius: .2em .2em 0 0;
 	padding: .4em;
 	color: #000000;
-}
+} */
 
 .button {
     background-color: #FFCB45;

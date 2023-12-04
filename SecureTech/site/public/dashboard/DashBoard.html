@@ -17,6 +17,7 @@
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="../js/metricas.js"></script>
     <!-- ... -->
 
     <!-- Custom fonts for this template-->
@@ -27,7 +28,6 @@
 
     <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
-
 </head>
 
 <body id="page-top">
@@ -79,10 +79,10 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Inovações Secure ATM:</h6>
                         <a href="DashBoard-VisaoGeral-Vaz.html" class="collapse-item">Dash Gabroh</a>
-                        <a href="DashBoard-VisaoGeral-Giba.html" class="collapse-item">Dash Jujuba</a>
+                        <a href="DashBoard-VisaoGeral-Giba.html" class="collapse-item">Temp Performance</a>
                         <a href="dashVisaoGeralRede_Julio.html" class="collapse-item">Dash Julião</a>
                         <a href="DashBoard-VisaoGeral-Paulo.html" class="collapse-item">Dash Paulão</a>
-                        <a class="collapse-item">Dash Primon</a>
+                        <a href="DashBoard-VisaoGeral-Primon.html" class="collapse-item">Dash Primon</a>
                         <a class="collapse-item">Dash Alice</a>
                     </div>
                 </div>
@@ -106,8 +106,97 @@
 
                     <!-- Sidebar Toggle (Topbar) -->
                     <button class="buttonNavBar">
-                        <a href="../homeDashBoard.html">Voltar para Agencia</a>
+                        <a href="../homeDashBoard.html">Voltar para Agência</a>
                     </button>
+
+                    <button id="metricas_desempenho" class="buttonNavBar" onclick="notificarATM2()">Métricas</button>
+                    <div id="modal2" class="modal2">
+                        <div class="modal-content2">
+                            <span id="closeteste" class="close2" onclick="closeModal2()">&times;</span>
+                            
+                            <div class="desempenho_content">
+                                <h5>CPU</h5>
+
+                                <div class="caixa-container">
+                                    <div class="caixa-desempenho">
+                                        <h6>USO IDEAL</h6>
+                                        <p>0% a 39%</p>
+                                        <div id="bolas" class="bolaIdeal"></div>
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="caixa-container">
+                                    <div class="caixa-desempenho">
+                                        <h6>USO MODERADO</h6>
+                                        <p>40% a 54%</p>
+                                        <div id="bolas" class="bolaModerada"></div>
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="caixa-container">
+                                    <div class="caixa-desempenho">
+                                        <h6>USO CRÍTICO</h6>
+                                        <p>55% a 100%</p>
+                                        <div id="bolas" class="bolaCritica"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="desempenho_content">
+                                <h5>RAM</h5>
+
+                                <div class="caixa-container">
+                                    <div class="caixa-desempenho">
+                                        <h6>USO IDEAL</h6>
+                                        <p>0% a 50%</p>
+                                        <div id="bolas" class="bolaIdeal"></div>
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="caixa-container">
+                                    <div class="caixa-desempenho">
+                                        <h6>USO MODERADO</h6>
+                                        <p>51% a 79%</p>
+                                        <div id="bolas" class="bolaModerada"></div>
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="caixa-container">
+                                    <div class="caixa-desempenho">
+                                        <h6>USO CRÍTICO</h6>
+                                        <p>80% a 100%</p>
+                                        <div id="bolas" class="bolaCritica"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="desempenho_content">
+                                <h5>DISCO</h5>
+
+                                <div class="caixa-container">
+                                    <div class="caixa-desempenho">
+                                        <h6>USO IDEAL</h6>
+                                        <p>0% a 50%</p>
+                                        <div id="bolas" class="bolaIdeal"></div>
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="caixa-container">
+                                    <div class="caixa-desempenho">
+                                        <h6>USO MODERADO</h6>
+                                        <p>51% a 79%</p>
+                                        <div id="bolas" class="bolaModerada"></div>
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="caixa-container">
+                                    <div class="caixa-desempenho">
+                                        <h6>USO CRÍTICO</h6>
+                                        <p>80% a 100%</p>
+                                        <div id="bolas" class="bolaCritica"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
                     <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
                         <i class="fa fa-bars"></i>
@@ -170,78 +259,70 @@
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center mb-4">
                         <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
-                        <div class="informacao">
-                            <div class="iconeInformacao" onclick="testeBotao()">
-                                <img src="../assets/information.png" alt="">
-                            </div>
-                        </div>
                     </div>
 
                     <!-- Content Row -->
 
-                    <div class="card">
-                        <div class="card">
-                            <div class="col-xl-3 col-md-6 mb-4">
-                                <div class="card border-left-primary shadow h-100 py-2">
-                                    <div class="card-body">
-                                        <div class="row no-gutters align-items-center">
-                                            <div class="col mr-2">
-                                                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                                    RAM</div>
-                                                <span id="ramPercentage"></span>
-                                                <span>%</span>
-                                            </div>
-                                        </div>
+                    <div id="bloco" class="teste2">
+                        <br><br>
+                       
+                        <div class="card border-left-primary-kpi shadow h-100 py-2">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+                                        <div id="borda"
+                                            class="text-xs font-weight-bold text-primary-kpi text-uppercase mb-1">
+                                            CPU</div>
+                                        <span id="cpuPercentage"></span>
+                                        <span id="percent"><b>%</b></span>
+                                        
                                     </div>
                                 </div>
                             </div>
                         </div>
-
-                        <div class="card">
-                            <div class="col-xl-3 col-md-6 mb-4">
-                                <div class="card border-left-primary shadow h-100 py-2">
-                                    <div class="card-body">
-                                        <div class="row no-gutters align-items-center">
-                                            <div class="col mr-2">
-                                                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                                    DISCO</div>
-                                                <span id="discoPercentage"></span>
-                                                <span>%</span>
-                                            </div>
-                                        </div>
+                        <div class="card border-left-primary-kpi shadow h-100 py-2">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+                                        <div id="borda"
+                                            class="text-xs font-weight-bold text-primary-kpi text-uppercase mb-1">
+                                            RAM</div>
+                                        <span id="ramPercentage"></span>
+                                        <span id="percent"><b>%</b></span>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="card border-left-primary-kpi shadow h-100 py-2">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+                                        <div class="text-xs font-weight-bold text-primary-kpi text-uppercase mb-1">
+                                            DISCO</div>
+                                        <span id="discoPercentage"></span>
+                                        <span id="percent"><b>%</b></span>
+                                        
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-
-                    <div class="card-linha">
-                        <div class="card">
-                            <div class="col-xl-3 col-md-6 mb-4">
-                                <div class="card border-left-primary shadow h-100 py-2">
-                                    <div class="card-body">
-                                        <div class="row no-gutters align-items-center">
-                                            <div class="col mr-2">
-                                                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                                    CPU</div>
-                                                <span id="cpuPercentage"></span>
-                                                <span>%</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
+                    
+                    
+                        <br>
+                
                         <div class="row" style="justify-content: center; align-items: center;">
 
-
+                            
                             <div class="col-xl-8 col-lg-7">
                                 <div class="card shadow mb-4">
 
                                     <div
+                                    
                                         class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                        <h6 class="m-0 font-weight-bold text-primary">Processos</h6>
+                                        
                                         <div class="dropdown no-arrow">
                                             <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
                                                 aria-labelledby="dropdownMenuLink">
@@ -250,7 +331,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="card-body">
+                                    <div class="chart-area">
                                         <canvas id="ProcessosChart"></canvas>
                                     </div>
                                 </div>
@@ -286,7 +367,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    
                 </div>
             </div>
         </div>
@@ -383,8 +464,8 @@
                 label: 'Processos',
                 data: [],
                 fill: false,
-                backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                borderColor: 'rgba(75, 192, 192, 1)',
+                backgroundColor: '#021e46',
+                borderColor: '#021e46',
                 borderWidth: 5,
                 tension: 0.5
             }]
