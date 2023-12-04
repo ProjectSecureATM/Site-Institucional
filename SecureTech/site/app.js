@@ -8,15 +8,10 @@ var PORTA = process.env.AMBIENTE_PROCESSO == "desenvolvimento" ? 3333 : 3000;
 
 var app = express();
 
-app.get('/', (req, res) => {
-    const ipAddress = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
-    res.send(`Endereço IP: ${ipAddress}`);
-});
-
-const PORT = 3000;
-app.listen(PORT, () => {
-    console.log(`Servidor rodando na porta ${PORT}`);
-});
+// app.get('/', (req, res) => {
+//     const ipAddress = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
+//     res.send(`Endereço IP: ${ipAddress}`);
+// });
 
 var indexRouter = require("./src/routes/index");
 var usuarioRouter = require("./src/routes/usuarios");

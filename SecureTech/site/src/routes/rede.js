@@ -19,4 +19,5 @@ router.get('/atualizarGraficoPacotes', function (req, res) {
     redeController.atualizarGraficoPacotes(req, res);
 });
 
+
 module.exports = router;
