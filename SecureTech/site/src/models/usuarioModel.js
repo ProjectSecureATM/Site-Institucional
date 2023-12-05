@@ -1,3 +1,4 @@
+const { isDataView } = require("util/types");
 var database = require("../database/config")
 const util = require('util');
 
@@ -316,6 +317,9 @@ GROUP BY DATE_FORMAT(data_hora, '%Y-%m-%d %H:00:00');`;
     }
 
     async function obterMetricasRede(idATM) {
+
+
+
         const PINGQuery = `SELECT ping FROM rede WHERE fk__idATM = ${idATM} order by data_hora desc limit 1`;
         const DOWNLOADQuery = `SELECT pacotesRecebidos FROM rede WHERE fk__idATM = ${idATM} order by data_hora desc limit 1`;
         const UPLOADQuery = `SELECT pacotesEnviados FROM rede WHERE fk__idATM = ${idATM} order by data_hora desc limit 1`;
@@ -478,12 +482,16 @@ GROUP BY DATE_FORMAT(data_hora, '%Y-%m-%d %H:00:00');`;
     }
 
     function buscarMedidasRede(idATM, limite_linhas) {
-        instrucaoSql = ''
 
         if (process.env.AMBIENTE_PROCESSO == 'producao') {
             //NUVEM
             instrucaoSql = `
-      
+            SELECT TOP ${limite_linhas}
+            FORMAT(data_hora, 'HH:mm:ss') as dataHora
+        FROM
+            rede
+        WHERE
+            fk__idATM=${idATM};
       `
         } else if (process.env.AMBIENTE_PROCESSO == 'desenvolvimento') {
             instrucaoSql = `
