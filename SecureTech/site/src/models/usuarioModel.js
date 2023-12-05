@@ -1011,11 +1011,11 @@ GROUP BY DATE_FORMAT(data_hora, '%Y-%m-%d %H:00:00');`;
 
     async function CPUHora(idATM) {
         const instrucaoSql = `
-            SELECT MAX(Valor) AS quantidade, FORMAT(DataRegistro, 'yyyy-MM-dd HH:mm:ss') AS hora, ATMComp_ID
+            SELECT MAX(Valor) AS quantidade, FORMAT(MAX(DataRegistro), 'yyyy-MM-dd HH:mm:ss') AS hora, ATMComp_ID
             FROM Leitura
             WHERE ATMComp_ID = ${idATM} AND Componente_ID = 3
-            GROUP BY FORMAT(DataRegistro, 'yyyy-MM-dd HH:mm:ss')
-            ORDER BY FORMAT(DataRegistro, 'yyyy-MM-dd HH:mm:ss') DESC
+            GROUP BY fkATM, FORMAT (DataRegistro, 'yyyy-MM-dd HH:mm:ss')
+            ORDER BY FORMAT(MAX(DataRegistro), 'yyyy-MM-dd HH:mm:ss') DESC
             OFFSET 0 ROWS FETCH FIRST 3 ROWS ONLY;
         `;
         console.log("Executando a instrução SQL:\n", instrucaoSql);
@@ -1024,11 +1024,11 @@ GROUP BY DATE_FORMAT(data_hora, '%Y-%m-%d %H:00:00');`;
 
     async function CPU_tempoReal(idATM) {
         const instrucaoSql = `
-            SELECT MAX(Valor) AS quantidade, FORMAT(DataRegistro, 'yyyy-MM-dd HH:mm:ss') AS hora, ATMComp_ID
+            SELECT MAX(Valor) AS quantidade, FORMAT (MAX(DataRegistro), 'yyyy-MM-dd HH:mm:ss') AS hora, ATMComp_ID
             FROM Leitura
             WHERE ATMComp_ID = ${idATM} AND Componente_ID = 3
-            GROUP BY FORMAT(DataRegistro, 'yyyy-MM-dd HH:mm:ss')
-            ORDER BY FORMAT(DataRegistro, 'yyyy-MM-dd HH:mm:ss') DESC
+            GROUP BY FORMAT fkATM, FORMAT (DataRegistro, 'yyyy-MM-dd HH:mm:ss')
+            ORDER BY FORMAT(MAX(DataRegistro), 'yyyy-MM-dd HH:mm:ss') DESC
             OFFSET 0 ROWS FETCH FIRST 1 ROW ONLY;
         `;
         console.log("Executando a instrução SQL:\n", instrucaoSql);
