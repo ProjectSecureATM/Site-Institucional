@@ -523,16 +523,16 @@
     }
 
     window.onload = function () {
-        if (idATM) {
-            mostrarTemp(idATM);
-            mostrarCPU(idATM);
-            obterDesempenhoETempoSistema(idATM);
-            obterBotaoSistema(idATM);
-            exibirStatusSistema(idATM);
-            cpuTemperatura(idATM);
-        } else {
-            console.error('idATM não está definido.');
-        }
+       if (idATM) {
+           mostrarTemp(idATM);
+           mostrarCPU(idATM);
+           obterDesempenhoETempoSistema(idATM);
+           obterBotaoSistema(idATM);
+           exibirStatusSistema(idATM);
+           cpuTemperatura(idATM);
+       } else {
+           console.error('idATM não está definido.');
+       }
     };
 
     function obterDesempenhoETempoSistema(idATM) {
@@ -597,33 +597,27 @@
         document.getElementById(elementID).textContent = valor;
     }
 
-    function cpuTemperatura(idATM) {
-        fetch(`/usuarios/cpuTemperatura/${idATM}`, { cache: 'no-store' })
-            .then(function (resposta) {
-                if (resposta.ok) {
-                    return resposta.json();
-                } else {
-                    console.error('Erro ao obter dados do sistema');
-                    return {};
-                }
-            })
-            .then(function (dados) {
-                // Adicione logs para verificar os dados
-                console.log('Dados recebidos:', dados);
-                atualizarValorDOM8('cpuTemp', dados.CPUTEMP)
+    // function cpuTemperatura(idATM) {
+    //     fetch(`/usuarios/cpuTemperatura/${idATM}`, { cache: 'no-store' })
+    //         .then(function (resposta) {
+    //             if (resposta.ok) {
+    //                 return resposta.json();
+    //             } else {
+    //                 console.error('Erro ao obter dados do sistema');
+    //                 return {};
+    //             }
+    //         })
+    //         .then(function (dados) {
+    //             // Adicione logs para verificar os dados
+    //             console.log('Dados recebidos:', dados);
+    //             atualizarValorDOM8('cpuTemp', dados.TEMPERATURA)
 
-                if (dados.CPUTEMP >= 0 && dados.CPUTEMP <= 50) {
-                    bolaMetrica.style.backgroundColor = 'green';
-                } else if (dados.CPUTEMP >= 51 && dados.CPUTEMP <= 69) {
-                    bolaMetrica.style.backgroundColor = 'yellow';
-                } else if (dados.CPUTEMP >= 70 && dados.CPUTEMP <= 100) {
-                    bolaMetrica.style.backgroundColor = 'rgb(160, 2, 2)';
-                }
-            })
-            .catch(function (error) {
-                console.error(`Erro na obtenção dos dados do sistema: ${error.message}`);
-            });
-    }
+                
+    //         })
+    //         .catch(function (error) {
+    //             console.error(`Erro na obtenção dos dados do sistema: ${error.message}`);
+    //         });
+    // }
 
     function atualizarValorDOM8(elementID, valor) {
         console.log(`Atualizando elemento ${elementID} com valor ${valor}`);
@@ -692,13 +686,13 @@
             .then(function (dados) {
                 // Adicione logs para verificar os dados
                 console.log('Dados recebidos:', dados);
-                atualizarValorDOM('desempenhoGeral', dados.DESEMPENHO)
+                atualizarValorDOM('desempenhoGeral', dados[0].DesempenhoGeral)
 
-                if (dados.DESEMPENHO >= 80 && dados.DESEMPENHO <= 100) {
+                if (dados[0].DesempenhoGeral >= 80 && dados[0].DesempenhoGeral <= 100) {
                     bolaMetricaDESEMPENHO.style.backgroundColor = 'green';
-                } else if (dados.DESEMPENHO >= 51 && dados.DESEMPENHO <= 79.9) {
+                } else if (dados[0].DesempenhoGeral >= 51 && dados[0].DesempenhoGeral <= 79.9) {
                     bolaMetricaDESEMPENHO.style.backgroundColor = 'yellow';
-                } else if (dados.DESEMPENHO >= 0 && dados.DESEMPENHO <= 50.9) {
+                } else if (dados[0].DesempenhoGeral >= 0 && dados[0].DesempenhoGeral <= 50.9) {
                     bolaMetricaDESEMPENHO.style.backgroundColor = 'rgb(160, 2, 2)';
                 }
             })
@@ -781,7 +775,7 @@
             .then(function (dados) {
                 // Adicione logs para verificar os dados
                 console.log('Dados recebidos:', dados);
-                atualizarValorDOM2('tempoAtividade', dados.TEMPO)
+                atualizarValorDOM2('tempoAtividade', dados[0].atividade)
             })
             .catch(function (error) {
                 console.error(`Erro na obtenção dos dados do sistema: ${error.message}`);
@@ -877,7 +871,7 @@
             document.getElementById(`TEMPChart`),
             config
         );
-        setTimeout(() => atualizarGraficoTEMP(idATM, dados, myChart), 7000);
+        setTimeout(() => atualizarGraficoTEMP(idATM, dados, myChart), 2000);
     }
 
     function atualizarGraficoTEMP(idATM, dados, myChart) {
@@ -903,6 +897,7 @@
 
                     dados.labels.push(novoRegistro[0].hora);
                     dados.datasets[0].data.push(novoRegistro[0].temp_cpu);
+                    cpuTemp.innerHTML = novoRegistro[0].temp_cpu
                     myChart.update();
                 } else {
                     console.log("---------------------------------------------------------------");
@@ -912,6 +907,14 @@
                     console.log("Horário do último dado capturado:");
                     console.log(dados.labels[dados.labels.length - 1]);
                     console.log("---------------------------------------------------------------");
+                }
+
+                if (novoRegistro[0].temp_cpu >= 0 && novoRegistro[0].temp_cpu <= 50) {
+                    bolaMetrica.style.backgroundColor = 'green';
+                } else if (novoRegistro[0].temp_cpu >= 51 && novoRegistro[0].temp_cpu <= 69) {
+                    bolaMetrica.style.backgroundColor = 'yellow';
+                } else if (novoRegistro[0].temp_cpu >= 70 && novoRegistro[0].temp_cpu <= 100) {
+                    bolaMetrica.style.backgroundColor = 'rgb(160, 2, 2)';
                 }
 
                 setTimeout(() => atualizarGraficoTEMP(idATM, dados, myChart), 2000);

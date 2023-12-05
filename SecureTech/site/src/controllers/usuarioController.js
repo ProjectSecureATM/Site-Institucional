@@ -318,6 +318,21 @@ function TEMP_tempoReal(req, res) {
     });
 }
 
+function cpuTemperatura(req, res) {
+    idATM  = req.params.idATM;
+    usuarioModel.cpuTemperatura(idATM).then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum resultado encontrado!")
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+        console.log("Houve um erro ao buscar as ultimas medidas.", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+
 function VariedadeHora(req, res) {
     idATM  = req.params.idATM;
     
@@ -381,11 +396,16 @@ async function obterMetricasRede(req, res) {
     }
 }
 
-async function obterDesempenho(req, res) {
-    const idATM = req.params.idATM;
+function obterDesempenho(req, res) {
+    var idATM = req.params.idATM;
     try {
-        const dados = await usuarioModel.obterDesempenho(idATM);
-        res.json(dados);
+        usuarioModel.obterDesempenho(idATM).then(function (resposta){
+            if (resposta.length > 0) {
+                res.status(200).json(resposta);
+            } else {
+                res.status(204).send("Nenhum resultado encontrado!");
+            }
+        });
     } catch (error) {
         res.status(500).json({ error: error.message });
     }
@@ -415,16 +435,6 @@ async function obterBotao(req, res) {
     const idATM = req.params.idATM;
     try {
         const dados = await usuarioModel.obterBotao(idATM);
-        res.json(dados);
-    } catch (error) {
-        res.status(500).json({ error: error.message });
-    }
-}
-
-async function cpuTemperatura(req, res) {
-    const idATM = req.params.idATM;
-    try {
-        const dados = await usuarioModel.cpuTemperatura(idATM);
         res.json(dados);
     } catch (error) {
         res.status(500).json({ error: error.message });
