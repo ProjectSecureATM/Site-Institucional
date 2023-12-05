@@ -32,8 +32,8 @@ function confirmacaoSeguranca(req, res) {
 }
 
 function graficoPacotes(req, res) {
-
-    redeModel.graficoPacotes().then(function (resultado) {
+    var idAgen = req.params.idAgen;
+    redeModel.graficoPacotes(idAgen).then(function (resultado) {
         if (resultado.length > 0) {
             res.status(200).json(resultado);
         } else {
@@ -47,8 +47,8 @@ function graficoPacotes(req, res) {
 }
 
 function atualizarGraficoPacotes(req, res) {
-
-    redeModel.atualizarGraficoPacotes().then(function (resultado) {
+    var idAgen = req.params.idAgen;
+    redeModel.atualizarGraficoPacotes(idAgen).then(function (resultado) {
         if (resultado.length > 0) {
             res.status(200).json(resultado);
         } else {

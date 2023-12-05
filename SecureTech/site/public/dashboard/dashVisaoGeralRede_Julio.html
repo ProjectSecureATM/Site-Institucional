@@ -165,24 +165,24 @@
                 </nav>
 
                 <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-                aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Certeza que você quer sair?</h5>
-                            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">×</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">Selecione "Sair" para deslogar.</div>
-                        <div class="modal-footer">
-                            <button style="text-align: left;" class="btn btn-secondary" type="button"
-                                data-dismiss="modal">Cancelar</button>
-                            <a class="btn btn-primary" href="../index.html">Sair</a>
+                    aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Certeza que você quer sair?</h5>
+                                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">×</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">Selecione "Sair" para deslogar.</div>
+                            <div class="modal-footer">
+                                <button style="text-align: left;" class="btn btn-secondary" type="button"
+                                    data-dismiss="modal">Cancelar</button>
+                                <a class="btn btn-primary" href="../index.html">Sair</a>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
                 <!-- End of Topbar -->
 
@@ -202,9 +202,10 @@
                     <!-- Content Row -->
                     <div id="infosRede">
                         <div id="tamDiv" class="card">
-                            <div id="tamDiv"class="card">
+                            <div id="tamDiv" class="card">
                                 <div id="tamDiv" class="col-xl-3 col-md-6 mb-4">
-                                    <div id="tamDiv" class="card border-left-primary shadow h-100 py-2" id="divConteudo">
+                                    <div id="tamDiv" class="card border-left-primary shadow h-100 py-2"
+                                        id="divConteudo">
                                         <div class="card-body">
                                             <div class="row no-gutters align-items-center">
                                                 <div class="col mr-2">
@@ -229,7 +230,7 @@
                                                         <div
                                                             class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                                             Tráfego de Rede:</div>
-                                                        <span id="pctTotais"></span>
+                                                        <span id="trafego"></span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -275,7 +276,7 @@
                                                     <!-- This is the div where you will display the fetched information -->
                                                 </div>
                                             </div>
-                                        </div>                                    
+                                        </div>
                                     </div>
 
                                     <!-- Scroll to Top Button-->
@@ -342,16 +343,20 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
 
+
     <script>
+        var trafegoAnormal = false;
+
+        var idAgen = sessionStorage.getItem('idAgen')
 
         window.onload = function () {
-            mostrarPacotesRede()
+            mostrarPacotesRede(idAgen)
             obterIP()
         }
-        function mostrarPacotesRede() {
-            mostrarPacotes();
+        function mostrarPacotesRede(idAgen) {
+            mostrarPacotes(idAgen);
             setInterval(function () {
-                mostrarPacotes();
+                mostrarPacotes(idAgen);
             }, 7000);
         }
 
@@ -402,16 +407,16 @@
                     return response.json();
                 })
                 .then(data => {
-                    
+
                     alert('Dados recuperados com sucesso!');
 
                     var feed = document.getElementById("div");
                     var div = document.createElement("div");
-                    div.setAttribute("id","ip_recebido")
+                    div.setAttribute("id", "ip_recebido")
                     feed.appendChild(div);
-                    
+
                     //if (data && data.verificado) {
-                        listarIPePacotes();
+                    listarIPePacotes();
                     //}
 
                     // Atualizar a div existente com os dados recuperados
@@ -424,24 +429,25 @@
                 });
         }
 
-        function mostrarPacotes() {
-            fetch(`/rede/graficoPacotes/`, { cache: 'no-store' })
+        function mostrarPacotes(idAgen) {
+            fetch(`/rede/graficoPacotes/${idAgen}`, { cache: 'no-store' })
                 .then(function (response) {
                     if (response.ok) {
                         return response.json();
                     } else {
-                        console.error('Nenhum dado encontrado ou erro na API');
+                        console.error('Erro na API ou nenhum dado encontrado');
                         return [];
                     }
                 })
                 .then(function (resposta) {
                     console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
-                    criarGrafico(resposta, idATM);
+                    criarGrafico(resposta.labels, resposta.data);
                 })
                 .catch(function (error) {
                     console.error(`Erro na obtenção dos dados para o gráfico: ${error.message}`);
                 });
         }
+
 
         function criarGrafico(labels, data) {
             var ctx = document.getElementById('ProcessosChart').getContext('2d');
@@ -465,11 +471,12 @@
                     }
                 }
             });
-            setTimeout(() => atualizarGraficoPacotes(idATM, dados, myChart), 70000);
+            // ...
         }
 
-        function atualizarGraficoPacotes(dados, myChart) {
-            fetch(`/rede/atualizarGraficoPacotes/`, { cache: 'no-store' })
+
+        function atualizarGraficoPacotes(idAgen, dados, myChart) {
+            fetch(`/rede/atualizarGraficoPacotes/${idAgen}`, { cache: 'no-store' })
                 .then(function (response) {
                     if (response.ok) {
                         return response.json();
@@ -502,54 +509,75 @@
                         console.log("---------------------------------------------------------------");
                     }
 
-                    setTimeout(() => atualizarGraficoPacotes(dados, myChart), 20000);
+                    setTimeout(() => atualizarGraficoPacotes(idAgen, dados, myChart), 20000);
                 })
                 .catch(function (error) {
                     console.error(`Erro na obtenção dos dados para o gráfico: ${error.message}`);
-                    setTimeout(() => atualizarGraficoPacotes(dados, myChart), 20000);
+                    setTimeout(() => atualizarGraficoPacotes(idAgen, dados, myChart), 20000);
                 });
         }
 
         function listarIPePacotes() {
-        
-
-
             fetch("/rede/listarIPePacotes", { cache: 'no-store' })
-            .then(function (resposta){
-                resposta.json().then(function (resposta) {
-                    console.log("Dados recebidos: ", JSON.stringify(resposta));
+                .then(function (resposta) {
+                    resposta.json().then(function (resposta) {
+                        console.log("Dados recebidos: ", JSON.stringify(resposta));
 
-                    var feed = document.getElementById("ip_recebido");
-                    feed.innerHTML = "";
-                    for (let contador_usuario = 0; contador_usuario < resposta.length; contador_usuario++) {
-                        var publicacao = resposta[contador_usuario];
-                        // criando e manipulando elementos do HTML via JavaScript
-                        var usuario = document.createElement("li");
+                        var feed = document.getElementById("ip_recebido");
+                        feed.innerHTML = "";
 
-                        var rede = document.createElement("div");
+                        // Inicialize a variável trafegoAnormal dentro da função
+                        var trafegoAnormal = false;
 
-                        var ip = document.createElement("p");
-                        ip.innerHTML = `${publicacao.IP}`;
-                        rede.appendChild(ip)
+                        for (let contador_usuario = 0; contador_usuario < resposta.length; contador_usuario++) {
+                            var publicacao = resposta[contador_usuario];
 
-                        var Hora = document.createElement("p");
-                        Hora.innerHTML = `${publicacao.hora}`;
-                        rede.appendChild(Hora)
 
-                        var Pacotes = document.createElement("p");
-                        Pacotes.innerHTML = `${publicacao.pacotesEnviados}`;
-                        rede.appendChild(Pacotes)
+                            // Criando e manipulando elementos do HTML via JavaScript
+                            var usuario = document.createElement("li");
 
-                        feed.appendChild(rede);
-             
-                }
+                            var rede = document.createElement("div");
+
+                            var ip = document.createElement("p");
+                            ip.innerHTML = `${publicacao.IP}`;
+                            rede.appendChild(ip)
+
+                            var Hora = document.createElement("p");
+                            Hora.innerHTML = `${publicacao.hora}`;
+                            rede.appendChild(Hora)
+
+                            var Pacotes = document.createElement("p");
+                            Pacotes.innerHTML = `${publicacao.pacotesEnviados}`;
+                            rede.appendChild(Pacotes)
+
+                            // Verificando se o tráfego é anormal (mais de 100 pacotes)
+                            if (publicacao.pacotesEnviados > 100) {
+                                trafegoAnormal = true;
+                                rede.style.color = 'red';
+                            }
+
+                            feed.appendChild(rede);
+                        }
+
+                        // Mova esta parte para fora do loop para lidar com o tráfego anormal após processar todos os dados
+                        var trafego = document.getElementById("trafego");
+                        if (trafegoAnormal) {
+                            trafego.innerHTML = "Anormal";
+                            console.log('Tráfego anormal detectado! Faça alguma coisa.');
+                            // Adicione lógica adicional aqui para lidar com o tráfego anormal.
+                        } else {
+                            trafego.innerHTML = "Normal";
+                        }
+                    })
                 })
-            })   
-        .catch(error => {
-            console.error("Erro ao obter informações do servidor:", error);
-            alert('Erro ao obter informações do servidor.');
-        });
-}
+                .catch(error => {
+                    console.error("Erro ao obter informações do servidor:", error);
+                    alert('Erro ao obter informações do servidor.');
+                });
+        }
+
+
+
     </script>
 </body>
 

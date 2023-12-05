@@ -10,12 +10,14 @@ function confirmacaoSeguranca(email, senha) {
     return database.executar(instrucao);
 }
 
-function graficoPacotes() {
+function graficoPacotes(fkAgencia_usuario) {
     var instrucaoSql = `
-        SELECT data_hora, SUM(pacotesEnviados) AS total_pacotes
-        FROM rede
-        GROUP BY data_hora
-        ORDER BY data_hora;`;
+    SELECT SUM(pacotesEnviados) AS total_pacotes, FORMAT(MAX(data_hora), 'yyyy-MM-dd HH:mm:ss') AS hora, fk__ATMAgencia
+    FROM rede
+    WHERE fk__ATMAgencia = ${fkAgencia_usuario}
+    GROUP BY fk__ATMAgencia, FORMAT(data_hora, 'yyyy-MM-dd HH:00:00')
+    ORDER BY FORMAT(MAX(data_hora), 'yyyy-MM-dd HH:00:00') 
+    OFFSET 0 ROWS FETCH FIRST 3 ROWS ONLY;`;
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql)
         .then(resultados => {
@@ -28,14 +30,16 @@ function graficoPacotes() {
 }
 
 
-async function atualizarGraficoPacotes() {
+async function atualizarGraficoPacotes(fkAgencia_usuario) {
     try {
         // Definindo valores padrão
         var instrucaoSql = `
-        SELECT data_hora, SUM(pacotesEnviados) AS total_pacotes
-        FROM rede
-        GROUP BY data_hora
-        ORDER BY data_hora DESC LIMIT 1`;
+        SELECT SUM(pacotesEnviados) AS total_pacotes, FORMAT(MAX(data_hora), 'yyyy-MM-dd HH:mm:ss') AS hora, fk__ATMAgencia
+            FROM rede
+            WHERE fk__ATMAgencia = ${fkAgencia_usuario}
+            GROUP BY fk__ATMAgencia, FORMAT(data_hora, 'yyyy-MM-dd HH:00:00')
+            ORDER BY FORMAT(MAX(data_hora), 'yyyy-MM-dd HH:00:00') 
+            OFFSET 0 ROWS FETCH FIRST 1 ROWS ONLY`;
         console.log("Executando a instrução SQL: \n" + instrucaoSql);
         const resultados = await database.executar(instrucaoSql);
 
