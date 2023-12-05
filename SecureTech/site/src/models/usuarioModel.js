@@ -998,25 +998,26 @@ GROUP BY DATE_FORMAT(data_hora, '%Y-%m-%d %H:00:00');`;
 
     async function TEMP_tempoReal(idATM) {
         const instrucaoSql = `
-        SELECT MAX(temperatura) AS temp_cpu, FORMAT(MAX(data_hora), 'yyyy-MM-dd HH:mm:ss') AS hora, fkATM
-        FROM temperaturaCPU
-        WHERE fkATM = ${idATM}
-        GROUP BY fkATM, FORMAT(data_hora, 'yyyy-MM-dd 00:00:ss')
-        ORDER BY FORMAT(MAX(data_hora), 'yyyy-MM-dd 00:00:ss') DESC
-        OFFSET 0 ROWS FETCH FIRST 1 ROWS ONLY;
-        `;
+        SELECT temperatura AS temp_cpu, FORMAT(data_hora, 'yyyy-MM-dd HH:mm:ss') AS hora, fkATM
+        FROM (
+            SELECT temperatura, data_hora, fkATM,
+                   ROW_NUMBER() OVER (PARTITION BY fkATM ORDER BY data_hora DESC) AS rn
+            FROM temperaturaCPU
+            WHERE fkATM = ${idATM}
+        ) AS subquery
+        WHERE rn = 1;`
         console.log("Executando a instrução SQL:\n", instrucaoSql);
         return database.executar(instrucaoSql);
     }
 
     async function CPUHora(idATM) {
         const instrucaoSql = `
-            SELECT MAX(Valor) AS quantidade, FORMAT(MAX(DataRegistro), 'yyyy-MM-dd HH:mm:ss') AS hora, ATMComp_ID
-            FROM Leitura
-            WHERE ATMComp_ID = ${idATM} AND Componente_ID = 3
-            GROUP BY fkATM, FORMAT (DataRegistro, 'yyyy-MM-dd HH:mm:ss')
-            ORDER BY FORMAT(MAX(DataRegistro), 'yyyy-MM-dd HH:mm:ss') DESC
-            OFFSET 0 ROWS FETCH FIRST 3 ROWS ONLY;
+        SELECT MAX(Valor) AS quantidade, FORMAT (MAX(DataRegistro), 'yyyy-MM-dd HH:mm:ss') AS hora, ATMComp_ID
+        FROM Leitura
+        WHERE ATMComp_ID = ${idATM} AND Componente_ID = 3
+        GROUP BY ATMComp_ID, FORMAT (DataRegistro, 'yyyy-MM-dd HH:mm:ss')
+        ORDER BY FORMAT(MAX(DataRegistro), 'yyyy-MM-dd HH:mm:ss') DESC
+        OFFSET 0 ROWS FETCH FIRST 3 ROW ONLY;
         `;
         console.log("Executando a instrução SQL:\n", instrucaoSql);
         return database.executar(instrucaoSql);
@@ -1024,12 +1025,12 @@ GROUP BY DATE_FORMAT(data_hora, '%Y-%m-%d %H:00:00');`;
 
     async function CPU_tempoReal(idATM) {
         const instrucaoSql = `
-            SELECT MAX(Valor) AS quantidade, FORMAT (MAX(DataRegistro), 'yyyy-MM-dd HH:mm:ss') AS hora, ATMComp_ID
-            FROM Leitura
-            WHERE ATMComp_ID = ${idATM} AND Componente_ID = 3
-            GROUP BY FORMAT fkATM, FORMAT (DataRegistro, 'yyyy-MM-dd HH:mm:ss')
-            ORDER BY FORMAT(MAX(DataRegistro), 'yyyy-MM-dd HH:mm:ss') DESC
-            OFFSET 0 ROWS FETCH FIRST 1 ROW ONLY;
+        SELECT MAX(Valor) AS quantidade, FORMAT (MAX(DataRegistro), 'yyyy-MM-dd HH:mm:ss') AS hora, ATMComp_ID
+        FROM Leitura
+        WHERE ATMComp_ID = ${idATM} AND Componente_ID = 3
+        GROUP BY ATMComp_ID, FORMAT (DataRegistro, 'yyyy-MM-dd HH:mm:ss')
+        ORDER BY FORMAT(MAX(DataRegistro), 'yyyy-MM-dd HH:mm:ss') DESC
+        OFFSET 0 ROWS FETCH FIRST 1 ROW ONLY;
         `;
         console.log("Executando a instrução SQL:\n", instrucaoSql);
         return database.executar(instrucaoSql);
@@ -1165,60 +1166,45 @@ GROUP BY DATE_FORMAT(data_hora, '%Y-%m-%d %H:00:00');`;
         }
     }
 
-    async function obterDesempenho(idATM) {
-        const desempenhoQuery = `
+    function obterDesempenho(idATM) {
+        var desempenhoQuery = `
         SELECT TOP 1
-            Leitura.ATMComp_ID,
-            ROUND(AVG(CASE WHEN codigocomponentes.idCodComponentes = 1 THEN 100 - Leitura.Valor ELSE NULL END), 2) AS MediaCPU,
-            ROUND(AVG(CASE WHEN codigocomponentes.idCodComponentes = 2 THEN 100 - Leitura.Valor ELSE NULL END), 2) AS MediaRAM,
-            ROUND(AVG(CASE WHEN codigocomponentes.idCodComponentes = 3 THEN 100 - Leitura.Valor ELSE NULL END), 2) AS MediaDisco,
-            COALESCE(ROUND(AVG(100 - Leitura.Valor), 2), 100) AS DesempenhoGeral
-        FROM
-            Leitura
-        JOIN
-            codigocomponentes ON Leitura.Componente_ID = codigocomponentes.idCodComponentes
-        WHERE
-            codigocomponentes.idCodComponentes IN (1, 2, 3)
-            AND 
-            ATMComp_ID = ${idATM}
-        GROUP BY
-            Leitura.ATMComp_ID
-        ORDER BY 
-            Leitura.ATMComp_ID DESC;`;
+    Leitura.ATMComp_ID,
+    ROUND(AVG(CASE WHEN codigocomponentes.idCodComponentes = 1 THEN 100 - Leitura.Valor ELSE NULL END), 2) AS MediaCPU,
+    ROUND(AVG(CASE WHEN codigocomponentes.idCodComponentes = 2 THEN 100 - Leitura.Valor ELSE NULL END), 2) AS MediaRAM,
+    ROUND(AVG(CASE WHEN codigocomponentes.idCodComponentes = 3 THEN 100 - Leitura.Valor ELSE NULL END), 2) AS MediaDisco,
+    COALESCE(ROUND(AVG(100 - Leitura.Valor), 2), 100) AS DesempenhoGeral
+FROM
+    Leitura
+JOIN
+    codigocomponentes ON Leitura.Componente_ID = codigocomponentes.idCodComponentes
+WHERE
+    codigocomponentes.idCodComponentes IN (1, 2, 3)
+    AND 
+    ATMComp_ID = ${idATM}
+GROUP BY
+    Leitura.ATMComp_ID
+ORDER BY 
+    Leitura.ATMComp_ID DESC;`;
 
-        console.log("Executando a instrução SQL: \n" + desempenhoQuery);
-        try {
-            const desempenhoResult = await database.executar(desempenhoQuery);
-            return {
-                DESEMPENHO: (desempenhoResult && desempenhoResult.recordset[0] && desempenhoResult.recordset[0].DesempenhoGeral) || 'N/A',
-            };
-        } catch (error) {
-            console.error(`Erro na obtenção de Desempenho Geral: ${error.message}`);
-            return {
-                DESEMPENHO: 'N/A',
-            };
-        }
+        console.log("Executando a instrução SQL: \n" + desempenhoQuery)
+        return database.executar(desempenhoQuery);
     }
 
-    async function obterTempoAtv(idATM) {
-        const atividadeQuery = `
-        SELECT TOP 1 atividade
-        FROM tempoAtividade 
+    function obterTempoAtv(idATM) {
+    var atividadeQuery = `
+    SELECT atividade
+    FROM (
+        SELECT atividade,
+               ROW_NUMBER() OVER (PARTITION BY fk__idATM ORDER BY atividade DESC) AS rn
+        FROM tempoAtividade
         WHERE fk__idATM = ${idATM}
-        ORDER BY atividade DESC;`;
+    ) AS subquery
+    WHERE rn = 1;`
 
         console.log("Executando a instrução SQL: \n" + atividadeQuery);
-        try {
-            const atividadeResult = await database.executar(atividadeQuery);
-            return {
-                TEMPO: (atividadeResult && atividadeResult.recordset[0] && atividadeResult.recordset[0].atividade) || 'N/A',
-            };
-        } catch (error) {
-            console.error(`Erro na obtenção de Tempo de Atividade: ${error.message}`);
-            return {
-                TEMPO: 'N/A',
-            };
-        }
+        
+        return database.executar(atividadeQuery)
     }
 
     async function obterBotaoInsert(idATM) {
@@ -1253,23 +1239,27 @@ GROUP BY DATE_FORMAT(data_hora, '%Y-%m-%d %H:00:00');`;
     }
 
     async function cpuTemperatura(idATM) {
-        const cpuTempQuery = `
-        SELECT TOP 1 MAX(temperatura) AS temp_cpu, FORMAT(data_hora, 'yyyy-MM-dd HH:mm:ss') AS hora, fkATM 
-        FROM temperaturaCPU 
-        WHERE fkATM = ${idATM}
-        GROUP BY FORMAT(data_hora, 'yyyy-MM-dd HH:mm:ss')
-        ORDER BY FORMAT(data_hora, 'yyyy-MM-dd HH:mm:ss') DESC;`;
+        const TempQuery = `
+        
+        SELECT temperatura AS temp_cpu, FORMAT(data_hora, 'yyyy-MM-dd HH:mm:ss') AS hora, fkATM
+        FROM (
+            SELECT temperatura, data_hora, fkATM,
+                   ROW_NUMBER() OVER (PARTITION BY fkATM ORDER BY data_hora DESC) AS rn
+            FROM temperaturaCPU
+            WHERE fkATM = ${idATM}
+        ) AS subquery
+        WHERE rn = 1;`;
 
-        console.log("Executando a instrução SQL: \n" + cpuTempQuery);
+        console.log("Executando a instrução SQL: \n" + TempQuery);
         try {
-            const cpuTempResult = await database.executar(cpuTempQuery);
+            const TempResult = await database.executar(TempQuery);
             return {
-                CPUTEMP: (cpuTempResult && cpuTempResult.recordset[0] && cpuTempResult.recordset[0].temp_cpu) || 'N/A',
+                TEMPERATURA: (TempResult && TempResult.recordset[0] && TempResult.recordset[0].tempCpu) || 'N/A',
             };
         } catch (error) {
             console.error(`Erro na obtenção de Tempo de Atividade: ${error.message}`);
             return {
-                CPUTEMP: 'N/A',
+                TEMPERATURA: 'N/A',
             };
         }
     }
