@@ -442,10 +442,11 @@ async function obterIP(req, res) {
 }
 
 function buscarMedidasRede(req, res) {
-
+    
+    var idATM =  req.params.idATM;
+    
     const limite_linhas = 10;
 
-    var idATM =  req.params.idATM;
 
     console.log(`Recuperando medidas em tempo real`);
 

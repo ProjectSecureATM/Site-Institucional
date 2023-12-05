@@ -424,16 +424,12 @@
 
     var idATM = sessionStorage.getItem('idATM');
     window.onload = function () {
-        if (idATM) {
             exibirStatusRede(idATM);
             mostrarVariedade(idATM);
             tempoAtividadeEIP(idATM);
-            // obterMedidasRede(idATM);
             buscarMedidasRede(idATM);
-        } else {
-            console.error('idATM não está definido.');
+        
         }
-    };
 
     function exibirStatusRede(idATM) {
         obterDadosRede(idATM);
