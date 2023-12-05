@@ -62,6 +62,7 @@ function atualizarGraficoPacotes(req, res) {
 }
 
 function listarIPePacotes(req, res) {
+    console.log("Deu certo os controllers")
     redeModel.listarIPePacotes().then(function (resultado) {
         if (resultado.length > 0) {
             res.status(200).json(resultado);

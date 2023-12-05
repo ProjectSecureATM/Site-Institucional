@@ -219,7 +219,7 @@
                                 </div>
                             </div>
 
-                            <div id="card divConteudo" class="card divConteudo">
+                            <div id="card_divConteudo" class="card divConteudo">
                                 <div id="tamDiv" class="card">
                                     <div id="tamDiv" class="col-xl-3 col-md-6 mb-4" id="divConteudo">
                                         <div id="tamDiv" class="card border-left-primary shadow h-100 py-2">
@@ -237,7 +237,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="row" style="justify-content: center; align-items: center;">
+                            <div class="row" id="div" style="justify-content: center; align-items: center;">
 
 
                                 <div class="col-xl-8 col-lg-7">
@@ -275,7 +275,7 @@
                                                     <!-- This is the div where you will display the fetched information -->
                                                 </div>
                                             </div>
-                                        </div>
+                                        </div>                                    
                                     </div>
 
                                     <!-- Scroll to Top Button-->
@@ -343,6 +343,7 @@
 
 
     <script>
+
         window.onload = function () {
             mostrarPacotesRede()
             obterIP()
@@ -401,19 +402,19 @@
                     return response.json();
                 })
                 .then(data => {
-                    // Lógica a ser executada quando a requisição for bem-sucedida
+                    
                     alert('Dados recuperados com sucesso!');
 
-                    // Verificar se a pessoa foi verificada
-                    if (data && data.verificado) {
-                        // Abrir a nova modal com dados dinâmicos do banco
-
-                        // Chamar a função para listar IPs e pacotes
+                    var feed = document.getElementById("div");
+                    var div = document.createElement("div");
+                    div.setAttribute("id","ip_recebido")
+                    feed.appendChild(div);
+                    
+                    //if (data && data.verificado) {
                         listarIPePacotes();
-                    }
+                    //}
 
                     // Atualizar a div existente com os dados recuperados
-                    $('#infoIpDiv').html(data);
                     $('#secureModal').modal('hide');
                 })
                 .catch(error => {
@@ -422,20 +423,6 @@
                     alert('Erro ao obter informações do servidor.');
                 });
         }
-
-        // function abrirNovaParteDaTela() {
-        //     // Substitua esta lógica com a estrutura HTML ou funcionalidade específica que você deseja exibir
-        //     // Esta é apenas uma ilustração básica
-        //     var doido = document.getElementById("conteudoDaPagina")
-
-        //     conteudoDaPagina.innerHTML += `
-                
-        //             <h2>Bem-vindo à Nova Parte da Tela!</h2>
-        //             <p>Aqui está a sua div de texto com mensagens.</p>
-             
-                
-        //     `;
-        // }
 
         function mostrarPacotes() {
             fetch(`/rede/graficoPacotes/`, { cache: 'no-store' })
@@ -524,19 +511,40 @@
         }
 
         function listarIPePacotes() {
-    fetch("/rede/listarIPePacotes")
-        .then(response => response.json())
-        .then(data => {
-            const ipDiv = document.getElementById("infoIpDiv");
-            ipDiv.innerHTML = ""; // Limpar div existente antes de adicionar novas informações
+        
 
-            data.IP.forEach(item => {
-                const newDiv = document.createElement("div");
-                newDiv.innerHTML = `<p>IP: ${item.IP} - Pacotes Enviados: ${item.total_pacotes}</p>`;
-                newDiv.style.color = (item.cor === 'Vermelho') ? 'red' : 'black';
-                ipDiv.appendChild(newDiv);
-            });
-        })
+
+            fetch("/rede/listarIPePacotes", { cache: 'no-store' })
+            .then(function (resposta){
+                resposta.json().then(function (resposta) {
+                    console.log("Dados recebidos: ", JSON.stringify(resposta));
+
+                    var feed = document.getElementById("ip_recebido");
+                    feed.innerHTML = "";
+                    for (let contador_usuario = 0; contador_usuario < resposta.length; contador_usuario++) {
+                        var publicacao = resposta[contador_usuario];
+                        // criando e manipulando elementos do HTML via JavaScript
+                        var usuario = document.createElement("li");
+
+                        var rede = document.createElement("div");
+
+                        var ip = document.createElement("p");
+                        ip.innerHTML = `${publicacao.IP}`;
+                        rede.appendChild(ip)
+
+                        var Hora = document.createElement("p");
+                        Hora.innerHTML = `${publicacao.hora}`;
+                        rede.appendChild(Hora)
+
+                        var Pacotes = document.createElement("p");
+                        Pacotes.innerHTML = `${publicacao.pacotesEnviados}`;
+                        rede.appendChild(Pacotes)
+
+                        feed.appendChild(rede);
+             
+                }
+                })
+            })   
         .catch(error => {
             console.error("Erro ao obter informações do servidor:", error);
             alert('Erro ao obter informações do servidor.');

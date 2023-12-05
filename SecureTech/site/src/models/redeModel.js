@@ -53,23 +53,14 @@ async function atualizarGraficoPacotes() {
 
 
 function listarIPePacotes() {
-    fetch("/rede/listarIPePacotes")
-        .then(response => response.json())
-        .then(data => {
-            const ipDiv = document.getElementById("infoIpDiv");
-            ipDiv.innerHTML = ""; // Limpar div existente antes de adicionar novas informações
 
-            data.IP.forEach(item => {
-                const newDiv = document.createElement("div");
-                newDiv.innerHTML = `<p>IP: ${item.IP} - Pacotes Enviados: ${item.total_pacotes}</p>`;
-                newDiv.style.color = (item.cor === 'Vermelho') ? 'red' : 'black'; // Adicione a cor conforme necessário
-                ipDiv.appendChild(newDiv);
-            });
-        })
-        .catch(error => {
-            console.error("Erro ao obter informações do servidor:", error);
-            alert('Erro ao obter informações do servidor.');
-        });
+    var instrucao = `
+    select IP, FORMAT(data_hora, 'yyyy-MM-dd 00:00:00') as hora, pacotesEnviados from rede;
+    `;
+
+    console.log("Executando a sua tia");
+    return database.executar(instrucao);
+
 }
 
 
