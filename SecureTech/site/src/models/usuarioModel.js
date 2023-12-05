@@ -972,11 +972,12 @@ GROUP BY DATE_FORMAT(data_hora, '%Y-%m-%d %H:00:00');`;
 
     async function ProcessosPHora_tempoReal(idATM) {
         const instrucaoSql = `
-            SELECT MAX(PID) AS quantidade, FORMAT(data_hora, 'yyyy-MM-dd HH:00:00') AS hora, fkATM
-            FROM Processos
-            WHERE fkATM = ${idATM}
-            GROUP BY fkATM, FORMAT(data_hora, 'yyyy-MM-dd HH:00:00')
-            ORDER BY FORMAT(MAX(data_hora), 'yyyy-MM-dd HH:00:00') DESC;
+        SELECT MAX(temperatura) AS temp_cpu, FORMAT(MAX(data_hora), 'yyyy-MM-dd HH:mm:ss') AS hora, fkATM
+        FROM temperaturaCPU
+        WHERE fkATM = 1
+        GROUP BY fkATM, FORMAT(data_hora, 'yyyy-MM-dd HH:00:00')
+        ORDER BY FORMAT(MAX(data_hora), 'yyyy-MM-dd HH:00:00') DESC
+        OFFSET 0 ROWS FETCH FIRST 3 ROWS ONLY; 
         `;
         console.log("Executando a instrução SQL:\n", instrucaoSql);
         return database.executar(instrucaoSql);
@@ -984,12 +985,12 @@ GROUP BY DATE_FORMAT(data_hora, '%Y-%m-%d %H:00:00');`;
 
     async function TEMPHora(idATM) {
         const instrucaoSql = `
-            SELECT MAX(temperatura) AS temp_cpu, FORMAT(data_hora, 'yyyy-MM-dd HH:mm:ss') AS hora, fkATM
-            FROM temperaturaCPU
-            WHERE fkATM = ${idATM}
-            GROUP BY FORMAT(data_hora, 'yyyy-MM-dd HH:mm:ss')
-            ORDER BY FORMAT(data_hora, 'yyyy-MM-dd HH:mm:ss') DESC
-            OFFSET 0 ROWS FETCH FIRST 3 ROWS ONLY;
+        SELECT MAX(temperatura) AS temp_cpu, FORMAT(MAX(data_hora), 'yyyy-MM-dd HH:mm:ss') AS hora, fkATM
+        FROM temperaturaCPU
+        WHERE fkATM = ${idATM}
+        GROUP BY fkATM, FORMAT(data_hora, 'yyyy-MM-dd 00:00:ss')
+        ORDER BY FORMAT(MAX(data_hora), 'yyyy-MM-dd 00:00:ss') DESC
+        OFFSET 0 ROWS FETCH FIRST 3 ROWS ONLY;
         `;
         console.log("Executando a instrução SQL:\n", instrucaoSql);
         return database.executar(instrucaoSql);
@@ -997,12 +998,12 @@ GROUP BY DATE_FORMAT(data_hora, '%Y-%m-%d %H:00:00');`;
 
     async function TEMP_tempoReal(idATM) {
         const instrucaoSql = `
-            SELECT MAX(temperatura) AS temp_cpu, FORMAT(data_hora, 'yyyy-MM-dd HH:mm:ss') AS hora, fkATM
-            FROM temperaturaCPU
-            WHERE fkATM = ${idATM}
-            GROUP BY FORMAT(data_hora, 'yyyy-MM-dd HH:mm:ss')
-            ORDER BY FORMAT(data_hora, 'yyyy-MM-dd HH:mm:ss') DESC
-            OFFSET 0 ROWS FETCH FIRST 1 ROW ONLY;
+        SELECT MAX(temperatura) AS temp_cpu, FORMAT(MAX(data_hora), 'yyyy-MM-dd HH:mm:ss') AS hora, fkATM
+        FROM temperaturaCPU
+        WHERE fkATM = ${idATM}
+        GROUP BY fkATM, FORMAT(data_hora, 'yyyy-MM-dd 00:00:ss')
+        ORDER BY FORMAT(MAX(data_hora), 'yyyy-MM-dd 00:00:ss') DESC
+        OFFSET 0 ROWS FETCH FIRST 1 ROWS ONLY;
         `;
         console.log("Executando a instrução SQL:\n", instrucaoSql);
         return database.executar(instrucaoSql);
