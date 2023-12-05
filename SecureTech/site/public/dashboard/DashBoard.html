@@ -113,7 +113,7 @@
                     <div id="modal2" class="modal2">
                         <div class="modal-content2">
                             <span id="closeteste" class="close2" onclick="closeModal2()">&times;</span>
-                            
+
                             <div class="desempenho_content">
                                 <h5>CPU</h5>
 
@@ -265,7 +265,7 @@
 
                     <div id="bloco" class="teste2">
                         <br><br>
-                       
+
                         <div class="card border-left-primary-kpi shadow h-100 py-2">
                             <div class="card-body">
                                 <div class="row no-gutters align-items-center">
@@ -275,7 +275,7 @@
                                             CPU</div>
                                         <span id="cpuPercentage"></span>
                                         <span id="percent"><b>%</b></span>
-                                        
+
                                     </div>
                                 </div>
                             </div>
@@ -289,7 +289,7 @@
                                             RAM</div>
                                         <span id="ramPercentage"></span>
                                         <span id="percent"><b>%</b></span>
-                                        
+
                                     </div>
                                 </div>
                             </div>
@@ -303,71 +303,71 @@
                                             DISCO</div>
                                         <span id="discoPercentage"></span>
                                         <span id="percent"><b>%</b></span>
-                                        
+
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    
-                    
-                        <br>
-                
-                        <div class="row" style="justify-content: center; align-items: center;">
 
-                            
-                            <div class="col-xl-8 col-lg-7">
-                                <div class="card shadow mb-4">
 
-                                    <div
-                                    
-                                        class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                        
-                                        <div class="dropdown no-arrow">
-                                            <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
-                                                aria-labelledby="dropdownMenuLink">
-                                                <a class="dropdown-item" href="#">Something else here</a>
-                                            </div>
+                    <br>
+
+                    <div class="row" style="justify-content: center; align-items: center;">
+
+
+                        <div class="col-xl-8 col-lg-7">
+                            <div class="card shadow mb-4">
+
+                                <div
+                                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+
+                                    <div class="dropdown no-arrow">
+                                        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
+                                            aria-labelledby="dropdownMenuLink">
+                                            <a class="dropdown-item" href="#">Something else here</a>
                                         </div>
-                                    </div>
-
-                                    <div class="chart-area">
-                                        <canvas id="ProcessosChart"></canvas>
                                     </div>
                                 </div>
+
+                                <div class="chart-area">
+                                    <!-- <canvas id="ProcessosChart"></canvas> -->
+                                    <canvas id="ProcessoChart"></canvas>
+                                </div>
                             </div>
+                        </div>
 
 
-                            </script>
+                        </script>
 
-                            <!-- Scroll to Top Button-->
-                            <a class="scroll-to-top rounded" href="#page-top">
-                                <i class="fas fa-angle-up"></i>
-                            </a>
+                        <!-- Scroll to Top Button-->
+                        <a class="scroll-to-top rounded" href="#page-top">
+                            <i class="fas fa-angle-up"></i>
+                        </a>
 
-                            <!-- Logout Modal-->
-                            <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog"
-                                aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                <div class="modal-dialog" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLabel">Certeza que você quer
-                                                sair?</h5>
-                                            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true">×</span>
-                                            </button>
-                                        </div>
-                                        <div class="modal-body">Selecione "Sair" para deslogar.</div>
-                                        <div class="modal-footer">
-                                            <button style="text-align: left;" class="btn btn-secondary" type="button"
-                                                data-dismiss="modal">Cancelar</button>
-                                            <a class="btn btn-primary" href="../index.html">Sair</a>
-                                        </div>
+                        <!-- Logout Modal-->
+                        <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog"
+                            aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Certeza que você quer
+                                            sair?</h5>
+                                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">×</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">Selecione "Sair" para deslogar.</div>
+                                    <div class="modal-footer">
+                                        <button style="text-align: left;" class="btn btn-secondary" type="button"
+                                            data-dismiss="modal">Cancelar</button>
+                                        <a class="btn btn-primary" href="../index.html">Sair</a>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    
+                    </div>
+
                 </div>
             </div>
         </div>
@@ -398,7 +398,10 @@
     window.onload = function () {
         if (idATM) {
             exibirStatusSistema(idATM);
-            mostrarProcesso(idATM);
+            mostrarProcesso(idATM)
+            setInterval(function () {
+                mostrarProcesso(idATM);
+            }, 1000);
         } else {
             console.error('idATM não está definido.');
         }
@@ -449,7 +452,9 @@
             })
             .then(function (resposta) {
                 console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                resposta.reverse();
                 plotarGrafico(resposta, idATM);
+                setTimeout(() => atualizarGrafico(idATM, dados, ProcessoChart), 2000);
             })
             .catch(function (error) {
                 console.error(`Erro na obtenção dos dados para o gráfico: ${error.message}`);
@@ -478,20 +483,20 @@
         }
 
         const config = {
-            type: 'bar',
+            type: 'line',
             data: dados
         };
 
-        let myChart = new Chart(
-            document.getElementById(`ProcessosChart`),
+        let ProcessoChart = new Chart(
+            document.getElementById(`ProcessoChart`),
             config
         );
 
         // Chama a função para atualizar dinamicamente o gráfico
-        atualizarGrafico(idATM, dados, myChart);
+        setTimeout(() => atualizarGrafico(idATM, dados, ProcessoChart), 2000);
     }
 
-    function atualizarGrafico(idATM, dados, myChart) {
+    function atualizarGrafico(idATM, dados, ProcessoChart) {
         fetch(`/usuarios/ProcessosPHora_tempoReal/${idATM}`, { cache: 'no-store' })
             .then(function (response) {
                 if (response.ok) {
@@ -506,26 +511,26 @@
                 console.log('Dados atuais do gráfico:');
                 console.log(dados);
 
-                // Verifica se há novos registros
-                if (novoRegistro.length > 0) {
-                    // Adapte a lógica de validação conforme necessário
-                    if (novoRegistro[0].hora !== dados.labels[dados.labels.length - 1]) {
-                        dados.labels.push(novoRegistro[0].hora);
-                        dados.datasets[0].data.push(novoRegistro[0].quantidade);
-                        myChart.update();
-                    } else {
-                        console.log("---------------------------------------------------------------");
-                        console.log("Como não há dados novos para captura, o gráfico não atualizará.");
-                        console.log("Horário do novo dado capturado:");
-                        console.log(novoRegistro[0].hora);
-                        console.log("Horário do último dado capturado:");
-                        console.log(dados.labels[dados.labels.length - 1]);
-                        console.log("---------------------------------------------------------------");
-                    }
-                }
+                // if (!validacao) {
+                    dados.labels.pop();
+                    dados.datasets[0].data.pop();
 
-                // Chama a função recursivamente após 2 segundos
-                atualizarGrafico(idATM, dados, myChart);
+                    dados.labels.push(novoRegistro[0].hora);
+                    dados.datasets[0].data.push(novoRegistro[0].quantidade);
+                    ProcessoChart.update();
+                // } 
+                // else {
+                    console.log("---------------------------------------------------------------");
+                    console.log("Como não há dados novos para captura, o gráfico não atualizará.");
+                    console.log("Horário do novo dado capturado:");
+                    console.log(novoRegistro[0].hora);
+                    console.log("Horário do último dado capturado:");
+                    console.log(dados.labels[dados.labels.length - 1]);
+                    console.log("---------------------------------------------------------------");
+
+                // }
+
+                setTimeout(() => atualizarGrafico(idATM, dados, ProcessoChart), 2000);
             })
             .catch(function (error) {
                 console.error(`Erro na obtenção dos dados para o gráfico: ${error.message}`);

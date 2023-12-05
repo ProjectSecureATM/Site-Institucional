@@ -5,7 +5,7 @@
     justify-content: space-between;
     gap: 3.5rem;
     flex-direction: column;
-    left: 28.5vw;
+    left: 30vw;
 }
 
 #TEMPChart {
@@ -74,7 +74,7 @@
     border-radius: 5px;
     cursor: pointer;
     position: relative;
-    left: 38.5rem;
+    left: 41rem;
     width: 32.5vw;
     height: 10vh;
     outline: none;

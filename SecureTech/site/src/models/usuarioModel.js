@@ -960,11 +960,12 @@ GROUP BY DATE_FORMAT(data_hora, '%Y-%m-%d %H:00:00');`;
 
     async function ProcessosPHora(idATM) {
         const instrucaoSql = `
-        SELECT MAX(PID) AS quantidade, FORMAT(MAX(data_hora), 'yyyy-MM-dd HH:00:00') AS hora, fkATM
-        FROM Processos
-        WHERE fkATM = 1
-        GROUP BY fkATM, FORMAT(data_hora, 'yyyy-MM-dd HH:00:00')
-        ORDER BY FORMAT(MAX(data_hora), 'yyyy-MM-dd HH:00:00');
+        select COUNT(id) AS quantidade, FORMAT(data_hora, 'yyyy-MM-dd HH:mm:ss') AS hora
+from processos
+where fkATM = ${idATM}
+group by fkATM, FORMAT(data_hora, 'yyyy-MM-dd HH:mm:ss')
+order by FORMAT(data_hora, 'yyyy-MM-dd HH:mm:ss') DESC 
+        OFFSET 0 ROWS FETCH FIRST 3 ROWS ONLY;
         `;
         console.log("Executando a instrução SQL:\n", instrucaoSql);
         return database.executar(instrucaoSql);
@@ -972,12 +973,12 @@ GROUP BY DATE_FORMAT(data_hora, '%Y-%m-%d %H:00:00');`;
 
     async function ProcessosPHora_tempoReal(idATM) {
         const instrucaoSql = `
-        SELECT MAX(temperatura) AS temp_cpu, FORMAT(MAX(data_hora), 'yyyy-MM-dd HH:mm:ss') AS hora, fkATM
-        FROM temperaturaCPU
-        WHERE fkATM = 1
-        GROUP BY fkATM, FORMAT(data_hora, 'yyyy-MM-dd HH:00:00')
-        ORDER BY FORMAT(MAX(data_hora), 'yyyy-MM-dd HH:00:00') DESC
-        OFFSET 0 ROWS FETCH FIRST 3 ROWS ONLY; 
+        select COUNT(id) AS quantidade, FORMAT(data_hora, 'yyyy-MM-dd HH:mm:ss') AS hora
+from processos
+where fkATM = ${idATM}
+group by fkATM, FORMAT(data_hora, 'yyyy-MM-dd HH:mm:ss')
+order by FORMAT(data_hora, 'yyyy-MM-dd HH:mm:ss') DESC
+        OFFSET 0 ROWS FETCH FIRST 1 ROWS ONLY;
         `;
         console.log("Executando a instrução SQL:\n", instrucaoSql);
         return database.executar(instrucaoSql);
@@ -1210,7 +1211,7 @@ ORDER BY
     async function obterBotaoInsert(idATM) {
         const botaoInsertQuery = `
         INSERT INTO notificacao(quantidade, data_hora, fkComp, fkATM) 
-        VALUES (1, CURRENT_TIMESTAMP, 1, ${idATM});`;
+        VALUES (1, GETDATE(), 1, ${idATM});`;
 
         console.log("Executando a instrução SQL: \n" + botaoInsertQuery);
 
@@ -1218,11 +1219,11 @@ ORDER BY
     }
 
     async function obterBotao(idATM) {
-        const botaoQuery = `
+        `
         UPDATE notificacao
-        SET quantidade = quantidade + 1,
-        data_hora = CURRENT_TIMESTAMP
-        WHERE fkATM = ${idATM};`;
+set quantidade = quantidade +1,
+data_hora = GETDATE()
+where fkATM = 1;`;
 
         console.log("Executando a instrução SQL: \n" + botaoQuery);
         try {
