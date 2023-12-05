@@ -8,7 +8,8 @@ function buscarRamHora(idATM) {
     SELECT TOP 10 Valor, DataRegistro
     FROM leitura
     WHERE ATMComp_ID = 1 AND APIID = 4 AND Componente_ID = 1 AND ATMComp_ID = ${idATM}
-    ORDER BY LeituraID DESC;`;
+    ORDER BY LeituraID DESC;
+    `;
 
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
