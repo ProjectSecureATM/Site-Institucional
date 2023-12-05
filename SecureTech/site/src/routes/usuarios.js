@@ -73,7 +73,7 @@ router.get('/obterMetricasComponentes/:idATM', function (req, res) {
     usuarioController.obterMetricasComponentes(req, res)
 });
 
-router.get('/obterMetricasRede/:idATM', function (req, res) {
+router.get('/obterMetricasRede/:idAgen', function (req, res) {
     usuarioController.obterMetricasRede(req, res)
 });
 
@@ -105,11 +105,11 @@ router.get('/cpuTemperatura/:idATM', function(req, res) {
     usuarioController.cpuTemperatura(req, res)
 })
 
-router.get('/obterIP/:idATM', function(req, res) {
+router.get('/obterIP/:idAgen', function(req, res) {
     usuarioController.obterIP(req, res)
 })
 
-router.get('/tempo-medidasRede/:idATM', function (req, res) {
+router.get('/tempo-medidasRede/:idAgen', function (req, res) {
     usuarioController.buscarMedidasRede(req, res);
 })
 router.get('/atualiza/:idATM', function (req, res) {
@@ -120,7 +120,7 @@ router.get('/obterSelect/:idATM', function(req, res) {
     usuarioController.obterSelect(req, res)
 })
 
-router.get("/atualizarGraficoRede/:idATM", function (req, res) {
+router.get("/atualizarGraficoRede/:idAgen", function (req, res) {
     usuarioController.atualizarGraficoRede(req, res);
 });
 

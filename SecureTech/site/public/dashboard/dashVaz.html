@@ -422,40 +422,40 @@
 
 
 
-    var idATM = sessionStorage.getItem('idATM');
+    var idAgen = sessionStorage.getItem('idAgen');
     window.onload = function () {
-            exibirStatusRede(idATM);
-            mostrarVariedade(idATM);
-            tempoAtividadeEIP(idATM);
-            buscarMedidasRede(idATM);
+            exibirStatusRede(idAgen);
+            mostrarVariedade(idAgen);
+            tempoAtividadeEIP(idAgen);
+            buscarMedidasRede(idAgen);
         
         }
 
-    function exibirStatusRede(idATM) {
-        obterDadosRede(idATM);
+    function exibirStatusRede(idAgen) {
+        obterDadosRede(idAgen);
         setInterval(function () {
-            obterDadosRede(idATM);
+            obterDadosRede(idAgen);
         }, 2000);
 
     }
 
-    function tempoAtividadeEIP(idATM) {
-        obterTempoAtv(idATM);
+    function tempoAtividadeEIP(idAgen) {
+        obterTempoAtv(idAgen);
         setInterval(function () {
-            obterTempoAtv(idATM);
+            obterTempoAtv(idAgen);
         }, 2000);
-        obterIP(idATM);
+        obterIP(idAgen);
         setInterval(function () {
-            obterIP(idATM)
+            obterIP(idAgen)
         }, 2000)
     }
 
-    function obterDadosRede(idATM) {
+    function obterDadosRede(idAgen) {
         var statusPing = document.getElementById('statusPing')
         var statusDownlaod = document.getElementById('statusDownload')
         var statusUpload = document.getElementById('statusUpload')
 
-        fetch(`/usuarios/obterMetricasRede/${idATM}`, { cache: 'no-store' })
+        fetch(`/usuarios/obterMetricasRede/${idAgen}`, { cache: 'no-store' })
             .then(function (resposta) {
                 if (resposta.ok) {
                     return resposta.json();
@@ -537,8 +537,8 @@
         document.getElementById(elementID).textContent = valor;
     }
 
-    function mostrarVariedade(idATM) {
-        fetch(`/usuarios/VariedadeHora/${idATM}`, { cache: 'no-store' })
+    function mostrarVariedade(idAgen) {
+        fetch(`/usuarios/VariedadeHora/${idAgen}`, { cache: 'no-store' })
             .then(function (response) {
                 if (response.ok) {
                     return response.json();
@@ -549,15 +549,15 @@
             })
             .then(function (resposta) {
                 console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
-                plotarGrafico(resposta, idATM);
+                plotarGrafico(resposta, idAgen);
             })
             .catch(function (error) {
                 console.error(`Erro na obtenção dos dados para o gráfico: ${error.message}`);
             });
     }
 
-    function obterTempoAtv(idATM) {
-        fetch(`/usuarios/obterTempoAtv/${idATM}`, { cache: 'no-store' })
+    function obterTempoAtv(idAgen) {
+        fetch(`/usuarios/obterTempoAtv/${idAgen}`, { cache: 'no-store' })
             .then(function (resposta) {
                 if (resposta.ok) {
                     return resposta.json();
@@ -581,8 +581,8 @@
         document.getElementById(elementID).textContent = valor;
     }
 
-    function obterIP(idATM) {
-        fetch(`/usuarios/obterIP/${idATM}`, { cache: 'no-store' })
+    function obterIP(idAgen) {
+        fetch(`/usuarios/obterIP/${idAgen}`, { cache: 'no-store' })
             .then(function (resposta) {
                 if (resposta.ok) {
                     return resposta.json();
@@ -610,17 +610,17 @@
 
 
     // GRAFICO
-    function buscarMedidasRede(idATM) {
-        var idATM = sessionStorage.idATM
+    function buscarMedidasRede(idAgen) {
+        var idAgen = sessionStorage.idAgen
 
 
-        fetch(`/usuarios/tempo-medidasRede/${idATM}`, { cache: 'no-store' }).then(function (response) {
+        fetch(`/usuarios/tempo-medidasRede/${idAgen}`, { cache: 'no-store' }).then(function (response) {
             if (response.ok) {
                 response.json().then(function (resposta) {
                     console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
                     resposta.reverse();
 
-                    plotarGraficoRede(resposta, idATM);
+                    plotarGraficoRede(resposta, idAgen);
                 });
             } else {
                 console.error('Nenhum dado encontrado ou erro na API');
@@ -632,7 +632,7 @@
     }
 
 
-    function plotarGraficoRede(resposta, idATM) {
+    function plotarGraficoRede(resposta, idAgen) {
 
         console.log('iniciando plotagem do gráfico...');
 
@@ -741,12 +741,12 @@
             responsive: true
         };
 
-        setTimeout(() => atualizarGraficoRede(idATM, dados, myChart3), 2000);
+        setTimeout(() => atualizarGraficoRede(idAgen, dados, myChart3), 2000);
     }
 
-    function atualizarGraficoRede(idATM, dados, myChart3) {
+    function atualizarGraficoRede(idAgen, dados, myChart3) {
 
-        fetch(`/usuarios/atualizarGraficosRede/${idATM}`, { cache: 'no-store' }).then(function (response) {
+        fetch(`/usuarios/atualizarGraficosRede/${idAgen}`, { cache: 'no-store' }).then(function (response) {
             if (response.ok) {
                 console.log("papai socoro AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
                 response.json().then(function (novoRegistro) {
@@ -795,7 +795,7 @@
     // var myChart = null;
     // var isChartDestroyed = true;
 
-    // function plotarGrafico(resposta, idATM) {
+    // function plotarGrafico(resposta, idAgen) {
 
     // Criando estrutura para plotar gráfico - labels
     // let labels = [];
@@ -897,7 +897,7 @@
     // isChartDestroyed = false;
 
 
-    // setTimeout(() => atualizarGraficoRede(idATM, resposta, myChartRede), 2000);
+    // setTimeout(() => atualizarGraficoRede(idAgen, resposta, myChartRede), 2000);
 
     // }
 
@@ -908,8 +908,8 @@
     //     }
     // }
 
-    // function atualizarGraficoRede(resposta, idATM, myChartRede) {
-    //     fetch(`/usuarios/atualizarGraficosRede/ ${idATM}`, {cache:'no-store'}).then(function (response) {
+    // function atualizarGraficoRede(resposta, idAgen, myChartRede) {
+    //     fetch(`/usuarios/atualizarGraficosRede/ ${idAgen}`, {cache:'no-store'}).then(function (response) {
     //         if (response.ok) {
     //             response.json().then(function (novoRegistro) {
 

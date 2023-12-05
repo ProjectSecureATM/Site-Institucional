@@ -380,16 +380,16 @@ function listarAgencia(req, res) {
 }
 
 function obterMetricasComponentes(req, res) {
-    const idATM = req.params.idATM;
+    var idATM = req.params.idATM;
     usuarioModel.obterMetricasComponentes(idATM)
         .then(dados => res.json(dados))
         .catch(error => res.status(500).json({ error: error.message }));
 }
 
 async function obterMetricasRede(req, res) {
-    const idATM = req.params.idATM;
+    var idAgen = req.params.idAgen;
     try {
-        const dados = await usuarioModel.obterMetricasRede(idATM);
+        const dados = await usuarioModel.obterMetricasRede(idAgen);
         res.json(dados);
     } catch (error) {
         res.status(500).json({ error: error.message });
@@ -453,14 +453,14 @@ async function obterIP(req, res) {
 
 function buscarMedidasRede(req, res) {
     
-    var idATM =  req.params.idATM;
+    var idAgen =  req.params.idAgen;
     
     const limite_linhas = 10;
 
 
     console.log(`Recuperando medidas em tempo real`);
 
-    usuarioModel.buscarMedidasRede(idATM, limite_linhas).then(function (resultado) {
+    usuarioModel.buscarMedidasRede(idAgen, limite_linhas).then(function (resultado) {
         if (resultado.length > 0) {
             res.status(200).json(resultado);
         } else {
@@ -472,6 +472,7 @@ function buscarMedidasRede(req, res) {
         res.status(500).json(erro.sqlMessage);
     });
 }
+
 function atualiza(req, res) {
 
     const limite_linhas = 8;
@@ -495,12 +496,12 @@ function atualiza(req, res) {
 
 function atualizarGraficoRede(req, res) {
 
-    var idATM =  req.params.idATM;
+    var idAgen =  req.params.idAgen;
     var limite_linhas = 8
 
     console.log("Recuperando medidas em tempo real");
 
-    usuarioModel.atualizarGraficoRede(idATM, limite_linhas).then(function (resultado) {
+    usuarioModel.atualizarGraficoRede(idAgen, limite_linhas).then(function (resultado) {
         if (resultado.length > 0) {
             res.status(200).json(resultado);
         } else {
