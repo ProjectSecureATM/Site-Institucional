@@ -420,7 +420,7 @@
                 console.log(dados);
 
                 if (novoRegistro.length > 0) {
-                    if (novoRegistro[0].DataRegistro !== dados.labels[dados.labels.length - 1]) {
+                    if (novoRegistro[0].DataRegistro != dados.labels[dados.labels.length - 1]) {
                         dados.labels.push(novoRegistro[0].DataRegistro);
                         dados.datasets[0].data.push(novoRegistro[0].Valor);
                         myChart.update();
