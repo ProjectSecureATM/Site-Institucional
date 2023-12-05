@@ -10,7 +10,7 @@
     <meta name="author" content="">
     <link rel="shortcut icon" href="../assets/fiveicon.png" type="image/x-icon">
 
-    <title>Dashboard/ Monitoramento de Logs de Autenticação</title>
+    <title>Dashboard/Monitoramento de Logs de Autenticação</title>
 
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link
@@ -18,7 +18,7 @@
         rel="stylesheet">
 
     
-    <link href="../css/sb-admin-2.min.css" rel="stylesheet">
+    <!-- <link href="../css/sb-admin-2.min.css" rel="stylesheet"> -->
     <link href="css/dashAlice.css" rel="stylesheet">
 
     <link rel="stylesheet" href="css/sb-admin-2.min.css">
@@ -159,7 +159,7 @@
                             </div>
                         </div>
 
-                        <div id="divLinhaDash display-betwen">
+                        <div id="divLinhaDash">
                             <div id="boxDashComponente">
                                 <div id="containerDashComponentes">
                                     <div id="divTitulo">
@@ -188,28 +188,14 @@
                                     </div>
                                 </div>
                             </div>
-                            <div id="boxDashComponente">
-                                <div id="containerDashComponentes">
-                                    <div id="divTitulo">
-                                        <div id="titulo titulo-end">
-                                            <span>ATM com mais Erro</span>
-                                        </div>
-                                    </div>
-                                    <div id="conteudoComponente">
-                                        <div id="componente">
-                                            <span id="atmErro"></span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
 
-                        <div id="divLinhaDash2 display-betwen">
+                        <div id="divLinhaDash2">
 
                             <div id="boxDashGrafico">
                                 <div id="containerDashComponentes">
                                     <div id="divTitulo">
-                                        <div id="titulo titulo-end">
+                                        <div id="titulo">
                                             <span>Logs em Tempo Real</span>
                                         </div>
                                     </div>
@@ -224,13 +210,13 @@
                             <div id="boxDashGraficoBarra">
                                 <div id="containerDashComponentes">
                                     <div id="divTitulo">
-                                        <div id="titulo titulo-end">
+                                        <div id="titulo">
                                             <span>Comparativo entre Logs Bem e Mal Sucedidos</span>
                                         </div>
                                     </div>
                                     <div id="conteudoComponente">
                                         <div id="componente">
-                                            <canvas id="graficoComparacao"></canvas>
+                                            <canvas id="logComparacao"></canvas>
                                         </div>
                                     </div>
                                 </div>
@@ -344,7 +330,7 @@
     // }
 
     function obterDadosComparacao(idATM) {
-        var idATM = 1
+        //var idATM = sessionStorage.idATM
 
         fetch(`/alice/comparacaoLogsSucessoEFalha/${idATM}`, { cache: 'no-store' })
         .then(function (response) {
@@ -355,41 +341,44 @@
                     resposta.reverse()
                     plotarGraficoComparacao(resposta, idATM)
                 })
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
             }
-        })  
-
+        })
+            .catch(function (error) {
+                console.error(`Erro na obtenção dos dados para gráfico: ${error.message}`);
+            }); 
     }
 
     function plotarGraficoComparacao(resposta, idATM) {
+    console.log('Iniciando a plotagem do gráfico...');
+    let labels = [];
+    let dados = {
+        labels: labels,
+        datasets: [{
+            label: 'Tipo de Log',
+            data: [],
+            fill: false,
+            backgroundColor: 'rgba(75, 192, 192, 0.2)',
+            borderColor: 'rgba(75, 192, 192, 1)',
+            borderWidth: 5,
+            tension: 0.5
+        }]
+    };
 
-        let labels = [];
-        let dados = {
-            labels: labels,
-            datasets: [{
-                label: 'Estresse',
-                data: [],
-                fill: false,
-                backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                borderColor: 'rgba(75, 192, 192, 1)',
-                borderWidth: 5,
-                tension: 0.5
-            }]
-        };
+    for (let i = 0; i < resposta.length; i++) {
+        let registro = resposta[i];
+        dados.datasets[0].data.push(registro.qtdErros);
+        labels.push(registro.Tipo);
+    }
 
-
-        for (i = 0; i < resposta.length; i++) {
-            var registro = resposta[i];
-            dados.datasets[0].data.push(registro.Valor);
-            labels.push(registro.DataRegistro)
-        }
-
-        console.log('----------------------------------------------')
-        console.log('O gráfico será plotado com os respectivos valores:')
-        console.log('Labels:')
-        console.log(labels)
-        console.log('Dados:')
-        console.log(dados.datasets)
-        console.log('----------------------------------------------')
+    console.log('---------------------------------------------');
+    console.log('O gráfico será plotado com os respectivos valores:');
+    console.log('Labels:');
+    console.log(labels);
+    console.log('Dados:');
+    console.log(dados.datasets);
+    console.log('----------------------------------------------')
 
 
         const config = {
@@ -398,54 +387,56 @@
         };
 
         let myChart = new Chart(
-            document.getElementById(`EstresseChart`),
+            document.getElementById(`logComparacao`),
             config
         );
         setTimeout(()=>atualizarGraficoComparacao(idATM, dados, myChart),2000)
     }
 
+    obterDadosComparacao(idATM);
 
     function atualizarGraficoComparacao(idATM, dados, myChart) {
-        fetch(`/alice/buscarTempoReal/${idATM}`, { cache: 'no-store' })
-            .then(function (response) {
-                if (response.ok) {
-                    return response.json();
+    fetch(`/alice/comparacaoLogsSucessoEFalha/${idATM}`, { cache: 'no-store' })
+        .then(function (resposta) {
+            if (resposta.ok) {
+                return resposta.json();
+            } else {
+                console.error('Nenhum dado ou erro na API');
+                return [];
+            }
+        })
+        .then(function (novoRegistro) {
+            console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
+            console.log('Dados atuais do gráfico:');
+            console.log(dados);
+            if (novoRegistro.length > 0) {
+                if (novoRegistro[0].Tipo !== dados.labels[dados.labels.length - 1]) {
+                    dados.labels.push(novoRegistro[0].Tipo);
+                    dados.datasets[0].data.push(novoRegistro[0].qtdErros);
+                    myChart.update();
                 } else {
-                    console.error('Nenhum dado encontrado ou erro na API');
-                    return [];
+                    console.log("-----------------------------------");
+                    console.log("Como não há dados novos para captura, o gráfico não será atualizado.");
+                    console.log("Horário do novo dado capturado:");
+                    console.log(novoRegistro[0].Tipo);
+                    console.log("Horário último dado capturado:");
+                    console.log(dados.labels[dados.labels.length - 1]);
+                    console.log("-----------------------------------");
                 }
-            })
-            .then(function (novoRegistro) {
-                console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
-                console.log('Dados atuais do gráfico:');
-                console.log(dados);
+            }
+            // Chama a função recursivamente após 2 segundos
+            setTimeout(() => atualizarGraficoComparacao(idATM, dados, myChart), 1000);
+        })
+        .catch(function (error) {
+            console.error(`Erro na obtenção dos dados para o gráfico: ${error.message}`);
+        });
 
-                if (novoRegistro.length > 0) {
-                    if (novoRegistro[0].DataRegistro != dados.labels[dados.labels.length - 1]) {
-                        dados.labels.push(novoRegistro[0].DataRegistro);
-                        dados.datasets[0].data.push(novoRegistro[0].Valor);
-                        myChart.update();
-                    } else {
-                        console.log("---------------------------------------------------------------");
-                        console.log("Como não há dados novos para captura, o gráfico não atualizará.");
-                        console.log("Horário do novo dado capturado:");
-                        console.log(novoRegistro[0].DataRegistro);
-                        console.log("Horário do último dado capturado:");
-                        console.log(dados.labels[dados.labels.length - 1]);
-                        console.log("---------------------------------------------------------------");
-                    }
-                }
+// Adiciona esta chamada para iniciar o processo de plotagem do gráfico
 
-                // Chama a função recursivamente após 2 segundos
-                setTimeout(()=>atualizarGraficoComparacao(idATM, dados, myChart),2000)
-            })
-            .catch(function (error) {
-                console.error(`Erro na obtenção dos dados para o gráfico: ${error.message}`);
-            });
 
     }
 
-    // OUTRO GRÀFICO
+    // OUTRO GRÁFICO
 
 //     function obterDadosTempoReal(idATM) {
 
