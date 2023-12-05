@@ -23,6 +23,11 @@
     justify-content: left;
 }
 
+.baixo{
+    display: flex;
+    justify-content: end;
+}
+
 .display-right{
     display: flex;
     justify-content: right;
@@ -269,6 +274,8 @@
     border-left: 0.25rem solid #021e46 !important;
 
     box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, .15);
+
+    margin-bottom: 8%;
 }
 
 .divTimer{
