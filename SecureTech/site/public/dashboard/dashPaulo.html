@@ -184,11 +184,11 @@
 
 
                         <!-- <div class="card"> -->
-                        <div class="col-xl-3 col-md-6 mb-4">
+                        <div class="col-xl-3 col-md-6 mb-4" id="container_kpi">
                             <div class="card border-left-primary shadow h-100 py-2">
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
+                                        <div class="col mr-2" id="card_kpi">
                                             <div  class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                                 Pico Diário</div>
                                             <div id="KPIpico" class="h5 mb-0 font-weight-bold text-gray-800"
@@ -203,11 +203,11 @@
                         <!-- </div> -->
 
                         <!-- <div class="card"> -->
-                        <div class="col-xl-3 col-md-6 mb-4">
+                        <div class="col-xl-3 col-md-6 mb-4" id="container_kpi">
                             <div class="card border-left-primary shadow h-100 py-2">
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
+                                        <div class="col mr-2" id="card_kpi">
                                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                                 Vale Diário</div>
                                             <div id="KPIvale" class="h5 mb-0 font-weight-bold text-gray-800"
@@ -227,25 +227,24 @@
 
 
 
-                    <div class="row" style="justify-content: center; align-items: center;">
+                    <div class="row" style="justify-content: center; align-items: center;" id="containerzao">
 
 
-                        <div class="col-xl-8 col-lg-7">
-                            <div class="card shadow mb-4">
+                        <div class="col-xl-8 col-lg-7" id="container_dash">
+                            <div class="card shadow mb-4" id="box_dash">
 
-                                <div
-                                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between" id="container_conteudo_dash">
                                     <h6 class="m-0 font-weight-bold text-primary">Mapeamento de Estresse </h6>
-                                    <div class="dropdown no-arrow">
+                                    <!-- <div class="dropdown no-arrow">
                                         <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
-                                            aria-labelledby="dropdownMenuLink">
+                                            aria-labelledby="dropdownMenuLink"> -->
                                             <!-- <a class="dropdown-item" href="#">Something else here</a> -->
-                                        </div>
-                                    </div>
+                                        <!-- </div>
+                                    </div> -->
                                 </div>
                                 <!-- class="card-body" -->
-                                <div style="height: 50%; width: 50%;">
-                                    <canvas id="EstresseChart" style="display: block;height: 100%; width: 100%;"></canvas>
+                                <div id="container_canva">
+                                    <canvas id="EstresseChart"></canvas>
                                 </div>
                             </div>
                         </div>
