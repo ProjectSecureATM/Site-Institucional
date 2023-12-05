@@ -20,11 +20,11 @@ var sqlServerConfig = {
 var mySqlConfig = {
     host: "localhost",
     database: "SecureATM",
-    user: "aluno",
+    user: "root",
 // password: "#Gf45217532807"
-    password:"sptech"
+    // password:"sptech"
 // password: "fgandb25"
-// password: "Ph993387998"
+password: "Ph993387998"
 
 };
 
