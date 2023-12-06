@@ -423,7 +423,8 @@
 
                             </div>
                             <div class="botao-reiniciar">
-                                <button id="openModalButton" onclick="notificarATM(), obterSelect()">NOTIFICAR ATM</button>
+                                <button id="openModalButton" onclick="notificarATM(), obterSelect()">NOTIFICAR
+                                    ATM</button>
                                 <span id="botao"></span>
                                 <div class="texto-reiniciar">
                                     <b>
@@ -478,13 +479,6 @@
                             </div>
                         </div>
                     </div>
-
-
-
-
-
-
-
                 </div>
             </div>
         </div>
@@ -524,16 +518,16 @@
     }
 
     window.onload = function () {
-       if (idATM) {
-           mostrarTemp(idATM);
-           mostrarCPU(idATM);
-           obterDesempenhoETempoSistema(idATM);
-           obterBotaoSistema(idATM);
-           exibirStatusSistema(idATM);
-           cpuTemperatura(idATM);
-       } else {
-           console.error('idATM não está definido.');
-       }
+        if (idATM) {
+            mostrarTemp(idATM);
+            mostrarCPU(idATM);
+            obterDesempenhoETempoSistema(idATM);
+            obterBotaoSistema(idATM);
+            exibirStatusSistema(idATM);
+            cpuTemperatura(idATM);
+        } else {
+            console.error('idATM não está definido.');
+        }
     };
 
     function obterDesempenhoETempoSistema(idATM) {
@@ -580,9 +574,9 @@
                 console.log('Dados recebidos:', dados);
                 atualizarValorDOM10(dados.SELECT)
 
-                if(dados.SELECT == 0){
+                if (dados.SELECT == 0) {
                     obterBotaoInsert()
-                }else{
+                } else {
                     obterBotao()
                 }
 
@@ -613,7 +607,7 @@
     //             console.log('Dados recebidos:', dados);
     //             atualizarValorDOM8('cpuTemp', dados.TEMPERATURA)
 
-                
+
     //         })
     //         .catch(function (error) {
     //             console.error(`Erro na obtenção dos dados do sistema: ${error.message}`);

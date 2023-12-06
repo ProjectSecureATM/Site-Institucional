@@ -256,7 +256,7 @@
                                         </div>
 
                                         <div class="card-body">
-                                            <canvas id="ProcessosChart"></canvas>
+                                            <canvas id="PacotesChart"></canvas>
                                         </div>
                                     </div>
                                 </div>
@@ -493,16 +493,19 @@
             .then(function (response) {
                 if (response.ok) {
                     return response.json();
+                    console.log('cuzinho1')
                 } else {
                     console.error('Nenhum dado encontrado ou erro na API');
                     return [];
                 }
+                console.log('cuzinho2')
             })
+            console.log('cuzinho3')
             .then(function (resposta) {
                 console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
                 resposta.reverse();
                 plotarGrafico(resposta, idAgen);
-                setTimeout(() => atualizarGrafico(idAgen, dados, PacotesChart), 2000);
+                setTimeout(() => atualizarGraficoPacotes(idAgen, dados, PacotesChart), 2000);
             })
             .catch(function (error) {
                 console.error(`Erro na obtenção dos dados para o gráfico: ${error.message}`);
@@ -514,26 +517,59 @@
         let dados = {
             labels: labels,
             datasets: [{
-                label: 'Total Pacotes',
+                label: 'Total Pacotes / Monitoramento',
+                color: 'white',
                 data: [],
                 fill: false,
-                backgroundColor: '#021e46',
-                borderColor: '#021e46',
-                borderWidth: 5,
+                backgroundColor: '#021e46   ',
+                borderColor: '#021e46   ',
+                fontColor: 'white',
+                borderWidth: 1,
                 tension: 0.5
             }]
         };
 
         for (let i = 0; i < resposta.length; i++) {
             let registro = resposta[i];
-            dados.datasets[0].data.push(registro.quantidade);
-            labels.push(registro.hora);
+            dados.datasets[0].data.push(registro[0].total_pacotes);
+            labels.push(registro[0].hora);
+        }
+
+        const opcoes = {
+            plugins: {
+                legend: {
+                    labels: {
+                        color: '#021e46',
+                        fontStyle: 'bold' // Cor da fonte da label
+                    }
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    grid: {
+                        display: false,
+                    },
+                    ticks: {
+                        color: 'black' // Cor da fonte no eixo X
+                    },
+                },
+                x: {
+                    beginAtZero: true,
+                    display: false,
+                    ticks: {
+                        color: 'white' // Cor da fonte no eixo X
+                    },
+                }
+            }
         }
 
         const config = {
             type: 'line',
-            data: dados
+            data: dados,
+            options: opcoes
         };
+
 
         let PacotesChart = new Chart(
             document.getElementById(`PacotesChart`),
@@ -541,10 +577,10 @@
         );
 
         // Chama a função para atualizar dinamicamente o gráfico
-        setTimeout(() => atualizarGrafico(idATM, dados, PacotesChart), 2000);
+        setTimeout(() => atualizarGraficoPacotes(idATM, dados, PacotesChart), 2000);
     }
 
-    function atualizarGrafico(idAgen, dados, PacotesChart) {
+    function atualizarGraficoPacotes(idAgen, dados, PacotesChart) {
         fetch(`/rede/atualizarGraficoPacotes/${idAgen}`, { cache: 'no-store' })
             .then(function (response) {
                 if (response.ok) {
@@ -564,7 +600,7 @@
                     dados.datasets[0].data.pop();
 
                     dados.labels.push(novoRegistro[0].hora);
-                    dados.datasets[0].data.push(novoRegistro[0].quantidade);
+                    dados.datasets[0].data.push(novoRegistro[0].total_pacotes);
                     ProcessoChart.update();
                 // } 
                 // else {
@@ -578,7 +614,7 @@
 
                 // }
 
-                setTimeout(() => atualizarGrafico(idAgen, dados, PacotesChart), 2000);
+                setTimeout(() => atualizarGraficoPacotes(idAgen, dados, PacotesChart), 2000);
             })
             .catch(function (error) {
                 console.error(`Erro na obtenção dos dados para o gráfico: ${error.message}`);

@@ -10,49 +10,33 @@ function confirmacaoSeguranca(email, senha) {
     return database.executar(instrucao);
 }
 
-function graficoPacotes(fkAgencia_usuario) {
+function graficoPacotes(idAgen) {
     var instrucaoSql = `
     SELECT SUM(pacotesEnviados) AS total_pacotes, FORMAT(MAX(data_hora), 'yyyy-MM-dd HH:mm:ss') AS hora, fk__ATMAgencia
-    FROM rede
-    WHERE fk__ATMAgencia = ${fkAgencia_usuario}
-    GROUP BY fk__ATMAgencia, FORMAT(data_hora, 'yyyy-MM-dd HH:00:00')
-    ORDER BY FORMAT(MAX(data_hora), 'yyyy-MM-dd HH:00:00') 
-    OFFSET 0 ROWS FETCH FIRST 3 ROWS ONLY;`;
-    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+            FROM rede
+            WHERE fk__ATMAgencia = ${idAgen}
+            GROUP BY fk__ATMAgencia, FORMAT(data_hora, 'yyyy-MM-dd HH:00:00')
+            ORDER BY FORMAT(MAX(data_hora), 'yyyy-MM-dd HH:00:00') `;
+        console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql)
-        .then(resultados => {
-            // Formatando dados para Chart.js
-            const labels = resultados.map(item => item.data_hora);
-            const data = resultados.map(item => item.total_pacotes);
-
-            return { labels, data };
-        });
+        
 }
 
 
-async function atualizarGraficoPacotes(fkAgencia_usuario) {
-    try {
-        // Definindo valores padrão
+function atualizarGraficoPacotes(idAgen) {
+    
         var instrucaoSql = `
         SELECT SUM(pacotesEnviados) AS total_pacotes, FORMAT(MAX(data_hora), 'yyyy-MM-dd HH:mm:ss') AS hora, fk__ATMAgencia
             FROM rede
-            WHERE fk__ATMAgencia = ${fkAgencia_usuario}
+            WHERE fk__ATMAgencia = ${idAgen}
             GROUP BY fk__ATMAgencia, FORMAT(data_hora, 'yyyy-MM-dd HH:00:00')
             ORDER BY FORMAT(MAX(data_hora), 'yyyy-MM-dd HH:00:00') 
-            OFFSET 0 ROWS FETCH FIRST 1 ROWS ONLY`;
+            DESC LIMIT 1`;
         console.log("Executando a instrução SQL: \n" + instrucaoSql);
-        const resultados = await database.executar(instrucaoSql);
-
-        // Formatando dados para Chart.js
-        const labels = resultados.map(item => item.data_hora);
-        const data = resultados.map(item => item.total_pacotes);
-
-        return { labels, data };
-    } catch (error) {
-        console.error(`Erro ao executar instrução SQL: ${error.message}`);
-        throw error; // Rejogue o erro para tratamento adequado no controlador
-    }
+        return database.executar(instrucaoSql);
+    
 }
+
 
 
 
