@@ -75,16 +75,6 @@
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Inovações Secure ATM:</h6>
-<<<<<<< HEAD
-                        <a href="dashVaz.html" class="collapse-item">Dash Gabroh</a>
-                        <a href="DashBoard-VisaoGeral-Giba.html" class="collapse-item">Desempenho Sistêmico</a>
-                        <a href="dashVisaoGeralRede_Julio.html" class="collapse-item">Segurança de Rede</a>
-                        <a href="DashBoard-VisaoGeral-Paulo.html" class="collapse-item">Dash Paulão</a>
-                        <a href="DashBoard-VisaoGeral-Primon.html" class="collapse-item">Dash Primon</a>
-                        <a class="collapse-item">Dash Alice</a>
-                    </div>
-                </div>
-=======
                         <a href="dashVaz.html" class="collapse-item">Dash Rede</a>
                         <a href="DashBoard-VisaoGeral-Giba.html" class="collapse-item">Desempenho Sistêmico</a>
                         <a href="dashVisaoGeralRede_Julio.html" class="collapse-item">Dash Segurança de Rede</a>
@@ -94,7 +84,6 @@
                     </div>
                 </div>
 
->>>>>>> 2dcba58aa6961ecd0dc115fef0fca07d9286f371
             </li>
             <!-- Sidebar Toggler (Sidebar) -->
             <div class="text-center d-none d-md-inline">
@@ -434,25 +423,6 @@
 
 
 
-<<<<<<< HEAD
-    var idATM = sessionStorage.getItem('idATM');
-    window.onload = function () {
-        if (idATM) {
-            exibirStatusRede(idATM);
-            mostrarVariedade(idATM);
-            tempoAtividadeEIP(idATM);
-            // obterMedidasRede(idATM);
-            buscarMedidasRede(idATM);
-        } else {
-            console.error('idATM não está definido.');
-        }
-    };
-
-    function exibirStatusRede(idATM) {
-        obterDadosRede(idATM);
-        setInterval(function () {
-            obterDadosRede(idATM);
-=======
     var idAgen = sessionStorage.getItem('idAgen');
     window.onload = function () {
         exibirStatusRede(idAgen);
@@ -466,25 +436,10 @@
         obterDadosRede(idAgen);
         setInterval(function () {
             obterDadosRede(idAgen);
->>>>>>> 2dcba58aa6961ecd0dc115fef0fca07d9286f371
         }, 2000);
 
     }
 
-<<<<<<< HEAD
-    function tempoAtividadeEIP(idATM) {
-        obterTempoAtv(idATM);
-        setInterval(function () {
-            obterTempoAtv(idATM);
-        }, 2000);
-        obterIP(idATM);
-        setInterval(function () {
-            obterIP(idATM)
-        }, 2000)
-    }
-
-    function obterDadosRede(idATM) {
-=======
     function tempoAtividadeEIP(idAgen) {
         obterTempoAtv(idAgen);
         setInterval(function () {
@@ -497,16 +452,11 @@
     }
 
     function obterDadosRede(idAgen) {
->>>>>>> 2dcba58aa6961ecd0dc115fef0fca07d9286f371
         var statusPing = document.getElementById('statusPing')
         var statusDownlaod = document.getElementById('statusDownload')
         var statusUpload = document.getElementById('statusUpload')
 
-<<<<<<< HEAD
-        fetch(`/usuarios/obterMetricasRede/${idATM}`, { cache: 'no-store' })
-=======
         fetch(`/usuarios/obterMetricasRede/${idAgen}`, { cache: 'no-store' })
->>>>>>> 2dcba58aa6961ecd0dc115fef0fca07d9286f371
             .then(function (resposta) {
                 if (resposta.ok) {
                     return resposta.json();
@@ -588,13 +538,8 @@
         document.getElementById(elementID).textContent = valor;
     }
 
-<<<<<<< HEAD
-    function mostrarVariedade(idATM) {
-        fetch(`/usuarios/VariedadeHora/${idATM}`, { cache: 'no-store' })
-=======
     function mostrarVariedade(idAgen) {
         fetch(`/usuarios/VariedadeHora/${idAgen}`, { cache: 'no-store' })
->>>>>>> 2dcba58aa6961ecd0dc115fef0fca07d9286f371
             .then(function (response) {
                 if (response.ok) {
                     return response.json();
@@ -605,24 +550,15 @@
             })
             .then(function (resposta) {
                 console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
-<<<<<<< HEAD
-                plotarGrafico(resposta, idATM);
-=======
                 plotarGrafico(resposta, idAgen);
->>>>>>> 2dcba58aa6961ecd0dc115fef0fca07d9286f371
             })
             .catch(function (error) {
                 console.error(`Erro na obtenção dos dados para o gráfico: ${error.message}`);
             });
     }
 
-<<<<<<< HEAD
-    function obterTempoAtv(idATM) {
-        fetch(`/usuarios/obterTempoAtv/${idATM}`, { cache: 'no-store' })
-=======
     function obterTempoAtv(idAgen) {
         fetch(`/usuarios/obterTempoAtv/${idAgen}`, { cache: 'no-store' })
->>>>>>> 2dcba58aa6961ecd0dc115fef0fca07d9286f371
             .then(function (resposta) {
                 if (resposta.ok) {
                     return resposta.json();
@@ -646,13 +582,8 @@
         document.getElementById(elementID).textContent = valor;
     }
 
-<<<<<<< HEAD
-    function obterIP(idATM) {
-        fetch(`/usuarios/obterIP/${idATM}`, { cache: 'no-store' })
-=======
     function obterIP(idAgen) {
         fetch(`/usuarios/obterIP/${idAgen}`, { cache: 'no-store' })
->>>>>>> 2dcba58aa6961ecd0dc115fef0fca07d9286f371
             .then(function (resposta) {
                 if (resposta.ok) {
                     return resposta.json();
@@ -680,29 +611,17 @@
 
 
     // GRAFICO
-<<<<<<< HEAD
-    function buscarMedidasRede(idATM) {
-        var idATM = sessionStorage.idATM
-
-
-        fetch(`/usuarios/tempo-medidasRede/${idATM}`, { cache: 'no-store' }).then(function (response) {
-=======
     function buscarMedidasRede(idAgen) {
         var idAgen = sessionStorage.idAgen
 
 
         fetch(`/usuarios/tempo-medidasRede/${idAgen}`, { cache: 'no-store' }).then(function (response) {
->>>>>>> 2dcba58aa6961ecd0dc115fef0fca07d9286f371
             if (response.ok) {
                 response.json().then(function (resposta) {
                     console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
                     resposta.reverse();
 
-<<<<<<< HEAD
-                    plotarGraficoRede(resposta, idATM);
-=======
                     plotarGraficoRede(resposta, idAgen);
->>>>>>> 2dcba58aa6961ecd0dc115fef0fca07d9286f371
                 });
             } else {
                 console.error('Nenhum dado encontrado ou erro na API');
@@ -714,11 +633,7 @@
     }
 
 
-<<<<<<< HEAD
-    function plotarGraficoRede(resposta, idATM) {
-=======
     function plotarGraficoRede(resposta, idAgen) {
->>>>>>> 2dcba58aa6961ecd0dc115fef0fca07d9286f371
 
         console.log('iniciando plotagem do gráfico...');
 
@@ -827,14 +742,6 @@
             responsive: true
         };
 
-<<<<<<< HEAD
-        setTimeout(() => atualizarGraficoRede(idATM, dados, myChart3), 2000);
-    }
-
-    function atualizarGraficoRede(idATM, dados, myChart3) {
-
-        fetch(`/usuarios/atualizarGraficosRede/${idATM}`, { cache: 'no-store' }).then(function (response) {
-=======
         setTimeout(() => atualizarGraficoRede(idAgen, dados, myChart3), 2000);
     }
 
@@ -953,7 +860,6 @@
     function atualizarGraficoRede(idAgen, dados, myChart3) {
 
         fetch(`/usuarios/atualizarGraficosRede/${idAgen}`, { cache: 'no-store' }).then(function (response) {
->>>>>>> 2dcba58aa6961ecd0dc115fef0fca07d9286f371
             if (response.ok) {
                 console.log("papai socoro AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
                 response.json().then(function (novoRegistro) {
@@ -1002,11 +908,7 @@
     // var myChart = null;
     // var isChartDestroyed = true;
 
-<<<<<<< HEAD
-    // function plotarGrafico(resposta, idATM) {
-=======
     // function plotarGrafico(resposta, idAgen) {
->>>>>>> 2dcba58aa6961ecd0dc115fef0fca07d9286f371
 
     // Criando estrutura para plotar gráfico - labels
     // let labels = [];
@@ -1108,11 +1010,7 @@
     // isChartDestroyed = false;
 
 
-<<<<<<< HEAD
-    // setTimeout(() => atualizarGraficoRede(idATM, resposta, myChartRede), 2000);
-=======
     // setTimeout(() => atualizarGraficoRede(idAgen, resposta, myChartRede), 2000);
->>>>>>> 2dcba58aa6961ecd0dc115fef0fca07d9286f371
 
     // }
 
@@ -1123,13 +1021,8 @@
     //     }
     // }
 
-<<<<<<< HEAD
-    // function atualizarGraficoRede(resposta, idATM, myChartRede) {
-    //     fetch(`/usuarios/atualizarGraficosRede/ ${idATM}`, {cache:'no-store'}).then(function (response) {
-=======
     // function atualizarGraficoRede(resposta, idAgen, myChartRede) {
     //     fetch(`/usuarios/atualizarGraficosRede/ ${idAgen}`, {cache:'no-store'}).then(function (response) {
->>>>>>> 2dcba58aa6961ecd0dc115fef0fca07d9286f371
     //         if (response.ok) {
     //             response.json().then(function (novoRegistro) {
 

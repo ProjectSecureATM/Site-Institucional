@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-=======
-const { isDataView } = require("util/types");
->>>>>>> 2dcba58aa6961ecd0dc115fef0fca07d9286f371
 var database = require("../database/config")
 const util = require('util');
 
@@ -319,20 +315,10 @@ GROUP BY DATE_FORMAT(data_hora, '%Y-%m-%d %H:00:00');`;
         }
     }
 
-<<<<<<< HEAD
     async function obterMetricasRede(idATM) {
         const PINGQuery = `SELECT ping FROM rede WHERE fk__idATM = ${idATM} order by data_hora desc limit 1`;
         const DOWNLOADQuery = `SELECT pacotesRecebidos FROM rede WHERE fk__idATM = ${idATM} order by data_hora desc limit 1`;
         const UPLOADQuery = `SELECT pacotesEnviados FROM rede WHERE fk__idATM = ${idATM} order by data_hora desc limit 1`;
-=======
-    async function obterMetricasRede(idAgen) {
-
-
-
-        const PINGQuery = `SELECT ping FROM rede WHERE fk__idATM = ${idAgen} order by data_hora desc limit 1`;
-        const DOWNLOADQuery = `SELECT pacotesRecebidos FROM rede WHERE fk__idATM = ${idAgen} order by data_hora desc limit 1`;
-        const UPLOADQuery = `SELECT pacotesEnviados FROM rede WHERE fk__idATM = ${idAgen} order by data_hora desc limit 1`;
->>>>>>> 2dcba58aa6961ecd0dc115fef0fca07d9286f371
 
         console.log("Executando as instruções SQL:\n", PINGQuery, DOWNLOADQuery, UPLOADQuery);
 
@@ -491,26 +477,6 @@ GROUP BY DATE_FORMAT(data_hora, '%Y-%m-%d %H:00:00');`;
         }
     }
 
-<<<<<<< HEAD
-    function buscarMedidasRede(idATM, limite_linhas) {
-        instrucaoSql = ''
-
-        if (process.env.AMBIENTE_PROCESSO == 'producao') {
-            //NUVEM
-            instrucaoSql = `
-      
-      `
-        } else if (process.env.AMBIENTE_PROCESSO == 'desenvolvimento') {
-            instrucaoSql = `
-            select date_format(data_hora, '%h:%m:%s') as dataHora, pacotesEnviados, pacotesRecebidos from rede where fk__idATM=${idATM}  limit ${limite_linhas};
-      `
-        } else {
-            console.log(
-                '\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n'
-            )
-            return
-        }
-=======
     function buscarMedidasRede(idAgen, limite_linhas) {
 
         instrucaoSql = `
@@ -525,7 +491,6 @@ GROUP BY DATE_FORMAT(data_hora, '%Y-%m-%d %H:00:00');`;
         )
         return
 
->>>>>>> 2dcba58aa6961ecd0dc115fef0fca07d9286f371
 
         console.log('Executando a instrução SQL: \n' + instrucaoSql)
         return database.executar(instrucaoSql)
@@ -847,12 +812,7 @@ GROUP BY DATE_FORMAT(data_hora, '%Y-%m-%d %H:00:00');`;
         buscarUltimasMedidasServidores4,
         atualizandoMedidasServidores4
     };
-<<<<<<< HEAD
 } else if (process.env.AMBIENTE_PROCESSO == "producao") {
-=======
-} else 
-if (process.env.AMBIENTE_PROCESSO == "producao") {
->>>>>>> 2dcba58aa6961ecd0dc115fef0fca07d9286f371
     function autenticar(email, senha) {
         console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function entrar(): ", email, senha)
         var instrucao = `
@@ -1176,17 +1136,10 @@ order by FORMAT(data_hora, 'yyyy-MM-dd HH:mm:ss') DESC
 
 
 
-<<<<<<< HEAD
     async function obterMetricasRede(idATM) {
         const PINGQuery = `SELECT TOP 1 ping FROM rede WHERE fk__idATM = ${idATM} ORDER BY data_hora DESC;`;
         const DOWNLOADQuery = `SELECT TOP 1 pacotesRecebidos FROM rede WHERE fk__idATM = ${idATM} ORDER BY data_hora DESC;`;
         const UPLOADQuery = `SELECT TOP 1 pacotesEnviados FROM rede WHERE fk__idATM = ${idATM} ORDER BY data_hora DESC;`;
-=======
-    async function obterMetricasRede(idAgen) {
-        const PINGQuery = `SELECT TOP 1 ping FROM rede WHERE fkATMAgencia = ${idAgen} ORDER BY data_hora DESC;`;
-        const DOWNLOADQuery = `SELECT TOP 1 pacotesRecebidos FROM rede WHERE fkATMAgencia = ${idAgen} ORDER BY data_hora DESC;`;
-        const UPLOADQuery = `SELECT TOP 1 pacotesEnviados FROM rede WHERE fkATMAgencia = ${idAgen} ORDER BY data_hora DESC;`;
->>>>>>> 2dcba58aa6961ecd0dc115fef0fca07d9286f371
 
         console.log("Executando as instruções SQL:\n", PINGQuery, DOWNLOADQuery, UPLOADQuery);
 
@@ -1236,11 +1189,7 @@ ORDER BY
     }
 
     function obterTempoAtv(idATM) {
-<<<<<<< HEAD
     var atividadeQuery = `
-=======
-        var atividadeQuery = `
->>>>>>> 2dcba58aa6961ecd0dc115fef0fca07d9286f371
     SELECT atividade
     FROM (
         SELECT atividade,
@@ -1251,11 +1200,7 @@ ORDER BY
     WHERE rn = 1;`
 
         console.log("Executando a instrução SQL: \n" + atividadeQuery);
-<<<<<<< HEAD
         
-=======
-
->>>>>>> 2dcba58aa6961ecd0dc115fef0fca07d9286f371
         return database.executar(atividadeQuery)
     }
 
@@ -1338,49 +1283,22 @@ where fkATM = 1;`;
         }
     }
 
-<<<<<<< HEAD
     async function buscarMedidasRede(idATM, limite_linhas) {
         let instrucaoSql = '';
 
         if (process.env.AMBIENTE_PROCESSO === 'producao') {
             // NUVEM
             instrucaoSql = `
-=======
-
-    async function buscarMedidasRede(idAgen, limite_linhas) {
-        instrucaoSql = `
-        SELECT TOP ${limite_linhas} pacotesRecebidos, pacotesEnviados, FORMAT(data_hora, 'HH:mm:ss') AS Horario
-        FROM rede
-        WHERE fk__ATMAgencia = ${idAgen}
-        ORDER BY fk__ATMAgencia DESC;
-            `;
-
-
-
-
-        async function atualizarGraficoRede(idATM, limite_linhas) {
-            let instrucaoSql = '';
-
-            if (process.env.AMBIENTE_PROCESSO === 'producao') {
-                // NUVEM
-                instrucaoSql = `
->>>>>>> 2dcba58aa6961ecd0dc115fef0fca07d9286f371
             SELECT TOP ${limite_linhas} download, upload, FORMAT(dataHora, 'HH:mm') AS Horário
             FROM monitoramentoRede
             WHERE fkMaquina = ${idATM}
             ORDER BY idMonitoramentoRede DESC;`;
-<<<<<<< HEAD
         } else if (process.env.AMBIENTE_PROCESSO === 'desenvolvimento') {
             instrucaoSql = `
-=======
-            } else if (process.env.AMBIENTE_PROCESSO === 'desenvolvimento') {
-                instrucaoSql = `
->>>>>>> 2dcba58aa6961ecd0dc115fef0fca07d9286f371
             SELECT TOP ${limite_linhas} CONVERT(VARCHAR, data_hora, 103) + ' ' + CONVERT(VARCHAR, data_hora, 108) AS dataHora, pacotesEnviados, pacotesRecebidos
             FROM rede
             WHERE fk__idATM = ${idATM}
             ORDER BY data_hora DESC;`;
-<<<<<<< HEAD
         } else {
             console.log('\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n');
             return;
@@ -1397,29 +1315,10 @@ where fkATM = 1;`;
         if (process.env.AMBIENTE_PROCESSO === 'producao') {
             // NUVEM
             instrucaoSql = `
-=======
-            } else {
-                console.log('\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n');
-                return;
-            }
-
-            console.log('Executando a instrução SQL: \n' + instrucaoSql);
-            const result = await database.executar(instrucaoSql);
-            return result.recordset;
-        }
-
-        async function atualiza(idATM, limite_linhas) {
-            let instrucaoSql = '';
-
-            if (process.env.AMBIENTE_PROCESSO === 'producao') {
-                // NUVEM
-                instrucaoSql = `
->>>>>>> 2dcba58aa6961ecd0dc115fef0fca07d9286f371
             SELECT TOP ${limite_linhas} download, upload, FORMAT(dataHora, 'HH:mm') AS Horário
             FROM monitoramentoRede
             WHERE fkMaquina = ${idATM}
             ORDER BY idMonitoramentoRede DESC;`;
-<<<<<<< HEAD
         } else if (process.env.AMBIENTE_PROCESSO === 'desenvolvimento') {
             instrucaoSql = `
             SELECT TOP ${limite_linhas} CONVERT(VARCHAR, data_hora, 103) + ' ' + CONVERT(VARCHAR, data_hora, 108) AS dataHora, pacotesEnviados, pacotesRecebidos
@@ -1448,15 +1347,10 @@ where fkATM = 1;`;
             ORDER BY idMonitoramentoRede DESC;`;
         } else if (process.env.AMBIENTE_PROCESSO === 'desenvolvimento') {
             instrucaoSql = `
-=======
-            } else if (process.env.AMBIENTE_PROCESSO === 'desenvolvimento') {
-                instrucaoSql = `
->>>>>>> 2dcba58aa6961ecd0dc115fef0fca07d9286f371
             SELECT TOP ${limite_linhas} CONVERT(VARCHAR, data_hora, 103), pacotesEnviados, pacotesRecebidos
             FROM rede
             WHERE fk__idATM = ${idATM}
             ORDER BY data_hora DESC;`;
-<<<<<<< HEAD
         } else {
             console.log('\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n');
             return;
@@ -1469,25 +1363,10 @@ where fkATM = 1;`;
 
     async function obterSelect(idATM) {
         const selectQuery = `
-=======
-            } else {
-                console.log('\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n');
-                return;
-            }
-
-            console.log('Executando a instrução SQL: \n' + instrucaoSql);
-            const result = await database.executar(instrucaoSql);
-            return result.recordset;
-        }
-
-        async function obterSelect(idATM) {
-            const selectQuery = `
->>>>>>> 2dcba58aa6961ecd0dc115fef0fca07d9286f371
         SELECT COUNT(*) as quantidade
         FROM notificacao
         WHERE fkATM = ${idATM};`;
 
-<<<<<<< HEAD
         console.log("Executando a instrução SQL: \n" + selectQuery);
         try {
             const selectResult = await database.executar(selectQuery);
@@ -1665,205 +1544,18 @@ where fkATM = 1;`;
         if (process.env.AMBIENTE_PROCESSO == "producao") {
             instrucaoSql =
                 `SELECT produto as produto, fabricante as fabricante, dataDia as dataLista
-=======
-            console.log("Executando a instrução SQL: \n" + selectQuery);
-            try {
-                const selectResult = await database.executar(selectQuery);
-                return {
-                    SELECT: (selectResult && selectResult.recordset[0] && selectResult.recordset[0].quantidade) || 'N/A',
-                };
-            } catch (error) {
-                console.error(`Erro na obtenção de Tempo de Atividade: ${error.message}`);
-                return {
-                    SELECT: 'N/A',
-                };
-            }
-        }
-
-        async function buscarUltimasMedidasServidores(idUsuario) {
-
-            instrucaoSql = ''
-
-            if (process.env.AMBIENTE_PROCESSO == "producao") {
-                instrucaoSql =
-                    `SELECT Valor as valor, DataRegistro as data
-        FROM Leitura
-        WHERE Componente_ID = 3;`
-
-                    ;
-            } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
-                instrucaoSql =
-                    `SELECT Valor as valor, DataRegistro as data
-        FROM Leitura
-        WHERE Componente_ID = 3;`
-
-                    ;
-            } else {
-                console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
-                return
-            }
-
-            console.log("Executando a instrução SQL: \n" + instrucaoSql);
-            return database.executar(instrucaoSql);
-        }
-
-        async function atualizandoMedidasServidores(idUsuario) {
-
-            instrucaoSql2 = ''
-
-            if (process.env.AMBIENTE_PROCESSO == "producao") {
-                instrucaoSql2 =
-                    `SELECT Valor as valor, DataRegistro as data
-        FROM Leitura
-        WHERE Componente_ID = 3;`
-
-            } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
-                instrucaoSql2 =
-                    `SELECT Valor as valor, DataRegistro as data
-        FROM Leitura
-        WHERE Componente_ID = 3;`
-            } else {
-                console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
-                return
-            }
-
-            console.log("Executando a instrução SQL: \n" + instrucaoSql2);
-            return database.executar(instrucaoSql2);
-        }
-
-
-
-        async function buscarUltimasMedidasServidores2(idUsuario) {
-
-            instrucaoSql = ''
-
-            if (process.env.AMBIENTE_PROCESSO == "producao") {
-                instrucaoSql =
-                    `SELECT Valor as valorRam, DataRegistro dataRam
-        FROM Leitura
-        WHERE Componente_ID = 1;`
-
-                    ;
-            } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
-                instrucaoSql =
-                    `SELECT Valor as valorRam, DataRegistro dataRam
-        FROM Leitura
-        WHERE Componente_ID = 1;`
-
-                    ;
-            } else {
-                console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
-                return
-            }
-
-            console.log("Executando a instrução SQL: \n" + instrucaoSql);
-            return database.executar(instrucaoSql);
-        }
-
-        async function atualizandoMedidasServidores2(idUsuario) {
-
-            instrucaoSql2 = ''
-
-            if (process.env.AMBIENTE_PROCESSO == "producao") {
-                instrucaoSql2 =
-                    `SELECT Valor as valorRam, DataRegistro dataRam
-        FROM Leitura
-        WHERE Componente_ID = 1;`
-
-            } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
-                instrucaoSql2 =
-                    `SELECT Valor as valorRam, DataRegistro dataRam
-        FROM Leitura
-        WHERE Componente_ID = 1;`
-            } else {
-                console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
-                return
-            }
-
-            console.log("Executando a instrução SQL: \n" + instrucaoSql2);
-            return database.executar(instrucaoSql2);
-        }
-
-
-
-
-        async function buscarUltimasMedidasServidores3(idUsuario) {
-
-            instrucaoSql = ''
-
-            if (process.env.AMBIENTE_PROCESSO == "producao") {
-                instrucaoSql =
-                    `SELECT COUNT(DISTINCT produto, fabricante) AS Quantidade_Dispositivos_Unicos
-        FROM DescricaoComponentes;`
-
-                    ;
-            } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
-                instrucaoSql =
-                    `SELECT COUNT(DISTINCT produto, fabricante) AS Quantidade_Dispositivos_Unicos
-        FROM DescricaoComponentes;`
-
-                    ;
-            } else {
-                console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
-                return
-            }
-
-            console.log("Executando a instrução SQL: \n" + instrucaoSql);
-            return database.executar(instrucaoSql);
-        }
-
-        async function atualizandoMedidasServidores3(idUsuario) {
-
-            instrucaoSql2 = ''
-
-            if (process.env.AMBIENTE_PROCESSO == "producao") {
-                instrucaoSql2 =
-                    `SELECT COUNT(DISTINCT produto, fabricante) AS Quantidade_Dispositivos_Unicos
-        FROM DescricaoComponentes;`
-
-            } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
-                instrucaoSql2 =
-                    `SELECT COUNT(DISTINCT produto, fabricante) AS Quantidade_Dispositivos_Unicos
-        FROM DescricaoComponentes;`
-            } else {
-                console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
-                return
-            }
-
-            console.log("Executando a instrução SQL: \n" + instrucaoSql2);
-            return database.executar(instrucaoSql2);
-        }
-
-
-
-        async function buscarUltimasMedidasServidores4(idUsuario) {
-
-            instrucaoSql = ''
-
-            if (process.env.AMBIENTE_PROCESSO == "producao") {
-                instrucaoSql =
-                    `SELECT produto as produto, fabricante as fabricante, dataDia as dataLista
->>>>>>> 2dcba58aa6961ecd0dc115fef0fca07d9286f371
         FROM DescricaoComponentes
         GROUP BY produto, fabricante, dataDia
         HAVING COUNT(*) > 1;`
 
-<<<<<<< HEAD
                 ;
         } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
             instrucaoSql =
                 `SELECT produto as produto, fabricante as fabricante, dataDia as dataLista
-=======
-                    ;
-            } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
-                instrucaoSql =
-                    `SELECT produto as produto, fabricante as fabricante, dataDia as dataLista
->>>>>>> 2dcba58aa6961ecd0dc115fef0fca07d9286f371
         FROM DescricaoComponentes
         GROUP BY produto, fabricante, dataDia
         HAVING COUNT(*) > 1;`
 
-<<<<<<< HEAD
                 ;
         } else {
             console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
@@ -1881,30 +1573,10 @@ where fkATM = 1;`;
         if (process.env.AMBIENTE_PROCESSO == "producao") {
             instrucaoSql2 =
                 `SELECT produto as produto, fabricante as fabricante, dataDia as dataLista
-=======
-                    ;
-            } else {
-                console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
-                return
-            }
-
-            console.log("Executando a instrução SQL: \n" + instrucaoSql);
-            return database.executar(instrucaoSql);
-        }
-
-        async function atualizandoMedidasServidores4(idUsuario) {
-
-            instrucaoSql2 = ''
-
-            if (process.env.AMBIENTE_PROCESSO == "producao") {
-                instrucaoSql2 =
-                    `SELECT produto as produto, fabricante as fabricante, dataDia as dataLista
->>>>>>> 2dcba58aa6961ecd0dc115fef0fca07d9286f371
         FROM DescricaoComponentes
         GROUP BY produto, fabricante, dataDia
         HAVING COUNT(*) > 1;`
 
-<<<<<<< HEAD
         } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
             instrucaoSql2 =
                 `SELECT produto as produto, fabricante as fabricante, dataDia as dataLista
@@ -1959,60 +1631,3 @@ where fkATM = 1;`;
         atualizandoMedidasServidores4
     };
 }
-=======
-            } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
-                instrucaoSql2 =
-                    `SELECT produto as produto, fabricante as fabricante, dataDia as dataLista
-        FROM DescricaoComponentes
-        GROUP BY produto, fabricante, dataDia
-        HAVING COUNT(*) > 1;`
-            } else {
-                console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
-                return
-            }
-
-            console.log("Executando a instrução SQL: \n" + instrucaoSql2);
-            return database.executar(instrucaoSql2);
-        }
-
-        module.exports = {
-            autenticar,
-            cadastrar,
-            cadastrarATM,
-            obterFkEmpresa,
-            cadastrarAgencia,
-            relatarProblema,
-            ProcessosPHora,
-            ProcessosPHora_tempoReal,
-            TEMPHora,
-            TEMP_tempoReal,
-            CPUHora,
-            CPU_tempoReal,
-            VariedadeHora,
-            Variedade_tempoReal,
-            listarATM,
-            listarAgencia,
-            obterMetricasComponentes,
-            obterMetricasRede,
-            obterDesempenho,
-            obterTempoAtv,
-            obterBotaoInsert,
-            obterBotao,
-            cpuTemperatura,
-            obterIP,
-            buscarMedidasRede,
-            atualiza,
-            atualizarGraficoRede,
-            obterSelect,
-            buscarUltimasMedidasServidores,
-            atualizandoMedidasServidores,
-            buscarUltimasMedidasServidores2,
-            atualizandoMedidasServidores2,
-            buscarUltimasMedidasServidores3,
-            atualizandoMedidasServidores3,
-            buscarUltimasMedidasServidores4,
-            atualizandoMedidasServidores4
-        };
-    }
-}
->>>>>>> 2dcba58aa6961ecd0dc115fef0fca07d9286f371
