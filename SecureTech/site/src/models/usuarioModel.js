@@ -481,28 +481,20 @@ GROUP BY DATE_FORMAT(data_hora, '%Y-%m-%d %H:00:00');`;
         }
     }
 
-    function buscarMedidasRede(idATM, limite_linhas) {
+    function buscarMedidasRede(idAgen, limite_linhas) {
 
-        if (process.env.AMBIENTE_PROCESSO == 'producao') {
-            //NUVEM
-            instrucaoSql = `
-            SELECT TOP ${limite_linhas}
-            FORMAT(data_hora, 'HH:mm:ss') as dataHora
-        FROM
-            rede
-        WHERE
-            fk__idATM=${idATM};
-      `
-        } else if (process.env.AMBIENTE_PROCESSO == 'desenvolvimento') {
-            instrucaoSql = `
-            select date_format(data_hora, '%h:%m:%s') as dataHora, pacotesEnviados, pacotesRecebidos from rede where fk__idATM=${idATM}  limit ${limite_linhas};
-      `
-        } else {
-            console.log(
-                '\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n'
-            )
-            return
-        }
+        instrucaoSql = `
+        SELECT TOP ${limite_linhas} download, upload, FORMAT(dataHora, 'HH:mm') AS Horário
+        FROM monitoramentoRede
+        WHERE fkMaquina = ${idAgen}
+        ORDER BY idMonitoramentoRede DESC;
+        `;
+
+        console.log(
+            '\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n'
+        )
+        return
+
 
         console.log('Executando a instrução SQL: \n' + instrucaoSql)
         return database.executar(instrucaoSql)
@@ -1149,9 +1141,9 @@ order by FORMAT(data_hora, 'yyyy-MM-dd HH:mm:ss') DESC
 
 
     async function obterMetricasRede(idAgen) {
-        const PINGQuery = `SELECT TOP 1 ping FROM rede WHERE fk__ATMAgencia = ${idAgen} ORDER BY data_hora DESC;`;
-        const DOWNLOADQuery = `SELECT TOP 1 pacotesRecebidos FROM rede WHERE fk__ATMAgencia = ${idAgen} ORDER BY data_hora DESC;`;
-        const UPLOADQuery = `SELECT TOP 1 pacotesEnviados FROM rede WHERE fk__ATMAgencia = ${idAgen} ORDER BY data_hora DESC;`;
+        const PINGQuery = `SELECT TOP 1 ping FROM rede WHERE fkATMAgencia = ${idAgen} ORDER BY data_hora DESC;`;
+        const DOWNLOADQuery = `SELECT TOP 1 pacotesRecebidos FROM rede WHERE fkATMAgencia = ${idAgen} ORDER BY data_hora DESC;`;
+        const UPLOADQuery = `SELECT TOP 1 pacotesEnviados FROM rede WHERE fkATMAgencia = ${idAgen} ORDER BY data_hora DESC;`;
 
         console.log("Executando as instruções SQL:\n", PINGQuery, DOWNLOADQuery, UPLOADQuery);
 
@@ -1296,18 +1288,12 @@ where fkATM = 1;`;
     }
 
     async function buscarMedidasRede(idAgen, limite_linhas) {
-        // NUVEM
         instrucaoSql = `
             SELECT TOP ${limite_linhas} download, upload, FORMAT(dataHora, 'HH:mm') AS Horário
             FROM monitoramentoRede
             WHERE fkMaquina = ${idAgen}
-            ORDER BY idMonitoramentoRede DESC;`;
-
-        instrucaoSql = `
-            SELECT TOP ${limite_linhas} CONVERT(VARCHAR, data_hora, 103) + ' ' + CONVERT(VARCHAR, data_hora, 108) AS dataHora, pacotesEnviados, pacotesRecebidos
-            FROM rede
-            WHERE fk__idATM = ${idAgen}
-            ORDER BY data_hora DESC;`;
+            ORDER BY idMonitoramentoRede DESC;
+            `;
 
         console.log('\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n');
         return;
