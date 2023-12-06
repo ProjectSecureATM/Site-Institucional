@@ -5,7 +5,7 @@ function logTempoReal(req, res) {
 
     var idATM = req.params.idATM;
 
-    aliceModel.logTempoReal(idATM).them(function (resultado) {
+    aliceModel.logTempoReal(idATM).then(function (resultado) {
         if (resultado.length > 0) {
             res.status(200).json(resultado);;
         } else {
@@ -23,7 +23,7 @@ function comparacaoLogsSucessoEFalha(req, res) {
 
     var idATM = req.params.idATM;
 
-    aliceModel.comparacaoLogsSucessoEFalha(idATM).them(function (resultado) {
+    aliceModel.comparacaoLogsSucessoEFalha(idATM).then(function (resultado) {
         if (resultado.length > 0) {
             res.status(200).json(resultado);;
         } else {
@@ -41,7 +41,7 @@ function logDia(req, res) {
 
     var idATM = req.params.idATM;
 
-    aliceModel.logDia(idATM).them(function (resultado) {
+    aliceModel.logDia(idATM).then(function (resultado) {
         if (resultado.length > 0) {
             res.status(200).json(resultado);;
         } else {
@@ -59,7 +59,7 @@ function logHora(req, res) {
 
     var idATM = req.params.idATM;
 
-    aliceModel.logHora(idATM).them(function (resultado) {
+    aliceModel.logHora(idATM).then(function (resultado) {
         if (resultado.length > 0) {
             res.status(200).json(resultado);;
         } else {
