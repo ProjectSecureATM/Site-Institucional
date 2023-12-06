@@ -350,15 +350,15 @@
         var idAgen = sessionStorage.getItem('idAgen')
 
         window.onload = function () {
-            mostrarPacotesRede(idAgen)
             obterIP()
+            mostrarPacotes(idAgen)
         }
-        function mostrarPacotesRede(idAgen) {
-            mostrarPacotes(idAgen);
-            setInterval(function () {
-                mostrarPacotes(idAgen);
-            }, 7000);
-        }
+        //function mostrarPacotesRede(idAgen) {
+        //    mostrarPacotes(idAgen);
+        //    setInterval(function () {
+        //        mostrarPacotes(idAgen);
+        //    }, 7000);
+        //}
 
         function infosRede() {
             $('#secureModal').modal('show');
@@ -415,9 +415,9 @@
                     div.setAttribute("id", "ip_recebido")
                     feed.appendChild(div);
 
-                    //if (data && data.verificado) {
+                    
                     listarIPePacotes();
-                    //}
+                  
 
                     // Atualizar a div existente com os dados recuperados
                     $('#secureModal').modal('hide');
@@ -490,22 +490,13 @@
 
         function mostrarPacotes(idAgen) {
         fetch(`/rede/graficoPacotes/${idAgen}`, { cache: 'no-store' })
-            .then(function (response) {
-                if (response.ok) {
-                    return response.json();
-                    console.log('cuzinho1')
-                } else {
-                    console.error('Nenhum dado encontrado ou erro na API');
-                    return [];
-                }
-                console.log('cuzinho2')
-            })
-            console.log('cuzinho3')
             .then(function (resposta) {
                 console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
-                resposta.reverse();
+                // resposta.reverse();
+                console.log(idAgen)
                 plotarGrafico(resposta, idAgen);
-                setTimeout(() => atualizarGraficoPacotes(idAgen, dados, PacotesChart), 2000);
+                // setTimeout(() => atualizarGraficoPacotes(idAgen, dados, PacotesChart), 2000);
+            
             })
             .catch(function (error) {
                 console.error(`Erro na obtenção dos dados para o gráfico: ${error.message}`);
@@ -513,9 +504,9 @@
     }
 
     function plotarGrafico(resposta, idAgen) {
-        let labels = [];
+        let titulos = [];
         let dados = {
-            labels: labels,
+            labels: titulos,
             datasets: [{
                 label: 'Total Pacotes / Monitoramento',
                 color: 'white',
@@ -531,8 +522,8 @@
 
         for (let i = 0; i < resposta.length; i++) {
             let registro = resposta[i];
-            dados.datasets[0].data.push(registro[0].total_pacotes);
-            labels.push(registro[0].hora);
+            dados.datasets[0].data.push(registro.total_pacotes);
+            titulos.push(registro.hora)
         }
 
         const opcoes = {
@@ -566,8 +557,8 @@
 
         const config = {
             type: 'line',
-            data: dados,
-            options: opcoes
+            data: dados
+            //option: opcoes
         };
 
 
@@ -577,10 +568,12 @@
         );
 
         // Chama a função para atualizar dinamicamente o gráfico
-        setTimeout(() => atualizarGraficoPacotes(idATM, dados, PacotesChart), 2000);
+        //setTimeout(() => atualizarGraficoPacotes(idAgen, dados, PacotesChart), 2000);
+
     }
 
     function atualizarGraficoPacotes(idAgen, dados, PacotesChart) {
+       
         fetch(`/rede/atualizarGraficoPacotes/${idAgen}`, { cache: 'no-store' })
             .then(function (response) {
                 if (response.ok) {
@@ -601,7 +594,7 @@
 
                     dados.labels.push(novoRegistro[0].hora);
                     dados.datasets[0].data.push(novoRegistro[0].total_pacotes);
-                    ProcessoChart.update();
+                    PacotesChart.update();
                 // } 
                 // else {
                     console.log("---------------------------------------------------------------");

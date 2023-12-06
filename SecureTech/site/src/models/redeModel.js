@@ -12,11 +12,12 @@ function confirmacaoSeguranca(email, senha) {
 
 function graficoPacotes(idAgen) {
     var instrucaoSql = `
-    SELECT SUM(pacotesEnviados) AS total_pacotes, FORMAT(MAX(data_hora), 'yyyy-MM-dd HH:mm:ss') AS hora, fk__ATMAgencia
+    SELECT SUM(pacotesEnviados) AS total_pacotes, FORMAT(MAX(data_hora), 'yyyy-MM-dd HH:mm:ss') AS hora
             FROM rede
             WHERE fk__ATMAgencia = ${idAgen}
             GROUP BY fk__ATMAgencia, FORMAT(data_hora, 'yyyy-MM-dd HH:00:00')
-            ORDER BY FORMAT(MAX(data_hora), 'yyyy-MM-dd HH:00:00') `;
+            ORDER BY FORMAT(MAX(data_hora), 'yyyy-MM-dd HH:00:00') DESC
+            OFFSET 0 ROWS FETCH FIRST 3 ROW ONLY;`;
         console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql)
         
@@ -26,12 +27,13 @@ function graficoPacotes(idAgen) {
 function atualizarGraficoPacotes(idAgen) {
     
         var instrucaoSql = `
-        SELECT SUM(pacotesEnviados) AS total_pacotes, FORMAT(MAX(data_hora), 'yyyy-MM-dd HH:mm:ss') AS hora, fk__ATMAgencia
+        SELECT SUM(pacotesEnviados) AS total_pacotes, FORMAT(MAX(data_hora), 'yyyy-MM-dd HH:mm:ss') AS hora
             FROM rede
             WHERE fk__ATMAgencia = ${idAgen}
             GROUP BY fk__ATMAgencia, FORMAT(data_hora, 'yyyy-MM-dd HH:00:00')
             ORDER BY FORMAT(MAX(data_hora), 'yyyy-MM-dd HH:00:00') 
-            DESC LIMIT 1`;
+            OFFSET 0 ROWS FETCH FIRST 1 ROW ONLY;
+`;
         console.log("Executando a instrução SQL: \n" + instrucaoSql);
         return database.executar(instrucaoSql);
     
