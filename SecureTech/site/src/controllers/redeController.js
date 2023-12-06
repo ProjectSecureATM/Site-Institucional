@@ -62,8 +62,9 @@ function atualizarGraficoPacotes(req, res) {
 }
 
 function listarIPePacotes(req, res) {
+    var idAgen = req.params.idAgen;
     console.log("Deu certo os controllers")
-    redeModel.listarIPePacotes().then(function (resultado) {
+    redeModel.listarIPePacotes(idAgen).then(function (resultado) {
         if (resultado.length > 0) {
             res.status(200).json(resultado);
         } else {

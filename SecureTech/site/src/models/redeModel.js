@@ -10,11 +10,11 @@ function confirmacaoSeguranca(email, senha) {
     return database.executar(instrucao);
 }
 
-function graficoPacotes(fkAgencia_usuario) {
+function graficoPacotes(idAgen) {
     var instrucaoSql = `
     SELECT SUM(pacotesEnviados) AS total_pacotes, FORMAT(MAX(data_hora), 'yyyy-MM-dd HH:mm:ss') AS hora, fk__ATMAgencia
     FROM rede
-    WHERE fk__ATMAgencia = ${fkAgencia_usuario}
+    WHERE fk__ATMAgencia = ${idAgen}
     GROUP BY fk__ATMAgencia, FORMAT(data_hora, 'yyyy-MM-dd HH:00:00')
     ORDER BY FORMAT(MAX(data_hora), 'yyyy-MM-dd HH:00:00') 
     OFFSET 0 ROWS FETCH FIRST 3 ROWS ONLY;`;
@@ -30,13 +30,13 @@ function graficoPacotes(fkAgencia_usuario) {
 }
 
 
-async function atualizarGraficoPacotes(fkAgencia_usuario) {
+async function atualizarGraficoPacotes(idAgen) {
     try {
         // Definindo valores padrão
         var instrucaoSql = `
         SELECT SUM(pacotesEnviados) AS total_pacotes, FORMAT(MAX(data_hora), 'yyyy-MM-dd HH:mm:ss') AS hora, fk__ATMAgencia
             FROM rede
-            WHERE fk__ATMAgencia = ${fkAgencia_usuario}
+            WHERE fk__ATMAgencia = ${idAgen}
             GROUP BY fk__ATMAgencia, FORMAT(data_hora, 'yyyy-MM-dd HH:00:00')
             ORDER BY FORMAT(MAX(data_hora), 'yyyy-MM-dd HH:00:00') 
             OFFSET 0 ROWS FETCH FIRST 1 ROWS ONLY`;
@@ -56,10 +56,10 @@ async function atualizarGraficoPacotes(fkAgencia_usuario) {
 
 
 
-function listarIPePacotes() {
+function listarIPePacotes(idAgen) {
 
     var instrucao = `
-    select IP, FORMAT(data_hora, 'yyyy-MM-dd 00:00:00') as hora, pacotesEnviados from rede;
+    select IP, FORMAT(data_hora, 'yyyy-MM-dd 00:00:00') as hora, pacotesEnviados from rede WHERE fk__ATMAgencia = ${idAgen} ;
     `;
 
     console.log("Executando a sua tia");
