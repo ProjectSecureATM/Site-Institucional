@@ -21,10 +21,10 @@ var mySqlConfig = {
     host: "localhost",
     database: "SecureATM",
     user: "root",
-// password: "#Gf45217532807"
+password: "#Gf45217532807"
     // password:"sptech"
 // password: "fgandb25"
-password: "Ph993387998"
+// password: "Ph993387998"
 
 };
 

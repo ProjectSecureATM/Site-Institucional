@@ -1,3 +1,4 @@
+
 var aliceModel = require('../models/aliceModel');
 
 function logTempoReal(req,res){

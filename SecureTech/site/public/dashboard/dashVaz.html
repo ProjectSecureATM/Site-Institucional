@@ -424,12 +424,12 @@
 
     var idAgen = sessionStorage.getItem('idAgen');
     window.onload = function () {
-            exibirStatusRede(idAgen);
-            mostrarVariedade(idAgen);
-            tempoAtividadeEIP(idAgen);
-            buscarMedidasRede(idAgen);
-        
-        }
+        exibirStatusRede(idAgen);
+        mostrarVariedade(idAgen);
+        tempoAtividadeEIP(idAgen);
+        buscarMedidasRede(idAgen);
+
+    }
 
     function exibirStatusRede(idAgen) {
         obterDadosRede(idAgen);
@@ -633,6 +633,118 @@
 
 
     function plotarGraficoRede(resposta, idAgen) {
+
+        console.log('iniciando plotagem do gráfico...');
+
+        let labels = [];
+
+        let dados = {
+            labels: labels,
+            datasets: [
+                {
+                    label: 'Upload',
+                    color: 'white',
+                    data: [],
+                    fill: false,
+                    backgroundColor: '#ff0000   ',
+                    borderColor: '#ff0000   ',
+                    fontColor: 'white',
+                    borderWidth: 1,
+                    tension: 0.5
+                },
+                {
+                    label: 'Download',
+                    color: 'white',
+                    data: [],
+                    fill: false,
+                    backgroundColor: '#021e46   ',
+                    borderColor: '#021e46   ',
+                    fontColor: 'white',
+                    borderWidth: 1,
+                    tension: 0.5
+                }
+            ]
+        };
+
+        console.log('----------------------------------------------')
+        console.log('Estes dados foram recebidos pela funcao "obterDadosGrafico" e passados para "plotarGrafico":')
+        console.log(resposta)
+
+        for (i = 0; i < resposta.length; i++) {
+            var registro = resposta[i];
+            labels.push(registro.dataHora);
+            dados.datasets[0].data.push(registro.pacotesEnviados);
+            dados.datasets[1].data.push(registro.pacotesRecebidos);
+        }
+
+        const opcoes = {
+            plugins: {
+                legend: {
+                    labels: {
+                        color: '#021e46',
+                        fontStyle: 'bold' // Cor da fonte da label
+                    }
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    grid: {
+                        display: false,
+                    },
+                    ticks: {
+                        color: 'black' // Cor da fonte no eixo X
+                    },
+                },
+                x: {
+                    beginAtZero: true,
+                    display: false,
+                    ticks: {
+                        color: 'white' // Cor da fonte no eixo X
+                    },
+                }
+            }
+        }
+
+        console.log('----------------------------------------------')
+        console.log('O gráfico será plotado com os respectivos valores:')
+        console.log('Labels:')
+        console.log(labels)
+        console.log('Dados:')
+        console.log(dados.datasets)
+        console.log('----------------------------------------------')
+
+        const config = {
+            type: 'line',
+            data: dados,
+            options: opcoes
+        };
+
+        let myChart3 = new Chart(
+            document.getElementById("myChartRede"),
+            config
+        );
+
+        window.addEventListener('resize', function () {
+            containerWidth = chartContainer.clientWidth;
+            myChart.canvas.width = containerWidth;
+            myChart.update();
+        });
+
+        // Obtém a largura da div que contém o gráfico
+        let chartContainer = document.getElementById(`myChartRede`);
+        let containerWidth = chartContainer.clientWidth;
+
+        // Ajusta a largura do canvas para a largura da div
+        config.options = {
+            maintainAspectRatio: false,
+            responsive: true
+        };
+
+        setTimeout(() => atualizarGraficoRede(idAgen, dados, myChart3), 2000);
+    }
+
+    function plotarGrafico(resposta, idAgen) {
 
         console.log('iniciando plotagem do gráfico...');
 
