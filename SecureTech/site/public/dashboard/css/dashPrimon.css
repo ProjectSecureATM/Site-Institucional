@@ -47,10 +47,6 @@
 .containerDashComponentes{
     height: auto;
     width: 95%;
-<<<<<<< HEAD
-
-=======
->>>>>>> 2dcba58aa6961ecd0dc115fef0fca07d9286f371
 }
 
 .tituloDashBoard{
@@ -85,8 +81,6 @@
     align-items: end;
 }
 
-<<<<<<< HEAD
-=======
 .titulo1{
     display: flex;
     height: 7vh;
@@ -95,7 +89,6 @@
     align-items: center;
 }
 
->>>>>>> 2dcba58aa6961ecd0dc115fef0fca07d9286f371
 .titulo-end{
     display: flex;
     align-items: end;
@@ -113,16 +106,13 @@
 
 }
 
-<<<<<<< HEAD
-=======
 .titulo1 span{
     color: #021e46;
     font-weight: bold;
-    font-size: 20px;
+    font-size: 18px;
 
 }
 
->>>>>>> 2dcba58aa6961ecd0dc115fef0fca07d9286f371
 .titulo-DashBoard{
     width: 18%;
 }
@@ -183,13 +173,9 @@
     display: flex;
     justify-content: center;
     height: 30vh;
-<<<<<<< HEAD
-    width: 43vh;
-=======
     width: 50vh;
 
     border-left: 0.25rem solid #021e46 !important;
->>>>>>> 2dcba58aa6961ecd0dc115fef0fca07d9286f371
 
     border-radius: 0.35rem;
     border: 1px solid #e3e6f0;
@@ -199,8 +185,6 @@
     box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, .15);
 }
 
-<<<<<<< HEAD
-=======
 .boxDashComponentes1{
     display: flex;
     justify-content: center;
@@ -218,17 +202,13 @@
 
 
 
->>>>>>> 2dcba58aa6961ecd0dc115fef0fca07d9286f371
 .boxDashComponentes2{
     display: flex;
     justify-content: center;
     height: 40vh;
     width: 90vh;
 
-<<<<<<< HEAD
-=======
     border-left: 0.25rem solid #021e46 !important;
->>>>>>> 2dcba58aa6961ecd0dc115fef0fca07d9286f371
     border-radius: 0.35rem;
     border: 1px solid #e3e6f0;
     background-color: #fff;
@@ -240,16 +220,10 @@
 .boxDashComponentes3{
     display: flex;
     justify-content: center;
-<<<<<<< HEAD
-    height: 40vh;
-    width: 70vh;
-
-=======
     height: 30vh;
     width: 70vh;
 
     border-left: 0.25rem solid #021e46 !important;
->>>>>>> 2dcba58aa6961ecd0dc115fef0fca07d9286f371
     border-radius: 0.35rem;
     border: 1px solid #e3e6f0;
     background-color: #fff;
@@ -265,9 +239,6 @@
     align-items: center;
     height: 10vh;
     width: 100%;
-<<<<<<< HEAD
-
-=======
     margin-top: 4vh;
 }
 
@@ -278,7 +249,6 @@
     align-items: center;
     height: 10vh;
     width: 100%;
->>>>>>> 2dcba58aa6961ecd0dc115fef0fca07d9286f371
 }
 
 .componente{
@@ -299,8 +269,6 @@
 
 .divLinhaDash2{
     padding-bottom: 21px;
-<<<<<<< HEAD
-=======
 }
 
 #ultimoDisp{
@@ -308,7 +276,7 @@
 }
 
 #listaDisp{
-    font-size: 15px;
+    font-size: 12px;
 }
 
 #listaDispositivo{
@@ -346,5 +314,4 @@
         position: relative;
         gap: 2.5rem;
     
->>>>>>> 2dcba58aa6961ecd0dc115fef0fca07d9286f371
 }

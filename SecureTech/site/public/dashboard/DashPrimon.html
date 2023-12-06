@@ -3,6 +3,7 @@
 
 <head>
 
+
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -79,15 +80,14 @@
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Inovações Secure ATM:</h6>
-                        <a href="dashVaz.html" class="collapse-item">Dash Rede</a>
+                        <a href="dashVaz.html" class="collapse-item">Dash Gabroh</a>
                         <a href="DashBoard-VisaoGeral-Giba.html" class="collapse-item">Desempenho Sistêmico</a>
-                        <a href="dashVisaoGeralRede_Julio.html" class="collapse-item">Dash Segurança de Rede</a>
-                        <a href="DashBoard-VisaoGeral-Paulo.html" class="collapse-item">Dash Paulo</a>
-                        <a href="DashBoard-VisaoGeral-Primon.html" class="collapse-item">Dash USB</a>
-                        <a href="DashBoard-VisaoGeral-Alice.html" class="collapse-item">Dash Log</a>
+                        <a href="dashVisaoGeralRede_Julio.html" class="collapse-item">Segurança de Rede</a>
+                        <a href="DashBoard-VisaoGeral-Paulo.html" class="collapse-item">Dash Paulão</a>
+                        <a href="DashBoard-VisaoGeral-Primon.html" class="collapse-item">Dispositivos USB</a>
+                        <a class="collapse-item">Dash Alice</a>
                     </div>
                 </div>
-
             </li>
             <!-- Sidebar Toggler (Sidebar) -->
             <div class="text-center d-none d-md-inline">
@@ -195,6 +195,7 @@
                                     <div class="conteudoComponente">
                                         <div class="componente">
                                             <canvas id="graficoCpu"></canvas>
+
                                         </div>
                                     </div>
                                 </div>
@@ -303,39 +304,48 @@
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
-    function testeBotao() {
+
+function metricasUSB() {
         Swal.fire({
-            title: 'Métricas (KPI`s)</br></br><span style="color: blue;">CPU</span><p style="text-align: left;">Ideal: 0% a 50% </br> Aceitável: 50% a 70% </br> Crítico: 70% a 100%</p></br><span style="color: blue;">RAM</span><p style="text-align: left;">Ideal: 0% a 70% </br> Aceitável: 70% a 90% </br> Crítico: 90% a 100%</p></br><span style="color: blue;">DISCO</span><p style="text-align: left;">Ideal: 0% a 60% </br> Aceitável: 60% a 80% </br> Crítico: 80% a 100%</p>',
-            showClass: {
-                popup: 'animate__animated animate__fadeInDown'
-            },
-            hideClass: {
-                popup: 'animate__animated animate__fadeOutUp'
-            }
-        })
+            icon: "warning",
+            width: 850,
+            title: "Atenção!!",
+            html: `
+        <b>Métricas sobre CPU e RAM </b></br></br>
+        Se a porcentagem da sua CPU estiver abaixo de 49 ele está em estado <span style="color: rgb(0, 86, 0);">Instável</span></br>
+        Se a porcentagem da sua CPU estiver acima de 50 e abaixo de 70 ele está em estado <span style="color: goldenrod">Alerta</span></br>
+        Se a porcentagem da sua CPU estiver acima de 70 ele está em estado <span style="color: rgb(158, 1, 1)">Crítico</span></br></br>
+
+        Se a porcentagem da sua RAM estiver abaixo de 55 ele está em estado <span style="color: rgb(0, 86, 0);">Instável</span></br>
+        Se a porcentagem da sua RAM estiver acima de 56 e abaixo de 80 ele está em estado <span style="color: goldenrod">Alerta</span></br>
+        Se a porcentagem da sua RAM estiver acima de 80 ele está em estado <span style="color: rgb(158, 1, 1)">Crítico</span></br></br>
+            `,
+        });
     }
 
-    window.onload = obterDadosGrafico1()
+    let proximaAtualizacao1;
 
-    function obterDadosGrafico1(idUsuario) {
-        if (idUsuario) {
-            idUsuario = 1
-            console.log(idUsuario);
+    window.onload = obterDadosGrafico1(1)
+
+    function obterDadosGrafico1(idATM) {
+        if (idATM) {
+            idATM = 1
+            console.log(idATM);
 
             document.addEventListener("DOMContentLoaded", function () {
-                obterDadosGrafico1(idUsuario);
+                obterDadosGrafico1(idATM);
             });
         } else {
             console.error("ID do usuário não encontrada no sessionStorage.");
         }
 
-        fetch(`/usuario/ultimasServidores/${idUsuario}`, { cache: 'no-store' }).then(function (response) {
+        fetch(`/Pedro/buscar_cpu/${idATM}`, { cache: 'no-store' }).then(function (response) {
             if (response.ok) {
                 response.json().then(function (resposta) {
                     console.log(`Dados recebidos: GRaIFCO ${JSON.stringify(resposta)}`);
-                    resposta.reverse();
 
-                    plotarGrafico1(resposta, idUsuario);
+
+                    plotarGrafico1(resposta, idATM);
                 });
             } else {
                 console.error('Nenhum dado encontrado ou erro na API');
@@ -345,7 +355,7 @@
         });
     }
 
-    function plotarGrafico1(resposta, idUsuario) {
+    function plotarGrafico1(resposta, idATM) {
         console.log('iniciando plotagem do gráfico...');
         let labels = [];
         let dados = {
@@ -355,7 +365,7 @@
                     label: 'CPU',
                     data: [],
                     fill: false,
-                    borderColor: '#36D000',
+                    borderColor: '#FFFF00',
                     tension: 0.1
                 }
             ]
@@ -364,12 +374,11 @@
         console.log('Estes dados foram recebidos pela funcao "obterDadosGrafico" e passados para "plotarGrafico":')
         console.log(resposta)
 
-        // Inserindo valores recebidos em estrutura para plotar o gráfico
+
         for (i = 0; i < resposta.length; i++) {
             var registro = resposta[i];
-            labels.push(registro.data);
-            dados.datasets[0].data.push(registro.valor);
-
+            labels.push(registro.DataRegistro);
+            dados.datasets[0].data.push(registro.Valor);
         }
 
         console.log('----------------------------------------------')
@@ -387,10 +396,11 @@
 
         var ChartPing = new Chart(document.getElementById('graficoCpu'), config);
 
-        setTimeout(() => atualizarGrafico1(idUsuario, dados, ChartPing), 10000);
+        setTimeout(() => atualizarGrafico1(idATM, dados, ChartPing), 3000);
     }
-    function atualizarGrafico1(idUsuario, dados, myChart) {
-        fetch(`/usuario/AtualizandoServidor/${idUsuario}`, { cache: 'no-store' })
+
+    function atualizarGrafico1(idATM, dados, myChart) {
+        fetch(`/Pedro/atualizar_cpu/${idATM}`, { cache: 'no-store' })
             .then(function (response) {
                 if (response.ok) {
                     return response.json();
@@ -403,75 +413,61 @@
                 console.log('Dados atuais do gráfico:');
                 console.log(dados);
 
-                if (novoRegistro.length > 0) {
-                    const ultimoDadoNoGrafico = dados.labels[dados.labels.length - 1];
-                    const novoDado = novoRegistro[0];
+                var ultimoDadoNoGrafico = dados.labels[dados.labels.length - 1];
+                var novoDado = novoRegistro[0];
 
-                    if (novoDado.data !== ultimoDadoNoGrafico) {
-                        dados.labels.push(novoDado.data);
-                        dados.datasets[0].data.push(novoDado.valor);
+                if (novoDado.DataRegistro != dados.labels[dados.labels.length - 1]) {
 
-                        if (dados.labels.length > MAX_LABELS) {
-                            dados.labels.shift();
-                            dados.datasets[0].data.shift();
-                        }
+                    dados.labels.push(novoDado.DataRegistro);
+                    dados.datasets[0].data.push(novoDado.Valor);
 
-                        myChart.data.labels = dados.labels.slice();
-                        myChart.data.datasets[0].data = dados.datasets[0].data.slice();
 
-                        myChart.update();
-                    } else {
-                        console.log('---------------------------------------------------------------');
-                        console.log('Não há novos dados para capturar, o gráfico não será atualizado.');
-
-                        console.log('Horário do novo dado capturado:');
-                        console.log(novoDado.data);
-                        console.log('Horário do último dado capturado:');
-                        console.log(ultimoDadoNoGrafico);
-                        console.log('---------------------------------------------------------------');
-                    }
+                    myChart.update();
                 } else {
                     console.log('---------------------------------------------------------------');
-                    console.log('Nenhum novo dado recebido.');
+                    console.log('Não há novos dados para capturar, o gráfico não será atualizado.');
+
+                    console.log('Horário do novo dado capturado:');
+                    console.log(novoDado.DataRegistro);
+                    console.log('Horário do último dado capturado:');
+                    console.log(ultimoDadoNoGrafico);
                     console.log('---------------------------------------------------------------');
                 }
 
-                proximaAtualizacao1 = setTimeout(() => {
-                    atualizarGrafico1(idUsuario, dados, myChart);
-                }, 20000);
+                setTimeout(() => {
+                    atualizarGrafico1(idATM, dados, myChart);
+                }, 3000);
+
             })
             .catch(function (error) {
                 console.error(`Erro na obtenção dos dados para o gráfico: ${error.message}`);
                 proximaAtualizacao1 = setTimeout(() => {
-                    atualizarGrafico1(idUsuario, dados, myChart);
-                }, 10000);
+                    atualizarGrafico1(idATM, dados, myChart);
+                }, 3000);
             });
     }
 
+    window.onload = obterDadosGrafico2(2)
 
-
-
-    window.onload = obterDadosGrafico2()
-
-    function obterDadosGrafico2(idUsuario) {
-        if (idUsuario) {
-            idUsuario = 1
-            console.log(idUsuario);
+    function obterDadosGrafico2(idATM) {
+        if (idATM) {
+            idATM = 1
+            console.log(idATM);
 
             document.addEventListener("DOMContentLoaded", function () {
-                obterDadosGrafico2(idUsuario);
+                obterDadosGrafico2(idATM);
             });
         } else {
             console.error("ID do usuário não encontrada no sessionStorage.");
         }
 
-        fetch(`/usuario/ultimasServidores2/${idUsuario}`, { cache: 'no-store' }).then(function (response) {
+        fetch(`/Pedro/buscar_ram/${idATM}`, { cache: 'no-store' }).then(function (response) {
             if (response.ok) {
                 response.json().then(function (resposta) {
                     console.log(`Dados recebidos: GRaIFCO ${JSON.stringify(resposta)}`);
-                    resposta.reverse();
 
-                    plotarGrafico2(resposta, idUsuario);
+
+                    plotarGrafico2(resposta, idATM);
                 });
             } else {
                 console.error('Nenhum dado encontrado ou erro na API');
@@ -481,7 +477,7 @@
         });
     }
 
-    function plotarGrafico2(resposta, idUsuario) {
+    function plotarGrafico2(resposta, idATM) {
         console.log('iniciando plotagem do gráfico...');
         let labels = [];
         let dados = {
@@ -491,7 +487,7 @@
                     label: 'RAM',
                     data: [],
                     fill: false,
-                    borderColor: '#36D000',
+                    borderColor: '#021e46',
                     tension: 0.1
                 }
             ]
@@ -500,11 +496,11 @@
         console.log('Estes dados foram recebidos pela funcao "obterDadosGrafico" e passados para "plotarGrafico":')
         console.log(resposta)
 
-        // Inserindo valores recebidos em estrutura para plotar o gráfico
+
         for (i = 0; i < resposta.length; i++) {
             var registro = resposta[i];
-            labels.push(registro.dataRam);
-            dados.datasets[0].data.push(registro.valorRam);
+            labels.push(registro.DataRegistro);
+            dados.datasets[0].data.push(registro.Valor);
 
         }
 
@@ -523,10 +519,10 @@
 
         var ChartPing = new Chart(document.getElementById('graficoRam'), config);
 
-        setTimeout(() => atualizarGrafico2(idUsuario, dados, ChartPing), 10000);
+        setTimeout(() => atualizarGrafico2(idATM, dados, ChartPing), 3000);
     }
-    function atualizarGrafico2(idUsuario, dados, myChart) {
-        fetch(`/usuario/AtualizandoServidor2/${idUsuario}`, { cache: 'no-store' })
+    function atualizarGrafico2(idATM, dados, myChart) {
+        fetch(`/Pedro/atualizar_ram/${idATM}`, { cache: 'no-store' })
             .then(function (response) {
                 if (response.ok) {
                     return response.json();
@@ -543,14 +539,10 @@
                     const ultimoDadoNoGrafico = dados.labels[dados.labels.length - 1];
                     const novoDado = novoRegistro[0];
 
-                    if (novoDado.dataRam !== ultimoDadoNoGrafico) {
-                        dados.labels.push(novoDado.dataRam);
-                        dados.datasets[0].data.push(novoDado.valorRam);
+                    if (novoDado.DataRegistro != ultimoDadoNoGrafico) {
+                        dados.labels.push(novoDado.DataRegistro);
+                        dados.datasets[0].data.push(novoDado.Valor);
 
-                        if (dados.labels.length > MAX_LABELS) {
-                            dados.labels.shift();
-                            dados.datasets[0].data.shift();
-                        }
 
                         myChart.data.labels = dados.labels.slice();
                         myChart.data.datasets[0].data = dados.datasets[0].data.slice();
@@ -573,39 +565,40 @@
                 }
 
                 proximaAtualizacao2 = setTimeout(() => {
-                    atualizarGrafico2(idUsuario, dados, myChart);
-                }, 20000);
+                    atualizarGrafico2(idATM, dados, myChart);
+                }, 2000);
             })
             .catch(function (error) {
                 console.error(`Erro na obtenção dos dados para o gráfico: ${error.message}`);
                 proximaAtualizacao2 = setTimeout(() => {
-                    atualizarGrafico2(idUsuario, dados, myChart);
-                }, 10000);
+                    atualizarGrafico2(idATM, dados, myChart);
+                }, 1000);
             });
     }
 
 
-    window.onload = obterDadosGrafico3()
+    window.onload = obterDadosGrafico3(3)
 
-    function obterDadosGrafico3(idUsuario) {
-        if (idUsuario) {
-            idUsuario = 1
-            console.log(idUsuario);
+    function obterDadosGrafico3(idATM) {
+        if (idATM) {
+            idATM = 1
+            console.log(idATM);
 
             document.addEventListener("DOMContentLoaded", function () {
-                obterDadosGrafico3(idUsuario);
+                obterDadosGrafico3(idATM);
             });
         } else {
             console.error("ID do usuário não encontrada no sessionStorage.");
         }
 
-        fetch(`/usuario/ultimasServidores3/${idUsuario}`, { cache: 'no-store' }).then(function (response) {
+        fetch(`/Pedro/buscar_qtdDispositivos/${idATM}`, { cache: 'no-store' }).then(function (response) {
             if (response.ok) {
                 response.json().then(function (resposta) {
-                    console.log(`Dados recebidos: GRaIFCO ${JSON.stringify(resposta)}`);
-                    resposta.reverse();
+                    console.log(`Dados recebidos: GRAFICO ${JSON.stringify(resposta)}`);
 
-                    plotarGrafico3(resposta, idUsuario);
+
+                    quantidadeDisp.innerHTML = resposta[0].Quantidade_USB;
+
                 });
             } else {
                 console.error('Nenhum dado encontrado ou erro na API');
@@ -615,53 +608,8 @@
         });
     }
 
-    function plotarGrafico3(resposta, idUsuario) {
-        // console.log('iniciando plotagem do gráfico...');
-        // let labels = [];
-        // let dados = {
-        //     labels: labels,
-        //     datasets: [
-        //         {
-        //             label: 'Quantidade Dispositivos',
-        //             data: [],
-        //             fill: false,
-        //             borderColor: '#36D000',
-        //             tension: 0.1
-        //         }
-        //     ]
-        // };
-        // console.log('----------------------------------------------')
-        // console.log('Estes dados foram recebidos pela funcao "obterDadosGrafico" e passados para "plotarGrafico":')
-        // console.log(resposta)
-
-        // Inserindo valores recebidos em estrutura para plotar o gráfico
-        for (var i = 0; i < resposta.length; i++) {
-    var registro = resposta[i];
-    // var ram = labels.push(registro.dataRam);
-    quantidadeLista.datasets[0].data.push(registro.Quantidade_Dispositivos_Unicos);
-
-    listaDisp.innerHTML += `${quantidadeLista}`;
-}
-
-        // console.log('----------------------------------------------')
-        // console.log('O gráfico será plotado com os respectivos valores:')
-        // console.log('Labels:')
-        // console.log(labels)
-        // console.log('Dados:')
-        // console.log(dados.datasets)
-        // console.log('----------------------------------------------')
-
-        // const config = {
-        //     type: 'line',
-        //     data: dados
-        // };
-
-        // var ChartPing = new Chart(document.getElementById('graficoDisp'), config);
-
-        setTimeout(() => atualizarGrafico3(idUsuario, dados, ChartPing), 10000);
-    }
-    function atualizarGrafico3(idUsuario, dados, myChart) {
-        fetch(`/usuario/AtualizandoServidor3/${idUsuario}`, { cache: 'no-store' })
+    function atualizarGrafico3(idATM, dados, myChart) {
+        fetch(`/Pedro/atualizar_qtdDispositivos/${idATM}`, { cache: 'no-store' })
             .then(function (response) {
                 if (response.ok) {
                     return response.json();
@@ -678,14 +626,11 @@
                     const ultimoDadoNoGrafico = dados.labels[dados.labels.length - 1];
                     const novoDado = novoRegistro[0];
 
-                    if (novoDado.dataRam !== ultimoDadoNoGrafico) {
-                        dados.labels.push(novoDado.dataRam);
-                        dados.datasets[0].data.push(novoDado.valorRam);
+                    if (novoDado.Quantidade_USB != ultimoDadoNoGrafico) {
+                        dados.labels.push(novoDado.Quantidade_USB);
+                        dados.datasets[0].data.push(novoDado.Quantidade_USB);
 
-                        if (dados.labels.length > MAX_LABELS) {
-                            dados.labels.shift();
-                            dados.datasets[0].data.shift();
-                        }
+
 
                         myChart.data.labels = dados.labels.slice();
                         myChart.data.datasets[0].data = dados.datasets[0].data.slice();
@@ -708,39 +653,45 @@
                 }
 
                 proximaAtualizacao3 = setTimeout(() => {
-                    atualizarGrafico3(idUsuario, dados, myChart);
-                }, 20000);
+                    atualizarGrafico3(idATM, dados, myChart);
+                }, 2000);
             })
             .catch(function (error) {
                 console.error(`Erro na obtenção dos dados para o gráfico: ${error.message}`);
                 proximaAtualizacao3 = setTimeout(() => {
-                    atualizarGrafico3(idUsuario, dados, myChart);
-                }, 10000);
+                    atualizarGrafico3(idATM, dados, myChart);
+                }, 1000);
             });
     }
 
+    window.onload = obterDadosGrafico4(4)
 
-    window.onload = obterDadosGrafico4()
-
-    function obterDadosGrafico4(idUsuario) {
-        if (idUsuario) {
-            idUsuario = 1
-            console.log(idUsuario);
+    function obterDadosGrafico4(idATM) {
+        if (idATM) {
+            idATM = 1
+            console.log(idATM);
 
             document.addEventListener("DOMContentLoaded", function () {
-                obterDadosGrafico4(idUsuario);
+                obterDadosGrafico4(idATM);
             });
         } else {
             console.error("ID do usuário não encontrada no sessionStorage.");
         }
 
-        fetch(`/usuario/ultimasServidores4/${idUsuario}`, { cache: 'no-store' }).then(function (response) {
+        fetch(`/Pedro/buscar_ListaDispositivos/${idATM}`, { cache: 'no-store' }).then(function (response) {
             if (response.ok) {
                 response.json().then(function (resposta) {
-                    console.log(`Dados recebidos: GRaIFCO ${JSON.stringify(resposta)}`);
-                    resposta.reverse();
+                    console.log(`Dados recebidos: GRAFICO ${JSON.stringify(resposta)}`);
 
-                    plotarGrafico4(resposta, idUsuario);
+                    var lista = document.getElementById("listaDispositivo");
+                    lista.innerHTML = "";
+
+                    for (var i = 0; i < resposta.length; i++) {
+                        var item = document.createElement("li");
+                        item.innerHTML = `Fabricante: ${resposta[i].fabricante} | Produto: ${resposta[i].produto}`;
+                        lista.appendChild(item)
+                    }
+
                 });
             } else {
                 console.error('Nenhum dado encontrado ou erro na API');
@@ -750,55 +701,8 @@
         });
     }
 
-    function plotarGrafico4(resposta, idUsuario) {
-        console.log('iniciando plotagem do gráfico...');
-        // let labels = [];
-        // let dados = {
-        //     labels: labels,
-        //     datasets: [
-        //         {
-        //             label: 'Lista de Dispositivos',
-        //             data: [],
-        //             fill: false,
-        //             borderColor: '#36D000',
-        //             tension: 0.1
-        //         }
-        //     ]
-        // };
-        // console.log('----------------------------------------------')
-        // console.log('Estes dados foram recebidos pela funcao "obterDadosGrafico" e passados para "plotarGrafico":')
-        // console.log(resposta)
-
-        // Inserindo valores recebidos em estrutura para plotar o gráfico
-        for (var i = 0; i < resposta.length; i++) {
-    var registro = resposta[i];
-    // var ram = labels.push(registro.dataRam);
-    valorProduto.datasets[0].data.push(registro.produto);
-    valorFabricante.datasets[0].data.push(registro.fabricante);
-    valorDataLista.datasets[0].data.push(registro.dataLista);
-
-    listaDisp.innerHTML += `Produto: ${registro.produto}, Fabricante: ${registro.fabricante}, Data: ${registro.dataLista}<br>`;
-}
-
-        // console.log('----------------------------------------------')
-        // console.log('O gráfico será plotado com os respectivos valores:')
-        // console.log('Labels:')
-        // console.log(labels)
-        // console.log('Dados:')
-        // console.log(dados.datasets)
-        // console.log('----------------------------------------------')
-
-        // const config = {
-        //     type: 'line',
-        //     data: dados
-        // };
-
-        // var ChartPing = new Chart(document.getElementById('listaDisp'), config);
-
-        setTimeout(() => atualizarGrafico4(idUsuario, dados, ChartPing), 10000);
-    }
-    function atualizarGrafico4(idUsuario, dados, myChart) {
-        fetch(`/usuario/AtualizandoServidor4/${idUsuario}`, { cache: 'no-store' })
+    function atualizarGrafico4(idATM, dados, myChart) {
+        fetch(`/Pedro/atualizar_ListaDispositivos/${idATM}`, { cache: 'no-store' })
             .then(function (response) {
                 if (response.ok) {
                     return response.json();
@@ -815,14 +719,10 @@
                     const ultimoDadoNoGrafico = dados.labels[dados.labels.length - 1];
                     const novoDado = novoRegistro[0];
 
-                    if (novoDado.dataRam !== ultimoDadoNoGrafico) {
-                        dados.labels.push(novoDado.dataRam);
-                        dados.datasets[0].data.push(novoDado.valorRam);
+                    if (novoDado.Quantidade_USB != ultimoDadoNoGrafico) {
 
-                        if (dados.labels.length > MAX_LABELS) {
-                            dados.labels.shift();
-                            dados.datasets[0].data.shift();
-                        }
+                        dados.labels.push(novoDado.Quantidade_USB);
+                        dados.datasets[0].data.push(novoDado.Quantidade_USB);
 
                         myChart.data.labels = dados.labels.slice();
                         myChart.data.datasets[0].data = dados.datasets[0].data.slice();
@@ -833,7 +733,7 @@
                         console.log('Não há novos dados para capturar, o gráfico não será atualizado.');
 
                         console.log('Horário do novo dado capturado:');
-                        console.log(novoDado.dataRam);
+                        console.log(novoDado.Quantidade_USB);
                         console.log('Horário do último dado capturado:');
                         console.log(ultimoDadoNoGrafico);
                         console.log('---------------------------------------------------------------');
@@ -845,8 +745,8 @@
                 }
 
                 proximaAtualizacao4 = setTimeout(() => {
-                    atualizarGrafico4(idUsuario, dados, myChart);
-                }, 20000);
+                    atualizarGrafico4(idATM, dados, myChart);
+                }, 2000);
             })
             .catch(function (error) {
                 console.error(`Erro na obtenção dos dados para o gráfico: ${error.message}`);
