@@ -78,7 +78,7 @@
                         <a href="dashVisaoGeralRede_Julio.html"class="collapse-item">Segurança de Rede</a>
                         <a href="DashBoard-VisaoGeral-Paulo.html" class="collapse-item">Dash Paulão</a>
                         <a href="DashBoard-VisaoGeral-Primon.html"class="collapse-item">Dash Primon</a>
-                        <a href="DashAlice.html" class="collapse-item">Dash Alice</a>
+                        <a class="collapse-item">Dash Alice</a>
                     </div>
                 </div>
             </li>
@@ -189,26 +189,25 @@
     </a>
 
     <!-- Logout Modal-->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog"
-                                aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                <div class="modal-dialog" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLabel">Certeza que você quer
-                                                sair?</h5>
-                                            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true">×</span>
-                                            </button>
-                                        </div>
-                                        <div class="modal-body">Selecione "Sair" para deslogar.</div>
-                                        <div class="modal-footer">
-                                            <button style="text-align: left;" class="btn btn-secondary" type="button"
-                                                data-dismiss="modal">Cancelar</button>
-                                            <a class="btn btn-primary" href="../index.html">Sair</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Certeza que quer sair?</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">Selecione "Sair" para deslogar.</div>
+                <div class="modal-footer">
+                    <button style="text-align: left;" class="btn btn-secondary" type="button"
+                        data-dismiss="modal">Cancelar</button>
+                    <a class="btn btn-primary" href="../index.html">Sair</a>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- pop up sweet alert -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -253,7 +252,7 @@
 
     function goToDash(idATM) {
         sessionStorage.idATM = idATM
-        window.location = "DashBoard.html"
+        window.location = "DashPrimon.html"
     }
 
     function testeBotao() {

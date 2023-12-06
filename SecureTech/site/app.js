@@ -1,17 +1,24 @@
-process.env.AMBIENTE_PROCESSO = "desenvolvimento";
-// process.env.AMBIENTE_PROCESSO = "producao";
+// process.env.AMBIENTE_PROCESSO = "desenvolvimento";
+process.env.AMBIENTE_PROCESSO = "producao";
 
 var express = require("express");
 var cors = require("cors");
 var path = require("path");
-var PORTA = process.env.AMBIENTE_PROCESSO == "desenvolvimento" ? 3333 : 8080;
+var PORTA = process.env.AMBIENTE_PROCESSO == "desenvolvimento" ? 3333 : 3000;
 
 var app = express();
 
+// app.get('/', (req, res) => {
+//     const ipAddress = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
+//     res.send(`Endereço IP: ${ipAddress}`);
+// });
+
 var indexRouter = require("./src/routes/index");
 var usuarioRouter = require("./src/routes/usuarios");
-var pythonRouter = require("./src/routes/python");
-var avisosRouter = require("./src/routes/avisos");
+var redeRouter = require("./src/routes/rede");
+var pauloRouter = require("./src/routes/Paulo");
+var aliceRouter = require("./src/routes/alice");
+
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -21,8 +28,9 @@ app.use(cors());
 
 app.use("/", indexRouter);
 app.use("/usuarios", usuarioRouter);
-app.use("/python", pythonRouter);
-app.use("/avisos", avisosRouter);
+app.use("/rede", redeRouter);
+app.use("/Paulo", pauloRouter);
+app.use("/alice", aliceRouter);
 
 app.listen(PORTA, function () {
     console.log(`Servidor do seu site já está rodando! Acesse o caminho a seguir para visualizar: http://localhost:${PORTA} \n

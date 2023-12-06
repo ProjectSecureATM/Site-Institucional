@@ -30,10 +30,7 @@
           </div>
           <div class="conteudoNavBar">
             <div class="divTexto">
-              <span>
-                <a href="./dashboard/DashBoard-AddATM.html" id="spanPag">sfhgdtfjgnrf</a>
-              </span>
-              
+
               <span>
                 <a href="homeDashBoard.html" id="spanPag">Agência</a>
               </span>
@@ -57,6 +54,8 @@
       </div>
     </div>
     <div class="container">
+      
+
       <div class="banner"> <!-- Banner Home -->
         <div class="container">
           <div class="bd-img-banner">
@@ -95,7 +94,11 @@
         <a>São Paulo - SP</a>
       </div>
     </div>
-    </div>
+  </div>
+  </div>
+
+  <div class="divLinhaCard" id="divLinhaCard">
+
   </div>
 
 </body>
@@ -104,70 +107,88 @@
 <!-- Inicio Rodapé -->
 <!-- Fim Rodapé -->
 <script>
-  function atualizarFeed() {
-var fkEmpresa = sessionStorage
+  function goToDashBoard(idAgen) {
+    sessionStorage.idAgen = idAgen
+    window.location = "./dashboard/DashBoard-VisaoGeral.html"
+  }
 
-    fetch("/avisos/listar:fkEmpresa").then(function (resposta) {
+  window.onload = buscarAgencia();
+
+  var usuario = document.querySelector("#id_nome_usuario")
+  var nomeUsuario = sessionStorage.getItem("nome_usuario")
+  usuario.innerHTML = nomeUsuario
+
+
+  function buscarAgencia() {
+
+    var fkAgencia_usuario = sessionStorage.fkAgencia_usuario;
+
+    fetch("/usuarios/listarAgencia", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        fkagenciaServer: fkAgencia_usuario
+      })
+    }).then(function (resposta) {
 
       if (resposta.ok) {
-        // if (resposta.status == 204) {
-        //     var feed = document.getElementById("feed_container");
-        //     var mensagem = document.createElement("span");
-        //     mensagem.innerHTML = "Nenhum resultado encontrado."
-        //     feed.appendChild(mensagem);
-        //     throw "Nenhum resultado encontrado!!";
-        // }
-        console.log("ENTREII")
+
+        var feed = document.getElementById("divLinhaCard");
+        feed.innerHTML = ""
 
         resposta.json().then(function (resposta) {
           console.log("Dados recebidos: ", JSON.stringify(resposta));
 
           for (let i = 0; i < resposta.length; i++) {
-
             var publicacao = resposta[i];
 
+            var box = document.createElement("div");
+            box.className = "divBoxCard";
+            feed.appendChild(box);
 
-            divBoxCard.innerHTML += ` 
+            var card = document.createElement("div");
+            card.className = "buttonCard";
+            card.setAttribute("onclick", `goToDashBoard(${publicacao.idAgen})`);
 
-          
-          <div class="buttonCard pointer" onclick="goToDashBoard()">
-            <!-- <div class="divFormatIMG">
-              <img src="assets/alerta Visao Geral.png" alt="">
-            </div> -->
-            <div class="divNome">
-              <span>${publicacao.nome}</span>
+            var divFormat = document.createElement("div");
 
-            </div>
-            <div class="divNumero">
-              <span>${publicacao.nAgencia}</span>
-            </div>
-          </div>
-        `
+            box.appendChild(card);
+
+            var span = document.createElement("span");
+            span.innerHTML = `Agência ${publicacao.nAgencia}`;
+            divFormat.appendChild(span);
+
+            card.appendChild(divFormat);
+
+            var numeroagencia = document.createElement("div");
+            numeroagencia.className = "divNumeroAgencia";
+
+            var span2 = document.createElement("span");
+            span2.innerHTML = publicacao.idAgen;
+            card.appendChild(numeroagencia);
+
           }
-          // finalizarAguardar();
         });
       } else {
         throw ('Houve um erro na API!');
       }
     }).catch(function (resposta) {
       console.error(resposta);
-      // finalizarAguardar();
     });
   }
 
-  function goToDashBoard() {
-    window.location = "DashBoard-VisaoGeral.html"
-  }
 
   function limparSessao() {
     sessionStorage.clear();
     window.location = "login.html";
   }
-  var usuario = document.querySelector("#id_nome_usuario")
-  var nomeUsuario = sessionStorage.getItem("nome_usuario")
-  usuario.innerHTML = nomeUsuario
 
   function addAgen() {
     document.getElementById("AddAgencia").style.display = "nosne";
   }
+
+
+
 </script>

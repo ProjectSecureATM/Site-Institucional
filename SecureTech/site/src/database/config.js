@@ -2,18 +2,17 @@ var mysql = require("mysql2");
 var sql = require('mssql');
 
 // CONEXÃO DO SQL SERVER - AZURE (NUVEM)
+
 var sqlServerConfig = {
-    server: "SEU_SERVIDOR",
-    database: "SEU_BANCO_DE_DADOS",
-    user: "SEU_USUARIO",
-    password: "SUA_SENHA",
-    pool: {
-        max: 10,
-        min: 0,
-        idleTimeoutMillis: 30000
-    },
+    port: parseInt("1433", 10),
+    server: "18.204.118.27",
+    user: "sa",
+    password: "Secure2023",
+    database: "SecureATM",
     options: {
-        encrypt: true, // for azure
+        encrypt: false,
+        trustServerCertificate: true,
+        stream: false
     }
 }
 
@@ -21,8 +20,12 @@ var sqlServerConfig = {
 var mySqlConfig = {
     host: "localhost",
     database: "SecureATM",
-    user: "root",
-    password: "#Gf48556583830",
+    user: "aluno",
+// password: "#Gf45217532807"
+    password:"sptech"
+// password: "fgandb25"
+// password: "Ph993387998"
+
 };
 
 function executar(instrucao) {
