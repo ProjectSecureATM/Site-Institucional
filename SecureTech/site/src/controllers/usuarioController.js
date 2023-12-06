@@ -380,16 +380,26 @@ function listarAgencia(req, res) {
 }
 
 function obterMetricasComponentes(req, res) {
+<<<<<<< HEAD
     const idATM = req.params.idATM;
+=======
+    var idATM = req.params.idATM;
+>>>>>>> 2dcba58aa6961ecd0dc115fef0fca07d9286f371
     usuarioModel.obterMetricasComponentes(idATM)
         .then(dados => res.json(dados))
         .catch(error => res.status(500).json({ error: error.message }));
 }
 
 async function obterMetricasRede(req, res) {
+<<<<<<< HEAD
     const idATM = req.params.idATM;
     try {
         const dados = await usuarioModel.obterMetricasRede(idATM);
+=======
+    var idAgen = req.params.idAgen;
+    try {
+        const dados = await usuarioModel.obterMetricasRede(idAgen);
+>>>>>>> 2dcba58aa6961ecd0dc115fef0fca07d9286f371
         res.json(dados);
     } catch (error) {
         res.status(500).json({ error: error.message });
@@ -452,6 +462,7 @@ async function obterIP(req, res) {
 }
 
 function buscarMedidasRede(req, res) {
+<<<<<<< HEAD
 
     const limite_linhas = 10;
 
@@ -460,6 +471,17 @@ function buscarMedidasRede(req, res) {
     console.log(`Recuperando medidas em tempo real`);
 
     usuarioModel.buscarMedidasRede(idATM, limite_linhas).then(function (resultado) {
+=======
+    
+    var idAgen =  req.params.idAgen;
+    
+    const limite_linhas = 10;
+
+
+    console.log(`Recuperando medidas em tempo real`);
+
+    usuarioModel.buscarMedidasRede(idAgen, limite_linhas).then(function (resultado) {
+>>>>>>> 2dcba58aa6961ecd0dc115fef0fca07d9286f371
         if (resultado.length > 0) {
             res.status(200).json(resultado);
         } else {
@@ -471,6 +493,10 @@ function buscarMedidasRede(req, res) {
         res.status(500).json(erro.sqlMessage);
     });
 }
+<<<<<<< HEAD
+=======
+
+>>>>>>> 2dcba58aa6961ecd0dc115fef0fca07d9286f371
 function atualiza(req, res) {
 
     const limite_linhas = 8;
@@ -494,12 +520,20 @@ function atualiza(req, res) {
 
 function atualizarGraficoRede(req, res) {
 
+<<<<<<< HEAD
     var idATM =  req.params.idATM;
+=======
+    var idAgen =  req.params.idAgen;
+>>>>>>> 2dcba58aa6961ecd0dc115fef0fca07d9286f371
     var limite_linhas = 8
 
     console.log("Recuperando medidas em tempo real");
 
+<<<<<<< HEAD
     usuarioModel.atualizarGraficoRede(idATM, limite_linhas).then(function (resultado) {
+=======
+    usuarioModel.atualizarGraficoRede(idAgen, limite_linhas).then(function (resultado) {
+>>>>>>> 2dcba58aa6961ecd0dc115fef0fca07d9286f371
         if (resultado.length > 0) {
             res.status(200).json(resultado);
         } else {

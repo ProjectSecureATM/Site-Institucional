@@ -18,7 +18,11 @@ var usuarioRouter = require("./src/routes/usuarios");
 var redeRouter = require("./src/routes/rede");
 var pauloRouter = require("./src/routes/Paulo");
 var aliceRouter = require("./src/routes/alice");
+<<<<<<< HEAD
 
+=======
+var pedroRouter = require("./src/routes/pedro");
+>>>>>>> 2dcba58aa6961ecd0dc115fef0fca07d9286f371
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -31,6 +35,10 @@ app.use("/usuarios", usuarioRouter);
 app.use("/rede", redeRouter);
 app.use("/Paulo", pauloRouter);
 app.use("/alice", aliceRouter);
+<<<<<<< HEAD
+=======
+app.use("/Pedro", pedroRouter);
+>>>>>>> 2dcba58aa6961ecd0dc115fef0fca07d9286f371
 
 app.listen(PORTA, function () {
     console.log(`Servidor do seu site já está rodando! Acesse o caminho a seguir para visualizar: http://localhost:${PORTA} \n

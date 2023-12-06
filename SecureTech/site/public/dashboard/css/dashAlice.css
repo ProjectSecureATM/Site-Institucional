@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 .textoBruno span{
     color: black;
     font-weight: bold;
@@ -29,6 +30,8 @@
     align-items: right;
 }
 
+=======
+>>>>>>> 2dcba58aa6961ecd0dc115fef0fca07d9286f371
 #boxDashBoard{
     display: flex;
     justify-content: center;
@@ -71,7 +74,10 @@
     height: auto;
     width: 100%;
     justify-content: center;
+<<<<<<< HEAD
     align-items: center;
+=======
+>>>>>>> 2dcba58aa6961ecd0dc115fef0fca07d9286f371
 }
 
 #titulo{
@@ -80,6 +86,7 @@
     width: 100%;
     justify-content: left;
     align-items: end;
+<<<<<<< HEAD
 }
 
 #titulo-end{
@@ -90,13 +97,24 @@
 #titulo-center{
     display: flex;
     align-items: center;
+=======
+    margin-left: 5px;
+>>>>>>> 2dcba58aa6961ecd0dc115fef0fca07d9286f371
 }
 
 #titulo span{
     color: #021e46;
     font-weight: bold;
     font-size: 20px;
+<<<<<<< HEAD
 
+=======
+}
+
+#titulo-center{
+    display: flex;
+    align-items: center;
+>>>>>>> 2dcba58aa6961ecd0dc115fef0fca07d9286f371
 }
 
 #tituloDashboard{
@@ -140,6 +158,10 @@
     flex-direction: row;
     width: 100%;
     height: auto;
+<<<<<<< HEAD
+=======
+    justify-content: space-evenly;
+>>>>>>> 2dcba58aa6961ecd0dc115fef0fca07d9286f371
 }
 
 #divColunaDash{
@@ -164,19 +186,29 @@
     border: 1px solid #e3e6f0;
     background-color: #fff;
     background-color: rgb(255, 255, 255);
+<<<<<<< HEAD
 
+=======
+>>>>>>> 2dcba58aa6961ecd0dc115fef0fca07d9286f371
     box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, .15);
 }
 
 #boxDashGrafico{
     display: flex;
     justify-content: center;
+<<<<<<< HEAD
+=======
+    flex-direction: column;
+>>>>>>> 2dcba58aa6961ecd0dc115fef0fca07d9286f371
     height: 50vh;
     width: 90vh;
     border-radius: 0.35rem;
     border: 1px solid #e3e6f0;
     background-color: #fff;
+<<<<<<< HEAD
     background-color: rgb(255, 255, 255);
+=======
+>>>>>>> 2dcba58aa6961ecd0dc115fef0fca07d9286f371
     box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, .15);
 }
 
@@ -184,11 +216,18 @@
     display: flex;
     justify-content: center;
     height: 40vh;
+<<<<<<< HEAD
     width: 70vh;
     border-radius: 0.35rem;
     border: 1px solid #e3e6f0;
     background-color: #fff;
     background-color: rgb(255, 255, 255);
+=======
+    width: 75vh;
+    border-radius: 0.35rem;
+    border: 1px solid #e3e6f0;
+    background-color: #fff;
+>>>>>>> 2dcba58aa6961ecd0dc115fef0fca07d9286f371
     box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, .15);
 }
 
@@ -215,6 +254,7 @@
 
 #divLinhaDash2{
     padding-top: 5vh;
+<<<<<<< HEAD
 }
 
 #divLinhaDash2{
@@ -225,4 +265,10 @@
     display: flex;
     justify-content: space-between;
     flex-direction: row;
+=======
+    justify-content: space-between;
+    padding-bottom: 21px;
+    flex-direction: row;
+    display: flex;
+>>>>>>> 2dcba58aa6961ecd0dc115fef0fca07d9286f371
 }
