@@ -256,7 +256,7 @@
                                         </div>
 
                                         <div class="card-body">
-                                            <canvas id="PacotesChart"></canvas>
+                                            <canvas id="ProcessosChart"></canvas>
                                         </div>
                                     </div>
                                 </div>
@@ -351,20 +351,20 @@
 
         window.onload = function () {
             mostrarPacotesRede(idAgen)
-            obterIP(idAgen)
+            obterIP()
         }
         function mostrarPacotesRede(idAgen) {
             mostrarPacotes(idAgen);
             setInterval(function () {
                 mostrarPacotes(idAgen);
-            }, 7000);
+            }, 2000);
         }
 
-        function infosRede(idAgen) {
+        function infosRede() {
             $('#secureModal').modal('show');
         }
 
-        async function obterIP(idAgen) {
+        async function obterIP() {
             try {
                 const response = await fetch('https://api64.ipify.org?format=json');
                 const data = await response.json();
@@ -378,7 +378,7 @@
         }
 
 
-        function submitInfoRedeForm(idAgen) {
+        function submitInfoRedeForm() {
             var email = document.getElementById('inputEmail').value;
             var password = document.getElementById('inputPassword').value;
 
@@ -429,33 +429,36 @@
                 });
         }
 
+        // Função para criar o gráfico inicial
         function mostrarPacotes(idAgen) {
-        fetch(`/rede/graficoPacotes/${idAgen}`, { cache: 'no-store' })
-            .then(function (response) {
-                if (response.ok) {
-                    return response.json();
-                } else {
-                    console.error('Nenhum dado encontrado ou erro na API');
-                    return [];
-                }
-            })
-            .then(function (resposta) {
-                console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
-                resposta.reverse();
-                plotarGrafico(resposta, idAgen);
-                setTimeout(() => atualizarGrafico(idAgen, dados, PacotesChart), 2000);
-            })
-            .catch(function (error) {
-                console.error(`Erro na obtenção dos dados para o gráfico: ${error.message}`);
-            });
-    }
+            fetch(`/rede/graficoPacotes/${idAgen}`, { cache: 'no-store' })
+                .then(response => {
+                    if (response.ok) {
+                        return response.json();
+                    } else {
+                        console.error('Erro na API ou nenhum dado encontrado');
+                        return [];
+                    }
+                })
+                .then(resposta => {
+                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                    const { labels, data } = resposta;
+                    const dados = { labels, datasets: [{ data }] };
+                    criarGrafico(dados);
+                    atualizarGraficoPacotes(idAgen, dadosIniciais);
+                })
+                .catch(error => {
+                    console.error(`Erro na obtenção dos dados para o gráfico: ${error.message}`);
+                });
+        }
 
-    function plotarGrafico(resposta, idAgen) {
+        // Função para criar o gráfico usando Chart.js
+        function criarGrafico(resposta, idATM) {
         let labels = [];
         let dados = {
             labels: labels,
             datasets: [{
-                label: 'Pacotes',
+                label: 'Processos',
                 data: [],
                 fill: false,
                 backgroundColor: '#021e46',
@@ -467,8 +470,8 @@
 
         for (let i = 0; i < resposta.length; i++) {
             let registro = resposta[i];
-            dados.datasets[0].data.push(registro.total_pacotes);
-            labels.push(registro.data_hora);
+            dados.datasets[0].data.push(registro.quantidade);
+            labels.push(registro.hora);
         }
 
         const config = {
@@ -476,17 +479,17 @@
             data: dados
         };
 
-        let PacotesChart = new Chart(
-            document.getElementById(`PacotesChart`),
+        let ProcessoChart = new Chart(
+            document.getElementById(`ProcessoChart`),
             config
         );
 
         // Chama a função para atualizar dinamicamente o gráfico
-        setTimeout(() => atualizarGrafico(idAgen, dados, PacotesChart), 2000);
+        setTimeout(() => atualizarGrafico(idATM, dados, ProcessoChart), 2000);
     }
 
-    function atualizarGrafico(idAgen, dados, PacotesChart) {
-        fetch(`/rede/atualizarGraficoPacotes/${idAgen}`, { cache: 'no-store' })
+    function atualizarGrafico(idATM, dados, ProcessoChart) {
+        fetch(`/usuarios/ProcessosPHora_tempoReal/${idATM}`, { cache: 'no-store' })
             .then(function (response) {
                 if (response.ok) {
                     return response.json();
@@ -504,8 +507,8 @@
                     dados.labels.pop();
                     dados.datasets[0].data.pop();
 
-                    dados.labels.push(novoRegistro[0].data_hora);
-                    dados.datasets[0].data.push(novoRegistro[0].total_pacotes);
+                    dados.labels.push(novoRegistro[0].hora);
+                    dados.datasets[0].data.push(novoRegistro[0].quantidade);
                     ProcessoChart.update();
                 // } 
                 // else {
@@ -519,13 +522,18 @@
 
                 // }
 
-                setTimeout(() => atualizarGrafico(idAgen, dados, PacotesChart), 2000);
+                setTimeout(() => atualizarGrafico(idATM, dados, ProcessoChart), 2000);
             })
             .catch(function (error) {
                 console.error(`Erro na obtenção dos dados para o gráfico: ${error.message}`);
             });
 
     }
+
+
+
+
+
 
         function listarIPePacotes() {
             fetch("/rede/listarIPePacotes", { cache: 'no-store' })

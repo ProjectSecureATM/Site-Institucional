@@ -56,10 +56,10 @@ async function atualizarGraficoPacotes(idAgen) {
 
 
 
-function listarIPePacotes(idAgen) {
+function listarIPePacotes() {
 
     var instrucao = `
-    select IP, FORMAT(data_hora, 'yyyy-MM-dd 00:00:00') as hora, pacotesEnviados from rede WHERE fk__ATMAgencia = ${idAgen} ;
+    select IP, FORMAT(data_hora, 'yyyy-MM-dd HH:00:00') as hora, pacotesEnviados from rede;
     `;
 
     console.log("Executando a sua tia");

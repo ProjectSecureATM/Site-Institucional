@@ -7,7 +7,7 @@ router.post("/confirmacaoSeguranca", function (req, res) {
     redeController.confirmacaoSeguranca(req, res);
 });
 
-router.get("/listarIPePacotes/:idAgen", function (req, res) {
+router.get("/listarIPePacotes", function (req, res) {
     redeController.listarIPePacotes(req, res);
 });
 

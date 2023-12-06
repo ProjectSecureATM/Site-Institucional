@@ -1295,28 +1295,28 @@ where fkATM = 1;`;
         }
     }
 
-    async function buscarMedidasRede(idAgen, limite_linhas) {
-        // NUVEM
-        instrucaoSql = `
-            SELECT TOP ${limite_linhas} download, upload, FORMAT(dataHora, 'HH:mm') AS Horário
-            FROM monitoramentoRede
-            WHERE fkMaquina = ${idAgen}
-            ORDER BY idMonitoramentoRede DESC;`;
+//     async function buscarMedidasRede(idAgen, limite_linhas) {
+//         // NUVEM
+//         instrucaoSql = `
+//             SELECT TOP ${limite_linhas} download, upload, FORMAT(dataHora, 'HH:mm') AS Horário
+//             FROM monitoramentoRede
+//             WHERE fkMaquina = ${idAgen}
+//             ORDER BY idMonitoramentoRede DESC;`;
 
-        instrucaoSql = `
-            SELECT TOP ${limite_linhas} CONVERT(VARCHAR, data_hora, 103) + ' ' + CONVERT(VARCHAR, data_hora, 108) AS dataHora, pacotesEnviados, pacotesRecebidos
-            FROM rede
-            WHERE fk__idATM = ${idAgen}
-            ORDER BY data_hora DESC;`;
+//         instrucaoSql = `
+//             SELECT TOP ${limite_linhas} CONVERT(VARCHAR, data_hora, 103) + ' ' + CONVERT(VARCHAR, data_hora, 108) AS dataHora, pacotesEnviados, pacotesRecebidos
+//             FROM rede
+//             WHERE fk__idATM = ${idAgen}
+//             ORDER BY data_hora DESC;`;
 
-        console.log('\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n');
-        return;
-    }
+//         console.log('\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n');
+//         return;
+//     }
 
-    console.log('Executando a instrução SQL: \n' + instrucaoSql);
-    const result = await database.executar(instrucaoSql);
-    return result.recordset;
-}
+//     console.log('Executando a instrução SQL: \n' + instrucaoSql);
+//     const result = await database.executar(instrucaoSql);
+//     return result.recordset;
+// }
 
 async function atualizarGraficoRede(idATM, limite_linhas) {
     let instrucaoSql = '';
@@ -1639,3 +1639,4 @@ module.exports = {
     buscarUltimasMedidasServidores4,
     atualizandoMedidasServidores4
 };
+}
