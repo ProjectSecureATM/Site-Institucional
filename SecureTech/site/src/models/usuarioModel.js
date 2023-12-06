@@ -816,7 +816,8 @@ GROUP BY DATE_FORMAT(data_hora, '%Y-%m-%d %H:00:00');`;
         buscarUltimasMedidasServidores4,
         atualizandoMedidasServidores4
     };
-} else if (process.env.AMBIENTE_PROCESSO == "producao") {
+} else 
+if (process.env.AMBIENTE_PROCESSO == "producao") {
     function autenticar(email, senha) {
         console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function entrar(): ", email, senha)
         var instrucao = `
