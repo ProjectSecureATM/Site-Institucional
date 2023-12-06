@@ -7,8 +7,16 @@ router.post("/logTempoReal/:idATM", function(req,res){
     aliceController.logTempoReal(req, res);
 });
 
-router.post("/comparacaoLogsSucessoEFalha", function(req,res){
+router.post("/comparacaoLogsSucessoEFalha/:idATM", function(req,res){
     aliceController.comparacaoLogsSucessoEFalha(req, res);
+}); 
+
+router.post("/logDia/:idATM", function(req,res){
+    aliceController.logDia(req, res);
+}); 
+
+router.post("/logHora/:idATM", function(req,res){
+    aliceController.logHora(req, res);
 }); 
 
 module.exports = router;
