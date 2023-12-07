@@ -1,16 +1,16 @@
 .chart-area {
-    width: 45vw;
-    height: 45vh;
+    width: 41vw;
+    height: 41vh;
     display: flex;
     justify-content: space-between;
-    gap: 3.5rem;
-    flex-direction: column;
-    left: 30vw;
+    gap: 1.5rem;
+    flex-direction: row;
+   
 }
 
 #TEMPChart {
     position: relative;
-    width: 85vw;
+    width: 50vw;
     justify-content: center;
     display: flex;
     background-color: white;
@@ -20,11 +20,12 @@
     font-size: 5rem;
     font-weight: bold;
     color: white;
+    left: 1.1vw;
 }
 
 #CPUChart {
     position: relative;
-    width: 85vw;
+    width: 50vw;
     justify-content: center;
     display: flex;
     background-color: white;
@@ -37,20 +38,28 @@
 }
 
 #desempenho {
-    height: -8vh;
-    position: relative;
     display: flex;
-    width: 32vw;
+    flex-direction: row;
+    width: 40vw;
+    height: 10vh;
     border-left: 0.25rem solid rgb(150, 108, 2) !important;
+    position: relative;
+    left: 2.3vw;
 }
+
+#atividadeGeral {
+    width: 40vw;
+   position: relative;
+   /* right: 4.5vw; */
+ }
 
 #bloco{
     height: 15vh;
 }
 
 #blocoKPI {
-    display: flex;
-    flex-direction: row;
+    position: relative;
+    right: 3vw;
     justify-content: center;
     height: 2vh;
     width: 20vw;
@@ -58,9 +67,18 @@
 }
 
 .teste {
+    /* position: relative;
+    left: 15vw;
+    bottom: 3rem; */
+    display: flex;
+    /* flex-direction: row; */
+    /* position: relative;
+    gap: 2rem; */
+    height: 12vh;
+    width: 200vw;
     position: relative;
-    left: 35vw;
-    bottom: 3rem;
+
+    /* gap: 1rem; */
 }
 
 .teste2 {
@@ -100,12 +118,7 @@
     font-weight: bolder
 }
 
-.card-body {
-    display: flex;
-    flex-direction: column;
-    height: 40vh;
-    width: 30vw;
-}
+
 
 .border-left-primary {
     border-left: 0.25rem solid rgb(150, 108, 2)!important;
@@ -240,15 +253,15 @@
 }
 
 /* Estilo para o botão de fechar o modal */
-#closeteste {   
+#closeteste {  
     color: #021e46;
     float: right;
     font-size: 28px;
     font-weight: bold;
-    text-align: left; 
+    text-align: left;
     position: relative;
-    bottom: 11rem;
-    left: 77rem;
+    bottom: 13rem;
+    left: 82rem;
 }
 
 .close2:hover,
@@ -265,7 +278,7 @@
     border-radius: 1rem;
     border-left: 0.25rem solid #021e46 !important;
     position: relative;
-    
+   
 }
 
 .caixa-desempenho{
@@ -290,7 +303,7 @@
 #percent{
     font-weight: bolder;
     font-size: 16px;
-    color: #021e46; 
+    color: #021e46;
 }
 
 #tempoAtividade{
@@ -370,4 +383,3 @@
     bottom: 3.3rem;
     background-color: rgb(160, 2, 2);
 }
-

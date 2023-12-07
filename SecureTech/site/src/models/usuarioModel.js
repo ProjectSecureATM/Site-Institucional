@@ -1181,6 +1181,8 @@ WHERE
     codigocomponentes.idCodComponentes IN (1, 2, 3)
     AND 
     ATMComp_ID = ${idATM}
+    AND
+    APIID = 2
 GROUP BY
     Leitura.ATMComp_ID
 ORDER BY 

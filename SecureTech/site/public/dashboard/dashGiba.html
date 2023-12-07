@@ -84,7 +84,7 @@
                         <a href="dashVaz.html" class="collapse-item">Dash Rede</a>
                         <a href="DashBoard-VisaoGeral-Giba.html" class="collapse-item">Desempenho Sistêmico</a>
                         <a href="dashVisaoGeralRede_Julio.html" class="collapse-item">Dash Segurança de Rede</a>
-                        <a href="DashBoard-VisaoGeral-Paulo.html" class="collapse-item">Dash Estresse</a>
+                        <a href="DashBoard-VisaoGeral-Paulo.html" class="collapse-item">Dash Paulo</a>
                         <a href="DashBoard-VisaoGeral-Primon.html" class="collapse-item">Dash USB</a>
                         <a href="DashBoard-VisaoGeral-Alice.html" class="collapse-item">Dash Log</a>
                     </div>
@@ -123,7 +123,7 @@
                                 <div class="caixa-container">
                                     <div class="caixa-desempenho">
                                         <h6>DESEMPENHO IDEAL</h6>
-                                        <p>100% a 80%</p>
+                                        <p>100% a 60%</p>
                                         <div id="bolas" class="bolaIdeal"></div>
                                     </div>
                                 </div>
@@ -131,7 +131,7 @@
                                 <div class="caixa-container">
                                     <div class="caixa-desempenho">
                                         <h6>DESEMPENHO MODERADO</h6>
-                                        <p>79% a 51%</p>
+                                        <p>59% a 40%</p>
                                         <div id="bolas" class="bolaModerada"></div>
                                     </div>
                                 </div>
@@ -139,7 +139,7 @@
                                 <div class="caixa-container">
                                     <div class="caixa-desempenho">
                                         <h6>DESEMPENHO CRÍTICO</h6>
-                                        <p>50% a 0%</p>
+                                        <p>39% a 0%</p>
                                         <div id="bolas" class="bolaCritica"></div>
                                     </div>
                                 </div>
@@ -386,14 +386,11 @@
                         <div id="giba" class="card-body">
                             <br>
                             <div id="blocoKPI" class="col-xl-5 col-md-0 mb-8">
-                                <div class="chart-area">
-                                    <canvas id="CPUChart"></canvas>
-                                    <canvas id="TEMPChart"></canvas>
-                                </div>
+                               
                                 <div class="teste">
                                     <br><br>
-                                    <div class="card border-left-primary shadow h-100 py-2">
-                                        <div class="card-body">
+                                    <div id="atividadeGeral" class="card border-left-primary shadow h-100 py-2">
+                                        <div  class="card-body">
                                             <div class="row no-gutters align-items-center">
                                                 <div class="col mr-2">
                                                     <div id="borda"
@@ -420,10 +417,16 @@
                                         </div>
                                     </div>
                                 </div>
+                                <br>
+                                <div class="chart-area">
+                                    <canvas id="CPUChart"></canvas>
+                                    <canvas id="TEMPChart"></canvas>
+                                </div>
+                                <br>
 
                             </div>
-                            <div class="botao-reiniciar">
-                                <button id="openModalButton" onclick="notificarATM(), obterSelect()">NOTIFICAR
+                            <!-- <div class="botao-reiniciar">
+                                <button id="openModalButton" onclick="notificarATM(), obterSelect(), enviarParaSlack()">NOTIFICAR
                                     ATM</button>
                                 <span id="botao"></span>
                                 <div class="texto-reiniciar">
@@ -433,7 +436,7 @@
 
                                     <p>Prezado Cliente,</p>
 
-                                    <p>Caso o desempenho dos ATM's estiver abaixo de 50%, indicando uma possível
+                                    <p>Detectamos que o desempenho da ATM está abaixo de 50%, indicando uma possível
                                         questão operacional. Recomendamos que clique no botão "Notificar ATM" para
                                         solicitar a assistência de um técnico.</p>
 
@@ -444,14 +447,14 @@
                                     </p>
 
                                 </div>
-                            </div>
+                            </div> -->
 
-                            <div id="modal1" class="modal1">
+                            <!-- <div id="modal1" class="modal1">
                                 <div class="modal-content1">
                                     <span class="close1" onclick="closeModal()">&times;</span>
                                     <p>Notificação enviada para o ATM com sucesso.</p>
                                 </div>
-                            </div>
+                            </div> -->
                             <a class="scroll-to-top rounded" href="#page-top">
                                 <i class="fas fa-angle-up"></i>
                             </a>
@@ -492,6 +495,7 @@
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
+
     var idATM = sessionStorage.getItem('idATM');
 
     var metricaTemp = parseInt(document.getElementById('cpuTemp').innerText);
@@ -501,9 +505,6 @@
     var bolaMetricaDISCO = document.getElementById('bolaMetricaDISCO');
     var bolaMetricaCPU = document.getElementById('bolaMetricaCPU');
     var bolaMetricaDESEMPENHO = document.getElementById('bolaMetricaDESEMPENHO');
-
-
-
 
     function testeBotao() {
         Swal.fire({
@@ -683,11 +684,11 @@
                 console.log('Dados recebidos:', dados);
                 atualizarValorDOM('desempenhoGeral', dados[0].DesempenhoGeral)
 
-                if (dados[0].DesempenhoGeral >= 80 && dados[0].DesempenhoGeral <= 100) {
+                if (dados[0].DesempenhoGeral >= 60 && dados[0].DesempenhoGeral <= 100) {
                     bolaMetricaDESEMPENHO.style.backgroundColor = 'green';
-                } else if (dados[0].DesempenhoGeral >= 51 && dados[0].DesempenhoGeral <= 79.9) {
+                } else if (dados[0].DesempenhoGeral >= 40 && dados[0].DesempenhoGeral <= 59.9) {
                     bolaMetricaDESEMPENHO.style.backgroundColor = 'yellow';
-                } else if (dados[0].DesempenhoGeral >= 0 && dados[0].DesempenhoGeral <= 50.9) {
+                } else if (dados[0].DesempenhoGeral >= 0 && dados[0].DesempenhoGeral <= 39.9) {
                     bolaMetricaDESEMPENHO.style.backgroundColor = 'rgb(160, 2, 2)';
                 }
             })

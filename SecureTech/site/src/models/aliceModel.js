@@ -39,7 +39,23 @@ function logTempoReal(idATM) {
 function comparacaoLogsSucessoEFalha(idATM) {
 
     var instrucaoSql = `
-    SELECT COUNT(idTipoERRO) AS qtdErros, Tipo FROM TipoERRO 
+    SELECT COUNT(idTipoERRO) AS qtdErrosFalha, Tipo FROM TipoERRO 
+    JOIN mensagem ON fkMSG = idMensagem
+        JOIN logs ON fkLogs = idLogs
+            JOIN ATM ON fk_idATM = ${idATM}
+                WHERE fk_idATM = ${idATM}
+                AND tipo = 'Usuário falhou na autenticação.'
+                GROUP BY Tipo;
+                            `;
+
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
+function comparacaoLogsSucessoEFalha2(idATM) {
+
+    var instrucaoSql = `
+    SELECT COUNT(idTipoERRO) AS qtdErrosFalha, Tipo FROM TipoERRO 
 				JOIN mensagem ON fkMSG = idMensagem
 					JOIN logs ON fkLogs = idLogs
 						JOIN ATM ON fk_idATM = ${idATM}

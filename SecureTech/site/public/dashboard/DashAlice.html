@@ -330,7 +330,7 @@
         let dados = {
             labels: labels,
             datasets: [{
-                label: 'Log',
+                label: 'Falha',
                 data: [],
                 fill: false,
                 backgroundColor: '#021e46',
@@ -341,16 +341,34 @@
         };
         for (i = 0; i < resposta.length; i++) {
             var registro = resposta[i];
-            dados.datasets[0].data.push(registro.qtdErros);
+            dados.datasets[0].data.push(registro.qtdErrosFalha);
             labels.push(registro.Tipo)
+        }
+        let labels2 = [];
+        let dados2 = {
+            labels: labels2,
+            datasets: [{
+                label: 'Sucesso',
+                data: [],
+                fill: false,
+                backgroundColor: '#0547a4',
+                borderColor: '#0547a4',
+                borderWidth: 0.5,
+                tension: 0.5
+            }]
+        };
+        for (i = 0; i < resposta.length; i++) {
+            var registro = resposta[i];
+            dados2.datasets[0].data.push(registro.qtdErrosSucesso);
+            labels2.push(registro.Tipo)
         }
 
         console.log('----------------------------------------------')
         console.log('O gráfico será plotado com os respectivos valores:')
         console.log('Labels:')
-        console.log(labels)
+        console.log(labels, labels2)
         console.log('Dados:')
-        console.log(dados.datasets)
+        console.log(dados.datasets, dados2.datasets)
         console.log('----------------------------------------------')
 
 
@@ -363,49 +381,49 @@
             document.getElementById(`graficoComparacao`),
             config
         );
-        // setTimeout(()=>atualizarGraficoComparacao(idATM, dados, myChart),2000)
+        setTimeout(()=>atualizarGraficoComparacao(idATM, dados, myChart),2000)
     }
 
 
-    // function atualizarGraficoComparacao(idATM, dados, myChart) {
-    //     fetch(`/alice/O QUE EU COLOCO AQUI?/${idATM}`, { cache: 'no-store' })
-    //         .then(function (response) {
-    //             if (response.ok) {
-    //                 return response.json();
-    //             } else {
-    //                 console.error('Nenhum dado encontrado ou erro na API');
-    //                 return [];
-    //             }
-    //         })
-    //         .then(function (novoRegistro) {
-    //             console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
-    //             console.log('Dados atuais do gráfico:');
-    //             console.log(dados);
+    function atualizarGraficoComparacao(idATM, dados, myChart) {
+        fetch(`/alice/O QUE EU COLOCO AQUI?/${idATM}`, { cache: 'no-store' })
+            .then(function (response) {
+                if (response.ok) {
+                    return response.json();
+                } else {
+                    console.error('Nenhum dado encontrado ou erro na API');
+                    return [];
+                }
+            })
+            .then(function (novoRegistro) {
+                console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
+                console.log('Dados atuais do gráfico:');
+                console.log(dados);
 
-    //             if (novoRegistro.length > 0) {
-    //                 if (novoRegistro[0].DataRegistro != dados.labels[dados.labels.length - 1]) {
-    //                     dados.labels.push(novoRegistro[0].DataRegistro);
-    //                     dados.datasets[0].data.push(novoRegistro[0].Valor);
-    //                     myChart.update();
-    //                 } else {
-    //                     console.log("---------------------------------------------------------------");
-    //                     console.log("Como não há dados novos para captura, o gráfico não atualizará.");
-    //                     console.log("Horário do novo dado capturado:");
-    //                     console.log(novoRegistro[0].DataRegistro);
-    //                     console.log("Horário do último dado capturado:");
-    //                     console.log(dados.labels[dados.labels.length - 1]);
-    //                     console.log("---------------------------------------------------------------");
-    //                 }
-    //             }
+                if (novoRegistro.length > 0) {
+                    if (novoRegistro[0].DataRegistro != dados.labels[dados.labels.length - 1]) {
+                        dados.labels.push(novoRegistro[0].DataRegistro);
+                        dados.datasets[0].data.push(novoRegistro[0].Valor);
+                        myChart.update();
+                    } else {
+                        console.log("---------------------------------------------------------------");
+                        console.log("Como não há dados novos para captura, o gráfico não atualizará.");
+                        console.log("Horário do novo dado capturado:");
+                        console.log(novoRegistro[0].DataRegistro);
+                        console.log("Horário do último dado capturado:");
+                        console.log(dados.labels[dados.labels.length - 1]);
+                        console.log("---------------------------------------------------------------");
+                    }
+                }
 
-    //             // Chama a função recursivamente após 2 segundos
-    //             setTimeout(()=>atualizarGraficoComparacao(idATM, dados, myChart),2000)
-    //         })
-    //         .catch(function (error) {
-    //             console.error(`Erro na obtenção dos dados para o gráfico: ${error.message}`);
-    //         });
+                // Chama a função recursivamente após 2 segundos
+                setTimeout(()=>atualizarGraficoComparacao(idATM, dados, myChart),2000)
+            })
+            .catch(function (error) {
+                console.error(`Erro na obtenção dos dados para o gráfico: ${error.message}`);
+            });
 
-    // }
+    }
 
     // OUTRO GRÀFICO
 
