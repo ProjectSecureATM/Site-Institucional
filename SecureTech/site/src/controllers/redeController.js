@@ -33,9 +33,9 @@ function confirmacaoSeguranca(req, res) {
 
 function graficoPacotes(req, res) {
     var idAgen = req.params.idAgen;
-    redeModel.graficoPacotes(idAgen).then(function (resultado) {
-        if (resultado.length > 0) {
-            res.status(200).json(resultado);
+    redeModel.graficoPacotes(idAgen).then(function (resposta) {
+        if (resposta.length > 0) {
+            res.status(200).json(resposta);
         } else {
             res.status(204).send("Nenhum resultado encontrado!")
         }

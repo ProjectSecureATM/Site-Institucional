@@ -255,7 +255,7 @@
                                             </div>
                                         </div>
 
-                                        <div class="card-body">
+                                        <div id="dash"class="card-body">
                                             <canvas id="PacotesChart"></canvas>
                                         </div>
                                     </div>
@@ -491,13 +491,14 @@
         function mostrarPacotes(idAgen) {
         fetch(`/rede/graficoPacotes/${idAgen}`, { cache: 'no-store' })
             .then(function (resposta) {
+                resposta.json().then(function (resposta) {
                 console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
                 // resposta.reverse();
                 console.log(idAgen)
                 plotarGrafico(resposta, idAgen);
                 // setTimeout(() => atualizarGraficoPacotes(idAgen, dados, PacotesChart), 2000);
             
-            })
+            })})
             .catch(function (error) {
                 console.error(`Erro na obtenção dos dados para o gráfico: ${error.message}`);
             });

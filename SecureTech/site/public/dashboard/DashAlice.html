@@ -18,7 +18,7 @@
         rel="stylesheet">
 
     
-    <!-- <link href="../css/sb-admin-2.min.css" rel="stylesheet"> -->
+    <link href="css/sb-admin-2.min.css" rel="stylesheet">
     <link href="css/dashAlice.css" rel="stylesheet">
 
     <link rel="stylesheet" href="css/sb-admin-2.min.css">
@@ -70,7 +70,7 @@
                         <a href="DashBoard-VisaoGeral-Vaz.html" class="collapse-item">Dash Rede</a>
                         <a href="DashBoard-VisaoGeral-Giba.html" class="collapse-item">Desempenho Sistêmico</a>
                         <a href="dashVisaoGeralRede_Julio.html" class="collapse-item">Dash Segurança de Rede</a>
-                        <a href="DashBoard-VisaoGeral-Paulo.html" class="collapse-item">Dash Paulo</a>
+                        <a href="DashBoard-VisaoGeral-Paulo.html" class="collapse-item">Dash Estresse</a>
                         <a href="DashBoard-VisaoGeral-Primon.html" class="collapse-item">Dash USB</a>
                         <a href="DashBoard-VisaoGeral-Alice.html" class="collapse-item">Dash Log</a>
                     </div>
@@ -150,7 +150,7 @@
                     <div id="dashBoard">
                         <div id="tituloDashBoard">
                             <div id="tituloDashboard">
-                                <span>DashBoard</span>
+                                <span id = "nomeDash">DashBoard Logs</span>
                                 <div id="informacao">
                                     <div id="iconeInformacao" onclick="metricasLog()">
                                         <img id = "imgInformação" src="../assets/information.png" alt="">
@@ -285,15 +285,15 @@
             obterDadosComparacao(idATM);
         }, 2000);
         
-        obterDadosTempoReal(idATM),
-        setInterval(function () {
-            obterDadosTempoReal();
-        }, 7000);
+        // obterDadosTempoReal(idATM),
+        // setInterval(function () {
+        //     obterDadosTempoReal();
+        // }, 7000);
     }
 
     function metricasLog() {
         Swal.fire({
-            title: 'Métricas Logs</br></br><p style="text-align: left;">Ideal: 0 a 10 Logs </br></br> Aceitável: 10 a 25 Logs </br></br> Crítico: + de 25 Logs </p></br><span style="color: blue;">As métricas se referem a tentativas e Autenticação com o mesmo usuário.</span',
+            title: '<span style="color: blue;">Métricas Logs </span></br></br><p style="text-align: left;">Ideal: 0 a 10 Logs </br></br> Aceitável: 10 a 25 Logs </br></br> Crítico: + de 25 Logs </p></br><span>As métricas se referem a tentativas e Autenticação com o mesmo usuário.</span',
             showClass: {
                 popup: 'animate__animated animate__fadeInDown'
             },
@@ -302,23 +302,6 @@
             }
         })
     }
-
-    // function obterDadosKPIS(idATM) {
-    //     obterDadosComparacao(idATM),
-    //     setInterval(function () {
-    //         obterDadosComparacao(idATM);
-    //     }, 2000);
-        
-    //     obterDadosMaxKpi(idATM),
-    //     setInterval(function () {
-    //         obterDadosMaxKpi(1);
-    //     }, 7000);
-
-    //     obterDadosMinKpi(idATM) 
-    //     setInterval(function () {
-    //         obterDadosMinKpi(idATM);
-    //     }, 7000);
-    // }
 
     function obterDadosComparacao(idATM) {
 
@@ -331,9 +314,10 @@
                     resposta.reverse()
                     plotarGraficoComparacao(resposta, idATM)
                 })
+            } else {
+                console.log(response)
             }
         })  
-
     }
 
     function plotarGraficoComparacao(resposta, idATM) {
@@ -345,14 +329,12 @@
                 label: 'Log',
                 data: [],
                 fill: false,
-                backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                borderColor: 'rgba(75, 192, 192, 1)',
-                borderWidth: 5,
+                backgroundColor: '#021e46',
+                borderColor: '#021e46',
+                borderWidth: 0.5,
                 tension: 0.5
             }]
         };
-
-
         for (i = 0; i < resposta.length; i++) {
             var registro = resposta[i];
             dados.datasets[0].data.push(registro.qtdErros);
@@ -382,7 +364,7 @@
 
 
     // function atualizarGraficoComparacao(idATM, dados, myChart) {
-    //     fetch(`/alice/buscarTempoReal/${idATM}`, { cache: 'no-store' })
+    //     fetch(`/alice/O QUE EU COLOCO AQUI?/${idATM}`, { cache: 'no-store' })
     //         .then(function (response) {
     //             if (response.ok) {
     //                 return response.json();
@@ -423,21 +405,21 @@
 
     // OUTRO GRÀFICO
 
-    function obterDadosTempoReal(idATM) {
+//     function obterDadosTempoReal(idATM) {
 
-fetch(`/alice/logTempoReal/${idATM}`, { cache: 'no-store' })
-.then(function (response) {
-    if(response.ok){
-        response.json()
-        .then(function(resposta){
-            console.log("Dados recebidos:",JSON.stringify(resposta))
-            resposta.reverse()
-            plotarGraficoTempoReal(resposta, idATM)
-        })
-    }
-})  
+// fetch(`/alice/logTempoReal/${idATM}`, { cache: 'no-store' })
+// .then(function (response) {
+//     if(response.ok){
+//         response.json()
+//         .then(function(resposta){
+//             console.log("Dados recebidos:",JSON.stringify(resposta))
+//             resposta.reverse()
+//             plotarGraficoTempoReal(resposta, idATM)
+//         })
+//     }
+// })  
 
-}
+// }
 
 // function plotarGraficoTempoReal(resposta, idATM) {
 
@@ -445,11 +427,11 @@ fetch(`/alice/logTempoReal/${idATM}`, { cache: 'no-store' })
 // let dados = {
 //     labels: labels,
 //     datasets: [{
-//         label: 'Estresse',
+//         label: 'Log',
 //         data: [],
 //         fill: false,
-//         backgroundColor: 'rgba(75, 192, 192, 0.2)',
-//         borderColor: 'rgba(75, 192, 192, 1)',
+//         backgroundColor: '#021e46',
+//         borderColor: '#021e46',
 //         borderWidth: 5,
 //         tension: 0.5
 //     }]
@@ -458,8 +440,8 @@ fetch(`/alice/logTempoReal/${idATM}`, { cache: 'no-store' })
 
 // for (i = 0; i < resposta.length; i++) {
 //     var registro = resposta[i];
-//     dados.datasets[0].data.push(registro.Valor);
-//     labels.push(registro.DataRegistro)
+//     dados.datasets[0].data.push(registro.idLogs);
+//     labels.push(registro.data_hora)
 // }
 
 // console.log('----------------------------------------------')
@@ -472,7 +454,7 @@ fetch(`/alice/logTempoReal/${idATM}`, { cache: 'no-store' })
 
 
 // const config = {
-//     type: 'bar',
+//     type: 'line',
 //     data: dados
 // };
 

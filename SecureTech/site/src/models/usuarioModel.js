@@ -1134,12 +1134,12 @@ order by FORMAT(data_hora, 'yyyy-MM-dd HH:mm:ss') DESC
         }
     }
 
-
-
-    async function obterMetricasRede(idATM) {
-        const PINGQuery = `SELECT TOP 1 ping FROM rede WHERE fk__idATM = ${idATM} ORDER BY data_hora DESC;`;
-        const DOWNLOADQuery = `SELECT TOP 1 pacotesRecebidos FROM rede WHERE fk__idATM = ${idATM} ORDER BY data_hora DESC;`;
-        const UPLOADQuery = `SELECT TOP 1 pacotesEnviados FROM rede WHERE fk__idATM = ${idATM} ORDER BY data_hora DESC;`;
+    //GABRIEL VAZ
+    // OBTER METRICAS REDE REVISAR
+    async function obterMetricasRede(idAgen) {
+        const PINGQuery = `SELECT TOP 1 ping FROM rede WHERE fk__ATMAgencia = ${idAgen} ORDER BY data_hora DESC;`;
+        const DOWNLOADQuery = `SELECT TOP 1 pacotesRecebidos FROM rede WHERE fk__ATMAgencia = ${idAgen} ORDER BY data_hora DESC;`;
+        const UPLOADQuery = `SELECT TOP 1 pacotesEnviados FROM rede WHERE fk__ATMAgencia = ${idAgen} ORDER BY data_hora DESC`;
 
         console.log("Executando as instruções SQL:\n", PINGQuery, DOWNLOADQuery, UPLOADQuery);
 
@@ -1162,6 +1162,8 @@ order by FORMAT(data_hora, 'yyyy-MM-dd HH:mm:ss') DESC
             };
         }
     }
+
+    //GABRIEL VAZ - FIM
 
     function obterDesempenho(idATM) {
         var desempenhoQuery = `
@@ -1283,57 +1285,35 @@ where fkATM = 1;`;
         }
     }
 
-    async function buscarMedidasRede(idATM, limite_linhas) {
+    function buscarMedidasRede(idAgen, limite_linhas) {
         let instrucaoSql = '';
 
         if (process.env.AMBIENTE_PROCESSO === 'producao') {
             // NUVEM
             instrucaoSql = `
-            SELECT TOP ${limite_linhas} download, upload, FORMAT(dataHora, 'HH:mm') AS Horário
-            FROM monitoramentoRede
-            WHERE fkMaquina = ${idATM}
-            ORDER BY idMonitoramentoRede DESC;`;
+            SELECT TOP ${limite_linhas} pacotesEnviados, pacotesRecebidos, FORMAT(data_hora, 'HH:mm:ss') AS dataHora
+            FROM rede
+            WHERE fk__ATMAgencia = ${idAgen}
+            ORDER BY idRede DESC;
+            `;
         } else if (process.env.AMBIENTE_PROCESSO === 'desenvolvimento') {
             instrucaoSql = `
-            SELECT TOP ${limite_linhas} CONVERT(VARCHAR, data_hora, 103) + ' ' + CONVERT(VARCHAR, data_hora, 108) AS dataHora, pacotesEnviados, pacotesRecebidos
+            SELECT TOP ${limite_linhas} pacotesEnviados, pacotesRecebidos, FORMAT(data_hora, 'HH:mm:ss') AS dataHora
             FROM rede
-            WHERE fk__idATM = ${idATM}
-            ORDER BY data_hora DESC;`;
+            WHERE fk__ATMAgencia = ${idAgen}
+            ORDER BY idRede DESC;
+            `;
         } else {
             console.log('\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n');
             return;
         }
 
         console.log('Executando a instrução SQL: \n' + instrucaoSql);
-        const result = await database.executar(instrucaoSql);
-        return result.recordset;
+        // const result = await database.executar(instrucaoSql);
+        // return result.recordset;
     }
 
-    async function atualizarGraficoRede(idATM, limite_linhas) {
-        let instrucaoSql = '';
-
-        if (process.env.AMBIENTE_PROCESSO === 'producao') {
-            // NUVEM
-            instrucaoSql = `
-            SELECT TOP ${limite_linhas} download, upload, FORMAT(dataHora, 'HH:mm') AS Horário
-            FROM monitoramentoRede
-            WHERE fkMaquina = ${idATM}
-            ORDER BY idMonitoramentoRede DESC;`;
-        } else if (process.env.AMBIENTE_PROCESSO === 'desenvolvimento') {
-            instrucaoSql = `
-            SELECT TOP ${limite_linhas} CONVERT(VARCHAR, data_hora, 103) + ' ' + CONVERT(VARCHAR, data_hora, 108) AS dataHora, pacotesEnviados, pacotesRecebidos
-            FROM rede
-            WHERE fk__idATM = ${idATM}
-            ORDER BY data_hora DESC;`;
-        } else {
-            console.log('\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n');
-            return;
-        }
-
-        console.log('Executando a instrução SQL: \n' + instrucaoSql);
-        const result = await database.executar(instrucaoSql);
-        return result.recordset;
-    }
+    
 
     async function atualiza(idATM, limite_linhas) {
         let instrucaoSql = '';

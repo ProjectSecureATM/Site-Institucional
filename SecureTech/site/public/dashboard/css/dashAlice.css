@@ -16,7 +16,6 @@
 #containerDashComponentes{
     height: 90%;
     width: 95%;
-
 }
 
 #tituloDashBoard{
@@ -79,11 +78,19 @@
 }
 
 #tituloDashboard{
-     width: 20%;
+     width: 50%;
      display: flex;
      color: #5a5c69 !important;
      margin-bottom: 0 !important;
      font-size: 1.75rem;
+}
+
+#nomeDash{
+    width: 45%;
+    display: flex;
+    color: #5a5c69 !important;
+    margin-bottom: 0 !important;
+    font-size: 1.75rem;
 }
 
 #imgInformação {

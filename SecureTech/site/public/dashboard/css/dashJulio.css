@@ -2,3 +2,12 @@
 #tamDiv{
     height: 11vh;
 }
+
+#dash{
+    width: 60vw;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    right: 3.5vw;
+}

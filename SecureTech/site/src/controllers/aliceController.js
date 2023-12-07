@@ -7,9 +7,9 @@ function logTempoReal(req, res) {
 
     aliceModel.logTempoReal(idATM).then(function (resultado) {
         if (resultado.length > 0) {
-            res.status(200).json(resultado);;
+            res.status(200).json(resultado);
         } else {
-            req.status(204).send("Nenhum resultado encontrado.")
+            res.status(204).send("Nenhum resultado encontrado.")
         }
     }).catch(function (erro) {
         console.log(erro);
@@ -25,9 +25,9 @@ function comparacaoLogsSucessoEFalha(req, res) {
 
     aliceModel.comparacaoLogsSucessoEFalha(idATM).then(function (resultado) {
         if (resultado.length > 0) {
-            res.status(200).json(resultado);;
+            res.status(200).json(resultado); 
         } else {
-            req.status(204).send("Nenhum resultado encontrado.")
+            res.status(204).send("Nenhum resultado encontrado.")
         }
     }).catch(function (erro) {
         console.log(erro);
@@ -43,9 +43,9 @@ function logDia(req, res) {
 
     aliceModel.logDia(idATM).then(function (resultado) {
         if (resultado.length > 0) {
-            res.status(200).json(resultado);;
+            res.status(200).json(resultado);
         } else {
-            req.status(204).send("Nenhum resultado encontrado.")
+            res.status(204).send("Nenhum resultado encontrado.")
         }
     }).catch(function (erro) {
         console.log(erro);
@@ -61,7 +61,7 @@ function logHora(req, res) {
 
     aliceModel.logHora(idATM).then(function (resultado) {
         if (resultado.length > 0) {
-            res.status(200).json(resultado);;
+            res.status(200).json(resultado);
         } else {
             req.status(204).send("Nenhum resultado encontrado.")
         }

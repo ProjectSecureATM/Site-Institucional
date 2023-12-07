@@ -20,7 +20,6 @@ function graficoPacotes(idAgen) {
             OFFSET 0 ROWS FETCH FIRST 3 ROW ONLY;`;
         console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql)
-        
 }
 
 

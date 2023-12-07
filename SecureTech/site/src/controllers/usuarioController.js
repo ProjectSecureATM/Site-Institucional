@@ -386,15 +386,16 @@ function obterMetricasComponentes(req, res) {
         .catch(error => res.status(500).json({ error: error.message }));
 }
 
-async function obterMetricasRede(req, res) {
-    var idATM = req.params.idATM;
-    try {
-        const dados = await usuarioModel.obterMetricasRede(idATM);
-        res.json(dados);
-    } catch (error) {
-        res.status(500).json({ error: error.message });
-    }
+
+//Gabriel Vaz
+function obterMetricasRede(req, res) {
+    var idAgen = req.params.idAgen;
+    usuarioModel.obterMetricasRede(idAgen)
+        .then(dados => res.json(dados))
+        .catch(error => res.status(500).json({ error: error.message }));
 }
+//Gabriel Vaz - FIM
+
 
 function obterDesempenho(req, res) {
     var idATM = req.params.idATM;
@@ -455,11 +456,11 @@ function buscarMedidasRede(req, res) {
 
     const limite_linhas = 10;
 
-    var idATM =  req.params.idATM;
+    var idAgen =  req.params.idAgen;
 
     console.log(`Recuperando medidas em tempo real`);
 
-    usuarioModel.buscarMedidasRede(idATM, limite_linhas).then(function (resultado) {
+    usuarioModel.buscarMedidasRede(idAgen, limite_linhas).then(function (resultado) {
         if (resultado.length > 0) {
             res.status(200).json(resultado);
         } else {
@@ -471,6 +472,9 @@ function buscarMedidasRede(req, res) {
         res.status(500).json(erro.sqlMessage);
     });
 }
+
+
+
 function atualiza(req, res) {
 
     const limite_linhas = 8;
@@ -480,26 +484,6 @@ function atualiza(req, res) {
     console.log(`Recuperando medidas em tempo real`);
 
     usuarioModel.atualiza(idATM, limite_linhas).then(function (resultado) {
-        if (resultado.length > 0) {
-            res.status(200).json(resultado);
-        } else {
-            res.status(204).send("Nenhum resultado encontrado!")
-        }
-    }).catch(function (erro) {
-        console.log(erro);
-        console.log("Houve um erro ao buscar as ultimas medidas.", erro.sqlMessage);
-        res.status(500).json(erro.sqlMessage);
-    });
-}
-
-function atualizarGraficoRede(req, res) {
-
-    var idATM =  req.params.idATM;
-    var limite_linhas = 8
-
-    console.log("Recuperando medidas em tempo real");
-
-    usuarioModel.atualizarGraficoRede(idATM, limite_linhas).then(function (resultado) {
         if (resultado.length > 0) {
             res.status(200).json(resultado);
         } else {
@@ -684,7 +668,6 @@ module.exports = {
     buscarMedidasRede,
     atualiza,
     obterSelect,
-    atualizarGraficoRede,
     buscarUltimasMedidasServidores,
     atualizandoMedidasServidores,
     buscarUltimasMedidasServidores2,

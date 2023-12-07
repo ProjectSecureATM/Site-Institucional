@@ -73,10 +73,6 @@ router.get('/obterMetricasComponentes/:idATM', function (req, res) {
     usuarioController.obterMetricasComponentes(req, res)
 });
 
-router.get('/obterMetricasRede/:idATM', function (req, res) {
-    usuarioController.obterMetricasRede(req, res)
-});
-
 router.post("/listarAgencia", function (req, res) {
     usuarioController.listarAgencia(req, res);
 });
@@ -109,9 +105,6 @@ router.get('/obterIP/:idATM', function(req, res) {
     usuarioController.obterIP(req, res)
 })
 
-router.get('/tempo-medidasRede/:idATM', function (req, res) {
-    usuarioController.buscarMedidasRede(req, res);
-})
 router.get('/atualiza/:idATM', function (req, res) {
     usuarioController.atualiza(req, res);
 })
@@ -120,9 +113,13 @@ router.get('/obterSelect/:idATM', function(req, res) {
     usuarioController.obterSelect(req, res)
 })
 
-router.get("/atualizarGraficoRede/:idATM", function (req, res) {
-    usuarioController.atualizarGraficoRede(req, res);
+// INDIVIDUAL GABRIEL
+router.get('/obterMetricasRede/:idAgen', function (req, res) {
+    usuarioController.obterMetricasRede(req, res)
 });
+
+// INDIVIDUAL GABRIEL - FIM
+
 
 router.get("/ultimasServidores/:idUsuario", function (req, res) {
     usuarioController.buscarUltimasMedidasServidores(req, res);

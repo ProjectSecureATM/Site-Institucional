@@ -3,7 +3,7 @@ var database = require("../database/config")
 function logDia(idATM) {
 
     var instrucaoSql = `
-    SELECT COUNT(idLogs) AS quantidade, FORMAT(data_hora, '%H:%i:%s') AS hora FROM logs where fk_idATM = ${idATM}
+    SELECT COUNT(idLogs) AS quantidade, TIME_FORMAT(NOW(), '%H:%i:%s') AS hora FROM logs where fk_idATM = ${idATM}
 				GROUP BY data_hora ORDER BY data_hora DESC;
     `;
 
@@ -14,7 +14,7 @@ function logDia(idATM) {
 function logHora(idATM) {
 
     var instrucaoSql = `
-    SELECT FORMAT(data_hora, '%H:%i:%s') AS hora, COUNT(logs.idLogs) AS quantidadeERRO FROM logs
+    SELECT TIME_FORMAT(NOW(), '%H:%i:%s') AS hora, COUNT(logs.idLogs) AS quantidadeERRO FROM logs
         JOIN mensagem ON logs.idLogs = mensagem.fkLogs
             WHERE logs.fk_idATM = ${idATM} AND mensagem.Mensagem LIKE '%não%'
                 GROUP BY data_hora ORDER BY data_hora;
@@ -39,10 +39,10 @@ function logTempoReal(idATM) {
 function comparacaoLogsSucessoEFalha(idATM) {
 
     var instrucaoSql = `
-    SELECT COUNT(idTipoERRO) AS qtdErros, Tipo FROM TipoErro 
+    SELECT COUNT(idTipoERRO) AS qtdErros, Tipo FROM TipoERRO 
 				JOIN mensagem ON fkMSG = idMensagem
 					JOIN logs ON fkLogs = idLogs
-						JOIN ATM ON fk_idATM = idATM
+						JOIN ATM ON fk_idATM = ${idATM}
 							WHERE fk_idATM = ${idATM} GROUP BY Tipo;
                             `;
 
