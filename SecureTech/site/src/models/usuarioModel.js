@@ -954,7 +954,7 @@ GROUP BY DATE_FORMAT(data_hora, '%Y-%m-%d %H:00:00');`;
             });
     }
 
-    async function ProcessosPHora(idATM) {
+    function ProcessosPHora(idATM) {
         const instrucaoSql = `
         select COUNT(id) AS quantidade, FORMAT(data_hora, 'yyyy-MM-dd HH:mm:ss') AS hora
 from processos
@@ -967,7 +967,7 @@ order by FORMAT(data_hora, 'yyyy-MM-dd HH:mm:ss') DESC
         return database.executar(instrucaoSql);
     }
 
-    async function ProcessosPHora_tempoReal(idATM) {
+    function ProcessosPHora_tempoReal(idATM) {
         const instrucaoSql = `
         select COUNT(id) AS quantidade, FORMAT(data_hora, 'yyyy-MM-dd HH:mm:ss') AS hora
 from processos
@@ -1108,9 +1108,9 @@ order by FORMAT(data_hora, 'yyyy-MM-dd HH:mm:ss') DESC
     async function obterMetricasComponentes(idATM) {
         console.log("Executando a função obterMetricasComponentes");
 
-        const RAMQuery = `SELECT Valor FROM Leitura WHERE ATMComp_ID = ${idATM} AND Componente_ID = 1 ORDER BY DataRegistro DESC OFFSET 0 ROWS FETCH FIRST 1 ROW ONLY`;
-        const DISCOQuery = `SELECT Valor FROM Leitura WHERE ATMComp_ID = ${idATM} AND Componente_ID = 2 ORDER BY DataRegistro DESC OFFSET 0 ROWS FETCH FIRST 1 ROW ONLY`;
-        const CPUQuery = `SELECT Valor FROM Leitura WHERE ATMComp_ID = ${idATM} AND Componente_ID = 3 ORDER BY DataRegistro DESC OFFSET 0 ROWS FETCH FIRST 1 ROW ONLY`;
+        const RAMQuery = `SELECT Valor FROM Leitura WHERE ATMComp_ID = ${idATM} AND Componente_ID = 1 AND APIID = 2 ORDER BY DataRegistro DESC OFFSET 0 ROWS FETCH FIRST 1 ROW ONLY;`;
+        const DISCOQuery = `SELECT Valor FROM Leitura WHERE ATMComp_ID = ${idATM} AND Componente_ID = 2 AND APIID = 2 ORDER BY DataRegistro DESC OFFSET 0 ROWS FETCH FIRST 1 ROW ONLY`;
+        const CPUQuery = `SELECT Valor FROM Leitura WHERE ATMComp_ID = ${idATM} AND Componente_ID = 3 AND APIID = 2 ORDER BY DataRegistro DESC OFFSET 0 ROWS FETCH FIRST 1 ROW ONLY`;
 
         console.log("Executando as instruções SQL:\n", RAMQuery, DISCOQuery, CPUQuery);
 

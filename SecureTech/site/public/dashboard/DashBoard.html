@@ -443,20 +443,13 @@
 
     function mostrarProcesso(idATM) {
         fetch(`/usuarios/ProcessosPHora/${idATM}`, { cache: 'no-store' })
-            .then(function (response) {
-                if (response.ok) {
-                    return response.json();
-                } else {
-                    console.error('Nenhum dado encontrado ou erro na API');
-                    return [];
-                }
-            })
-            .then(function (resposta) {
+        .then(function (resposta) {
+            resposta.json().then(function (resposta) {
                 console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
                 resposta.reverse();
                 plotarGrafico(resposta, idATM);
                 setTimeout(() => atualizarGrafico(idATM, dados, ProcessoChart), 2000);
-            })
+        })})
             .catch(function (error) {
                 console.error(`Erro na obtenção dos dados para o gráfico: ${error.message}`);
             });

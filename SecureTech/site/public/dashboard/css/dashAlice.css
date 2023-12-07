@@ -13,10 +13,6 @@
     height: 100%;
 }
 
-#containerDashComponentes{
-    height: 90%;
-    width: 95%;
-}
 
 #tituloDashBoard{
     display: flex;
@@ -33,16 +29,6 @@
     height: auto;
     width: 10%;
 }
-
-#divTitulo{
-    display: flex;
-    height: 10%;
-    width: 100%;
-    justify-content: center;
-    align-items: center;
-    margin-top: 2%;
-}
-
 
 .logTempoRealTitulo{
     color: #021e46;
@@ -179,27 +165,6 @@
     box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, .15);
 }
 
-#boxDashGraficoBarra{
-    display: flex;
-    justify-content: center;
-    height: 40vh;
-    width: 75vh;
-    border-radius: 0.35rem;
-    border: 1px solid #e3e6f0;
-    background-color: #fff;
-    box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, .15);
-}
-
-#conteudoComponente{
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    height: 10vh;
-    width: 100%;
-
-}
-
 #componente{
     height: 9vh;
     width: 95%;
@@ -217,4 +182,52 @@
     padding-bottom: 21px;
     flex-direction: row;
     display: flex;
+}
+
+
+
+/* GRAFICO DE COMPARAÇÃO */
+#boxDashGraficoBarra{
+    display: flex;
+    justify-content: center;
+    height: 40vh;
+    width: 75vh;
+    border-radius: 0.35rem;
+    border: 1px solid #e3e6f0;
+    background-color: #fff;
+    box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, .15);
+}
+
+#containerDashComponentes{
+    height: 90%;
+    width: 95%;
+}
+
+#divTitulo{
+    display: flex;
+    height: 10%;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2%;
+}
+
+#titulo{
+    color:#021e46;
+    font-size: large;
+}
+
+#conteudoComponenteComparacao{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 30vh;
+    width: 100%;
+
+}
+
+#componenteComparacao{
+    heigth: 50vh;
+    width
 }

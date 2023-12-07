@@ -5,12 +5,11 @@ function buscarRamHora(idATM) {
     // SELECT Valor,DataRegistro FROM leitura WHERE ATMComp_ID=1 AND APIID = 4 AND Componente_ID = 1 AND ATMComp_ID = ${idATM} order by LeituraID desc limit 10;`;
 
     var instrucaoSql = `
-    SELECT TOP 10 LEFT(Valor,2) AS Valor, DATE_FORMAT(DataRegistro, '%H : %m : %s') as DataRegistro 
+    SELECT TOP 10 LEFT(Valor,2) AS Valor, FORMAT(DataRegistro, '%H: %m: %s') as DataRegistro 
     FROM leitura 
-    WHERE ATMComp_ID=1 
+    WHERE ATMComp_ID = ${idATM}
     AND APIID = 4 
     AND Componente_ID = 1 
-    AND ATMComp_ID = ${idATM} 
     order by LeituraID desc ;
     `;
 
@@ -27,12 +26,12 @@ function buscarRamHora(idATM) {
 function buscarTempoReal(idATM) {
     // SELECT Valor,DataRegistro FROM leitura WHERE ATMComp_ID=1 AND APIID = 4 AND Componente_ID = 1 AND ATMComp_ID = ${idATM} order by LeituraID desc limit 1;
     var instrucaoSql = `
-    SELECT TOP 1 LEFT(Valor, 2) AS Valor, DATE_FORMAT(DataRegistro, '%H : %m : %s') as DataRegistro 
+    SELECT TOP 1 LEFT(Valor, 2) AS Valor, FORMAT(DataRegistro, '%H : %m : %s') as DataRegistro 
     FROM leitura 
-    WHERE ATMComp_ID=1 
+    WHERE ATMComp_ID=${idATM}
     AND APIID = 4 
     AND Componente_ID = 1 
-    AND ATMComp_ID = ${idATM} 
+    
     order by LeituraID desc ;
     `;
 
@@ -48,11 +47,11 @@ function buscarTempoReal(idATM) {
 
 function buscarMaximo(idATM) {
     // SELECT max(Valor) as Valor FROM leitura WHERE ATMComp_ID=1 AND APIID = 4 AND Componente_ID = 1 AND ATMComp_ID = ${idATM};
-    var instrucaoSql = `SELECT FORMAT(DataRegistro, 'Dia: %d Horario: %H h %m min %s seg') AS DataRegistro 
+    var instrucaoSql = `SELECT FORMAT(DataRegistro, 'Dia: %d _ %H : %m : %s ') AS DataRegistro 
     FROM leitura
-    WHERE ATMComp_ID = 1 AND APIID = 4 AND Componente_ID = 1 AND ATMComp_ID = ${idATM} and Valor = (SELECT  max(Valor)
+    WHERE ATMComp_ID = ${idATM} AND APIID = 4 AND Componente_ID = 1 and Valor = (SELECT  max(Valor)
     FROM leitura
-    WHERE ATMComp_ID = 1 AND APIID = 4 AND Componente_ID = 1 AND ATMComp_ID = ${idATM});
+    WHERE ATMComp_ID = ${idATM} AND APIID = 4 AND Componente_ID = 1 );
     `;
 
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
@@ -62,11 +61,11 @@ function buscarMaximo(idATM) {
 
 function buscarMinimo(idATM) {
     // SELECT min(Valor) as Valor FROM leitura WHERE ATMComp_ID=1 AND APIID = 4 AND Componente_ID = 1 AND ATMComp_ID = ${idATM};
-    var instrucaoSql = `    SELECT  FORMAT(DataRegistro, 'Dia: %d Horario: %H h %m min %s seg') AS DataRegistro 
+    var instrucaoSql = `SELECT  FORMAT(DataRegistro, 'Dia: %d _ %H : %m : %s ') AS DataRegistro 
     FROM leitura
-    WHERE ATMComp_ID = 1 AND APIID = 4 AND Componente_ID = 1 AND ATMComp_ID = ${idATM} and Valor = (SELECT  min(Valor)
+    WHERE ATMComp_ID = ${idATM} AND APIID = 4 AND Componente_ID = 1 AND Valor = (SELECT  min(Valor)
     FROM leitura
-    WHERE ATMComp_ID = 1 AND APIID = 4 AND Componente_ID = 1 AND ATMComp_ID = ${idATM});
+    WHERE ATMComp_ID = ${idATM} AND APIID = 4 AND Componente_ID = 1 );
     `;
 
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
@@ -77,6 +76,6 @@ function buscarMinimo(idATM) {
 module.exports = {
     buscarRamHora,
     buscarTempoReal,
-    buscarMinimo,
-    buscarMaximo
+    buscarMaximo,
+    buscarMinimo
 };
