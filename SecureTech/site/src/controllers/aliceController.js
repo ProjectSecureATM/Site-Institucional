@@ -36,6 +36,23 @@ function comparacaoLogsSucessoEFalha(req, res) {
     })
 
 }
+function comparacaoLogsSucessoEFalha2(req, res) {
+
+    var idATM = req.params.idATM;
+
+    aliceModel.comparacaoLogsSucessoEFalha2(idATM).then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado); 
+        } else {
+            res.status(204).send("Nenhum resultado encontrado.")
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+        console.log("Houve um erro ao buscar as últimas medidas", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage)
+    })
+
+}
 
 function logDia(req, res) {
 
@@ -77,6 +94,7 @@ function logHora(req, res) {
 module.exports = {
     logTempoReal,
     comparacaoLogsSucessoEFalha,
+    comparacaoLogsSucessoEFalha2,
     logHora,
     logDia
 }

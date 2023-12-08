@@ -12,9 +12,10 @@ function buscarUltimasMedidas(idAgen, limite_linhas) {
         pacotesRecebidos,
         Ping, 
         FORMAT(data_hora, 'HH:mm:ss') AS dataHora
-        FROM rede
-        WHERE fk__ATMAgencia = ${idAgen}
-        ORDER BY idRede DESC`;
+    FROM rede
+    WHERE fk__ATMAgencia = ${idAgen}
+        AND (qtdPacotesEnviados IS NULL OR qtdPacotesEnviados = '')
+    ORDER BY idRede DESC;`;
 
         //mysql
     } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
@@ -25,6 +26,7 @@ function buscarUltimasMedidas(idAgen, limite_linhas) {
         dataHora
         FROM rede
         WHERE fk__ATMAgencia = ${idAgen}
+        AND (qtdPacotesEnviados IS NULL OR qtdPacotesEnviados = '')
         ORDER BY idRede DESC`;
     } else {
         console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
@@ -45,12 +47,13 @@ function buscarMedidasEmTempoReal(idAgen) {
     if (process.env.AMBIENTE_PROCESSO == "producao") {
         instrucaoSql = `SELECT TOP 1
         pacotesEnviados, 
-        pacotesRecebidos, 
+        pacotesRecebidos,
         Ping, 
         FORMAT(data_hora, 'HH:mm:ss') AS dataHora
-        FROM rede
-        WHERE fk__ATMAgencia = ${idAgen}
-        ORDER BY idRede DESC`;
+    FROM rede
+    WHERE fk__ATMAgencia = ${idAgen}
+        AND (qtdPacotesEnviados IS NULL OR qtdPacotesEnviados = '')
+    ORDER BY idRede DESC;`;
 
     //mysql
     } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
@@ -61,6 +64,7 @@ function buscarMedidasEmTempoReal(idAgen) {
         dataHora
         FROM rede
         WHERE fk__ATMAgencia = ${idAgen}
+        AND (qtdPacotesEnviados IS NULL OR qtdPacotesEnviados = '')
         ORDER BY idRede DESC`;
     } else {
         console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");

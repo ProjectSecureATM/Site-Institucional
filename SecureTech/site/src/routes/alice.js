@@ -11,6 +11,10 @@ router.get("/comparacaoLogsSucessoEFalha/:idATM", function(req,res){
     aliceController.comparacaoLogsSucessoEFalha(req, res);
 }); 
 
+router.get("/comparacaoLogsSucessoEFalha2/:idATM", function(req,res){
+    aliceController.comparacaoLogsSucessoEFalha2(req, res);
+});
+
 router.get("/logDia/:idATM", function(req,res){
     aliceController.logDia(req, res);
 }); 

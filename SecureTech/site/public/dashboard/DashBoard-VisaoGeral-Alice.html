@@ -19,8 +19,8 @@
 
     <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
-<link rel="stylesheet" href="../dashboard/css/dashBoardVisaoGeral.css">
-<link rel="stylesheet" href="css/dashBoardVisaoGeral.css">
+    <link rel="stylesheet" href="../dashboard/css/dashBoardVisaoGeral.css">
+    <link rel="stylesheet" href="css/dashBoardVisaoGeral.css">
 
 
 </head>
@@ -48,7 +48,7 @@
             <li class="nav-item active">
                 <a class="nav-link" href="DashBoard-VisaoGeral.html">
                     <img class="fas fa-fw fa-tachometer-alt" src="../assets/binoculars amarelo.png" alt="">
-                    <span style="color: #daa520; font-weight: bold;">Visão Geral de Todos os ATMs para a DashBoard Logs</span>
+                    <span style="color: #daa520; font-weight: bold;">Visão Geral</span>
                 </a>
                 <a class="nav-link pointer" onclick="testeBotao()">
                     <img class="fas fa-fw fa-tachometer-alt" src="../assets/icon_DashBoard.png" alt="">
@@ -73,7 +73,7 @@
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Inovações Secure ATM:</h6>
-                        <a href="dashVaz2.html" class="collapse-item">Dash Rede</a>
+                        <a href="DashBoard-Rede-Vaz.html" class="collapse-item">Dash Rede</a>
                         <a href="DashBoard-VisaoGeral-Giba.html" class="collapse-item">Desempenho Sistêmico</a>
                         <a href="dashVisaoGeralRede_Julio.html" class="collapse-item">Dash Segurança de Rede</a>
                         <a href="DashBoard-VisaoGeral-Paulo.html" class="collapse-item">Dash Estresse</a>
@@ -99,7 +99,7 @@
 
                 <!-- Topbar -->
                 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-                    <button class="buttonNavBar" >
+                    <button class="buttonNavBar">
                         <a href="../homeDashBoard.html">Voltar para Agência</a>
                     </button>
 
@@ -140,7 +140,7 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Bruno</span>
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small" id="nomeU">Bruno</span>
                                 <img class="img-profile rounded-circle" src="img/undraw_profile.svg">
                             </a>
                             <!-- Dropdown - User Information -->
@@ -162,104 +162,96 @@
                         <div class="divTitulo">
                             <div class="titulo">
                                 <span>
-                                    Visão geral de todos ATM`s
+                                    Visão Geral de Logs dos ATM's
                                 </span>
                             </div>
                         </div>
-                <div class="BoxATMeColuna">
-                        <div class="divLinhaCard" id="divLinhaCard">
-                            
-                            <div class="coluna"></div>
-                        </div>
-                            
+                        <div class="BoxATMeColuna">
+                            <div class="divLinhaCard" id="divLinhaCard">
+
+                                <div class="coluna"></div>
+                            </div>
+
                         </div>
                     </div>
                 </div>
             </div>
-                
-                
-            </div>
-            <!-- End of Content Wrapper -->
+
 
         </div>
-        <!-- End of Page Wrapper -->
+        <!-- End of Content Wrapper -->
 
-        <!-- Scroll to Top Button-->
-        <a class="scroll-to-top rounded" href="#page-top">
-            <i class="fas fa-angle-up"></i>
-        </a>
+    </div>
+    <!-- End of Page Wrapper -->
 
-        <!-- Logout Modal-->
-        <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-            aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Certeza que você quer sair?</h5>
-                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">×</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">Selecione "Sair" para deslogar.</div>
-                    <div class="modal-footer">
-                        <button style="text-align: left;" class="btn btn-secondary" type="button"
-                            data-dismiss="modal">Cancelar</button>
-                        <a class="btn btn-primary" href="../index.html">Sair</a>
-                    </div>
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
+
+    <!-- Logout Modal-->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Certeza que você quer sair?</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">Selecione "Sair" para deslogar.</div>
+                <div class="modal-footer">
+                    <button style="text-align: left;" class="btn btn-secondary" type="button"
+                        data-dismiss="modal">Cancelar</button>
+                    <a class="btn btn-primary" href="../index.html">Sair</a>
                 </div>
             </div>
         </div>
+    </div>
 
-        <!-- pop up sweet alert -->
-        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+     <!-- Bootstrap core JavaScript-->
+     <script src="vendor/jquery/jquery.min.js"></script>
+     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+ 
+     <!-- Core plugin JavaScript-->
+     <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+ 
+     <!-- Custom scripts for all pages-->
+     <script src="js/sb-admin-2.min.js"></script>
 
-        <!-- Bootstrap core JavaScript-->
-        <script src="vendor/jquery/jquery.min.js"></script>
-        <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+    <!-- MURAL DE AVISOS -->
+    <!-- /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
 
-        <!-- Core plugin JavaScript-->
-        <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
-
-        <!-- Custom scripts for all pages-->
-        <script src="js/sb-admin-2.min.js"></script>
-
-        <!-- Page level plugins -->
-        <script src="vendor/chart.js/Chart.min.js"></script>
-
-        <!-- Page level custom scripts -->
-        <script src="js/demo/chart-area-demo.js"></script>
-        <script src="js/demo/chart-pie-demo.js"></script>
-        <script src="js/demo/chart-bar-demo.js"></script>
-
-        <!-- ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
-      <!-- MURAL DE AVISOS -->
-      <!-- /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
-
-      <div class="mural_avisos">
+    <div class="mural_avisos">
 
         <div id="avisos-container"></div>
 
-      </div>
+    </div>
 
-      <!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+    <!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
 
 </body>
 
 </html>
 
 <script>
+    var idUsuario = sessionStorage.getItem("nome_usuario")
+        var feedNome = document.getElementById("nomeU");
+        feedNome.innerHTML = `${idUsuario}`
 
-    window.onload = buscarATM();    
+    window.onload = buscarATM();
 
     function goToDash(idATM) {
         sessionStorage.idATM = idATM
         window.location = "DashAlice.html"
-    }   
+    }
 
     function testeBotao() {
         Swal.fire({
-        icon: 'error',
-        title: 'Selecione um ATM primeiro',
+            icon: 'error',
+            title: 'Selecione um ATM primeiro',
         })
     }
 
@@ -274,7 +266,7 @@
             },
             body: JSON.stringify({
                 fkagenciaServer: fkAgencia_usuario
-            }) 
+            })
         }).then(function (resposta) {
 
             if (resposta.ok) {
@@ -283,41 +275,41 @@
                 feed.innerHTML = ""
 
                 resposta.json().then(function (resposta) {
-                console.log("Dados recebidos: ", JSON.stringify(resposta));
+                    console.log("Dados recebidos: ", JSON.stringify(resposta));
 
-                for (let i = 0; i < resposta.length; i++) {
-                    var publicacao = resposta[i];
+                    for (let i = 0; i < resposta.length; i++) {
+                        var publicacao = resposta[i];
 
-                    var box = document.createElement("div");
-                    box.className = "divBoxCard";
-                    feed.appendChild(box);
-                    
-                    var card = document.createElement("div");
-                    card.className = "card pointer";
-                    card.setAttribute("onclick", `goToDash(${publicacao.idATM})`);
+                        var box = document.createElement("div");
+                        box.className = "divBoxCard";
+                        feed.appendChild(box);
 
-                    box.appendChild(card);
+                        var card = document.createElement("div");
+                        card.className = "card pointer";
+                        card.setAttribute("onclick", `goToDash(${publicacao.idATM})`);
 
-                    var divFormat = document.createElement("div");
-                    
-                    var span = document.createElement("span");
-                    span.innerHTML = `ATM ${publicacao.idATM}`;
-                    divFormat.appendChild(span);
+                        box.appendChild(card);
 
-                    var imagen = document.createElement("img");
-                    imagen.src = "../assets/alerta Visao Geral.png";
-                    divFormat.appendChild(imagen);
+                        var divFormat = document.createElement("div");
 
-                    card.appendChild(divFormat);
+                        var span = document.createElement("span");
+                        span.innerHTML = `ATM ${publicacao.idATM}`;
+                        divFormat.appendChild(span);
 
-                    var numeroatm = document.createElement("div");
-                    numeroatm.className = "divNumeroATM";
+                        var imagen = document.createElement("img");
+                        imagen.src = "../assets/alerta Visao Geral.png";
+                        divFormat.appendChild(imagen);
 
-                    var span2 = document.createElement("span");
-                    span2.innerHTML = publicacao.idATM;
-                    card.appendChild(numeroatm);
-                    
-                }
+                        card.appendChild(divFormat);
+
+                        var numeroatm = document.createElement("div");
+                        numeroatm.className = "divNumeroATM";
+
+                        var span2 = document.createElement("span");
+                        span2.innerHTML = publicacao.idATM;
+                        card.appendChild(numeroatm);
+
+                    }
                 });
             } else {
                 throw ('Houve um erro na API!');
@@ -326,21 +318,21 @@
             console.error(resposta);
         });
     }
-      /////////////////////////////////////////////////////////////////////////////////////////////
-// /                               AVISOS                                                      /
-////////////////////////////////////////////////////////////////////////////////////////////
-const condicao1 = true;
-// const condicao1 = false;
-const condicao2 = false;
-// const condicao2 = true;
+    /////////////////////////////////////////////////////////////////////////////////////////////
+    // /                               AVISOS                                                      /
+    ////////////////////////////////////////////////////////////////////////////////////////////
+    const condicao1 = true;
+    // const condicao1 = false;
+    const condicao2 = false;
+    // const condicao2 = true;
 
-if (condicao1) {
-    criarAviso('Alerta no ATM X. Clique aqui para ir até ele', 'index.html', 'aviso-vermelho');
-} else if (condicao2) {
-    criarAviso('Atenção ao ATM X. Clique aqui para ir até ele', 'index.html', 'aviso-amarelo');
-}
+    if (condicao1) {
+        criarAviso('Alerta no ATM X. Clique aqui para ir até ele', 'index.html', 'aviso-vermelho');
+    } else if (condicao2) {
+        criarAviso('Atenção ao ATM X. Clique aqui para ir até ele', 'index.html', 'aviso-amarelo');
+    }
 
-function buscarAviso() {
+    function buscarAviso() {
         fetch("/avisoController/Alertas:fkEmpresa").then(function (resposta) {
 
             if (resposta.ok) {

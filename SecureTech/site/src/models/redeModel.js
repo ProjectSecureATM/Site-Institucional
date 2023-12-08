@@ -12,30 +12,30 @@ function confirmacaoSeguranca(email, senha) {
 
 function graficoPacotes(idAgen) {
     var instrucaoSql = `
-    SELECT SUM(pacotesEnviados) AS total_pacotes, FORMAT(MAX(data_hora), 'yyyy-MM-dd HH:mm:ss') AS hora
-            FROM rede
-            WHERE fk__ATMAgencia = ${idAgen}
-            GROUP BY fk__ATMAgencia, FORMAT(data_hora, 'yyyy-MM-dd HH:00:00')
-            ORDER BY FORMAT(MAX(data_hora), 'yyyy-MM-dd HH:00:00') DESC
-            OFFSET 0 ROWS FETCH FIRST 3 ROW ONLY;`;
-        console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    SELECT TOP 3 SUM(qtdPacotesEnviados) AS total_pacotes,
+       FORMAT(MAX(data_hora), 'yyyy-MM-dd HH') AS hora
+FROM rede
+WHERE fk__ATMAgencia = ${idAgen}
+GROUP BY fk__ATMAgencia, FORMAT(data_hora, 'yyyy-MM-dd HH')
+ORDER BY hora DESC;`;
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql)
 }
 
 
 function atualizarGraficoPacotes(idAgen) {
-    
-        var instrucaoSql = `
-        SELECT SUM(pacotesEnviados) AS total_pacotes, FORMAT(MAX(data_hora), 'yyyy-MM-dd HH:mm:ss') AS hora
-            FROM rede
-            WHERE fk__ATMAgencia = ${idAgen}
-            GROUP BY fk__ATMAgencia, FORMAT(data_hora, 'yyyy-MM-dd HH:00:00')
-            ORDER BY FORMAT(MAX(data_hora), 'yyyy-MM-dd HH:00:00') 
-            OFFSET 0 ROWS FETCH FIRST 1 ROW ONLY;
+
+    var instrucaoSql = `
+        SELECT TOP 1 SUM(qtdPacotesEnviados) AS total_pacotes,
+        FORMAT(MAX(data_hora), 'yyyy-MM-dd HH') AS hora
+ FROM rede
+ WHERE fk__ATMAgencia = ${idAgen}
+ GROUP BY fk__ATMAgencia, FORMAT(data_hora, 'yyyy-MM-dd HH')
+ ORDER BY hora DESC;;
 `;
-        console.log("Executando a instrução SQL: \n" + instrucaoSql);
-        return database.executar(instrucaoSql);
-    
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+
 }
 
 
@@ -44,7 +44,13 @@ function atualizarGraficoPacotes(idAgen) {
 function listarIPePacotes() {
 
     var instrucao = `
-    select IP, FORMAT(data_hora, 'yyyy-MM-dd 00:00:00') as hora, pacotesEnviados from rede;
+    SELECT IP,
+    MAX(FORMAT(data_hora, 'yyyy-MM-dd HH:mm:ss')) AS hora,
+    SUM(qtdPacotesEnviados) AS pacotesEnviados
+FROM rede
+WHERE qtdPacotesEnviados IS NOT NULL
+GROUP BY IP
+ORDER BY hora DESC;
     `;
 
     console.log("Executando a sua tia");

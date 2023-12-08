@@ -81,7 +81,7 @@
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Inovações Secure ATM:</h6>
-                        <a href="dashVaz2.html" class="collapse-item">Dash Rede</a>
+                        <a href="DashBoard-Rede-Vaz.html" class="collapse-item">Dash Rede</a>
                         <a href="DashBoard-VisaoGeral-Giba.html" class="collapse-item">Desempenho Sistêmico</a>
                         <a href="dashVisaoGeralRede_Julio.html" class="collapse-item">Dash Segurança de Rede</a>
                         <a href="DashBoard-VisaoGeral-Paulo.html" class="collapse-item">Dash Estresse</a>
@@ -291,7 +291,7 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Bruno</span>
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small" id="nomeU">Bruno</span>
                                 <img class="img-profile rounded-circle" src="img/undraw_profile.svg">
                             </a>
                             <!-- Dropdown - User Information -->
@@ -491,10 +491,27 @@
 </html>
 
 <script src="../js/notificar.js"></script>
+ <!-- pop up sweet alert -->
+ <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
+ <!-- Bootstrap core JavaScript-->
+ <script src="vendor/jquery/jquery.min.js"></script>
+ <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+ <!-- Core plugin JavaScript-->
+ <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+ <!-- Custom scripts for all pages-->
+ <script src="js/sb-admin-2.min.js"></script>
+
+ <!-- Page level plugins -->
+ <script src="vendor/chart.js/Chart.min.js"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
+    var idUsuario = sessionStorage.getItem("nome_usuario")
+        var feedNome = document.getElementById("nomeU");
+        feedNome.innerHTML = `${idUsuario}`
 
     var idATM = sessionStorage.getItem('idATM');
 

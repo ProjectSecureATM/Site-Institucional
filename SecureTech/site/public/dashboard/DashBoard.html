@@ -78,7 +78,7 @@
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Inovações Secure ATM:</h6>
-                        <a href="dashVaz2.html" class="collapse-item">Dash Rede</a>
+                        <a href="DashBoard-Rede-Vaz.html" class="collapse-item">Dash Rede</a>
                         <a href="DashBoard-VisaoGeral-Giba.html" class="collapse-item">Desempenho Sistêmico</a>
                         <a href="dashVisaoGeralRede_Julio.html" class="collapse-item">Dash Segurança de Rede</a>
                         <a href="DashBoard-VisaoGeral-Paulo.html" class="collapse-item">Dash Estresse</a>
@@ -235,7 +235,7 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Bruno</span>
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small" id="nomeU">Bruno</span>
                                 <img class="img-profile rounded-circle" src="img/undraw_profile.svg">
                             </a>
                             <!-- Dropdown - User Information -->
@@ -320,17 +320,19 @@
                         <div class="col-xl-8 col-lg-7">
                             <div class="card shadow mb-4" style="display: flex; flex-direction: column;">
 
-                                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                <div
+                                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                                     <h6 class="m-0 font-weight-bold text-primary">Processos</h6>
                                     <div class="dropdown no-arrow">
-                                        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" 
+                                        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
                                             aria-labelledby="dropdownMenuLink">
                                             <a class="dropdown-item" href="#">Something else here</a>
                                         </div>
                                     </div>
                                 </div>
 
-                                <div class="chart-area" style="display: flex; justify-content: center; align-items: center; position: relative; left: 5vw;">
+                                <div class="chart-area"
+                                    style="display: flex; justify-content: center; align-items: center; position: relative; left: 5vw;">
                                     <!-- <canvas id="ProcessosChart"></canvas> -->
                                     <canvas id="ProcessoChart"></canvas>
                                 </div>
@@ -378,10 +380,29 @@
 </body>
 
 </html>
+ <!-- pop up sweet alert -->
+ <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+ <!-- Bootstrap core JavaScript-->
+ <script src="vendor/jquery/jquery.min.js"></script>
+ <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+ <!-- Core plugin JavaScript-->
+ <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+ <!-- Custom scripts for all pages-->
+ <script src="js/sb-admin-2.min.js"></script>
+
+ <!-- Page level plugins -->
+ <script src="vendor/chart.js/Chart.min.js"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <script>
+    var idUsuario = sessionStorage.getItem("nome_usuario")
+        var feedNome = document.getElementById("nomeU");
+        feedNome.innerHTML = `${idUsuario}`
+
     function testeBotao() {
         Swal.fire({
             title: 'Métricas (KPI`s)</br></br><span style="color: blue;">CPU</span><p style="text-align: left;">Ideal: 0% a 50% </br> Aceitável: 50% a 70% </br> Crítico: 70% a 100%</p></br><span style="color: blue;">RAM</span><p style="text-align: left;">Ideal: 0% a 70% </br> Aceitável: 70% a 90% </br> Crítico: 90% a 100%</p></br><span style="color: blue;">DISCO</span><p style="text-align: left;">Ideal: 0% a 60% </br> Aceitável: 60% a 80% </br> Crítico: 80% a 100%</p>',
@@ -442,13 +463,14 @@
 
     function mostrarProcesso(idATM) {
         fetch(`/usuarios/ProcessosPHora/${idATM}`, { cache: 'no-store' })
-        .then(function (resposta) {
-            resposta.json().then(function (resposta) {
-                console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
-                resposta.reverse();
-                plotarGrafico(resposta, idATM);
-                setTimeout(() => atualizarGrafico(idATM, dados, ProcessoChart), 2000);
-        })})
+            .then(function (resposta) {
+                resposta.json().then(function (resposta) {
+                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                    resposta.reverse();
+                    plotarGrafico(resposta, idATM);
+                    setTimeout(() => atualizarGrafico(idATM, dados, ProcessoChart), 2000);
+                })
+            })
             .catch(function (error) {
                 console.error(`Erro na obtenção dos dados para o gráfico: ${error.message}`);
             });
@@ -505,21 +527,21 @@
                 console.log(dados);
 
                 // if (!validacao) {
-                    dados.labels.pop();
-                    dados.datasets[0].data.pop();
+                dados.labels.pop();
+                dados.datasets[0].data.pop();
 
-                    dados.labels.push(novoRegistro[0].hora);
-                    dados.datasets[0].data.push(novoRegistro[0].quantidade);
-                    ProcessoChart.update();
+                dados.labels.push(novoRegistro[0].hora);
+                dados.datasets[0].data.push(novoRegistro[0].quantidade);
+                ProcessoChart.update();
                 // } 
                 // else {
-                    console.log("---------------------------------------------------------------");
-                    console.log("Como não há dados novos para captura, o gráfico não atualizará.");
-                    console.log("Horário do novo dado capturado:");
-                    console.log(novoRegistro[0].hora);
-                    console.log("Horário do último dado capturado:");
-                    console.log(dados.labels[dados.labels.length - 1]);
-                    console.log("---------------------------------------------------------------");
+                console.log("---------------------------------------------------------------");
+                console.log("Como não há dados novos para captura, o gráfico não atualizará.");
+                console.log("Horário do novo dado capturado:");
+                console.log(novoRegistro[0].hora);
+                console.log("Horário do último dado capturado:");
+                console.log(dados.labels[dados.labels.length - 1]);
+                console.log("---------------------------------------------------------------");
 
                 // }
 

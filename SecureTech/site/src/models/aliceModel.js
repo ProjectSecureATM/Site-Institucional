@@ -3,7 +3,7 @@ var database = require("../database/config")
 function logDia(idATM) {
 
     var instrucaoSql = `
-    SELECT TOP 1 SUM(idLogs) AS quantidade, FORMAT(data_hora, '%d') AS dia FROM logs where fk_idATM = ${idATM}
+    SELECT TOP 1 SUM(idLogs) AS quantidade, FORMAT(data_hora, '%d') AS dia FROM logs WHERE fk_idATM = ${idATM}
 				GROUP BY data_hora ORDER BY data_hora DESC;
     `;
 
@@ -11,10 +11,11 @@ function logDia(idATM) {
     return database.executar(instrucaoSql);
 }
 
+
 function logHora(idATM) {
 
     var instrucaoSql = `
-    SELECT TOP 1 FORMAT(data_hora, '%HH:00:00') AS hora, SUM(logs.idLogs) AS quantidadeERRO FROM logs
+    SELECT TOP 1 FORMAT(data_hora, 'HH:00:00') AS hora, SUM(logs.idLogs) AS quantidadeERRO FROM logs
         JOIN mensagem ON logs.idLogs = mensagem.fkLogs
             WHERE logs.fk_idATM = ${idATM} AND mensagem.Mensagem LIKE '%não%'
                 GROUP BY data_hora ORDER BY data_hora;
@@ -27,7 +28,7 @@ function logHora(idATM) {
 function logTempoReal(idATM) {
 
     var instrucaoSql = `
-    SELECT TOP 10 idLogs, FORMAT(data_hora, 'yyyy-MM-dd HH:mm:ss') AS hora FROM logs
+    SELECT TOP 10 idLogs, FORMAT(data_hora, 'yyyy-MM-dd HH:mm:ss') as hora FROM logs
 				WHERE fk_idATM = ${idATM}
 					ORDER BY idLogs DESC;
     `;
@@ -37,19 +38,24 @@ function logTempoReal(idATM) {
 }
 
 function comparacaoLogsSucessoEFalha(idATM) {
-
-    var instrucaoSql = `
-    SELECT COUNT(idTipoERRO) AS qtdErrosFalha, Tipo FROM TipoERRO 
+var instrucaoSql = `
+    SELECT
+    Tipo,
+    SUM(CASE WHEN tipo = 'Usuário falhou na autenticação.' THEN 1 ELSE 0 END) AS qtdErrosFalha,
+    SUM(CASE WHEN tipo = 'Usuário autenticado com sucesso.' THEN 1 ELSE 0 END) AS qtdAcertosFalha
+FROM
+    TipoERRO 
     JOIN mensagem ON fkMSG = idMensagem
-        JOIN logs ON fkLogs = idLogs
-            JOIN ATM ON fk_idATM = ${idATM}
-                WHERE fk_idATM = ${idATM}
-                AND tipo = 'Usuário falhou na autenticação.'
-                GROUP BY Tipo;
-                            `;
+    JOIN logs ON fkLogs = idLogs
+    JOIN ATM ON fk_idATM = 1
+WHERE
+    fk_idATM = 1
+    AND (tipo = 'Usuário falhou na autenticação.' OR tipo = 'Usuário autenticado com sucesso.')
+GROUP BY
+    Tipo; `
 
-    console.log("Executando a instrução SQL: \n" + instrucaoSql);
-    return database.executar(instrucaoSql);
+    console.log("Executando a instrução SQL: \n" + instrucaoSql );
+    return database.executar(instrucaoSql );
 }
 
 function comparacaoLogsSucessoEFalha2(idATM) {
@@ -60,7 +66,7 @@ function comparacaoLogsSucessoEFalha2(idATM) {
         JOIN logs ON fkLogs = idLogs
             JOIN ATM ON fk_idATM = ${idATM}
                 WHERE fk_idATM = ${idATM}
-                AND tipo = 'Usuário falhou na autenticação.'
+                AND tipo = 'Usuário autenticado com sucesso.'
                 GROUP BY Tipo;`;
 
     console.log("Executando a instrução SQL: \n" + instrucaoSql);

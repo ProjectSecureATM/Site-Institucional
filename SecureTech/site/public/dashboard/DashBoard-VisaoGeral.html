@@ -73,7 +73,7 @@
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Inovações Secure ATM:</h6>
-                        <a href="dashVaz2.html" class="collapse-item">Dash Rede</a>
+                        <a href="DashBoard-Rede-Vaz.html" class="collapse-item">Dash Rede</a>
                         <a href="DashBoard-VisaoGeral-Giba.html" class="collapse-item">Desempenho Sistêmico</a>
                         <a href="dashVisaoGeralRede_Julio.html" class="collapse-item">Dash Segurança de Rede</a>
                         <a href="DashBoard-VisaoGeral-Paulo.html" class="collapse-item">Dash Estresse</a>
@@ -140,7 +140,7 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Bruno</span>
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small" id="nomeU">Bruno</span>
                                 <img class="img-profile rounded-circle" src="img/undraw_profile.svg">
                             </a>
                             <!-- Dropdown - User Information -->
@@ -211,26 +211,7 @@
                                 </div>
                             </div>
 
-    <!-- pop up sweet alert -->
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
-    <!-- Bootstrap core JavaScript-->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-    <!-- Core plugin JavaScript-->
-    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
-
-    <!-- Custom scripts for all pages-->
-    <script src="js/sb-admin-2.min.js"></script>
-
-    <!-- Page level plugins -->
-    <script src="vendor/chart.js/Chart.min.js"></script>
-
-    <!-- Page level custom scripts -->
-    <script src="js/demo/chart-area-demo.js"></script>
-    <script src="js/demo/chart-pie-demo.js"></script>
-    <script src="js/demo/chart-bar-demo.js"></script>
+    
 
     <!-- ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
     <!-- MURAL DE AVISOS -->
@@ -248,7 +229,26 @@
 
 </html>
 
+ <!-- pop up sweet alert -->
+ <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+ <!-- Bootstrap core JavaScript-->
+ <script src="vendor/jquery/jquery.min.js"></script>
+ <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+ <!-- Core plugin JavaScript-->
+ <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+ <!-- Custom scripts for all pages-->
+ <script src="js/sb-admin-2.min.js"></script>
+
+ <!-- Page level plugins -->
+ <script src="vendor/chart.js/Chart.min.js"></script>
+
 <script>
+    var idUsuario = sessionStorage.getItem("nome_usuario")
+        var feedNome = document.getElementById("nomeU");
+        feedNome.innerHTML = `${idUsuario}`
 
     window.onload = buscarATM();
 
@@ -337,51 +337,51 @@
     //     criarAviso('Atenção ao ATM X. Clique aqui para ir até ele', 'index.html', 'aviso-amarelo');
     // }
 
-    function buscarAviso() {
-        function obterAlertas() {
-            fetch("/Alertas/:fkEmpresa").then(function (resposta) {
-                if (resposta.ok) {
-                    resposta.json().then(function (resposta) {
-                        console.log("Dados recebidos: ", JSON.stringify(resposta));
+    // function buscarAviso() {
+    //     function obterAlertas() {
+    //         fetch(`/Alertas/${fkEmpUsuario_usuario}`).then(function (resposta) {
+    //             if (resposta.ok) {
+    //                 resposta.json().then(function (resposta) {
+    //                     console.log("Dados recebidos: ", JSON.stringify(resposta));
 
-                        for (let i = 0; i < resposta.length; i++) {
-                            var alerta = resposta[i];
+    //                     for (let i = 0; i < resposta.length; i++) {
+    //                         var alerta = resposta[i];
 
-                            if (alerta.Componente_ID === 1) { // RAM
-                                if (alerta.Valor > 65 && alerta.Valor < 80) {
-                                    criarAviso('Alerta no ATM ' + alerta.ATMComp_ID + '. Clique aqui para ir até ele', 'index.html', 'aviso-amarelo', alerta);
-                                } else if (alerta.Valor >= 80) {
-                                    criarAviso('Alerta no ATM ' + alerta.ATMComp_ID + '. Clique aqui para ir até ele', 'index.html', 'aviso-vermelho', alerta);
-                                }
-                            } else if (alerta.Componente_ID === 2) { // DISCO
-                                if (alerta.Valor > 70 && alerta.Valor < 85) {
-                                    criarAviso('Alerta no ATM ' + alerta.ATMComp_ID + '. Clique aqui para ir até ele', 'index.html', 'aviso-amarelo', alerta);
-                                } else if (alerta.Valor >= 80) {
-                                    criarAviso('Alerta no ATM ' + alerta.ATMComp_ID + '. Clique aqui para ir até ele', 'index.html', 'aviso-vermelho', alerta);
-                                }
-                            } else if (alerta.Componente_ID === 3) { // CPU
-                                if (alerta.Valor > 40 && alerta.Valor < 55) {
-                                    criarAviso('Alerta no ATM ' + alerta.ATMComp_ID + '. Clique aqui para ir até ele', 'index.html', 'aviso-amarelo', alerta);
-                                } else if (alerta.Valor >= 55) {
-                                    criarAviso('Alerta no ATM ' + alerta.ATMComp_ID + '. Clique aqui para ir até ele', 'index.html', 'aviso-vermelho', alerta);
-                                }
-                            }
-                        }
-                    });
-                } else {
-                    throw ('Houve um erro na API!');
-                }
-            }).catch(function (resposta) {
-                console.error(resposta);
-            });
-        }
+    //                         if (alerta.Componente_ID === 1) { // RAM
+    //                             if (alerta.Valor > 65 && alerta.Valor < 80) {
+    //                                 criarAviso('Alerta no ATM ' + alerta.ATMComp_ID + '. Clique aqui para ir até ele', 'index.html', 'aviso-amarelo', alerta);
+    //                             } else if (alerta.Valor >= 80) {
+    //                                 criarAviso('Alerta no ATM ' + alerta.ATMComp_ID + '. Clique aqui para ir até ele', 'index.html', 'aviso-vermelho', alerta);
+    //                             }
+    //                         } else if (alerta.Componente_ID === 2) { // DISCO
+    //                             if (alerta.Valor > 70 && alerta.Valor < 85) {
+    //                                 criarAviso('Alerta no ATM ' + alerta.ATMComp_ID + '. Clique aqui para ir até ele', 'index.html', 'aviso-amarelo', alerta);
+    //                             } else if (alerta.Valor >= 80) {
+    //                                 criarAviso('Alerta no ATM ' + alerta.ATMComp_ID + '. Clique aqui para ir até ele', 'index.html', 'aviso-vermelho', alerta);
+    //                             }
+    //                         } else if (alerta.Componente_ID === 3) { // CPU
+    //                             if (alerta.Valor > 40 && alerta.Valor < 55) {
+    //                                 criarAviso('Alerta no ATM ' + alerta.ATMComp_ID + '. Clique aqui para ir até ele', 'index.html', 'aviso-amarelo', alerta);
+    //                             } else if (alerta.Valor >= 55) {
+    //                                 criarAviso('Alerta no ATM ' + alerta.ATMComp_ID + '. Clique aqui para ir até ele', 'index.html', 'aviso-vermelho', alerta);
+    //                             }
+    //                         }
+    //                     }
+    //                 });
+    //             } else {
+    //                 throw ('Houve um erro na API!');
+    //             }
+    //         }).catch(function (resposta) {
+    //             console.error(resposta);
+    //         });
+    //     }
 
-        // Chamar a função de obterAlertas a cada 5 segundos (5000 milissegundos)
-        setInterval(obterAlertas, 5000);
-    }
+    //     // Chamar a função de obterAlertas a cada 5 segundos (5000 milissegundos)
+    //     setInterval(obterAlertas, 5000);
+    // }
 
-    // Chamar a função buscarAviso para iniciar o processo de busca contínua de alertas
-    buscarAviso();
+    // // Chamar a função buscarAviso para iniciar o processo de busca contínua de alertas
+    // buscarAviso();
 
 
 </script>
