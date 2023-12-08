@@ -271,3 +271,20 @@
     color:#021e46;
     font-size: large;
 }
+
+#componenteDias{
+    height: 20vh;
+    width: 95%; font-size: large;
+    justify-content: center;
+    align-items: center;
+}
+#totalLogsDia{
+    height: 20vh;
+    width: 95%;
+}
+
+#componenteDias{
+    font-size: large;
+    justify-content: center;
+    align-items: center;
+}
