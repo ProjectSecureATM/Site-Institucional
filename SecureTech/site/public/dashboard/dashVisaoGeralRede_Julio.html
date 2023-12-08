@@ -80,12 +80,12 @@
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Inovações Secure ATM:</h6>
-                        <a href="dashVaz.html" class="collapse-item">Dash Gabroh</a>
+                        <a href="dashVaz2.html" class="collapse-item">Dash Rede</a>
                         <a href="DashBoard-VisaoGeral-Giba.html" class="collapse-item">Desempenho Sistêmico</a>
-                        <a href="dashVisaoGeralRede_Julio.html" class="collapse-item">Segurança de Rede</a>
-                        <a href="DashBoard-VisaoGeral-Paulo.html" class="collapse-item">Dash Paulão</a>
-                        <a href="DashBoard-VisaoGeral-Primon.html" class="collapse-item">Dash Primon</a>
-                        <a class="collapse-item">Dash Alice</a>
+                        <a href="dashVisaoGeralRede_Julio.html" class="collapse-item">Dash Segurança de Rede</a>
+                        <a href="DashBoard-VisaoGeral-Paulo.html" class="collapse-item">Dash Estresse</a>
+                        <a href="DashBoard-VisaoGeral-Primon.html" class="collapse-item">Dash USB</a>
+                        <a href="DashBoard-VisaoGeral-Alice.html" class="collapse-item">Dash Log</a>
                     </div>
                 </div>
             </li>
@@ -255,7 +255,7 @@
                                             </div>
                                         </div>
 
-                                        <div id="dash"class="card-body">
+                                        <div id="dash" class="card-body">
                                             <canvas id="PacotesChart"></canvas>
                                         </div>
                                     </div>
@@ -353,12 +353,6 @@
             obterIP()
             mostrarPacotes(idAgen)
         }
-        //function mostrarPacotesRede(idAgen) {
-        //    mostrarPacotes(idAgen);
-        //    setInterval(function () {
-        //        mostrarPacotes(idAgen);
-        //    }, 7000);
-        //}
 
         function infosRede() {
             $('#secureModal').modal('show');
@@ -415,9 +409,9 @@
                     div.setAttribute("id", "ip_recebido")
                     feed.appendChild(div);
 
-                    
+
                     listarIPePacotes();
-                  
+
 
                     // Atualizar a div existente com os dados recuperados
                     $('#secureModal').modal('hide');
@@ -441,26 +435,42 @@
                         // Inicialize a variável trafegoAnormal dentro da função
                         var trafegoAnormal = false;
 
+                        // Crie a div que englobará os elementos dinâmicos
+                        var conteudoIPS = document.createElement("div");
+                        conteudoIPS.id = "conteudoIPs";
+
+                        var lindosIPS = document.createElement("div");
+                        lindosIPS.id = "lindosIPS";
+
                         for (let contador_usuario = 0; contador_usuario < resposta.length; contador_usuario++) {
                             var publicacao = resposta[contador_usuario];
-
 
                             // Criando e manipulando elementos do HTML via JavaScript
                             var usuario = document.createElement("li");
 
                             var rede = document.createElement("div");
+                            rede.className = "item-rede"
 
                             var ip = document.createElement("p");
+                            var span1 = document.createElement("span")
+                            span1.textContent = 'IP: ';
                             ip.innerHTML = `${publicacao.IP}`;
-                            rede.appendChild(ip)
+                            rede.appendChild(span1);
+                            rede.appendChild(ip);
 
                             var Hora = document.createElement("p");
+                            var span2 = document.createElement("span")
+                            span2.textContent = 'Horário: ';
                             Hora.innerHTML = `${publicacao.hora}`;
-                            rede.appendChild(Hora)
+                            rede.appendChild(span2);
+                            rede.appendChild(Hora);
 
                             var Pacotes = document.createElement("p");
+                            var span3 = document.createElement("span")
+                            span3.textContent = 'QtdPacotes: ';
                             Pacotes.innerHTML = `${publicacao.pacotesEnviados}`;
-                            rede.appendChild(Pacotes)
+                            rede.appendChild(span3);
+                            rede.appendChild(Pacotes);
 
                             // Verificando se o tráfego é anormal (mais de 100 pacotes)
                             if (publicacao.pacotesEnviados > 100) {
@@ -468,7 +478,7 @@
                                 rede.style.color = 'red';
                             }
 
-                            feed.appendChild(rede);
+                            conteudoIPS.appendChild(rede);
                         }
 
                         // Mova esta parte para fora do loop para lidar com o tráfego anormal após processar todos os dados
@@ -480,6 +490,9 @@
                         } else {
                             trafego.innerHTML = "Normal";
                         }
+
+                        // Adicione a div com os elementos dinâmicos ao feed
+                        feed.appendChild(conteudoIPS);
                     })
                 })
                 .catch(error => {
@@ -489,115 +502,116 @@
         }
 
         function mostrarPacotes(idAgen) {
-        fetch(`/rede/graficoPacotes/${idAgen}`, { cache: 'no-store' })
-            .then(function (resposta) {
-                resposta.json().then(function (resposta) {
-                console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
-                // resposta.reverse();
-                console.log(idAgen)
-                plotarGrafico(resposta, idAgen);
-                // setTimeout(() => atualizarGraficoPacotes(idAgen, dados, PacotesChart), 2000);
-            
-            })})
-            .catch(function (error) {
-                console.error(`Erro na obtenção dos dados para o gráfico: ${error.message}`);
-            });
-    }
+            fetch(`/rede/graficoPacotes/${idAgen}`, { cache: 'no-store' })
+                .then(function (resposta) {
+                    resposta.json().then(function (resposta) {
+                        console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                        // resposta.reverse();
+                        console.log(idAgen)
+                        plotarGrafico(resposta, idAgen);
+                        // setTimeout(() => atualizarGraficoPacotes(idAgen, dados, PacotesChart), 2000);
 
-    function plotarGrafico(resposta, idAgen) {
-        let titulos = [];
-        let dados = {
-            labels: titulos,
-            datasets: [{
-                label: 'Total Pacotes / Monitoramento',
-                color: 'white',
-                data: [],
-                fill: false,
-                backgroundColor: '#021e46   ',
-                borderColor: '#021e46   ',
-                fontColor: 'white',
-                borderWidth: 1,
-                tension: 0.5
-            }]
-        };
-
-        for (let i = 0; i < resposta.length; i++) {
-            let registro = resposta[i];
-            dados.datasets[0].data.push(registro.total_pacotes);
-            titulos.push(registro.hora)
+                    })
+                })
+                .catch(function (error) {
+                    console.error(`Erro na obtenção dos dados para o gráfico: ${error.message}`);
+                });
         }
 
-        const opcoes = {
-            plugins: {
-                legend: {
-                    labels: {
-                        color: '#021e46',
-                        fontStyle: 'bold' // Cor da fonte da label
+        function plotarGrafico(resposta, idAgen) {
+            let titulos = [];
+            let dados = {
+                labels: titulos,
+                datasets: [{
+                    label: 'Total Pacotes / Monitoramento',
+                    color: 'white',
+                    data: [],
+                    fill: false,
+                    backgroundColor: '#021e46   ',
+                    borderColor: '#021e46   ',
+                    fontColor: 'white',
+                    borderWidth: 1,
+                    tension: 0.5
+                }]
+            };
+
+            for (let i = 0; i < resposta.length; i++) {
+                let registro = resposta[i];
+                dados.datasets[0].data.push(registro.total_pacotes);
+                titulos.push(registro.hora)
+            }
+
+            const opcoes = {
+                plugins: {
+                    legend: {
+                        labels: {
+                            color: '#021e46',
+                            fontStyle: 'bold' // Cor da fonte da label
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        grid: {
+                            display: false,
+                        },
+                        ticks: {
+                            color: 'black' // Cor da fonte no eixo X
+                        },
+                    },
+                    x: {
+                        beginAtZero: true,
+                        display: false,
+                        ticks: {
+                            color: 'white' // Cor da fonte no eixo X
+                        },
                     }
                 }
-            },
-            scales: {
-                y: {
-                    beginAtZero: true,
-                    grid: {
-                        display: false,
-                    },
-                    ticks: {
-                        color: 'black' // Cor da fonte no eixo X
-                    },
-                },
-                x: {
-                    beginAtZero: true,
-                    display: false,
-                    ticks: {
-                        color: 'white' // Cor da fonte no eixo X
-                    },
-                }
             }
+
+            const config = {
+                type: 'line',
+                data: dados
+                //option: opcoes
+            };
+
+
+            let PacotesChart = new Chart(
+                document.getElementById(`PacotesChart`),
+                config
+            );
+
+            // Chama a função para atualizar dinamicamente o gráfico
+            //setTimeout(() => atualizarGraficoPacotes(idAgen, dados, PacotesChart), 2000);
+
         }
 
-        const config = {
-            type: 'line',
-            data: dados
-            //option: opcoes
-        };
+        function atualizarGraficoPacotes(idAgen, dados, PacotesChart) {
 
+            fetch(`/rede/atualizarGraficoPacotes/${idAgen}`, { cache: 'no-store' })
+                .then(function (response) {
+                    if (response.ok) {
+                        return response.json();
+                    } else {
+                        console.error('Nenhum dado encontrado ou erro na API');
+                        return [];
+                    }
+                })
+                .then(function (novoRegistro) {
+                    console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
+                    console.log('Dados atuais do gráfico:');
+                    console.log(dados);
 
-        let PacotesChart = new Chart(
-            document.getElementById(`PacotesChart`),
-            config
-        );
-
-        // Chama a função para atualizar dinamicamente o gráfico
-        //setTimeout(() => atualizarGraficoPacotes(idAgen, dados, PacotesChart), 2000);
-
-    }
-
-    function atualizarGraficoPacotes(idAgen, dados, PacotesChart) {
-       
-        fetch(`/rede/atualizarGraficoPacotes/${idAgen}`, { cache: 'no-store' })
-            .then(function (response) {
-                if (response.ok) {
-                    return response.json();
-                } else {
-                    console.error('Nenhum dado encontrado ou erro na API');
-                    return [];
-                }
-            })
-            .then(function (novoRegistro) {
-                console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
-                console.log('Dados atuais do gráfico:');
-                console.log(dados);
-
-                // if (!validacao) {
+                    // if (!validacao) {
                     dados.labels.pop();
                     dados.datasets[0].data.pop();
 
                     dados.labels.push(novoRegistro[0].hora);
                     dados.datasets[0].data.push(novoRegistro[0].total_pacotes);
                     PacotesChart.update();
-                // } 
-                // else {
+                    // } 
+                    // else {
                     console.log("---------------------------------------------------------------");
                     console.log("Como não há dados novos para captura, o gráfico não atualizará.");
                     console.log("Horário do novo dado capturado:");
@@ -606,15 +620,15 @@
                     console.log(dados.labels[dados.labels.length - 1]);
                     console.log("---------------------------------------------------------------");
 
-                // }
+                    // }
 
-                setTimeout(() => atualizarGraficoPacotes(idAgen, dados, PacotesChart), 2000);
-            })
-            .catch(function (error) {
-                console.error(`Erro na obtenção dos dados para o gráfico: ${error.message}`);
-            });
+                    setTimeout(() => atualizarGraficoPacotes(idAgen, dados, PacotesChart), 2000);
+                })
+                .catch(function (error) {
+                    console.error(`Erro na obtenção dos dados para o gráfico: ${error.message}`);
+                });
 
-    }
+        }
 
 
 

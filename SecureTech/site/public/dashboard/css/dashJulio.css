@@ -11,3 +11,17 @@
     position: relative;
     right: 3.5vw;
 }
+
+#conteudoIPs {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.item-rede {
+    border-radius: 0.5rem;
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra leve */
+    margin-bottom: 10px; /* Espaço entre os itens */
+    padding: 10px; /* Espaçamento interno */
+}

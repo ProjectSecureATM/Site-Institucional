@@ -3,7 +3,6 @@
 
 <head>
 
-
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -80,7 +79,7 @@
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Inovações Secure ATM:</h6>
-                        <a href="dashVaz.html" class="collapse-item">Dash Gabroh</a>
+                        <a href="dashVaz2.html" class="collapse-item">Dash Rede</a>
                         <a href="DashBoard-VisaoGeral-Giba.html" class="collapse-item">Desempenho Sistêmico</a>
                         <a href="dashVisaoGeralRede_Julio.html" class="collapse-item">Dash Segurança de Rede</a>
                         <a href="DashBoard-VisaoGeral-Paulo.html" class="collapse-item">Dash Estresse</a>
@@ -168,18 +167,11 @@
 
                 <!-- End of Topbar -->
 
-
-
-
-
-
-
-
                 <div class="boxDashBoard">
                     <div class="dashBoard">
                         <div class="tituloDashBoard">
                             <div class="titulo-DashBoard">
-                                <span>DashBoard</span>
+                                <span>DashBoard USB - ATM: <span id="ATM"></span></span>
                             </div>
                             
                         </div>
@@ -219,7 +211,7 @@
                                 <div class="containerDashComponentes">
                                     <div class="divTitulo">
                                         <div class="titulo1 titulo-end">
-                                            <span>Quantidade Dispositivos</span>
+                                            <span>Quantidade Dispositivos conectados no ATM: <span id="ATM"></span> 
                                         </div>
                                     </div>
                                     <div class="conteudoComponente1">
@@ -305,6 +297,18 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
 
+    var idATM = sessionStorage.getItem("idATM")
+    var feed = document.getElementById("ATM");
+    feed.innerHTML = `${idATM}` 
+
+    window.onload = function() {
+        obterDadosGrafico1(idATM)
+        obterDadosGrafico2(idATM)
+        obterDadosGrafico3(idATM)
+        obterDadosGrafico4(idATM)
+        obterDadosGrafico5(idATM)
+    }
+
 function metricasUSB() {
         Swal.fire({
             icon: "warning",
@@ -325,11 +329,9 @@ function metricasUSB() {
 
     let proximaAtualizacao1;
 
-    window.onload = obterDadosGrafico1(1)
 
     function obterDadosGrafico1(idATM) {
         if (idATM) {
-            idATM = 1
             console.log(idATM);
 
             document.addEventListener("DOMContentLoaded", function () {
@@ -447,11 +449,11 @@ function metricasUSB() {
             });
     }
 
-    window.onload = obterDadosGrafico2(2)
+    
 
     function obterDadosGrafico2(idATM) {
         if (idATM) {
-            idATM = 1
+            
             console.log(idATM);
 
             document.addEventListener("DOMContentLoaded", function () {
@@ -577,11 +579,11 @@ function metricasUSB() {
     }
 
 
-    window.onload = obterDadosGrafico3(3)
+    
 
     function obterDadosGrafico3(idATM) {
         if (idATM) {
-            idATM = 1
+            
             console.log(idATM);
 
             document.addEventListener("DOMContentLoaded", function () {
@@ -664,11 +666,11 @@ function metricasUSB() {
             });
     }
 
-    window.onload = obterDadosGrafico4(4)
+    
 
     function obterDadosGrafico4(idATM) {
         if (idATM) {
-            idATM = 1
+            
             console.log(idATM);
 
             document.addEventListener("DOMContentLoaded", function () {
@@ -757,11 +759,11 @@ function metricasUSB() {
     }
 
 
-    window.onload = obterDadosGrafico5(5)
+    
 
     function obterDadosGrafico5(idATM) {
         if (idATM) {
-            idATM = 1
+            
             console.log(idATM);
 
             document.addEventListener("DOMContentLoaded", function () {

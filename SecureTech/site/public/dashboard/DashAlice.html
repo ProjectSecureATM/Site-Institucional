@@ -67,7 +67,7 @@
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Inovações Secure ATM:</h6>
-                        <a href="DashBoard-VisaoGeral-Vaz.html" class="collapse-item">Dash Rede</a>
+                        <a href="dashVaz2.html" class="collapse-item">Dash Rede</a>
                         <a href="DashBoard-VisaoGeral-Giba.html" class="collapse-item">Desempenho Sistêmico</a>
                         <a href="dashVisaoGeralRede_Julio.html" class="collapse-item">Dash Segurança de Rede</a>
                         <a href="DashBoard-VisaoGeral-Paulo.html" class="collapse-item">Dash Estresse</a>
@@ -150,7 +150,7 @@
                     <div id="dashBoard">
                         <div id="tituloDashBoard">
                             <div id="tituloDashboard">
-                                <span id = "nomeDash">DashBoard Logs</span>
+                                <span id = "nomeDash">DashBoard Logs - ATM 1</span>
                                 <div id="informacao">
                                     <div id="iconeInformacao" onclick="metricasLog()">
                                         <img id = "imgInformação" src="../assets/information.png" alt="">
@@ -161,29 +161,27 @@
 
                         <div id="divLinhaDash">
                             <div id="boxDashComponente">
-                                <div id="containerDashComponentes">
+                                <div id="containerDashComponentesKPI">
                                     <div id="divTitulo">
                                         <div id="titulo">
                                             <span>Total de Logs por Dia</span>
                                         </div>
                                     </div>
-                                    <div id="conteudoComponente">
+                                    <div id="totalLogsDia">
                                         <div id="componente">
-                                            <canvas id="totalLogsDia"></canvas>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <div id="boxDashComponente">
-                                <div id="containerDashComponentes">
+                                <div id="containerDashComponentesKPI">
                                     <div id="divTitulo">
                                         <div id = "titulo">
                                             <span>Quantidade de Logs/hora</span>
                                     </div>
                                 </div>
-                                    <div id="conteudoComponente">
+                                    <div id="qtdLogsHora">
                                         <div id="componente">
-                                            <canvas id="qtdLogsHora"></canvas>
                                         </div>
                                     </div>
                                 </div>
@@ -194,12 +192,12 @@
                             <div id="boxDashGrafico">
                                 <div id="containerDashComponentes">
                                     <div id="divTitulo">
-                                    <div id="titulo">
-                                            <span>Logs em Tempo Real</span>
+                                    <div id="tituloTempoReal">
+                                            <span>Logs de Falha em Tempo Real</span>
                                     </div>
                                 </div>
-                                    <div id="conteudoComponente">
-                                        <div id="componente">
+                                    <div id="conteudoComponenteTempoReal">
+                                        <div id="componenteTempoReal">
                                             <canvas id="graficoLogsTempoReal"></canvas>
                                         </div>
                                     </div>
@@ -209,7 +207,7 @@
                             <div id="boxDashGraficoBarra">
                                 <div id="containerDashComponentes">
                                     <div id="divTitulo">
-                                        <div id="titulo">
+                                        <div id="tituloComparacao">
                                             <span>Comparativo entre Logs Bem e Mal Sucedidos</span>
                                         </div>
                                     </div>
@@ -250,26 +248,6 @@
                     </div>
                 </div>
 
-                <!-- pop up sweet alert -->
-                <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
-                <!-- Bootstrap core JavaScript-->
-                <script src="vendor/jquery/jquery.min.js"></script>
-                <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-                <!-- Core plugin JavaScript-->
-                <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
-
-                <!-- Custom scripts for all pages-->
-                <script src="js/sb-admin-2.min.js"></script>
-
-                <!-- Page level plugins -->
-                <script src="vendor/chart.js/Chart.min.js"></script>
-
-                <!-- Page level custom scripts -->
-                <script src="js/demo/chart-area-demo.js"></script>
-                <script src="js/demo/chart-pie-demo.js"></script>
-                <script src="js/demo/chart-bar-demo.js"></script>
 
 </body>
 
@@ -288,11 +266,19 @@
         setInterval(function () {
             obterDadosComparacao(idATM);
         }, 2000);
-        
-        // obterDadosTempoReal(idATM),
-        // setInterval(function () {
-        //     obterDadosTempoReal();
-        // }, 7000);
+        obterDadosTempoReal(idATM),
+        setInterval(function () {
+            obterDadosTempoReal(idATM);
+        }, 7000);
+        obterDadosKpiDiario(idATM),
+        setInterval(function () {
+            obterDadosKpiDiario(idATM);
+        }, 7000);
+        obterDadosHora(idATM),
+        setInterval(function () {
+            obterDadosHora(idATM);
+        }, 7000);
+
     }
 
     function metricasLog() {
@@ -377,16 +363,17 @@
             data: dados
         };
 
-        let myChart = new Chart(
-            document.getElementById(`graficoComparacao`),
-            config
-        );
+// Criar um novo gráfico
+let myChart = new Chart(
+    document.getElementById(`graficoComparacao`),
+    config
+);
         setTimeout(()=>atualizarGraficoComparacao(idATM, dados, myChart),2000)
     }
 
 
     function atualizarGraficoComparacao(idATM, dados, myChart) {
-        fetch(`/alice/O QUE EU COLOCO AQUI?/${idATM}`, { cache: 'no-store' })
+        fetch(`/alice/comparacaoLogsSucessoEFalha/${idATM}`, { cache: 'no-store' })
             .then(function (response) {
                 if (response.ok) {
                     return response.json();
@@ -401,9 +388,11 @@
                 console.log(dados);
 
                 if (novoRegistro.length > 0) {
-                    if (novoRegistro[0].DataRegistro != dados.labels[dados.labels.length - 1]) {
-                        dados.labels.push(novoRegistro[0].DataRegistro);
-                        dados.datasets[0].data.push(novoRegistro[0].Valor);
+                    if (novoRegistro[0].Tipo != dados.labels[dados.labels.length - 1]) {
+                        dados.labels.push(novoRegistro[0].qtdErrosFalha);
+                        dados.labels2.push(novoRegistro[0].qtdErrosSucesso);
+                        dados.datasets[0].data.push(novoRegistro[0].qtdErrosFalha);
+                        dados.datasets2[0].data.push(novoRegistro[0].qtdErrosSucesso);
                         myChart.update();
                     } else {
                         console.log("---------------------------------------------------------------");
@@ -425,171 +414,139 @@
 
     }
 
-    // OUTRO GRÀFICO
+    // OUTRO GRÁFICO - LOGS TEMPO REAL
 
-//     function obterDadosTempoReal(idATM) {
+    function obterDadosTempoReal(idATM) {
 
-// fetch(`/alice/logTempoReal/${idATM}`, { cache: 'no-store' })
-// .then(function (response) {
-//     if(response.ok){
-//         response.json()
-//         .then(function(resposta){
-//             console.log("Dados recebidos:",JSON.stringify(resposta))
-//             resposta.reverse()
-//             plotarGraficoTempoReal(resposta, idATM)
-//         })
-//     }
-// })  
+fetch(`/alice/logTempoReal/${idATM}`, { cache: 'no-store' })
+.then(function (response) {
+    if(response.ok){
+        response.json()
+        .then(function(resposta){
+            console.log("Dados recebidos:",JSON.stringify(resposta))
+            resposta.reverse()
+            plotarGraficoTempoReal(resposta, idATM)
+        })
+    }
+})  
 
-// }
+}
 
-// function plotarGraficoTempoReal(resposta, idATM) {
+let myChartLogsTempoReal;
 
-// let labels = [];
-// let dados = {
-//     labels: labels,
-//     datasets: [{
-//         label: 'Log',
-//         data: [],
-//         fill: false,
-//         backgroundColor: '#021e46',
-//         borderColor: '#021e46',
-//         borderWidth: 5,
-//         tension: 0.5
-//     }]
-// };
+function plotarGraficoTempoReal(resposta, idATM) {
 
+let labels = [];
+let dados = {
+    labels: labels,
+    datasets: [{
+        label: 'Log Falha',
+        data: [],
+        fill: false,
+        backgroundColor: '##021e46',
+        borderColor: '##021e46',
+        borderWidth: 0.5,
+        tension: 0.5
+    }]
+};
 
-// for (i = 0; i < resposta.length; i++) {
-//     var registro = resposta[i];
-//     dados.datasets[0].data.push(registro.idLogs);
-//     labels.push(registro.data_hora)
-// }
+for (i = 0; i < resposta.length; i++) {
+    var registro = resposta[i];
+    dados.datasets[0].data.push(registro.idLogs);
+    labels.push(registro.hora)
+}
 
-// console.log('----------------------------------------------')
-// console.log('O gráfico será plotado com os respectivos valores:')
-// console.log('Labels:')
-// console.log(labels)
-// console.log('Dados:')
-// console.log(dados.datasets)
-// console.log('----------------------------------------------')
-
-
-// const config = {
-//     type: 'line',
-//     data: dados
-// };
-
-// let myChart = new Chart(
-//     document.getElementById(`EstresseChart`),
-//     config
-// );
-// setTimeout(()=>atualizarGraficoTempoReal(idATM, dados, myChart),2000)
-// }
+console.log('----------------------------------------------')
+console.log('O gráfico será plotado com os respectivos valores:')
+console.log('Labels:')
+console.log(labels)
+console.log('Dados:')
+console.log(dados.datasets)
+console.log('----------------------------------------------')
 
 
-// function atualizarGraficoTempoReal(idATM, dados, myChart) {
-// fetch(`/alice/buscarTempoReal/${idATM}`, { cache: 'no-store' })
-//     .then(function (response) {
-//         if (response.ok) {
-//             return response.json();
-//         } else {
-//             console.error('Nenhum dado encontrado ou erro na API');
-//             return [];
-//         }
-//     })
-//     .then(function (novoRegistro) {
-//         console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
-//         console.log('Dados atuais do gráfico:');
-//         console.log(dados);
+const config = {
+    type: 'line',
+    data: dados
+};
 
-//         if (novoRegistro.length > 0) {
-//             if (novoRegistro[0].DataRegistro != dados.labels[dados.labels.length - 1]) {
-//                 dados.labels.push(novoRegistro[0].DataRegistro);
-//                 dados.datasets[0].data.push(novoRegistro[0].Valor);
-//                 myChart.update();
-//             } else {
-//                 console.log("---------------------------------------------------------------");
-//                 console.log("Como não há dados novos para captura, o gráfico não atualizará.");
-//                 console.log("Horário do novo dado capturado:");
-//                 console.log(novoRegistro[0].DataRegistro);
-//                 console.log("Horário do último dado capturado:");
-//                 console.log(dados.labels[dados.labels.length - 1]);
-//                 console.log("---------------------------------------------------------------");
-//             }
-//         }
+let myChartLogsTempoReal = new Chart(
+    document.getElementById(`graficoLogsTempoReal`),
+    config
+);
+setTimeout(()=>atualizarGraficoTempoReal(idATM, dados, myChart),2000)
+};
 
-//         // Chama a função recursivamente após 2 segundos
-//         setTimeout(()=>atualizarGraficoTempoReal(idATM, dados, myChart),2000)
-//     })
-//     .catch(function (error) {
-//         console.error(`Erro na obtenção dos dados para o gráfico: ${error.message}`);
-//     });
 
-// }
+function atualizarGraficoTempoReal(idATM, dados, myChart) {
+fetch(`/alice/logTempoReal/${idATM}`, { cache: 'no-store' })
+    .then(function (response) {
+        if (response.ok) {
+            return response.json();
+        } else {
+            console.error('Nenhum dado encontrado ou erro na API');
+            return [];
+        }
+    })
+    .then(function (novoRegistro) {
+        console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
+        console.log('Dados atuais do gráfico:');
+        console.log(dados);
 
-//     function obterDadosMaxKpi(idATM) {
+        if (novoRegistro.length > 0) {
+            if (novoRegistro[0].hora != dados.labels[dados.labels.length - 1]) {
+                dados.labels.push(novoRegistro[0].hora);
+                dados.datasets[0].data.push(novoRegistro[0].idLogs);
+                myChart.update();
+            } else {
+                console.log("---------------------------------------------------------------");
+                console.log("Como não há dados novos para captura, o gráfico não atualizará.");
+                console.log("Horário do novo dado capturado:");
+                console.log(novoRegistro[0].data_hora);
+                console.log("Horário do último dado capturado:");
+                console.log(dados.labels[dados.labels.length - 1]);
+                console.log("---------------------------------------------------------------");
+            }
+        }
 
-//         fetch(`/alice/buscarMaximo/${idATM}`, { cache: 'no-store' })
-//         .then(function (response) {
-//             if(response.ok){
-//                 response.json()
-//                 .then(function(resposta){
+        // Chama a função recursivamente após 2 segundos
+        setTimeout(()=>atualizarGraficoTempoReal(idATM, dados, myChart),2000)
+    })
+    .catch(function (error) {
+        console.error(`Erro na obtenção dos dados para o gráfico: ${error.message}`);
+    });
 
-//                     console.log("Dados recebidos:",JSON.stringify(resposta))
+}
+
+// KPIs ALICE
+
+    function obterDadosKpiDiario(idATM) {
+        fetch(`/alice/logDia/${idATM}`, { cache: 'no-store' })
+        .then(function (resposta) {
+            resposta.json().then(function (resposta) {
+
+                    console.log("Dados recebidos:",JSON.stringify(resposta))
                     
-//                     var kpi = document.getElementById("KPIpico");
-//                     kpi.innerHTML = "";
-//                     kpi.innerHTML = resposta[0].Valor;
+                    var kpi = document.getElementById("totalLogsDia");
+                    kpi.innerHTML = "";
+                    kpi.innerHTML = resposta[0].quantidade;
+                })
+            }
+        )}  
+    
 
-//                 })
-//             }
-//         })  
+    function obterDadosHora(idATM) {
 
-//     }
+        fetch(`/alice/logHora/${idATM}`, { cache: 'no-store' })
+        .then(function (resposta) {
+            resposta.json().then(function (resposta) {
 
-//     function obterDadosMinKpi(idATM) {
-
-//         fetch(`/alice/buscarMinimo/${idATM}`, { cache: 'no-store' })
-//         .then(function (response) {
-//             if(response.ok){
-//                 response.json()
-//                 .then(function(resposta){
-
-//                     console.log("Dados recebidos:",JSON.stringify(resposta))
+                    console.log("Dados recebidos:",JSON.stringify(resposta))
                     
-//                     var kpi = document.getElementById("KPIvale");
-//                     kpi.innerHTML = "";
-//                     kpi.innerHTML = resposta[0].Valor;
-
-//                 })
-//             }
-//         })  
-
-//     }
+                    var kpi = document.getElementById("qtdLogsHora");
+                    kpi.innerHTML = "";
+                    kpi.innerHTML = resposta[0].quantidadeERRO;
+                })
+            }
+        )} 
 </script>
-
-<!-- Selects as KPIs -->
-<!-- 
-
--- Quantidade de logs por dia
-SELECT COUNT(idLogs) FROM logs WHERE DATE(data_hora) = CURDATE();
-
--- ATM com mais erros
-SELECT ATM.idATM, COUNT(DISTINCT TipoERRO.idTipoERRO) AS quantidade_tipos_erros FROM ATM
-	JOIN logs ON ATM.idATM = logs.fk_idATM
-		JOIN mensagem ON logs.idLogs = mensagem.fkLogs
-			JOIN TipoERRO ON mensagem.idMensagem = TipoERRO.fkMSG
-				WHERE mensagem.Mensagem LIKE '%não%'
-					GROUP BY ATM.idATM
-						ORDER BY quantidade_tipos_erros DESC;
-                        
--- Erros por hora 
-SELECT
-  DATE_FORMAT(logs.data_hora, '%d-%m-%Y %H:00:00') AS hora,
-		COUNT(*) AS quantidade_erros FROM logs
-			JOIN mensagem ON logs.idLogs = mensagem.fkLogs
-				WHERE mensagem.Mensagem LIKE '%não%'
-					GROUP BY hora
-					ORDER BY hora;
- -->
