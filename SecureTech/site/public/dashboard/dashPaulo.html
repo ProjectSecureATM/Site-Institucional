@@ -351,14 +351,14 @@
     }
 
     function obterDadosKPIS(idATM) {
-        obterDados(idATM),
-        setInterval(function () {
+        // obterDados(idATM),
+        // setInterval(function () {
             obterDados(idATM);
-        }, 2000);
+        // }, 3000);
         
         obterDadosMaxKpi(idATM),
         setInterval(function () {
-            obterDadosMaxKpi(1);
+            obterDadosMaxKpi(idATM);
         }, 7000);
 
         obterDadosMinKpi(idATM) 
@@ -424,7 +424,7 @@
             document.getElementById(`EstresseChart`),
             config
         );
-        setTimeout(()=>atualizarGrafico(idATM, dados, myChart),2000)
+        setTimeout(()=>atualizarGrafico(idATM, dados, myChart),3000)
     }
 
 
@@ -463,8 +463,8 @@
                     }
                 }
 
-                // Chama a função recursivamente após 2 segundos
-                setTimeout(()=>atualizarGrafico(idATM, dados, myChart),2000)
+                // Chama a função recursivamente após 3 segundos
+                setTimeout(()=>atualizarGrafico(idATM, dados, myChart),4000)
             })
             .catch(function (error) {
                 console.error(`Erro na obtenção dos dados para o gráfico: ${error.message}`);

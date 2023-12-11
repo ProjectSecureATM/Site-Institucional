@@ -1194,14 +1194,10 @@ ORDER BY
 
     function obterTempoAtv(idATM) {
     var atividadeQuery = `
-    SELECT atividade
-    FROM (
-        SELECT atividade,
-               ROW_NUMBER() OVER (PARTITION BY fk__idATM ORDER BY atividade DESC) AS rn
-        FROM tempoAtividade
-        WHERE fk__idATM = ${idATM}
-    ) AS subquery
-    WHERE rn = 1;`
+    SELECT * FROM tempoAtividade
+    where fk__idATM = ${idATM} 
+	ORDER BY idTempoAtividade DESC
+	OFFSET 0 ROWS FETCH NEXT 1 ROW ONLY;`
 
         console.log("Executando a instrução SQL: \n" + atividadeQuery);
         

@@ -4,12 +4,12 @@
 }
 
 #dash{
-    width: 60vw;
+    width: 45vw;
     justify-content: center;
     align-items: center;
     text-align: center;
     position: relative;
-    right: 3.5vw;
+    left: 4vw;
 }
 
 #conteudoIPs {

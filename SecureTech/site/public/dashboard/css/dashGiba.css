@@ -1,6 +1,6 @@
 .chart-area {
-    width: 41vw;
-    height: 41vh;
+    width: 40vw;
+    height: 40vh;
     display: flex;
     justify-content: space-between;
     gap: 1.5rem;
@@ -40,15 +40,15 @@
 #desempenho {
     display: flex;
     flex-direction: row;
-    width: 40vw;
+    width: 38.5vw;
     height: 10vh;
     border-left: 0.25rem solid rgb(150, 108, 2) !important;
     position: relative;
-    left: 2.3vw;
+    left: 3.8vw;
 }
 
 #atividadeGeral {
-    width: 40vw;
+    width: 38.5vw;
    position: relative;
    /* right: 4.5vw; */
  }

@@ -35,11 +35,12 @@
 }
 
 #container_canva {
-    height: 100%;
+    width: 48vw;
+    position: relative;
+    left: 9vw;
 
 }
 
 #EstresseChart {
-    height: 35vh;
-
+     width: 40vw;
 }

@@ -3,7 +3,7 @@ var database = require("../database/config")
 function logDia(idATM) {
 
     var instrucaoSql = `
-    SELECT TOP 1 SUM(idLogs) AS quantidade, FORMAT(data_hora, '%d') AS dia FROM logs WHERE fk_idATM = ${idATM}
+    SELECT TOP 1 SUM(idLogs) AS quantidadeDIA, FORMAT(data_hora, '%d') AS dia FROM logs WHERE fk_idATM = ${idATM}
 				GROUP BY data_hora ORDER BY data_hora DESC;
     `;
 
@@ -15,7 +15,7 @@ function logDia(idATM) {
 function logHora(idATM) {
 
     var instrucaoSql = `
-    SELECT TOP 1 FORMAT(data_hora, 'HH:00:00') AS hora, SUM(logs.idLogs) AS quantidadeERRO FROM logs
+    SELECT TOP 1 FORMAT(data_hora, 'HH:00:00') AS hora, SUM(logs.idLogs) AS quantidadeHORA FROM logs
         JOIN mensagem ON logs.idLogs = mensagem.fkLogs
             WHERE logs.fk_idATM = ${idATM} AND mensagem.Mensagem LIKE '%não%'
                 GROUP BY data_hora ORDER BY data_hora;
@@ -39,20 +39,20 @@ function logTempoReal(idATM) {
 
 function comparacaoLogsSucessoEFalha(idATM) {
 var instrucaoSql = `
-    SELECT
-    Tipo,
-    SUM(CASE WHEN tipo = 'Usuário falhou na autenticação.' THEN 1 ELSE 0 END) AS qtdErrosFalha,
-    SUM(CASE WHEN tipo = 'Usuário autenticado com sucesso.' THEN 1 ELSE 0 END) AS qtdAcertosFalha
+SELECT
+Tipo,
+SUM(CASE WHEN tipo = 'Usuário falhou na autenticação.' THEN 1 ELSE 0 END) AS qtdErrosFalha,
+SUM(CASE WHEN tipo = 'Usuário autenticado com sucesso.' THEN 1 ELSE 0 END) AS qtdAcertosFalha
 FROM
-    TipoERRO 
-    JOIN mensagem ON fkMSG = idMensagem
-    JOIN logs ON fkLogs = idLogs
-    JOIN ATM ON fk_idATM = 1
+TipoERRO 
+LEFT JOIN mensagem ON fkMSG = idMensagem
+LEFT JOIN logs l ON fkLogs = l.idLogs
+LEFT JOIN ATM atm ON l.fk_idATM = idATM
 WHERE
-    fk_idATM = 1
-    AND (tipo = 'Usuário falhou na autenticação.' OR tipo = 'Usuário autenticado com sucesso.')
+idATM = ${idATM}
+AND (tipo = 'Usuário falhou na autenticação.' OR tipo = 'Usuário autenticado com sucesso.')
 GROUP BY
-    Tipo; `
+Tipo; `
 
     console.log("Executando a instrução SQL: \n" + instrucaoSql );
     return database.executar(instrucaoSql );

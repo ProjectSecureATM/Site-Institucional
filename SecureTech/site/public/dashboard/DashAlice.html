@@ -282,6 +282,10 @@
     };
 
     function obterDados(idATM) {
+        obterDadosKpiDiario(idATM),
+            setInterval(function () {
+                obterDadosKpiDiario(idATM);
+            }, 7000);
         obterDadosComparacao(idATM),
             setInterval(function () {
                 obterDadosComparacao(idATM);
@@ -290,10 +294,7 @@
             setInterval(function () {
                 obterDadosTempoReal(idATM);
             }, 7000);
-        obterDadosKpiDiario(idATM),
-            setInterval(function () {
-                obterDadosKpiDiario(idATM);
-            }, 7000);
+        
         obterDadosHora(idATM),
             setInterval(function () {
                 obterDadosHora(idATM);
@@ -357,10 +358,12 @@ function plotarGraficoComparacao(resposta, idATM) {
         labels.push(registro.Tipo);
     }
 
+    console.log("LABELS:", labels);
+
     const config = {
         type: 'bar',
         data: {
-            labels: labels,
+            labels: [""],
             datasets: [dadosFalha, dadosSucesso],
         },
         options: {
@@ -547,7 +550,7 @@ function atualizarGraficoComparacao(idATM, myChart) {
 
                     var kpi = document.getElementById("totalLogsDia");
                     kpi.innerHTML = "";
-                    kpi.innerHTML = resposta[0].quantidade;
+                    kpi.innerHTML = resposta[0].quantidadeDIA;
                 })
             }
             )
@@ -562,9 +565,9 @@ function atualizarGraficoComparacao(idATM, myChart) {
 
                     console.log("Dados recebidos:", JSON.stringify(resposta))
 
-                    var kpi = document.getElementById("qtdLogsHora");
-                    kpi.innerHTML = "";
-                    kpi.innerHTML = resposta[0].quantidadeERRO;
+                    var kpi2 = document.getElementById("qtdLogsHora");
+                    kpi2.innerHTML = "";
+                    kpi2.innerHTML = resposta[0].quantidadeHORA;
                 })
             }
             )

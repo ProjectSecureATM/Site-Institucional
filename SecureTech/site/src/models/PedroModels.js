@@ -22,7 +22,7 @@ function buscar_cpu(idATM){
 async function buscar_cpu(idATM) {
     try {
         var instrucao = `
-            SELECT 
+            SELECT TOP 5
                 Valor, 
                 FORMAT(DataRegistro,'hh:mm') as DataRegistro
             FROM Leitura
@@ -62,7 +62,7 @@ function buscar_ram(idATM){
 async function buscar_ram(idATM) {
     try {
         var instrucao = `
-            SELECT 
+            SELECT TOP 5
                 Valor, 
                 FORMAT(DataRegistro,'hh:mm') as DataRegistro
             FROM Leitura
@@ -205,11 +205,12 @@ function atualizar_ram(idATM){
 async function atualizar_ram(idATM){
     try {
         var instrucao = `
-            SELECT TOP 1
+            SELECT TOP 5
                 Valor, 
                 FORMAT(DataRegistro, 'hh:mm') as DataRegistro
             FROM Leitura
             WHERE Componente_ID = 1
+            AND APIID = 2
             ORDER BY LeituraID DESC;
         `;
         
@@ -229,11 +230,13 @@ async function atualizar_ram(idATM){
 function atualizar_cpu(idATM){
 
     var instrucao = `
-    SELECT 
+    SELECT TOP 10
         Valor, 
         DATE_FORMAT(DataRegistro,"%h:%m") as DataRegistro
     FROM Leitura
-    WHERE Componente_ID = 3 order by LeituraID DESC limit 1 ;
+    WHERE Componente_ID = 3
+    AND APIID = 2
+    order by LeituraID DESC limit 1 ;
     `;
 
     console.log("Executando a instrução sql:" + instrucao);
@@ -245,7 +248,7 @@ function atualizar_cpu(idATM){
 async function atualizar_cpu(idATM) {
     try {
         var instrucao = `
-            SELECT TOP 1
+            SELECT TOP 10
                 Valor, 
                 FORMAT(DataRegistro, 'hh:mm') as DataRegistro
             FROM Leitura

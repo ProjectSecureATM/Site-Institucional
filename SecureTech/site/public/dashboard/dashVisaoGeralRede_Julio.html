@@ -488,13 +488,13 @@
 
                             var Pacotes = document.createElement("p");
                             var span3 = document.createElement("span")
-                            span3.textContent = 'QtdPacotes: ';
+                            span3.textContent = 'Quantidade Pacotes: ';
                             Pacotes.innerHTML = `${publicacao.pacotesEnviados}`;
                             rede.appendChild(span3);
                             rede.appendChild(Pacotes);
 
                             // Verificando se o tráfego é anormal (mais de 100 pacotes)
-                            if (publicacao.pacotesEnviados > 100) {
+                            if (publicacao.pacotesEnviados >= 100) {
                                 trafegoAnormal = true;
                                 rede.style.color = 'red';
                             }

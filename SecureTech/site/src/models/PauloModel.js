@@ -31,7 +31,6 @@ function buscarTempoReal(idATM) {
     WHERE ATMComp_ID=${idATM}
     AND APIID = 4 
     AND Componente_ID = 1 
-    
     order by LeituraID desc ;
     `;
 
